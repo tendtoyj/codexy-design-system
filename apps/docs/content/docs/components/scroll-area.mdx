@@ -1,0 +1,89 @@
+---
+title: ScrollArea
+description: macOS 얇은 스크롤바 + hover-expand, Radix ScrollArea 기반
+---
+
+import {
+  ScrollAreaVerticalDemo,
+  ScrollAreaHorizontalDemo,
+  ScrollAreaFadeDemo,
+} from "@/components/demos/scroll-area-demo";
+
+## 사용
+
+```tsx
+import { ScrollArea } from "@fluxloop-ai/pds-ui/components/scroll-area";
+
+<ScrollArea className="h-[220px] w-[320px]">
+  ...
+</ScrollArea>
+```
+
+## Vertical
+
+<ScrollAreaVerticalDemo />
+
+## Horizontal
+
+<ScrollAreaHorizontalDemo />
+
+## Scroll fade
+
+스크롤 컨테이너 위/아래에 그라디언트 mask 를 입혀 콘텐츠가 잘리는 가장자리를 부드럽게 처리. `useScrollFade` 가 스크롤 위치를 측정해 위·아래 fade 를 자동으로 토글한다.
+
+<ScrollAreaFadeDemo />
+
+```tsx
+import { ScrollArea } from "@fluxloop-ai/pds-ui/components/scroll-area";
+import { useScrollFade } from "@fluxloop-ai/pds-ui";
+
+function Sidebar() {
+  const { ref, onScroll, maskImage } = useScrollFade<HTMLDivElement>({ size: 40 });
+  return (
+    <ScrollArea
+      viewportRef={ref}
+      onViewportScroll={onScroll}
+      viewportStyle={{ maskImage, WebkitMaskImage: maskImage }}
+    >
+      ...
+    </ScrollArea>
+  );
+}
+```
+
+ScrollArea 가 아닌 임의의 `overflow:auto` 컨테이너에도 동일하게 적용 가능 — `ref`/`onScroll`/`style.maskImage` 를 그 엘리먼트에 직접 꽂으면 된다.
+
+`useScrollFade(options)` 옵션:
+
+| 옵션 | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `number` | `40` | fade 영역 높이 (px) |
+| `threshold` | `number` | `1` | 스크롤이 이만큼 넘었을 때 fade ON (px) |
+| `edges` | `{ top?: boolean; bottom?: boolean }` | `{ top: true, bottom: true }` | 페이드를 적용할 가장자리. sticky 헤더가 상단을 덮는 경우 `{ top: false }` 로 비활성 |
+
+반환값: `{ ref, onScroll, maskImage, isScrolledFromTop, isScrolledFromBottom }`. 마지막 두 boolean 은 헤더 그림자 등 다른 UI 토글에 활용 가능.
+
+저수준이 필요하면 `getScrollFadeMask({ top, bottom, size })` 를 직접 호출해 mask 문자열만 얻을 수도 있다.
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `scrollBarSize` | `sm \| md \| responsive` | `md` | 스크롤바 두께 (`sm`=6, `md`=8). hover 시 10px 로 확장 |
+| `type` | `auto \| always \| scroll \| hover` | `hover` | Radix type 그대로 |
+| `viewportClassName` | `string` | — | 내부 viewport 에 class 주입 |
+| `viewportStyle` | `CSSProperties` | — | 내부 viewport 에 inline style 주입 (예: `maskImage`) |
+| `viewportRef` | `Ref<HTMLDivElement>` | — | viewport 엘리먼트 ref. `useScrollFade` 와 연결 |
+| `onViewportScroll` | `UIEventHandler<HTMLDivElement>` | — | viewport scroll 이벤트 핸들러 |
+
+## 스타일 상세
+
+- 기본 두께는 `--pds-sb-size` CSS 변수로 제어, hover 시 10px 확장
+- thumb 색상은 `color-mix(--pds-label-alternative 45%)`, hover 시 65%
+- min hit-area 44×44 (before pseudo) — 포인터 여유
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/scroll-area
+```

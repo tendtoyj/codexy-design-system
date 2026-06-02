@@ -1,0 +1,25 @@
+---
+title: Patterns
+description: 토큰·컴포넌트를 조합해 반복적으로 등장하는 UI 문제를 푸는 방식
+---
+
+Patterns는 PDS의 **재사용 가능한 해법** 묶음이다. 컴포넌트 한 개가 답이 아니고, *상황 → 조합 → 결정 근거* 가 함께 묶여야 의미 있는 단위를 다룬다.
+
+## 컴포넌트와 어떻게 다른가
+
+| 축 | Components | Patterns |
+| --- | --- | --- |
+| 단위 | 단일 컴포넌트 (Button, Dialog) | 컴포넌트 조합 (Confirm destructive action = Dialog + Button) |
+| 형태 | API · variant · slot 명세 | 상황 · 의사결정 · 권장 조합 |
+| 결과물 | 코드 import | 코드 import + 가이드 |
+
+## 작성 원칙
+
+- **상황으로 시작** — "사용자가 X 하려 할 때" 가 제목보다 앞선다
+- **하나의 권장안** — 변형은 본문에서 다루되, 표제로 권장 조합을 단정
+- **거절 사례** — 쓰면 안 되는 경우를 함께 명시
+- **컴포넌트 링크** — 조합에 등장하는 컴포넌트는 [Components](/docs/components) 로 deep link
+
+## 현재 상태
+
+뼈대만 잡힌 상태. 첫 패턴들은 이후 별도 PR 로 추가된다.

@@ -1,0 +1,55 @@
+---
+title: SidebarMenu
+description: 사이드바 상단의 leading-icon + 라벨 메뉴 리스트. 단일 선택, 32px 행, `<nav>` 시멘틱.
+---
+
+import { SidebarMenuBasicDemo } from "@/components/demos/sidebar-menu-demo";
+
+## 사용
+
+icon + label 조합의 vertical 메뉴. 사이드바 상단 영역 — Playground/Spirit/Inventory 같은 앱-전역 진입점에 쓴다. 라이브러리 항목처럼 라벨만 있는 리스트는 `SidebarList`.
+
+```tsx
+import { SidebarMenu } from "@fluxloop-ai/pds-ui/components/sidebar-menu";
+import { Books, Flask, Ghost } from "@fluxloop-ai/pds-icons/icons";
+
+<SidebarMenu
+  aria-label="기본 메뉴"
+  items={[
+    { id: "playground", icon: Flask, label: "Playground" },
+    { id: "spirit", icon: Ghost, label: "Spirit" },
+    { id: "inventory", icon: Books, label: "Inventory" },
+  ]}
+  selectedId={selected}
+  onSelect={setSelected}
+/>
+```
+
+## Basic
+
+<SidebarMenuBasicDemo />
+
+## Props
+
+### `SidebarMenu`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `items` | `SidebarMenuItem[]` | - | 필수. `{ id, icon, label }` |
+| `selectedId` | `string \| null` | `null` | 선택된 항목 id |
+| `onSelect` | `(id: string) => void` | - | 항목 클릭 시 호출 |
+| `aria-label` | `string` | - | `<nav>` aria-label. 페이지에 nav 가 여러 개면 권장 |
+
+### `SidebarMenuItem`
+
+| Field | 타입 | 설명 |
+|---|---|---|
+| `id` | `string` | 고유 id |
+| `icon` | `PhosphorIcon \| ComponentType<SVGAttributes>` | leading 아이콘 (16px) |
+| `label` | `string` | 표시 라벨 |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/sidebar-menu
+```

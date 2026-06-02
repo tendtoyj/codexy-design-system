@@ -1,0 +1,51 @@
+---
+title: Progress
+description: Radix Progress 기반. 0~100 determinate + `value={null}` indeterminate.
+---
+
+import {
+  ProgressStaticDemo,
+  ProgressSizeDemo,
+  ProgressIndeterminateDemo,
+} from "@/components/demos/progress-demo";
+
+## 사용
+
+```tsx
+import { Progress } from "@fluxloop-ai/pds-ui/components/progress";
+
+<Progress value={60} />            {/* determinate */}
+<Progress value={null} />          {/* indeterminate */}
+<Progress value={60} size="sm" />  {/* 4px track */}
+```
+
+## Determinate
+
+<ProgressStaticDemo />
+
+## Size
+
+<ProgressSizeDemo />
+
+## Indeterminate (`value={null}`)
+
+<ProgressIndeterminateDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` | `number \| null` | - | `null` 이면 indeterminate |
+| `max` | `number` | `100` | |
+| `size` | `sm \| md` | `md` | 트랙 높이 4 / 6 px |
+
+## 접근성
+
+- `@radix-ui/react-progress` 가 `role="progressbar"`, `aria-valuemin/max/now` 자동 처리
+- `prefers-reduced-motion: reduce` 에서는 indeterminate 애니메이션 정지 (`motion-reduce:animate-none`)
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/progress
+```

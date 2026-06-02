@@ -1,0 +1,121 @@
+---
+title: SidebarList
+description: 사이드바의 섹션 헤더(타이틀 + count + actions) + 라벨-only 리스트 + more 토글이 한 단위로 묶인 패턴.
+---
+
+import {
+  SidebarListBasicDemo,
+  SidebarListItemActionsDemo,
+  SidebarListWithoutMoreDemo,
+} from "@/components/demos/sidebar-list-demo";
+
+## 사용
+
+라벨만 있는 항목들의 컬렉션을 사이드바에 둘 때. 섹션 헤더에 타이틀, count 배지, 우측 액션(추가/검색/정렬 등 `IconButton` 묶음)이 함께 들어가는 패턴이 한 컴포넌트로 캡슐화된다. 항목 수가 `initialVisibleCount` 보다 많으면 자동으로 `more` 토글이 붙는다.
+
+검색·정렬 동작은 컴포넌트가 갖지 않는다. 사용처에서 `actions` 슬롯에 `IconButton` 을 넣고, 외부에서 `Input` / `DropdownMenu` 를 조합한다.
+
+```tsx
+import { SidebarList } from "@fluxloop-ai/pds-ui/components/sidebar-list";
+import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+import { Plus, MagnifyingGlass, Funnel } from "@fluxloop-ai/pds-icons/icons";
+
+<SidebarList
+  title="Library"
+  count={skills.length}
+  actions={
+    <>
+      <IconButton size="xs" aria-label="신규 스킬"><Plus /></IconButton>
+      <IconButton size="xs" aria-label="검색"><MagnifyingGlass /></IconButton>
+      <IconButton size="xs" aria-label="정렬"><Funnel /></IconButton>
+    </>
+  }
+  items={skills}
+  selectedId={selected}
+  onSelect={setSelected}
+  initialVisibleCount={10}
+/>
+```
+
+## Basic
+
+<SidebarListBasicDemo />
+
+## Without more toggle
+
+`initialVisibleCount` 를 지정하지 않으면 모든 항목이 항상 노출된다.
+
+<SidebarListWithoutMoreDemo />
+
+## Item actions
+
+`renderItemTrailing` 으로 각 항목 우측에 노출되는 trailing 슬롯을 채울 수 있다. 평소엔 숨김, **hover · keyboard focus · selected · dropdown open** 시 노출된다. 슬롯 영역의 클릭/키 이벤트는 내부에서 `stopPropagation` 되어 항목 선택을 트리거하지 않는다.
+
+전형적인 조합은 `<DropdownMenu>` + `<IconButton>` 메뉴 트리거. rename · delete · duplicate 등 항목 단위 액션을 메뉴 안에 모은다.
+
+<SidebarListItemActionsDemo />
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
+import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+import { DotsThree, PencilSimple, Trash } from "@fluxloop-ai/pds-icons/icons";
+
+<SidebarList
+  title="Library"
+  items={skills}
+  selectedId={selected}
+  onSelect={setSelected}
+  renderItemTrailing={(item) => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <IconButton size="sm" variant="subtle" aria-label={`${item.label} 메뉴 열기`}>
+          <DotsThree />
+        </IconButton>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent size="sm" align="end">
+        <DropdownMenuItem onSelect={() => rename(item.id)}>
+          <PencilSimple /><span>이름 변경</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => remove(item.id)}>
+          <Trash /><span>삭제</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )}
+/>
+```
+
+## Props
+
+### `SidebarList`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `title` | `string` | - | 섹션 타이틀 (예: "Library") |
+| `count` | `number` | - | 헤더 우측 옆 pill 배지로 표시 |
+| `actions` | `ReactNode` | - | 헤더 우측 액션 슬롯 (e.g., `IconButton` 묶음) |
+| `items` | `SidebarListItem[]` | - | 필수. `{ id, label }` |
+| `selectedId` | `string \| null` | `null` | 선택된 항목 id |
+| `onSelect` | `(id: string) => void` | - | 항목 클릭 시 호출 |
+| `initialVisibleCount` | `number` | - | 지정 시 초과분은 `more` 토글로 펼친다. 미지정 시 전체 노출 |
+| `moreLabel` | `string` | `"more"` | `more` 토글 라벨 |
+| `renderItemTrailing` | `(item: SidebarListItem) => ReactNode` | - | 각 항목 우측 trailing 슬롯. hover · focus-within · selected · `[data-state=open]` 시 노출. 클릭/키 이벤트는 stopPropagation 되어 항목 선택을 트리거하지 않는다 |
+| `stickyHeader` | `boolean` | `false` | 헤더를 부모 스크롤 컨테이너 상단에 sticky 로 고정 (부모가 `overflow-y-auto` 일 때만 의미 있음) |
+
+### `SidebarListItem`
+
+| Field | 타입 | 설명 |
+|---|---|---|
+| `id` | `string` | 고유 id |
+| `label` | `string` | 표시 라벨 |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/sidebar-list
+```

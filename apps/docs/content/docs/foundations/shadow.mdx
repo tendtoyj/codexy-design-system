@@ -1,0 +1,47 @@
+---
+title: Shadow
+description: box-shadow / drop-shadow / ambient glow 3계열
+---
+
+import { BoxShadowRow, DropShadowRow, GlowRow } from "@/components/demos/shadow-grid";
+
+PDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로 통합하지 않는다.
+
+## (a) Box Shadow — 사각 카드·버튼·다이얼로그
+
+직사각형 요소의 엘레베이션. 카드·팝오버·모달에 주로 쓴다.
+
+<BoxShadowRow />
+
+```tsx
+<div style={{ boxShadow: "var(--pds-shadow-md)" }} />
+```
+
+## (b) Drop Shadow — 비사각 / SVG / squircle 외곽
+
+`filter: drop-shadow()`는 **실제 모양의 알파 채널**을 따라 그림자를 그린다. squircle로 깎인 외곽이나 꼬리가 있는 팝오버, SVG 아이콘에서 반드시 이 계열을 사용.
+
+<DropShadowRow />
+
+```tsx
+<svg style={{ filter: "var(--pds-drop-md)" }} />
+```
+
+## (c) Glow — 포커스 링 / AI Ambient
+
+넓게 번지는 halo. 포커스 상태와 AI 인디케이터에서 쓴다.
+
+<GlowRow />
+
+```tsx
+<div style={{ boxShadow: "var(--pds-glow-sm)" }} />
+```
+
+## 선택 가이드
+
+| 대상 | 계열 |
+| --- | --- |
+| 카드·버튼·다이얼로그 | box |
+| 팝오버(꼬리 있음)·툴팁 본체 | drop |
+| SVG 아이콘·로고 | drop |
+| 포커스 링·AI 상태 | glow |

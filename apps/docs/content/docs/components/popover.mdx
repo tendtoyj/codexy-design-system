@@ -1,0 +1,68 @@
+---
+title: Popover
+description: Radix Popover — sm/md/lg × normal/custom. Header/Body/ActionArea 슬롯.
+---
+
+import { PopoverNormalDemo, PopoverSizeDemo, PopoverCustomDemo } from "@/components/demos/popover-demo";
+
+## 사용
+
+```tsx
+import {
+  Popover, PopoverTrigger, PopoverContent,
+  PopoverHeader, PopoverTitle, PopoverTitleRow, PopoverDescription,
+  PopoverBody, PopoverActionArea, PopoverClose, PopoverArrow,
+} from "@fluxloop-ai/pds-ui/components/popover";
+
+<Popover>
+  <PopoverTrigger asChild><Button>열기</Button></PopoverTrigger>
+  <PopoverContent size="md">
+    <PopoverHeader>
+      <PopoverTitle>제목</PopoverTitle>
+      <PopoverClose />
+    </PopoverHeader>
+    <PopoverBody>내용</PopoverBody>
+    <PopoverActionArea>
+      <PopoverClose asChild><Button size="xs">확인</Button></PopoverClose>
+    </PopoverActionArea>
+  </PopoverContent>
+</Popover>
+```
+
+## Normal
+
+<PopoverNormalDemo />
+
+## Size
+
+<PopoverSizeDemo />
+
+## Custom
+
+<PopoverCustomDemo />
+
+## PopoverContent Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md \| lg` | `md` | min-width / padding / body font-size |
+| `variant` | `normal \| custom` | `normal` | `normal` 은 Header/Body/ActionArea 크롬 column flex, `custom` 은 children 만 렌더 |
+| `side`, `sideOffset`, `align` | Radix 표준 | - | `sideOffset` 기본 6 |
+
+## Slots (variant=normal)
+
+| Slot | 컴포넌트 |
+|---|---|
+| Header | `PopoverHeader` — 상단 바, 제목/Close 배치 |
+| TitleRow | `PopoverTitleRow` — Title + Description 수직 스택 |
+| Title | `PopoverTitle` |
+| Description | `PopoverDescription` |
+| Body | `PopoverBody` |
+| ActionArea | `PopoverActionArea` |
+| Arrow | `PopoverArrow` — 선택 사용 |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/popover
+```

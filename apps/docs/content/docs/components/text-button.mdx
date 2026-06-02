@@ -1,0 +1,70 @@
+---
+title: TextButton
+description: idle 시 투명·hover 시에만 fill 컨테이너가 나타나는 텍스트 어포던스 — color 2종(primary/assistive) × size 2종
+---
+
+import {
+  TextButtonColorDemo,
+  TextButtonSizeDemo,
+  TextButtonWithIconDemo,
+  TextButtonLoadingDemo,
+} from "@/components/demos/text-button-demo";
+
+## 사용
+
+```tsx
+import { TextButton } from "@fluxloop-ai/pds-ui/components/text-button";
+
+<TextButton>더 보기</TextButton>
+<TextButton color="assistive">전체 취소</TextButton>
+```
+
+`Button` 과의 차이는 **컨테이너의 강도**다. TextButton 은 idle 상태에서 배경·테두리가 없고, hover 시에만 `fill-normal` pill 이 나타난다. 가이드 텍스트 옆에 함께 두거나, 다른 컴포넌트 안의 보조 액션 자리에 쓴다.
+
+## Color
+
+- **primary** — 강조 (브랜드 컬러). 사용자가 따라가길 권하는 액션.
+- **assistive** — 보조. 약한 라벨 톤(`label-neutral`).
+
+<TextButtonColorDemo />
+
+## Size
+
+`sm`(32/r10/13px) · `md`(36/r12/14px). Button 의 sm/md 와 동일한 셸 크기 — 같은 라인에 두면 베이스라인이 맞는다.
+
+<TextButtonSizeDemo />
+
+## Icon + Slot
+
+`leadingContent` / `trailingContent` 로 아이콘 주입. 아이콘은 텍스트 색을 그대로 따라간다.
+
+<TextButtonWithIconDemo />
+
+## Loading
+
+스피너 표시 + 본문 `invisible` 로 레이아웃 유지. Button 과 동일한 패턴.
+
+<TextButtonLoadingDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `color` | `primary \| assistive` | `primary` | 톤 |
+| `size` | `sm \| md` | `md` | 타이포 사이즈 |
+| `loading` | `boolean` | `false` | 스피너 + disabled |
+| `leadingContent` | `ReactNode` | — | 좌측 슬롯 |
+| `trailingContent` | `ReactNode` | — | 우측 슬롯 |
+| `asChild` | `boolean` | `false` | Radix Slot 위임 |
+
+## Button / IconButton 과 비교
+
+- idle 부터 컨테이너 필요 → `Button` (solid/outlined/frosted/danger)
+- 아이콘만 → `IconButton`
+- idle 투명, hover 시에만 컨테이너 → `TextButton`
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/text-button
+```

@@ -1,0 +1,30 @@
+---
+title: Foundations
+description: PDS 토큰 시스템 개요 — 색·타이포·스페이싱·라디우스·섀도우·z-index·모션
+---
+
+PDS의 시각 언어는 **7개 토큰 카테고리**로 구성된다. 모든 값은 `@fluxloop-ai/pds-core/styles`에서 CSS 커스텀 프로퍼티로 노출되며, Tailwind v4 `@theme`를 통해 유틸리티 클래스로도 소비 가능하다.
+
+| 카테고리 | 핵심 내용 | 파일 |
+| --- | --- | --- |
+| [Color](./foundations/color) | 14 hue × 14단계 primitive + semantic + chat | `tokens/color-*.css` |
+| [Typography](./foundations/typography) | 15 variant 스케일, SF Pro + Pretendard 번들 | `tokens/typography.css` |
+| [Spacing](./foundations/spacing) | 20-step 고정 스케일 | `tokens/spacing.css` |
+| [Radius](./foundations/radius) | px-indexed 9단계 + 전역 squircle | `tokens/radius.css` |
+| [Shadow](./foundations/shadow) | box / drop / glow 3계열 | `tokens/shadow.css` |
+| [Z-index](./foundations/z-index) | 9단 레이어 순서 | `tokens/zindex.css` |
+| [Motion](./foundations/motion) | duration / easing / 7 keyframe | `tokens/motion.css` + `styles/keyframes.css` |
+
+## 원칙
+
+- **이름 불변, 값 교체 가능** — 브랜드 변경 시 값만 갈아끼움
+- **코드 SSOT** — Figma·Storybook보다 코드 우선
+- **light 먼저** — 다크 모드 값은 추후 확정
+
+## 토큰 네이밍
+
+```
+--pds-{category}-{variant}-{tone?}
+```
+
+예: `--pds-primary-normal`, `--pds-label-alternative`, `--pds-shadow-md`, `--pds-duration-normal`.

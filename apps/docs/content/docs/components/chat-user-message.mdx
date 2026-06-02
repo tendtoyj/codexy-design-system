@@ -1,0 +1,48 @@
+---
+title: ChatUserMessage
+description: 사용자 메시지 풍선. 텍스트 + 이미지 + 문서 블록을 렌더
+---
+
+import { ChatUserMessageDemo } from "@/components/demos/chat-user-message-demo";
+
+## 사용
+
+```tsx
+import { ChatUserMessage } from "@fluxloop-ai/pds-ui/components/chat-user-message";
+
+<ChatUserMessage content="안녕하세요" />
+<ChatUserMessage content={"여러 줄도\n그대로 보존"} />
+<ChatUserMessage content={[
+  { type: "text", text: "아래 이미지 참고" },
+  { type: "image", source: { type: "url", url: "/foo.png" } },
+]} />
+<ChatUserMessage content={[
+  { type: "document", source: { type: "url", url: "/spec.pdf" }, title: "spec.pdf" },
+  { type: "text", text: "이거 한 번 읽어봐" },
+]} />
+```
+
+`content` 는 문자열 또는 Anthropic 콘텐츠 블록 배열. 줄바꿈은 그대로 보존(`whitespace-pre-wrap`).
+
+**첨부물 처리** — `image` / `document` 블록은 풍선 위쪽 별도 row 에 우측 정렬로 모아 표시. 정렬 규칙: **문서(chip) 좌측, 이미지(thumbnail) 우측** (시각 무게가 큰 썸네일을 bubble 가까이). 같은 타입끼리는 입력 순서 보존. 이미지는 64×64 정사각 썸네일(`object-cover`, `rounded-[10px]`), 로드 실패 시 broken-image 아이콘 fallback. 문서는 `ChatAttachmentChip` 으로 `block.title` 을 라벨에 사용 (없으면 `"Document"`).
+
+**텍스트 없는 메시지** — text 블록이 하나도 없으면 풍선 자체를 그리지 않는다. 첨부만 있는 메시지에 placeholder 를 띄우고 싶으면 앱에서 `(no message)` 같은 text 블록을 직접 넣을 것 (PDS 가 특정 언어 카피를 가지지 않게 하기 위함).
+
+기본은 plain text 렌더. 사용자 입력은 보통 plain 이고, 마크다운을 자동 렌더하면 react-markdown 의 `<p>` 마진이 좁은 풍선 안에서 위/아래 빈 공간으로 보이기 때문에 디폴트는 끔. 굳이 마크다운으로 그리고 싶으면 `renderMarkdown` 을 명시적으로 주입 (`@fluxloop-ai/pds-markdown` 의 `renderMarkdown`). 자세한 가이드는 [Chat Markdown](/docs/components/chat-markdown).
+
+기본 복사 버튼이 풍선 아래에 내장돼 있다. 메시지 행에 호버하거나 포커스하면 노출되고, 클릭 시 1.5초간 체크 아이콘으로 바뀌며 클립보드에 텍스트가 저장된다. 텍스트 블록만 join 되며 이미지/문서 블록은 스킵. `showCopy={false}` 로 끄거나, `actions` 로 추가 버튼을 붙일 수 있다 (기본 복사 옆에 함께 노출).
+
+어시스턴트 메시지는 풍선이 없는 별도 컴포넌트 [`ChatAssistantMessage`](/docs/components/chat-assistant-message) 가 담당.
+
+<ChatUserMessageDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `content` | `string \| ContentBlock[]` | — | 메시지 본문 |
+| `role` | `"user"` | `"user"` | 현재 user 만 지원 |
+| `renderMarkdown` | `(text: string) => ReactNode` | — | 텍스트 블록 렌더러. 미지정 시 plain text (디폴트 권장) |
+| `showCopy` | `boolean` | `true` | 풍선 아래 기본 복사 버튼 노출 여부. 텍스트가 있을 때만 그려짐 |
+| `actions` | `ReactNode` | — | 추가 액션 슬롯. 기본 복사 버튼 옆에 함께 노출 |
+| `className` | `string` | — | 루트 클래스 |

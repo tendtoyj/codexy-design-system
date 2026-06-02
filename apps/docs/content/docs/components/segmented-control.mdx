@@ -1,0 +1,69 @@
+---
+title: SegmentedControl
+description: 2-3지 단일 선택 인라인 컨트롤. 트랙 없는 스타일, sm/md, hug 또는 fullWidth.
+---
+
+import {
+  SegmentedControlSizeDemo,
+  SegmentedControlControlledDemo,
+  SegmentedControlFullWidthDemo,
+  SegmentedControlDisabledDemo,
+} from "@/components/demos/segmented-control-demo";
+
+## 사용
+
+`Select`(드롭다운)와 인터랙션 모델이 다릅니다. 옵션이 2-3개로 적고 본문 흐름 안에서 즉시 전환되어야 할 때 씁니다.
+
+```tsx
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@fluxloop-ai/pds-ui/components/segmented-control";
+
+<SegmentedControl value={mode} onValueChange={setMode}>
+  <SegmentedControlItem value="inline">인라인</SegmentedControlItem>
+  <SegmentedControlItem value="split">분리됨</SegmentedControlItem>
+</SegmentedControl>
+```
+
+## Size
+
+<SegmentedControlSizeDemo />
+
+## Controlled
+
+<SegmentedControlControlledDemo />
+
+## Full width
+
+<SegmentedControlFullWidthDemo />
+
+## Disabled
+
+<SegmentedControlDisabledDemo />
+
+## Props
+
+### `SegmentedControl`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md` | `sm` | 32 / 36 px |
+| `fullWidth` | `boolean` | `false` | 컨테이너를 채우며 segment 균등 분할 |
+| `value` / `defaultValue` / `onValueChange` | Radix RadioGroup 표준 | - | 단일 선택 값 |
+| `disabled` | `boolean` | `false` | 그룹 전체 비활성 |
+| `name` / `required` | Radix RadioGroup 표준 | - | 폼 제출 시 |
+
+### `SegmentedControlItem`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` | `string` | - | 필수. RadioGroup의 선택 값 |
+| `disabled` | `boolean` | `false` | 항목 단위 비활성 |
+| `children` | `ReactNode` | - | 텍스트 라벨 |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/segmented-control
+```

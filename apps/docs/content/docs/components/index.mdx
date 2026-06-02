@@ -1,0 +1,93 @@
+---
+title: Components
+description: Primitives · Actions · Form · Layout · Navigation · Overlays · Feedback · AI/Agent Chat
+---
+
+Tailwind v4 + Radix + `tailwind-variants` 위에서, 데스크탑 밀도(14px 본문) 기준으로 슬롯·variant 구조를 정의한다. 헤드리스는 가능한 모두 Radix UI 로 위임하고, 토큰은 `var(--pds-*)` 한 계층만 노출한다.
+
+분류는 사이드바 그루핑(`meta.json`)과 동일하다.
+
+## Primitives
+
+- [Separator](/docs/components/separator) — `@radix-ui/react-separator`
+- [Avatar](/docs/components/avatar) — `@radix-ui/react-avatar`
+- [Icon](/docs/components/icon) — phosphor 래퍼
+- [BrandIcons](/docs/components/brand-icons) — `@lobehub/icons` 어댑터
+
+## Actions
+
+- [Button](/docs/components/button) — `@radix-ui/react-slot`
+- [IconButton](/docs/components/icon-button)
+- [TextButton](/docs/components/text-button)
+- [Chip](/docs/components/chip)
+- [ActionCard](/docs/components/action-card)
+- [ActionTile](/docs/components/action-tile)
+- [Input](/docs/components/input) — native `<input>` + compose-refs
+
+## Form
+
+- [Checkbox](/docs/components/checkbox) — `@radix-ui/react-checkbox`
+- [Switch](/docs/components/switch) — `@radix-ui/react-switch`
+- [RadioGroup](/docs/components/radio-group) — `@radix-ui/react-radio-group`
+- [Select](/docs/components/select) — `@radix-ui/react-select`
+- [SegmentedControl](/docs/components/segmented-control)
+- [Combobox](/docs/components/combobox) — `@radix-ui/react-popover` + `cmdk`
+- [Form](/docs/components/form) — `useId` 기반 a11y 래퍼 (FormField/Label/Control/Description/Error)
+
+## Layout
+
+- [AppShell](/docs/components/app-shell)
+- [PageContainer](/docs/components/page-container)
+- [Panel](/docs/components/panel)
+- [SectionHeader](/docs/components/section-header)
+
+## Navigation
+
+- [Tabs](/docs/components/tabs) — `@radix-ui/react-tabs` (segmented + label variant)
+- [RemovableTabBar](/docs/components/removable-tab-bar) — 닫기 가능한 워크스페이스 탭 (sm/md)
+- [SidebarMenu](/docs/components/sidebar-menu)
+- [SidebarList](/docs/components/sidebar-list)
+
+## Overlays
+
+- [Tooltip](/docs/components/tooltip) — `@radix-ui/react-tooltip`
+- [DropdownMenu](/docs/components/dropdown-menu) — `@radix-ui/react-dropdown-menu`
+- [Popover](/docs/components/popover) — `@radix-ui/react-popover`
+- [Dialog](/docs/components/dialog) — `@radix-ui/react-dialog`
+
+## Feedback
+
+- [Badge](/docs/components/badge)
+- [Progress](/docs/components/progress) — `@radix-ui/react-progress`
+- [Spinner](/docs/components/spinner)
+- [Toast](/docs/components/toast) — `@radix-ui/react-toast`
+- [ScrollArea](/docs/components/scroll-area) — `@radix-ui/react-scroll-area`
+
+## AI / Agent Chat
+
+pluto-note `chat-panel/` 소스를 Anthropic Messages API 계약의 controlled 컴포넌트로 이식. `@assistant-ui/react` · Zustand 의존성 제거, 아이콘은 `@fluxloop-ai/pds-icons` 로 통일.
+
+- [ChatLoadingDots](/docs/components/chat-loading-dots) — primitive
+- [ChatUserMessage](/docs/components/chat-user-message)
+- [ChatAssistantMessage](/docs/components/chat-assistant-message)
+- [ChatProcessTrace](/docs/components/chat-process-trace) — thinking · tool_use · tool_result 트레이스
+- [ChatComposer](/docs/components/chat-composer)
+- [ChatAttachmentChip](/docs/components/chat-attachment-chip)
+- [Chat Markdown](/docs/components/chat-markdown) — 가이드 (`@fluxloop-ai/pds-markdown`)
+
+Markdown 렌더링과 syntax highlighting 은 `renderMarkdown` / `renderCode` slot 주입으로 PDS 본체에서 분리한다.
+
+## 공통 원칙
+
+- **slot/variant 보존**: slot 개수·variant 축을 임의 축약하지 않음
+- **토큰**: `theme.semantic.*` → `var(--pds-*)` 일괄 치환
+- **전역 squircle**: `corner-shape: squircle` 이 모든 radius 에 자동 적용
+- **Motion 토큰**: duration/easing 은 `var(--pds-duration-*)` / `var(--pds-ease-*)`
+- **단일 `tv()`**: slot/variant/compound 를 한 정의로
+
+## 현재 미포함
+
+- Dialog `bottom` variant (모바일 패턴)
+- `TextFieldButton` / `TextFieldContent` 서브컴포넌트
+- 다크 모드 토큰
+- Table · Accordion · Command palette

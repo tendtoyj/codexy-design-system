@@ -1,0 +1,85 @@
+---
+title: ChatProcessTrace
+description: 어시스턴트의 thinking·도구 호출·중간 멘트를 한 접힘 컨테이너로 묶는 process-trace 컴포넌트
+---
+
+import { ChatProcessTraceDemo } from "@/components/demos/chat-process-trace-demo";
+
+## 사용
+
+```tsx
+import { ChatProcessTrace } from "@fluxloop-ai/pds-ui/components/chat-process-trace";
+
+<ChatProcessTrace blocks={blocks} isRunning={false} durationMs={4200} />
+```
+
+Anthropic Messages API 의 `thinking` · `tool_use` · `tool_result` · 중간 `text` 블록을 그대로 받아 시간순으로 표시한다. 최종 답변(어시스턴트의 마지막 `text` 블록)은 trace 외부 — 보통 `ChatAssistantMessage` — 로 분리한다.
+
+### 동작 규칙
+
+- **항상 접힘** 이 기본 상태. 진행 중에도 자동으로 펼쳐지지 않으며, 사용자 클릭으로만 펼침.
+- Trigger 라벨은 진행 상태에 따라 자연 전환:
+  - `isRunning={true}` → `Thinking` + 텍스트 shimmer (`.pds-animate-text-shimmer`)
+  - `isRunning={false}` + `durationMs` 있음 → `Thought for {⌈ms/1000⌉}s`
+  - `isRunning={false}` + `durationMs` 없음 → `Thought`
+- Tool 호출은 1 `tool_use` = 1 row. 같은 도구가 연속 호출되어도 묶지 않음.
+- `tool_result.is_error === true` 인 row 는 우측에 작은 `failed` 칩.
+- `redacted_thinking` 블록은 표시하지 않음 (의도적 — 보안상 공개 불가).
+
+### 도구 라벨 결정 순서
+
+`(1) resolveToolLabel` 사용자 정의 → `(2)` PDS 빌트인 매핑 → `(3)` 도구명 raw fallback.
+
+PDS 빌트인은 Anthropic SDK 표준 도구 4종만 알고 있다:
+
+| `tool_use.name` | 라벨 형식 | 예시 |
+|---|---|---|
+| `bash` | `Ran {command}` | `Ran pdftotext input.pdf` |
+| `text_editor` / `str_replace_editor` / `str_replace_based_edit_tool` | command 분기 (`view` → `Read`, `create` → `Created`, 그 외 → `Edited`) + path | `Read src/Button.tsx` |
+| `web_search` | `Searched "{query}"` | `Searched "chat patterns"` |
+| `code_execution` | `Executed code` (인자 길이 가변이라 생략) | `Executed code` |
+
+MCP 도구 (`mcp__linear__*` 등) 와 커스텀 도구는 `resolveToolLabel` 로 직접 처리한다.
+
+```tsx
+<ChatProcessTrace
+  blocks={blocks}
+  resolveToolLabel={(name, input) => {
+    if (name.startsWith("mcp__linear__")) {
+      const action = name.replace("mcp__linear__", "");
+      return `Linear · ${action}`;
+    }
+    // undefined 반환 → PDS 빌트인 / 도구명 raw fallback
+  }}
+/>
+```
+
+### 아이콘
+
+좌측 카테고리 아이콘은 옵션이다. `resolveToolIcon` 으로 도구별 아이콘을 주입하지 않으면 라벨만 표시된다. 도구별 1:1 매핑이 아니라 **카테고리** 단위(예: `bash`/`code_execution` → terminal, `text_editor` → folder, `web_search` → magnifying glass) 로 묶기를 권장.
+
+## 데모
+
+<ChatProcessTraceDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `blocks` | `ProcessTraceBlock[]` | — | trace 에 포함될 콘텐츠 블록들. `text` · `thinking` · `tool_use` · `tool_result`. |
+| `isRunning` | `boolean` | `false` | 진행 중이면 trigger 라벨 shimmer + `Thinking`. |
+| `durationMs` | `number` | — | 완료 시 trigger 라벨에 표시할 경과시간(ms). |
+| `resolveToolLabel` | `(name, input) => string \| undefined` | — | 도구 라벨 resolver. `undefined` 반환 시 PDS 빌트인 → 도구명 fallback. |
+| `resolveToolIcon` | `(name, input) => ReactNode \| undefined` | — | 카테고리 아이콘 resolver. 미주입 시 아이콘 생략. |
+| `renderMarkdown` | `(text) => ReactNode` | — | thinking · 중간 멘트 · tool 결과 모두 동일하게 적용. |
+| `open` | `boolean` | — | controlled 모드. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기값. |
+| `onOpenChange` | `(open: boolean) => void` | — | 펼침 상태 변경 콜백. |
+| `className` | `string` | — | 추가 클래스. |
+
+## What it's NOT
+
+- **Citation / 인용 출처 카드** — 별도 컴포넌트로 다룸.
+- **Streaming 시간 측정** — `durationMs` 는 외부에서 측정해 prop 으로 주입.
+- **Permission prompt / subagent / todo / computer use 오버레이** — 이번 컴포넌트의 책임 밖.
+- **i18n 한국어 라벨 내장** — Trigger 라벨/도구 라벨 모두 영어 default. 한국어/제품 톤은 prop override.

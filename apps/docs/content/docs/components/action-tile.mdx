@@ -1,0 +1,226 @@
+---
+title: ActionTile
+description: 세로 stack 타일형 클릭 카드. Header / Content / Footer 3 영역으로 구성. Grid에서 가로로 여러 개 배치할 때 사용.
+---
+
+import {
+  ActionTileBasicDemo,
+  ActionTileCenterDemo,
+  ActionTileFooterDemo,
+  ActionTileHeaderDemo,
+  ActionTileFullSpecDemo,
+  ActionTileVariantDemo,
+} from "@/components/demos/action-tile-demo";
+
+`ActionCard` 와 같은 시각 토큰(radius / variant / focus ring)을 공유하지만, 슬롯이 **세로로 stack** 되는 타일형. Grid 3-column 같은 화면 구성에서 카드 여러 개를 가로로 배치할 때 사용.
+
+3 개의 영역으로 구성:
+
+- **Header** — 옵션. free-form 박스. 메타 row / NEW pill / kebab 등
+- **Content** — 의미 슬롯 묶음 (`Leading` + `Title` + `Description`). 내부 typography 와 슬롯 간 간격은 컴포넌트가 책임
+- **Footer** — 옵션. free-form 박스. 하단 메타 row / 액션 등
+
+영역 간 간격은 `headerGap` / `footerGap` prop (`tight` / `normal` / `wide`), 영역별 정렬은 `headerAlign` / `contentAlign` / `footerAlign` prop 으로 따로따로 제어.
+
+## 사용
+
+```tsx
+import {
+  ActionTile,
+  ActionTileHeader,
+  ActionTileContent,
+  ActionTileLeading,
+  ActionTileTitle,
+  ActionTileDescription,
+  ActionTileFooter,
+} from "@fluxloop-ai/pds-ui/components/action-tile";
+import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
+import { Compass } from "@fluxloop-ai/pds-icons/icons";
+
+<ActionTile headerGap="tight" footerGap="wide" headerAlign="between" onClick={...}>
+  <ActionTileHeader>
+    <span>Tutorial</span>
+    <Badge size="xs" color="accent" accentColor="blue">NEW</Badge>
+  </ActionTileHeader>
+
+  <ActionTileContent>
+    <ActionTileLeading><Icon icon={Compass} size="lg" /></ActionTileLeading>
+    <ActionTileTitle>Where to start</ActionTileTitle>
+    <ActionTileDescription>Pick the first thing to look at</ActionTileDescription>
+  </ActionTileContent>
+
+  <ActionTileFooter>
+    <Badge size="xs">5 min</Badge>
+  </ActionTileFooter>
+</ActionTile>
+```
+
+## 구조
+
+| 슬롯 | 필수 | 역할 |
+|---|---|---|
+| `ActionTile` | 필수 | 클릭 표면. border / radius / padding / hover · focus state. 기본 `<button type="button">`, `asChild` 로 polymorphic |
+| `ActionTileHeader` | 옵션 | 상단 free-form row. 안에 무엇을 넣고 어떻게 분포할지는 호출부 자유. 정렬은 `headerAlign` |
+| `ActionTileContent` | 필수 | 의미 슬롯 묶음. `Leading` + `Title` + `Description` 을 내부에 넣는다. 가로 정렬은 `contentAlign` |
+| `ActionTileLeading` | 옵션 | Content 안 상단 visual. Icon / 타일 wrapper / cover img 자유 |
+| `ActionTileTitle` | 필수 | Content 안. `startIcon` prop 으로 text 좌측 16px 인라인 마커 |
+| `ActionTileDescription` | 옵션 | Content 안. muted 텍스트 |
+| `ActionTileFooter` | 옵션 | 하단 free-form row. 정렬은 `footerAlign` |
+
+## 기본
+
+Content 만 사용한 가장 단순한 형태. Leading + Title + Description.
+
+<ActionTileBasicDemo />
+
+## Header
+
+상단에 Header 영역을 추가. 보통 카테고리/메타 라벨 + 우측 NEW/알림 마커. `headerAlign="between"` 으로 양 끝 분포.
+
+<ActionTileHeaderDemo />
+
+## Footer
+
+하단 free-form 영역. Badge 묶음 / 메타 / secondary action 등 자유.
+
+<ActionTileFooterDemo />
+
+## Content 정렬
+
+`contentAlign="center"` 로 Content 내부 가운데 정렬. Leading 도 함께 가운데로.
+
+<ActionTileCenterDemo />
+
+## Full spec
+
+3 영역 모두 사용. `gap` 토큰과 영역별 align 조합 예시.
+
+<ActionTileFullSpecDemo />
+
+## Variant
+
+`ActionCard` 와 동일한 3 종 — `outlined` (기본), `filled`, `ghost`.
+
+| variant | rest | hover |
+|---|---|---|
+| `outlined` | border 1px `--pds-line-normal-normal` + bg 투명 | bg `--pds-fill-alternative` |
+| `filled` | border 없음 + bg `--pds-fill-alternative` | bg `--pds-fill-normal` |
+| `ghost` | border 없음 + bg 투명 | bg `--pds-fill-alternative` |
+
+<ActionTileVariantDemo />
+
+## 카드 위에 별도 액션(예: bookmark / kebab) 올리기
+
+ActionTile 자체가 `<button>` 이라, 그 안에 또 다른 `<button>`(IconButton 등)을 넣으면 **nested button — invalid HTML** 이고 click 이벤트가 예측 불가능해진다. 카드 본체 클릭과 별개로 동작하는 액션 버튼이 필요하면, ActionTile **외부에 absolute 오버레이**로 띄우는 패턴을 사용한다.
+
+```tsx
+import { ActionTile, ActionTileContent, ActionTileTitle, ActionTileDescription, ActionTileFooter } from "@fluxloop-ai/pds-ui/components/action-tile";
+import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+import { Bookmark } from "@fluxloop-ai/pds-icons/icons";
+
+function DiagnoseCard() {
+  const [bookmarked, setBookmarked] = React.useState(false);
+  return (
+    <div style={{ position: "relative" }}>
+      <ActionTile
+        onClick={() => { /* 카드 본체 액션 */ }}
+        // IconButton 자리만큼 우측 padding 확보 — 콘텐츠가 button 위까지 침범하지 않게
+        className="pr-[52px]"
+      >
+        <ActionTileContent>
+          <ActionTileTitle>Diagnose</ActionTileTitle>
+          <ActionTileDescription>Surface improvements from usage logs</ActionTileDescription>
+        </ActionTileContent>
+        <ActionTileFooter>...</ActionTileFooter>
+      </ActionTile>
+
+      <IconButton
+        aria-label={bookmarked ? "Remove bookmark" : "Bookmark"}
+        variant="subtle"
+        size="sm"
+        style={{ position: "absolute", top: 12, right: 12 }}
+        onClick={(e) => {
+          e.stopPropagation(); // 카드 본체 onClick 으로 전파되지 않도록
+          setBookmarked((b) => !b);
+        }}
+      >
+        <Icon icon={Bookmark} weight={bookmarked ? "fill" : "regular"} />
+      </IconButton>
+    </div>
+  );
+}
+```
+
+체크리스트:
+
+- **wrapper에 `position: relative`** — IconButton 의 absolute 기준점
+- **ActionTile 에 우측 padding 보강** — IconButton 자리만큼 (`className="pr-[52px]"` 등). 안 하면 긴 title / description 이 IconButton 아래로 깔림
+- **`e.stopPropagation()`** on IconButton onClick — 안 하면 카드 본체 onClick 도 같이 발화
+- **`aria-label`** on IconButton — 시각 텍스트가 없으니 스크린 리더용 라벨 필수
+
+> Footer 안 단일 액션(예: Footer 우측 정렬된 IconButton) 도 같은 이유로 nested button 이 된다 — 같은 패턴(Footer 자리에 placeholder + 카드 외부 absolute IconButton)으로 회피.
+
+## `asChild`
+
+기본 `<button type="button">`. 링크나 다른 element 로 polymorphic 사용은 `asChild`.
+
+```tsx
+<ActionTile asChild>
+  <a href="/skills/diagnose">
+    <ActionTileContent>
+      <ActionTileLeading><Icon icon={Stethoscope} size="lg" /></ActionTileLeading>
+      <ActionTileTitle>Diagnose this skill</ActionTileTitle>
+      <ActionTileDescription>Surface improvements from logs</ActionTileDescription>
+    </ActionTileContent>
+  </a>
+</ActionTile>
+```
+
+## Props
+
+### `ActionTile`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `"outlined" \| "filled" \| "ghost"` | `"outlined"` | 시각 variant |
+| `padding` | `"compact" \| "normal" \| "spacious"` | `"normal"` | 카드 외곽 padding. compact = `18/20/20`, normal = `26/28/24`, spacious = `36/38/28` (top/bottom/horizontal) |
+| `headerGap` | `"tight" \| "normal" \| "wide"` | `"normal"` | Header ↔ Content 사이 간격. Header 가 없으면 무시. tight = 4px, normal = 8px, wide = 12px |
+| `footerGap` | `"tight" \| "normal" \| "wide"` | `"normal"` | Content ↔ Footer 사이 간격. Footer 가 없으면 무시. tight = 4px, normal = 8px, wide = 12px |
+| `headerAlign` | `"start" \| "center" \| "end" \| "between"` | `"start"` | Header 영역 내부 정렬 (row main-axis). `between` 은 양 끝 분포 |
+| `contentAlign` | `"start" \| "center" \| "end" \| "between"` | `"start"` | Content 영역 내부 정렬. `start`/`center`/`end` 는 가로 정렬 + text-align, `between` 은 column 분포 (Content 가 카드 세로 공간을 채울 때 의미) |
+| `footerAlign` | `"start" \| "center" \| "end" \| "between"` | `"start"` | Footer 영역 내부 정렬 (row main-axis) |
+| `asChild` | `boolean` | `false` | true 면 자식 element 가 클릭 표면이 됨 |
+| `disabled` | `boolean` | — | native button disabled. opacity 60% + cursor not-allowed |
+| `onClick` | `(e) => void` | — | |
+| 기타 | `React.ButtonHTMLAttributes<HTMLButtonElement>` | — | |
+
+### `ActionTileTitle`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `startIcon` | `PhosphorIcon \| ReactNode` | — | title text 좌측 inline 요소. 16px 정사각. 컴포넌트 함수면 `<Icon size="sm">` 으로 자동 wrap, ReactNode 면 그대로 렌더 |
+
+### Header / Content / Leading / Description / Footer
+
+`React.HTMLAttributes<HTMLDivElement>` 그대로. Header / Footer 는 default 로 `flex flex-row items-center gap-[6px] w-full` — 정렬은 ActionTile 의 align prop 으로 제어. 안의 내용 자유.
+
+## Tokens
+
+| 항목 | 값 |
+|---|---|
+| radius | `16px` |
+| `padding` 토큰 | `compact: 18/20/20` · `normal: 26/28/24` · `spacious: 36/38/28` (top/bottom/horizontal) |
+| Leading ↔ Title 간격 | `8px` |
+| Title ↔ Description 간격 | `2px` |
+| Header / Footer 내부 element 간 default gap | `6px` |
+| `headerGap` / `footerGap` 토큰 | `tight: 4px` / `normal: 8px` / `wide: 12px` |
+| 폭 | `w-full` (부모 grid/flex 가 결정) |
+
+## `ActionCard` 와의 선택 가이드
+
+| 케이스 | 사용 |
+|---|---|
+| 리스트로 세로로 쌓는 row 카드 — permission row, 단일 trigger 우측 (Check/Switch) | `ActionCard` |
+| Grid 로 가로 배치, 폭 좁고 세로로 긴 타일, Header / Footer 자유 영역 필요 | `ActionTile` |

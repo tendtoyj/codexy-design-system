@@ -1,0 +1,205 @@
+/**
+ * PDS primitive color palette — 14 hue × 14단계.
+ * Montage wds-theme atomic 값을 완전 이식. 변수명만 --wds-* → --pds-*.
+ * 값은 브랜드 확정 시 교체 가능. 이름은 불변.
+ *
+ * NOTE: primitive 는 **직접 소비 금지** 원칙(§4.1.1). semantic 만 public API.
+ * 따라서 `@theme` 로 Tailwind 유틸리티를 생성하지 않고 순수 `:root` 로 둔다.
+ * 이렇게 해야 semantic 이 참조하지 않는 step 도 `var(...)` 로 안전히 읽힌다
+ * (Tailwind v4 `@theme` 는 사용 안 된 변수를 방출하지 않음).
+ */
+:root {
+  /* blue */
+  --pds-color-blue-10: #001536;
+  --pds-color-blue-20: #002966;
+  --pds-color-blue-30: #003e9c;
+  --pds-color-blue-40: #0054d1;
+  --pds-color-blue-45: #005eeb;
+  --pds-color-blue-50: #0066ff;
+  --pds-color-blue-55: #1a75ff;
+  --pds-color-blue-60: #3385ff;
+  --pds-color-blue-65: #4f95ff;
+  --pds-color-blue-70: #69a5ff;
+  --pds-color-blue-80: #9ec5ff;
+  --pds-color-blue-90: #c9defe;
+  --pds-color-blue-95: #eaf2fe;
+  --pds-color-blue-99: #f7fbff;
+
+  /* neutral */
+  --pds-color-neutral-5: #0f0f0f;
+  --pds-color-neutral-10: #171717;
+  --pds-color-neutral-15: #1c1c1c;
+  --pds-color-neutral-20: #2a2a2a;
+  --pds-color-neutral-22: #303030;
+  --pds-color-neutral-30: #474747;
+  --pds-color-neutral-40: #5c5c5c;
+  --pds-color-neutral-50: #737373;
+  --pds-color-neutral-60: #8a8a8a;
+  --pds-color-neutral-70: #9b9b9b;
+  --pds-color-neutral-80: #b0b0b0;
+  --pds-color-neutral-90: #c4c4c4;
+  --pds-color-neutral-95: #dcdcdc;
+  --pds-color-neutral-99: #f7f7f7;
+
+  /* coolNeutral */
+  --pds-color-cool-neutral-5: #0f0f10;
+  --pds-color-cool-neutral-7: #141415;
+  --pds-color-cool-neutral-10: #171719;
+  --pds-color-cool-neutral-15: #1b1c1e;
+  --pds-color-cool-neutral-17: #212225;
+  --pds-color-cool-neutral-20: #292a2d;
+  --pds-color-cool-neutral-22: #2e2f33;
+  --pds-color-cool-neutral-23: #333438;
+  --pds-color-cool-neutral-25: #37383c;
+  --pds-color-cool-neutral-30: #46474c;
+  --pds-color-cool-neutral-40: #5a5c63;
+  --pds-color-cool-neutral-50: #70737c;
+  --pds-color-cool-neutral-60: #878a93;
+  --pds-color-cool-neutral-70: #989ba2;
+  --pds-color-cool-neutral-80: #aeb0b6;
+  --pds-color-cool-neutral-90: #c2c4c8;
+  --pds-color-cool-neutral-95: #dbdcdf;
+  --pds-color-cool-neutral-96: #e1e2e4;
+  --pds-color-cool-neutral-97: #eaebec;
+  --pds-color-cool-neutral-98: #f4f4f5;
+  --pds-color-cool-neutral-99: #f7f7f8;
+
+  /* common */
+  --pds-color-common-0: #000000;
+  --pds-color-common-100: #ffffff;
+
+  /* red */
+  --pds-color-red-10: #3b0101;
+  --pds-color-red-20: #730303;
+  --pds-color-red-30: #b00c0c;
+  --pds-color-red-40: #e52222;
+  --pds-color-red-50: #ff4242;
+  --pds-color-red-60: #ff6363;
+  --pds-color-red-70: #ff8c8c;
+  --pds-color-red-80: #ffb5b5;
+  --pds-color-red-90: #fed5d5;
+  --pds-color-red-95: #feecec;
+  --pds-color-red-99: #fffafa;
+
+  /* green */
+  --pds-color-green-10: #00240c;
+  --pds-color-green-20: #004517;
+  --pds-color-green-30: #006e25;
+  --pds-color-green-40: #009632;
+  --pds-color-green-50: #00bf40;
+  --pds-color-green-60: #1ed45a;
+  --pds-color-green-70: #49e57d;
+  --pds-color-green-80: #7df5a5;
+  --pds-color-green-90: #acfcc7;
+  --pds-color-green-95: #d9ffe6;
+  --pds-color-green-99: #f2fff6;
+
+  /* orange */
+  --pds-color-orange-10: #361e00;
+  --pds-color-orange-20: #663a00;
+  --pds-color-orange-30: #9c5800;
+  --pds-color-orange-39: #d17600;
+  --pds-color-orange-40: #d47800;
+  --pds-color-orange-50: #ff9200;
+  --pds-color-orange-60: #ffa938;
+  --pds-color-orange-70: #ffc06e;
+  --pds-color-orange-80: #ffd49c;
+  --pds-color-orange-90: #fee6c6;
+  --pds-color-orange-95: #fef4e6;
+  --pds-color-orange-99: #fffcf7;
+
+  /* violet */
+  --pds-color-violet-10: #11024d;
+  --pds-color-violet-20: #23098f;
+  --pds-color-violet-30: #3a16c9;
+  --pds-color-violet-40: #4f29e5;
+  --pds-color-violet-45: #5b37ed;
+  --pds-color-violet-50: #6541f2;
+  --pds-color-violet-60: #7d5ef7;
+  --pds-color-violet-70: #9e86fc;
+  --pds-color-violet-80: #c0b0ff;
+  --pds-color-violet-90: #dbd3fe;
+  --pds-color-violet-95: #f0ecfe;
+  --pds-color-violet-99: #fbfaff;
+
+  /* pink */
+  --pds-color-pink-10: #3d0133;
+  --pds-color-pink-20: #730560;
+  --pds-color-pink-30: #a81690;
+  --pds-color-pink-40: #d331b8;
+  --pds-color-pink-46: #e846cd;
+  --pds-color-pink-50: #f553da;
+  --pds-color-pink-60: #fa73e3;
+  --pds-color-pink-70: #ff94ed;
+  --pds-color-pink-80: #ffb8f3;
+  --pds-color-pink-90: #fed3f7;
+  --pds-color-pink-95: #feecfb;
+  --pds-color-pink-99: #fffafe;
+
+  /* cyan */
+  --pds-color-cyan-10: #00252b;
+  --pds-color-cyan-20: #004854;
+  --pds-color-cyan-30: #006f82;
+  --pds-color-cyan-40: #0098b2;
+  --pds-color-cyan-50: #00bdde;
+  --pds-color-cyan-60: #28d0ed;
+  --pds-color-cyan-70: #57dff7;
+  --pds-color-cyan-80: #8aedff;
+  --pds-color-cyan-90: #b5f4ff;
+  --pds-color-cyan-95: #defaff;
+  --pds-color-cyan-99: #f7feff;
+
+  /* lightBlue */
+  --pds-color-light-blue-10: #002130;
+  --pds-color-light-blue-20: #004261;
+  --pds-color-light-blue-30: #006796;
+  --pds-color-light-blue-40: #008dcf;
+  --pds-color-light-blue-50: #00aeff;
+  --pds-color-light-blue-60: #3dc2ff;
+  --pds-color-light-blue-70: #70d2ff;
+  --pds-color-light-blue-80: #a1e1ff;
+  --pds-color-light-blue-90: #c4ecfe;
+  --pds-color-light-blue-95: #e5f6fe;
+  --pds-color-light-blue-99: #f7fdff;
+
+  /* redOrange */
+  --pds-color-red-orange-10: #290f00;
+  --pds-color-red-orange-20: #592100;
+  --pds-color-red-orange-30: #913500;
+  --pds-color-red-orange-40: #c94a00;
+  --pds-color-red-orange-48: #f55a00;
+  --pds-color-red-orange-50: #ff5e00;
+  --pds-color-red-orange-60: #ff7b2e;
+  --pds-color-red-orange-70: #ff9b61;
+  --pds-color-red-orange-80: #ffbd96;
+  --pds-color-red-orange-90: #fed9c4;
+  --pds-color-red-orange-95: #feeee5;
+  --pds-color-red-orange-99: #fffaf7;
+
+  /* lime */
+  --pds-color-lime-10: #112900;
+  --pds-color-lime-20: #225200;
+  --pds-color-lime-30: #347d00;
+  --pds-color-lime-37: #429e00;
+  --pds-color-lime-40: #48ad00;
+  --pds-color-lime-50: #58cf04;
+  --pds-color-lime-60: #6be016;
+  --pds-color-lime-70: #88f03e;
+  --pds-color-lime-80: #aef779;
+  --pds-color-lime-90: #ccfca9;
+  --pds-color-lime-95: #e6ffd4;
+  --pds-color-lime-99: #f8fff2;
+
+  /* purple */
+  --pds-color-purple-10: #290247;
+  --pds-color-purple-20: #580a7d;
+  --pds-color-purple-30: #861cb8;
+  --pds-color-purple-40: #ad36e3;
+  --pds-color-purple-50: #cb59ff;
+  --pds-color-purple-60: #d478ff;
+  --pds-color-purple-70: #de96ff;
+  --pds-color-purple-80: #e9baff;
+  --pds-color-purple-90: #f2d6ff;
+  --pds-color-purple-95: #f9edff;
+  --pds-color-purple-99: #fefbff;
+}

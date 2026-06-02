@@ -1,0 +1,93 @@
+---
+title: SectionHeader
+description: 섹션의 시작을 표시하는 1라인 헤더. 타이틀 + 우측 두 슬롯(headingContent / trailingContent) 으로 구성된다.
+---
+
+import {
+  SectionHeaderBasicDemo,
+  SectionHeaderFullDemo,
+  SectionHeaderSizesDemo,
+  SectionHeaderWithHeadingContentDemo,
+  SectionHeaderWithTrailingDemo,
+} from "@/components/demos/section-header-demo";
+
+## 사용
+
+콘텐츠 영역 / 섹션의 시작점을 명확히 표시할 때. 한 줄 row 모델로, 타이틀 옆에 보조 chip/icon 을 붙이거나 우측 끝에 "전체 보기" 같은 trailing 액션을 둘 수 있다. 페이지 진입 헤더(eyebrow + 타이틀 + 설명 stack 패턴)는 `SectionHeader` 가 아닌 별도 컴포넌트를 사용한다.
+
+```tsx
+import { SectionHeader } from "@fluxloop-ai/pds-ui/components/section-header";
+import { TextButton } from "@fluxloop-ai/pds-ui/components/text-button";
+import { ArrowRight } from "@fluxloop-ai/pds-icons/icons";
+
+<SectionHeader
+  trailingContent={
+    <TextButton size="sm">
+      전체 보기
+      <ArrowRight />
+    </TextButton>
+  }
+>
+  최근 작업
+</SectionHeader>
+```
+
+## Basic
+
+<SectionHeaderBasicDemo />
+
+## Heading content slot
+
+타이틀 우측에 보조 정보를 붙이는 슬롯. Filter `Chip`, 인라인 `IconButton` 등이 들어간다. 타이틀과 슬롯 콘텐츠는 row 안에서 수직 중앙 정렬된다.
+
+<SectionHeaderWithHeadingContentDemo />
+
+## Trailing content slot
+
+우측 끝 액션 슬롯. "전체 보기" `TextButton`, 보조 `IconButton` 등.
+
+<SectionHeaderWithTrailingDemo />
+
+두 슬롯을 모두 채운 예시.
+
+<SectionHeaderFullDemo />
+
+## Sizes
+
+| size | typography | 기본 색 | 용도 |
+|---|---|---|---|
+| `xs` | `text-label1` bold | `label-alternative` | 사이드바 그룹 라벨, 좁은 영역 sub-label |
+| `sm` | `text-headline1` bold | `label-strong` | 카드/패널 내부 섹션 |
+| `md` (default) | `text-heading1` bold | `label-strong` | 페이지 내 일반 섹션 |
+| `lg` | `text-title2` bold | `label-strong` | 큰 영역 진입 / 상위 섹션 |
+
+<SectionHeaderSizesDemo />
+
+## Props
+
+### `SectionHeader`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `"xs" \| "sm" \| "md" \| "lg"` | `"md"` | 타이포그래피·슬롯 max-height 스케일 |
+| `headingAs` | `"h1"~"h6"` | `"h2"` | 시맨틱 헤딩 태그 |
+| `headingContent` | `ReactNode` | - | 타이틀 우측 슬롯 (Chip / IconButton 등) |
+| `trailingContent` | `ReactNode` | - | 우측 끝 슬롯 (TextButton / IconButton 등) |
+| `color` | `string` | - | 기본 색 override. CSS color value 또는 `var(--pds-…)`. 자식이 inherit 한다 |
+| `children` | `ReactNode` | - | 타이틀 텍스트 |
+
+## 디자인 결정
+
+- **1라인 row 모델만.** Eyebrow + 타이틀 + 설명을 수직으로 쌓는 페이지 진입 헤더는 별도 컴포넌트로 분리. SectionHeader 는 한 줄 헤더 패턴에만 책임진다.
+- **`platform` prop 없음.** PDS 는 데스크톱 기준 단일 밀도. 반응형 typography 는 별도 토큰 계층이 잡힌 뒤 도입.
+- **Pagination 서브 미동봉.** Prev/next 페이지네이터는 별도 `Pagination` 컴포넌트로 잡고, 여기서는 `trailingContent` 슬롯으로 받는다.
+- **`color` 는 root 에만 적용, 자식은 inherit.** `headingContent` / `trailingContent` 안의 `IconButton` / `TextButton` 은 자체 variant 색을 갖는다 — 헤더 색에 강제로 동기화하지 않는다. 톤을 맞추려면 슬롯 안에서 직접 지정.
+- **수직 정렬은 center (Montage 와 차이).** Montage 는 `align-items: flex-end` (베이스라인) 을 쓰지만, 한글 타이틀 + Chip/Button 조합에서 시각적으로 어긋나 보이는 케이스가 있어 PDS 는 `items-center` 로 통일. 슬롯 콘텐츠 높이는 자연스럽게 결정되며, row 전체 높이 = max(slot heights).
+- **타이틀 ↔ headingContent gap 은 사이즈별로 차등.** xs `4px` / sm·md `6px` / lg `8px`. 헤더 typography 스케일에 비례. 타이틀과 한 덩어리로 읽히는 의도라 의도적으로 좁게 둠 (Montage 의 균일 10px 보다 타이트).
+- **`not-prose` 자동 적용.** MDX `.prose` 컨테이너 안에 들어가도 내부 `<h2>` 가 prose 의 `margin-top/bottom` 영향을 받지 않도록 root 에 `not-prose` 가 박혀있다.
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/section-header
+```

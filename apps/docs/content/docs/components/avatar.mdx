@@ -1,0 +1,46 @@
+---
+title: Avatar
+description: Radix Avatar + PDS 8단계 size, variant(person/company/academy)
+---
+
+import { AvatarSizeDemo, AvatarVariantDemo } from "@/components/demos/avatar-demo";
+
+## 사용
+
+```tsx
+import { Avatar } from "@fluxloop-ai/pds-ui/components/avatar";
+
+<Avatar size="lg" variant="person" src="/me.jpg" alt="me" />
+<Avatar size="md" variant="company" />
+```
+
+## Size
+
+8 단계 — `xs`(20) · `sm`(24) · `md`(32) · `lg`(40) · `xl`(48) · `2xl`(56) · `3xl`(64) · `4xl`(80).
+
+<AvatarSizeDemo />
+
+## Variant
+
+- **person** — 원형 (9999px)
+- **company / academy** — 라운드 스퀘어 (size × ~0.125)
+
+fallback 아이콘은 `@fluxloop-ai/pds-icons/icons` 의 `User` / `Buildings` / `GraduationCap`.
+
+<AvatarVariantDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `xs \| sm \| md \| lg \| xl \| 2xl \| 3xl \| 4xl` | `md` | 8단계 스케일 |
+| `variant` | `person \| company \| academy` | `person` | 모양 + 기본 fallback 아이콘 |
+| `src` | `string` | — | 이미지 URL. 없으면 바로 fallback 렌더 |
+| `alt` | `string` | `""` | 이미지 alt |
+| `fallback` | `ReactNode` | 자동 | 커스텀 fallback (아이콘/이니셜 등) |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/avatar
+```

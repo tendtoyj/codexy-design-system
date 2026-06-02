@@ -1,0 +1,129 @@
+---
+title: ActionCard
+description: 제목·설명에 좌/우 슬롯이 붙는 클릭 가능한 카드. Suggestion · permission · option toggle row 등에 사용.
+---
+
+import {
+  ActionCardSuggestionsDemo,
+  ActionCardWithLeadingTrailingDemo,
+  ActionCardTrailingBadgeDemo,
+  ActionCardTitleOnlyDemo,
+  ActionCardVariantDemo,
+} from "@/components/demos/action-card-demo";
+
+큰 면적의 액션 표면. 제목 + 설명을 본문으로, 좌측에 큰 visual(타일/이미지/Avatar)과 우측에 trailing element(체크 · 토글 · 메뉴 트리거 등)를 슬롯으로 붙일 수 있다.
+
+## 사용
+
+```tsx
+import {
+  ActionCard,
+  ActionCardLeading,
+  ActionCardTitle,
+  ActionCardDescription,
+  ActionCardTrailing,
+} from "@fluxloop-ai/pds-ui/components/action-card";
+import { Compass, Check } from "@fluxloop-ai/pds-icons/icons";
+
+<ActionCard onClick={...}>
+  <ActionCardTitle icon={Compass}>Where should I start?</ActionCardTitle>
+  <ActionCardDescription>Pick the first thing to look at</ActionCardDescription>
+</ActionCard>
+```
+
+## 구조
+
+flat compound. 다음 5 개를 직접 자식으로 조합한다 — 순서는 무관(grid-area 로 자동 배치).
+
+| 슬롯 | 필수 | 역할 |
+|---|---|---|
+| `ActionCard` | 필수 | 클릭 표면. border / radius / padding / hover · focus state. 기본 `<button type="button">`, `asChild` 로 polymorphic |
+| `ActionCardLeading` | 옵션 | 좌측 큰 visual. 두 행 span. 내부는 호출부 자유 (img / Avatar / 타일 wrapper) |
+| `ActionCardTitle` | 필수 | 가운데 1행. `icon` prop 으로 inline 아이콘(20px) 정렬 |
+| `ActionCardDescription` | 옵션 | 가운데 2행. muted 텍스트 |
+| `ActionCardTrailing` | 옵션 | 우측 trailing. 두 행 span. Icon · IconButton · Switch · Badge 등 자유 |
+
+## Suggestion (title icon 만)
+
+좌측 visual 없이 title 의 inline 아이콘만 사용하는 단순 형태.
+
+<ActionCardSuggestionsDemo />
+
+## Leading + Trailing
+
+좌측에 큰 타일 visual, 우측에 상태 표시(예: 허용된 항목의 체크). Leading 의 사이즈/모양은 호출부에서 결정한다 — 컴포넌트는 정렬만 책임.
+
+<ActionCardWithLeadingTrailingDemo />
+
+## Trailing — Badge
+
+Trailing 슬롯은 Icon 외에도 Badge / IconButton / Switch 등 자유 ReactNode 를 받는다. 알림 수, "NEW" / "BETA" 같은 상태 라벨을 우측에 붙이는 흔한 케이스.
+
+<ActionCardTrailingBadgeDemo />
+
+## Title only
+
+description / leading / trailing 없이 title 단독. 모든 슬롯이 필수가 아니다.
+
+<ActionCardTitleOnlyDemo />
+
+## Variant
+
+3 종 — `outlined` (기본), `filled`, `ghost`. 외곽선·면적·hover 강도가 단계적으로 다르다.
+
+| variant | rest | hover |
+|---|---|---|
+| `outlined` | border 1px `--pds-line-normal-normal` + bg 투명 | bg `--pds-fill-alternative` |
+| `filled` | border 없음 + bg `--pds-fill-alternative` | bg `--pds-fill-normal` |
+| `ghost` | border 없음 + bg 투명 | bg `--pds-fill-alternative` |
+
+<ActionCardVariantDemo />
+
+## `asChild`
+
+기본 `<button type="button">` 으로 렌더된다. 링크나 다른 element 로 polymorphic 하게 쓰려면 `asChild` 로 자식 element 에 props/style 을 위임.
+
+```tsx
+<ActionCard asChild>
+  <a href="/skills/diagnose">
+    <ActionCardTitle icon={Stethoscope}>Diagnose this skill</ActionCardTitle>
+    <ActionCardDescription>Surface improvements from usage logs</ActionCardDescription>
+  </a>
+</ActionCard>
+```
+
+## Props
+
+### `ActionCard`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `"outlined" \| "filled" \| "ghost"` | `"outlined"` | 시각 variant. 위 표 참조 |
+| `asChild` | `boolean` | `false` | true 면 자식 element 가 클릭 표면이 됨. `<a>` / `<Link>` 등 polymorphic 사용 |
+| `disabled` | `boolean` | — | native button disabled. opacity 60% + cursor not-allowed |
+| `onClick` | `(e) => void` | — | |
+| 기타 | `React.ButtonHTMLAttributes<HTMLButtonElement>` | — | |
+
+### `ActionCardTitle`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `icon` | `PhosphorIcon \| ComponentType<SVGAttributes>` | — | title 텍스트 좌측 inline 아이콘. 20px 고정 |
+
+### Leading / Description / Trailing
+
+`React.HTMLAttributes<HTMLDivElement>` 그대로. 정렬과 typography 외에는 컴포넌트가 강제하는 것이 없다.
+
+## Tokens
+
+| 항목 | 값 |
+|---|---|
+| radius | `12px` |
+| padding | `14px 16px` |
+| title typography | 14px / 20px / semibold / `--pds-label-strong` |
+| description typography | 13px / 18px / `--pds-label-alternative` |
+| Leading ↔ Title 간격 | `12px` (Leading 의 `margin-right`) |
+| Title ↔ Trailing 간격 | `12px` (Trailing 의 `margin-left`) |
+| Title ↔ Description 간격 | `2px` (row-gap) |
+
+variant 별 background/border 는 위 [Variant](#variant) 섹션 참조.

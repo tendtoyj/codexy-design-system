@@ -1,0 +1,81 @@
+{
+  "name": "@fluxloop-ai/pds-core",
+  "version": "0.2.1",
+  "private": false,
+  "description": "Pluto Design System — tokens, Tailwind preset, Pretendard, motion",
+  "license": "MIT",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./src/styles/index.css",
+    "./styles/*": "./src/styles/*",
+    "./tokens/*": "./src/styles/tokens/*",
+    "./fonts/*": "./src/fonts/*",
+    "./motion": {
+      "types": "./dist/motion/variants.d.ts",
+      "import": "./dist/motion/variants.js"
+    },
+    "./utils/cn": {
+      "types": "./dist/utils/cn.d.ts",
+      "import": "./dist/utils/cn.js"
+    },
+    "./utils/tv": {
+      "types": "./dist/utils/tv.d.ts",
+      "import": "./dist/utils/tv.js"
+    },
+    "./utils/tw-merge-config": {
+      "types": "./dist/utils/tw-merge-config.d.ts",
+      "import": "./dist/utils/tw-merge-config.js"
+    },
+    "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
+      "import": "./dist/tailwind-preset.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src/styles",
+    "src/fonts"
+  ],
+  "scripts": {
+    "build": "tsup && node scripts/verify-exports.mjs",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo",
+    "verify-exports": "node scripts/verify-exports.mjs",
+    "prepublishOnly": "node scripts/verify-exports.mjs"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=11",
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "framer-motion": {
+      "optional": true
+    },
+    "tailwindcss": {
+      "optional": false
+    }
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0",
+    "tailwind-variants": "^3.2.2"
+  },
+  "devDependencies": {
+    "framer-motion": "^11.11.0",
+    "tailwindcss": "^4.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
+  }
+}

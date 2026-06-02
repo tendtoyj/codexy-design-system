@@ -1,0 +1,58 @@
+---
+title: Motion
+description: duration / easing / 7 keyframe + prefers-reduced-motion
+---
+
+import { MotionDemo, MotionTokenTable } from "@/components/demos/motion-demo";
+
+PDS의 모션은 **pluto-note chat-animations를 승계**했다. `--pds-ease-standard`가 모든 step-in·fade·collapse의 기본 이징이며, chat 토큰 묶음의 `--pds-chat-easing`은 동일 값(`cubic-bezier(0.23, 1, 0.32, 1)`)을 같은 의도로 정의해 둔 별칭이다.
+
+## Duration · Easing
+
+<MotionTokenTable />
+
+## Transition 프리셋
+
+자주 쓰는 조합은 `--pds-transition-*`로 묶여 있다.
+
+| 토큰 | 정의 |
+| --- | --- |
+| `--pds-transition-color` | `color duration-fast ease-standard` |
+| `--pds-transition-bg` | `background-color duration-fast ease-standard` |
+| `--pds-transition-transform` | `transform duration-normal ease-standard` |
+| `--pds-transition-opacity` | `opacity duration-normal ease-standard` |
+| `--pds-transition-all` | `all duration-normal ease-standard` |
+
+## Keyframe 데모
+
+각 패널의 **재생** 버튼으로 트리거. `pds-fade-in-up`, `pds-fade-in-card`, `pds-fade-collapse`는 한 번만, 나머지는 루프 애니메이션.
+
+<MotionDemo />
+
+## Framer Motion Preset
+
+`@fluxloop-ai/pds-core/motion` 에서 variants로 export:
+
+```tsx
+import { motion } from "framer-motion";
+import { pdsStepIn, pdsCardIn } from "@fluxloop-ai/pds-core/motion";
+
+<motion.div variants={pdsStepIn} initial="hidden" animate="visible" />
+```
+
+## 접근성
+
+OS의 "동작 줄이기" 설정(`prefers-reduced-motion: reduce`)이 켜져 있으면 `.pds-animate-*` 클래스의 애니메이션은 0.01ms로 단축된다. 사용자 설정이 우선이므로 `!important`로 덮어쓰는 것이 맞다.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .pds-animate-step-in,
+  .pds-animate-card-in,
+  .pds-animate-dot-pulse,
+  .pds-animate-shimmer {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```

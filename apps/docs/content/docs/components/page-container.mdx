@@ -1,0 +1,77 @@
+---
+title: PageContainer
+description: 페이지 본문 frame. max-width · 좌우 gutter · 상하 padding 을 책임지는 generic wrapper.
+---
+
+import {
+  PageContainerBasicDemo,
+  PageContainerVariantsDemo,
+  PageContainerWithContentDemo,
+} from "@/components/demos/page-container-demo";
+
+## 사용
+
+페이지 본문을 감싸는 표준 컨테이너. `AppShellMainBody`, Modal body, 단독 페이지 등 어디서든 본문 영역의 폭과 padding 을 일관되게 잡는다.
+
+```tsx
+import { PageContainer } from "@fluxloop-ai/pds-ui/components/page-container";
+
+<AppShellMain>
+  <AppShellMainHeader>...</AppShellMainHeader>
+  <AppShellMainBody>
+    <PageContainer>
+      <h1>제목</h1>
+      <p>본문</p>
+    </PageContainer>
+  </AppShellMainBody>
+</AppShellMain>
+```
+
+## Basic
+
+기본 variant 는 `default` (800px). 본문이 가운데 정렬되고 좌우 32px gutter, 상단 32px / 하단 64px padding 이 적용된다.
+
+<PageContainerBasicDemo />
+
+## Variants
+
+페이지 콘텐츠 성격에 따라 3가지 max-width 변종을 고른다. gutter 32 와 상하 padding 32/64 는 모든 variant 에서 동일.
+
+<PageContainerVariantsDemo />
+
+| variant | max-width | 용도 |
+|---|---|---|
+| `narrow` | `480px` | 단일 컬럼 텍스트·폼·문서 |
+| `default` | `800px` | 일반 페이지 (기본) |
+| `full` | 제한 없음 | 테이블·리스트 등 full-bleed. gutter 32 는 그대로 유지됨 |
+
+## With content
+
+페이지 헤더 (제목·설명) 를 첫 자식으로 두고 그 아래에 본문을 쌓는 일반적인 패턴. PageContainer 는 sub-slot 을 강제하지 않으므로 마크업은 페이지 코드의 자유.
+
+<PageContainerWithContentDemo />
+
+## Props
+
+### `PageContainer`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `"narrow" \| "default" \| "full"` | `"default"` | 본문 max-width 변종 |
+| `className` | `string` | - | 추가 클래스 (frame 토큰 override 용) |
+| `...rest` | `HTMLDivElement` | - | 일반 div 속성 |
+
+## 디자인 결정
+
+- **AppShell 과 독립.** PageContainer 는 generic wrapper 로 설계되어 AppShell 밖 (Modal body, 로그인·온보딩 화면, SidePanel 안) 에서도 그대로 쓸 수 있다. AppShell sub-component 가 아니라는 점이 책임 분리의 핵심.
+- **Scroll 은 부모 책임.** PageContainer 는 `overflow` 를 건드리지 않는다. 스크롤은 부모 (예: `AppShellMainBody` 의 `overflow-y-auto`) 가 담당. PageContainer 는 폭과 padding 만.
+- **`full` variant 도 gutter 유지.** `full` 은 *max-width 없는 모드* 일 뿐, 좌우 32 gutter 는 적용된다. 데이터가 카드 끝에 붙어서 답답해지는 케이스를 막기 위함. 정말 끝까지 가야 하는 경우 (지도·canvas) 는 PageContainer 자체를 안 쓰면 된다.
+- **상하 padding 비대칭 (32 / 64).** top 은 헤더와의 호흡 32, bottom 은 스크롤 끝 여유 64. 균등하게 주면 콘텐츠가 카드 하단 border 에 거의 닿아 답답한 인상이 됨.
+- **Sub-slot (Header/Body) 없음.** 페이지 제목·액션 영역은 페이지 코드의 자유. 패턴이 굳어지면 별도 `PageHeader` 컴포넌트로 추출. PageContainer 가 sub-slot 을 강제하면 추후 컴포넌트 도입 시 API 충돌이 발생.
+- **가운데 정렬 고정 (left-align 옵션 없음).** `max-width` 가 있는 페이지에서 좌측 정렬할 동기가 약함. 필요해지면 `align="start"` prop 으로 비파괴적 추가 가능.
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/page-container
+```

@@ -1,0 +1,55 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+.next/
+out/
+
+# turbo
+.turbo/
+
+# fumadocs-mdx generated
+.source/
+
+# shadcn registry build output (regenerated at build time)
+apps/docs/public/r/
+
+# typescript
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env
+.env
+.env.local
+.env.*.local
+
+# editor / OS
+.DS_Store
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# test
+coverage/
+
+# misc
+*.tgz
+
+# local working files (not committed)
+.claude/
+.playwright-mcp/
+thoughts/
+
+# screenshots (ad-hoc visual diffs at repo root, kept locally)
+/*.png
+

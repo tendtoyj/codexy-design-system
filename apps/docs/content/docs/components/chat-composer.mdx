@@ -1,0 +1,69 @@
+---
+title: ChatComposer
+description: 제어형 textarea + send/cancel 토글 composer
+---
+
+import {
+  ChatComposerAccessoriesDemo,
+  ChatComposerIdleDemo,
+  ChatComposerStatesDemo,
+  ChatComposerStreamingDemo,
+} from "@/components/demos/chat-composer-demo";
+
+## 사용
+
+```tsx
+import { ChatComposer } from "@fluxloop-ai/pds-ui/components/chat-composer";
+
+const [value, setValue] = useState("");
+
+<ChatComposer
+  value={value}
+  onChange={setValue}
+  onSubmit={(v) => send(v)}
+  isStreaming={streaming}
+  onCancel={() => abort()}
+/>
+```
+
+- **제어형** — `value` / `onChange` / `onSubmit` 만 핵심. 내부 스토어 없음.
+- **Auto-grow** — `minRows` ~ `maxRows` 범위에서 scrollHeight 측정.
+- **Enter 전송 / Shift+Enter 줄바꿈 / IME 조합 중 Enter 무시**.
+- **Streaming 토글** — `isStreaming` true 면 Send → Cancel 로 교체, `onCancel` 호출.
+- **Toolbar slot** — `leadingToolbar` / `trailingToolbar` 로 첨부·컨텍스트·모드 조작 버튼 주입.
+
+<ChatComposerIdleDemo />
+
+## Toolbar / accessory slots
+
+- `leadingToolbar` · `trailingToolbar` — send 버튼 row(shell 안 하단)
+- `topAccessory` — shell **안쪽** 상단 (textarea 위). 첨부 chip 등 입력 컨텍스트 표시 자리.
+- `bottomAccessory` — shell **바깥** 하단 (composer 카드 아래). 톤·모델 선택 row 같은 외부 컨트롤.
+
+<ChatComposerAccessoriesDemo />
+
+## Streaming toggle
+
+<ChatComposerStreamingDemo />
+
+## Disabled
+
+<ChatComposerStatesDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` | `string` | — | textarea 값 |
+| `onChange` | `(value: string) => void` | — | 입력 콜백 |
+| `onSubmit` | `(value: string) => void` | — | Enter 또는 Send 버튼 |
+| `onCancel` | `() => void` | — | Cancel 버튼 (`isStreaming=true` 일 때) |
+| `isStreaming` | `boolean` | `false` | Send/Cancel 토글 |
+| `placeholder` | `string` | `"ask a question..."` | placeholder |
+| `minRows` / `maxRows` | `number` | `2` / `10` | auto-grow 범위 |
+| `disabled` | `boolean` | `false` | 입력 비활성 |
+| `helperText` / `errorText` / `footerText` | `ReactNode` | — | 3종 보조 텍스트 라인 |
+| `leadingToolbar` / `trailingToolbar` | `ReactNode` | — | toolbar slot (send 버튼 row 좌/우, shell 안) |
+| `topAccessory` | `ReactNode` | — | shell **안쪽** 상단 슬롯 (첨부 chip 등) |
+| `bottomAccessory` | `ReactNode` | — | shell **바깥** 하단 슬롯 (외부 컨트롤 row) |
+| `autoFocus` | `boolean` | — | 초기 포커스 |

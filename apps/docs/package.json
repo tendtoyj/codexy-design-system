@@ -1,0 +1,38 @@
+{
+  "name": "@fluxloop-ai/pds-docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build:registry": "shadcn build registry.json --cwd ../../packages/pds-ui --output ../../apps/docs/public/r",
+    "build": "pnpm build:registry && NODE_OPTIONS=--max-old-space-size=4096 next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next .source .turbo public/r",
+    "postinstall": "fumadocs-mdx"
+  },
+  "dependencies": {
+    "@fluxloop-ai/pds-core": "workspace:*",
+    "@fluxloop-ai/pds-icons": "workspace:*",
+    "@fluxloop-ai/pds-markdown": "workspace:*",
+    "@fluxloop-ai/pds-ui": "workspace:*",
+    "fumadocs-core": "^15.0.0",
+    "fumadocs-mdx": "^11.0.0",
+    "fumadocs-ui": "^15.0.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "squircle.js": "^1.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "shadcn": "^4.7.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}

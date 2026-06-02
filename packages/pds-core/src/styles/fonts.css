@@ -1,0 +1,12 @@
+/**
+ * PDS fonts — Pretendard Variable 번들 (오프라인 Electron/Tauri 대응).
+ * SF Pro 는 macOS 기본 제공이므로 번들하지 않음.
+ * 경로는 패키지 exports './fonts/*' 를 통해 consumer 에서도 접근 가능.
+ */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/pretendard-variable.woff2") format("woff2-variations");
+}

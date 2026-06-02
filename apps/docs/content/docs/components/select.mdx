@@ -1,0 +1,74 @@
+---
+title: Select
+description: Radix Select. sm/md/lg Trigger, Input-aligned 토큰, Group / Label / Separator 슬롯.
+---
+
+import {
+  SelectBasicDemo,
+  SelectSizeDemo,
+  SelectVariantDemo,
+  SelectGroupDemo,
+  SelectInvalidDemo,
+} from "@/components/demos/select-demo";
+
+## 사용
+
+```tsx
+import {
+  Select, SelectTrigger, SelectValue, SelectContent,
+  SelectItem, SelectGroup, SelectLabel, SelectSeparator,
+} from "@fluxloop-ai/pds-ui/components/select";
+
+<Select defaultValue="seoul">
+  <SelectTrigger size="sm"><SelectValue placeholder="지역" /></SelectTrigger>
+  <SelectContent>
+    <SelectItem value="seoul">서울</SelectItem>
+    <SelectItem value="busan">부산</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Basic
+
+<SelectBasicDemo />
+
+## Size
+
+<SelectSizeDemo />
+
+## Variant
+
+`outlined`(기본)는 1px inset border, `filled`는 무테 + grey fill로 hover/open 시 한 단계 어두워집니다.
+
+<SelectVariantDemo />
+
+## Group + Separator
+
+<SelectGroupDemo />
+
+## Invalid
+
+<SelectInvalidDemo />
+
+## Props
+
+### SelectTrigger
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md \| lg` | `sm` | Input 과 동일한 32/36/44 px |
+| `variant` | `outlined \| filled` | `outlined` | `outlined`는 1px border, `filled`는 무테 + grey fill |
+| `invalid` | `boolean` | `false` | `aria-invalid` + negative border |
+
+### SelectContent
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `position` | `item-aligned \| popper` | `popper` | Radix 표준 |
+| `sideOffset` | `number` | `4` | popper 일 때만 |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/select
+```

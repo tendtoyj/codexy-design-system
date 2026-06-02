@@ -1,0 +1,68 @@
+---
+title: Tooltip
+description: Radix Tooltip + PDS shortcut slot, size(sm/md), mode(hover/always/click)
+---
+
+import {
+  TooltipBasicDemo,
+  TooltipSideDemo,
+  TooltipSizeDemo,
+} from "@/components/demos/tooltip-demo";
+
+## 사용
+
+```tsx
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@fluxloop-ai/pds-ui/components/tooltip";
+
+<TooltipProvider delayDuration={200}>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Hover me</Button>
+    </TooltipTrigger>
+    <TooltipContent shortcut="⌘K">명령 팔레트</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+## Basic
+
+<TooltipBasicDemo />
+
+## Side
+
+`side` prop 으로 위치 조절 — Radix `side` 그대로.
+
+<TooltipSideDemo />
+
+## Size
+
+<TooltipSizeDemo />
+
+## Props
+
+### `<Tooltip />`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `mode` | `hover \| always \| click` | `hover` | `always` 는 항상 열림, `click` 은 controlled toggle 권장 |
+| `open` / `defaultOpen` / `onOpenChange` | Radix | — | 표준 controlled API |
+| `delayDuration` | `number` | `700` | Provider 값 상속 |
+
+### `<TooltipContent />`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md` | `md` | 패딩 + 폰트 크기 |
+| `shortcut` | `ReactNode` | — | 오른쪽 shortcut slot (⌘K 등) |
+| `side` / `align` / `sideOffset` | Radix | — | 표준 positioning |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/tooltip
+```

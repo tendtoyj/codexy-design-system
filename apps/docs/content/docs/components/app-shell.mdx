@@ -1,0 +1,201 @@
+---
+title: AppShell
+description: 데스크탑 앱(Tauri/macOS Overlay)의 3-패널 레이아웃 셸. Sidebar(back) + Main+SidePanel(foreground card) 구조.
+---
+
+import { AppShellDemo } from "@/components/demos/app-shell-demo";
+
+데스크탑 앱의 *외곽 윈도우 안*에 깔리는 3-패널 셸. 좌측 사이드바, 중앙 본문, 우측 패널(예: 챗) 의 공통 구조를
+하나의 컴포넌트군으로 제공한다.
+
+<AppShellDemo />
+
+PDS 는 윈도우 외곽(트래픽 라이트, 그림자, 모서리 squircle, 드래그-이동, 더블클릭-최대화) 을 *떠안지 않는다.*
+이건 macOS Overlay 모드에서 OS 가, Windows/Linux 에서는 향후 별도 어댑터가 처리한다. AppShell 은
+*그 안*의 레이아웃 + 시각 layer + 상태(접힘/폭) 만 책임진다.
+
+## 레이어 모델
+
+```
+┌─ window (OS 가 외곽 처리) ─────────────────────────────────┐
+│                                                            │
+│  ┌─ Sidebar ──┐  ┌─ Foreground Card ────────────────────┐ │
+│  │  back      │  │   Main           │   SidePanel        │ │
+│  │  layer     │  │   (front)        │   (front)          │ │
+│  │  (gray)    │  │   ↑                                   │ │
+│  │            │  │   사이드바와 만나는 좌측만 둥글게      │ │
+│  └────────────┘  └───────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────────┘
+```
+
+- **Sidebar** = back layer. 좌측 가장자리에 깔리며 회색 톤.
+- **Main + SidePanel** = foreground card. 사이드바 위로 떠있는 *하나의 흰 카드*.
+
+### 모서리 라운딩
+
+> **Foreground card 의 모서리는 *background layer 와 만나는 쪽만* 둥글게.**
+> 윈도우 가장자리에 닿는 쪽은 OS squircle 이 처리하므로 PDS 는 신경 쓰지 않는다.
+
+자동 처리됨 (`<AppShellMain>` 의 `data-adjacent-back-left` 가 사이드바 열림 상태에 따라 토글).
+
+### Titlebar inset (macOS 트래픽 라이트 회피)
+
+macOS Overlay 모드에서 트래픽 라이트(빨/노/초)가 좌상단 ~130px 영역을 차지한다. 그 자리에 우리 UI 가 닿으면 가려진다.
+
+- `<AppShell>` 에 `leftInset={130}` (또는 OS 별 적절값) 을 주입.
+- 좌/우 끝의 *현재 열려있는* 패널 헤더가 자동으로 inset 을 흡수한다.
+  - 사이드바 열림 → `AppShellSidebarHeader` 가 좌측 130px padding
+  - 사이드바 닫힘 → `AppShellMainHeader` 가 좌측 130px padding (Main 이 leftmost 가 되므로)
+- PDS 는 OS 를 직접 감지하지 않는다. 제품이 Tauri API 로 OS 를 보고 inset 값을 prop 으로 주입.
+
+## 사용
+
+```tsx
+import {
+  AppShell,
+  AppShellSidebar,
+  AppShellSidebarHeader,
+  AppShellSidebarBody,
+  AppShellSidebarFooter,
+  AppShellMain,
+  AppShellMainHeader,
+  AppShellMainBody,
+  AppShellSidePanel,
+  AppShellSidePanelHeader,
+  AppShellSidePanelBody,
+  AppShellSplitter,
+} from "@fluxloop-ai/pds-ui";
+
+<AppShell leftInset={130}>
+  <AppShellSidebar defaultWidth={220} minWidth={200} maxWidth={320}>
+    <AppShellSidebarHeader>{/* 사이드바 토글 등 */}</AppShellSidebarHeader>
+    <AppShellSidebarBody>{/* 내비 */}</AppShellSidebarBody>
+    <AppShellSidebarFooter>{/* 설정 등 */}</AppShellSidebarFooter>
+  </AppShellSidebar>
+
+  <AppShellSplitter target="sidebar" doubleClickResetWidth={220} />
+
+  <AppShellMain>
+    <AppShellMainHeader>{/* breadcrumb 등 */}</AppShellMainHeader>
+    <AppShellMainBody>{/* 페이지 본문 */}</AppShellMainBody>
+  </AppShellMain>
+
+  <AppShellSplitter target="sidePanel" doubleClickResetWidth={360} />
+
+  <AppShellSidePanel defaultWidth={360} minWidth={280} maxWidth={560}>
+    <AppShellSidePanelHeader>{/* 챗 탭 등 */}</AppShellSidePanelHeader>
+    <AppShellSidePanelBody>{/* 챗 메시지 등 */}</AppShellSidePanelBody>
+  </AppShellSidePanel>
+</AppShell>;
+```
+
+## 상태 모델 (Radix 식)
+
+`open` / `width` 둘 다 controlled / uncontrolled 양쪽 지원.
+
+```tsx
+{/* uncontrolled — 편하게 */}
+<AppShellSidebar defaultOpen defaultWidth={220} />
+
+{/* controlled — 단축키, URL 동기화, 다른 패널과 연동 등 */}
+<AppShellSidebar
+  open={sidebarOpen}
+  onOpenChange={setSidebarOpen}
+  width={sidebarWidth}
+  onWidthChange={setSidebarWidth}
+/>
+```
+
+- `defaultOpen` / `open` / `onOpenChange`
+- `defaultWidth` / `width` / `onWidthChange`
+- `minWidth` / `maxWidth` — 드래그 한계
+- `resizable` (default `true`) — `false` 면 분할자가 비활성
+
+### 닫힘 동작
+
+`open={false}` 시 패널은 width 0 으로 줄어들지만 *DOM 은 살아있고 내부 상태도 보존된다.*
+스크롤 위치, 입력값, 펼친 트리 등이 다시 열렸을 때 그대로 복귀.
+
+## Floating controls (overlay)
+
+사이드바를 접어도 *같은 좌표에 있어야 하는* 토글 버튼처럼, 어떤 패널에도 속하지 않는 floating 컨트롤을 위한 슬롯.
+
+- `<AppShellLeadingControls>` — 좌상단. `leftInset` 만큼 들여서 배치 (트래픽 라이트 회피).
+- `<AppShellTrailingControls>` — 우상단. `rightInset` 만큼 들여서 배치.
+
+컨테이너 자체는 `pointer-events: none` 이라 패널 콘텐츠 클릭을 막지 않는다 — 내부 인터랙티브 자식만 클릭 가능.
+
+```tsx
+<AppShell leftInset={72}>
+  <AppShellLeadingControls>
+    <IconButton aria-label="Toggle sidebar" onClick={toggleSidebar}>
+      <SidebarSimple />
+    </IconButton>
+  </AppShellLeadingControls>
+
+  <AppShellSidebar open={sidebarOpen}>...</AppShellSidebar>
+  ...
+</AppShell>
+```
+
+> **주의:** `leftInset` 값은 *트래픽 라이트 + leading controls 영역 전체*를 덮을 만큼 충분히 크게 설정.
+> 예: macOS 트래픽 라이트(~80px) + 토글 버튼(~32px) = `leftInset={120}` 정도.
+
+## Splitter
+
+- `target="sidebar" | "sidePanel"` — 어느 패널의 width 를 조절할지 명시.
+- 위치는 사용자가 결정 (해당 패널 *바로 옆* 에 두는 것이 자연스러움).
+- 대상 패널이 `resizable={false}` 거나 닫혀있으면 자동 비활성.
+- `doubleClickResetWidth` 옵션 — 더블클릭 시 해당 폭으로 리셋.
+
+## Tauri 통합 (참고)
+
+PDS 는 Tauri 와 직접 결합하지 않는다. 제품 레포에서 다음만 챙기면 된다.
+
+1. **Tauri config** — macOS 는 `titleBarStyle: "Overlay"` 권장.
+2. **leftInset** — macOS 라면 ~130, Windows/Linux 라면 0 (또는 별도값) 을 `<AppShell>` 에 주입.
+3. **드래그 영역** — `AppShell*Header` 에 `data-tauri-drag-region` 이 자동으로 박힌다. 자식 인터랙티브 요소가 클릭 이벤트를 먹으면 드래그가 죽으니, 헤더 안 인터랙티브 영역은 제한적으로.
+4. **풀스크린 인식** — 제품에서 풀스크린 상태면 `leftInset={0}` 으로 동적 변경.
+
+## Props
+
+### `<AppShell>`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `titlebarHeight` | `number` | `44` | titlebar 영역 높이(px). CSS 변수 `--pds-app-shell-titlebar-height` 로도 노출. |
+| `leftInset` | `number` | `0` | 좌측 패널 헤더가 비워줘야 할 가로 inset(px). macOS 트래픽 라이트 자리 회피. |
+| `rightInset` | `number` | `0` | 우측 패널 헤더가 비워줘야 할 가로 inset(px). |
+
+### `<AppShellSidebar>` / `<AppShellSidePanel>`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `defaultOpen` | `boolean` | `true` | 초기 열림 상태 (uncontrolled). |
+| `open` | `boolean` | — | 현재 열림 상태 (controlled). |
+| `onOpenChange` | `(open: boolean) => void` | — | 열림 상태 변경 콜백. |
+| `defaultWidth` | `number` | Sidebar `240`, SidePanel `360` | 초기 폭(px). |
+| `width` | `number` | — | 현재 폭(controlled). |
+| `onWidthChange` | `(w: number) => void` | — | 폭 변경 콜백 (드래그 시 호출). |
+| `minWidth` | `number` | Sidebar `200`, SidePanel `280` | 드래그 최소 폭. |
+| `maxWidth` | `number` | Sidebar `320`, SidePanel `560` | 드래그 최대 폭. |
+| `resizable` | `boolean` | `true` | `false` 면 Splitter 비활성. |
+
+### `<AppShellSplitter>`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `target` | `"sidebar" \| "sidePanel"` | — | 어느 패널의 width 를 조절할지. **필수.** |
+| `doubleClickResetWidth` | `number` | — | 더블클릭 시 width 를 이 값으로 리셋. 미지정 시 더블클릭 비활성. |
+
+### `<AppShell*Header>`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `tauriDragRegion` | `boolean` | `true` | `data-tauri-drag-region` 을 박을지. 자식 인터랙티브 요소와 충돌하면 끄기. |
+
+## 디자인 의도
+
+- *컴포넌트 종류 자체*에 layer (back/front) 와 position (leading/center/trailing) 의 의미가 박혀있다 — `<AppShellSidebar>` 는 항상 back layer 이고, `<AppShellMain>` 은 항상 foreground card 의 시작점이다.
+- 사용자는 prop 으로 layer 를 지정하지 않는다. 대신 의도가 *컴포넌트 이름*에서 자명해야 한다.
+- 새로운 패널 (예: 좌측 보조 패널, 우측 두 번째 패널) 이 필요해진다면 *컴포넌트 분리* 로 의미를 박는다 — `layer` 같은 일반 prop 으로 우회하지 않는다.

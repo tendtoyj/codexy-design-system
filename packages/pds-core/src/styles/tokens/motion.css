@@ -1,0 +1,30 @@
+/**
+ * PDS motion — duration / easing / transition 프리셋.
+ * ease-standard 는 pluto-note chat-easing 과 동일 — 모든 step-in·fade·collapse 기본값.
+ *
+ * 소비는 `transition: var(--pds-transition-all)` / `animation-timing-function: var(--pds-ease-*)`
+ * 패턴. Tailwind `duration-*` / `ease-*` 유틸리티 대체용이 아님 → `:root`.
+ */
+:root {
+  /* duration */
+  --pds-duration-instant: 80ms;
+  --pds-duration-fast: 150ms;
+  --pds-duration-normal: 200ms;
+  --pds-duration-slow: 300ms;
+  --pds-duration-slower: 450ms;
+
+  /* easing */
+  --pds-ease-linear: linear;
+  --pds-ease-standard: cubic-bezier(0.23, 1, 0.32, 1);
+  --pds-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --pds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --pds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --pds-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* transition 프리셋 */
+  --pds-transition-color: color var(--pds-duration-fast) var(--pds-ease-standard);
+  --pds-transition-bg: background-color var(--pds-duration-fast) var(--pds-ease-standard);
+  --pds-transition-transform: transform var(--pds-duration-normal) var(--pds-ease-standard);
+  --pds-transition-opacity: opacity var(--pds-duration-normal) var(--pds-ease-standard);
+  --pds-transition-all: all var(--pds-duration-normal) var(--pds-ease-standard);
+}

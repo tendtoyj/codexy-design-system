@@ -1,0 +1,50 @@
+---
+title: ChatAttachmentChip
+description: 채팅 입력 위 첨부 컨텍스트(이미지/파일) 표시용 pill — hover 시 × 노출
+---
+
+import {
+  ChatAttachmentChipBasicDemo,
+  ChatAttachmentChipRemovableDemo,
+} from "@/components/demos/chat-attachment-chip-demo";
+
+## 사용
+
+```tsx
+import { ChatAttachmentChip } from "@fluxloop-ai/pds-ui/components/chat-attachment-chip";
+
+<ChatAttachmentChip type="image" name="screenshot.png" imageSrc={previewUrl} />
+<ChatAttachmentChip type="file" name="report.pdf" onRemove={() => removeOne(id)} />
+```
+
+`ChatComposer.topAccessory` 안에서 첨부된 컨텍스트(이미지·파일)를 가벼운 pill 형태로 나열하기 위한 컴포넌트. **타입 무관 단일 파일 아이콘** 정책 — pdf/zip/json 등을 별도 아이콘으로 분기하지 않는다(스크린샷 디자인 결정).
+
+<ChatAttachmentChipBasicDemo />
+
+## Removable
+
+`onRemove` 가 지정된 경우 chip 우측에 × 가 **overlay** 됩니다. 자리 reserve 없이 hover/focus 시 라벨 텍스트 위에 떠서 가립니다(× 의 배경이 chip 배경과 동일해서 그 아래 글자가 자연스럽게 가려짐). 평소엔 `opacity:0` + `pointer-events:none` 으로 숨김. layout shift 없음.
+
+<ChatAttachmentChipRemovableDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `name` | `string` | — | 파일명. `max-width:200px` 안에서 truncate |
+| `type` | `"image" \| "file"` | — | leading 슬롯 분기 |
+| `imageSrc` | `string` | — | image 타입일 때 썸네일 src(URL 또는 data:) |
+| `onRemove` | `() => void` | — | 지정 시 hover 에서 × 노출 |
+| `removeLabel` | `string` | `Remove ${name}` | × 버튼 aria-label |
+
+## 디자인 결정
+
+- **Pill 형태 (radius 999)** — filter/tag 용도의 `Chip`(rect)과 시각적으로 구분. 첨부는 "콘텐츠 레퍼런스"로 다른 의미.
+- **타입 무관 file 아이콘** — pdf/zip/이미지 외 등 타입별 분기는 시각 노이즈만 늘림. 파일명을 신뢰.
+- **× hover 노출, layout 고정** — opacity 만 토글, `pointer-events` 같이 토글해서 평소 클릭 영역도 비움.
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/chat-attachment-chip
+```

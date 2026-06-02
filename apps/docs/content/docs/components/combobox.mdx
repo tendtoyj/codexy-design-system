@@ -1,0 +1,105 @@
+---
+title: Combobox
+description: cmdk + Radix Popover 기반 searchable select. cmdk 는 PDS 공개 API 뒤로 완전 래핑.
+---
+
+import {
+  ComboboxBasicDemo,
+  ComboboxGroupDemo,
+  ComboboxFilledDemo,
+  ComboboxDisabledDemo,
+} from "@/components/demos/combobox-demo";
+
+## 사용
+
+```tsx
+import {
+  Combobox, ComboboxTrigger, ComboboxContent,
+  ComboboxInput, ComboboxList, ComboboxEmpty,
+  ComboboxGroup, ComboboxItem, ComboboxSeparator,
+} from "@fluxloop-ai/pds-ui/components/combobox";
+
+<Combobox value={value} onValueChange={setValue}>
+  <ComboboxTrigger placeholder="선택">{label}</ComboboxTrigger>
+  <ComboboxContent>
+    <ComboboxInput placeholder="검색" />
+    <ComboboxList>
+      <ComboboxEmpty>일치 없음</ComboboxEmpty>
+      <ComboboxItem value="react">React</ComboboxItem>
+      <ComboboxItem value="vue">Vue</ComboboxItem>
+    </ComboboxList>
+  </ComboboxContent>
+</Combobox>
+```
+
+## Basic
+
+<ComboboxBasicDemo />
+
+## Group + Separator
+
+<ComboboxGroupDemo />
+
+## Filled
+
+<ComboboxFilledDemo />
+
+## Disabled
+
+<ComboboxDisabledDemo />
+
+## Props
+
+### Combobox (root)
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` / `onValueChange` / `defaultValue` | `string` | - | 선택된 옵션 값 |
+| `inputValue` / `onInputValueChange` / `defaultInputValue` | `string` | - | 입력창 텍스트 |
+| `open` / `onOpenChange` / `defaultOpen` | `boolean` | - | Popover open 상태 |
+| `filter` | `(value, search, keywords?) => number` | - | 커스텀 필터 — 지정 시 내부 자동 필터링 비활성 |
+| `disabled` | `boolean` | - | 루트 `<fieldset>` 으로 적용 |
+| `size` | `sm \| md` | `sm` | |
+
+### ComboboxTrigger
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `outlined \| filled` | `outlined` | |
+| `placeholder` | `string` | `"선택"` | `children` · `value` 모두 비었을 때 표시 |
+| `invalid` | `boolean` | - | `aria-invalid` 부여 → 오류 색 보더 |
+
+### ComboboxItem
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` | `string` | - | 필수 |
+| `keywords` | `string[]` | - | 추가 검색 토큰 |
+| `disabled` | `boolean` | - | |
+| `onSelect` | `(value: string) => void` | - | |
+
+## 래핑 규율 (cmdk)
+
+Combobox 는 `cmdk` 를 내부 구현으로 사용한다. **아래 5가지는 공개 계약이다:**
+
+1. `cmdk` 의 타입·컴포넌트(`Command`, `Command.Root`, `useCommandState` 등)는 pds-ui 에서 **재노출하지 않는다.** `combobox.tsx` 내부에만 존재.
+2. prop 네이밍은 PDS 어휘(`value/onValueChange/inputValue/onInputValueChange`) 사용. cmdk 원형과의 겹침은 우연 일치로 간주.
+3. 서브컴포넌트는 PDS 이름 래핑 (`ComboboxList` / `ComboboxItem` …). cmdk 의 `Command.*` 직접 export 금지.
+4. **앱 스타일링은 `data-cmdk-*` 에 의존하지 말고**, PDS 가 제공하는 `data-state` / `data-selected` / `aria-selected` 만 사용.
+5. 커스텀 로직(`filter` 등)은 PDS props 로 받아 내부에서 cmdk 에 전달 — passthrough 로 뚫지 않음.
+
+### 이전 트리거 3가지
+
+다음 중 하나라도 성립하면 cmdk → Downshift 또는 Radix 수제로 이전 검토:
+
+1. Async options 로딩이 실제 앱 요구로 올라옴
+2. 한글 composition 관련 버그가 실제 사용자 리포트로 확인됨
+3. filter UI 대폭 커스터마이즈 요구 (토큰화 검색, 하이라이팅, 멀티 섹션 async merge)
+
+이전 시 변경 범위: `combobox.tsx` 내부 구현만 (공개 API · MDX · registry · consumer 코드 전부 불변).
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/combobox
+```

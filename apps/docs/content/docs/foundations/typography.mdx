@@ -1,0 +1,56 @@
+---
+title: Typography
+description: 15 variant 데스크탑 스케일, SF Pro + Pretendard 번들
+---
+
+import { TypeScale } from "@/components/demos/type-scale";
+
+PDS는 **14px**를 본문 기본으로 쓰는 데스크탑 밀도 스케일이다. display 계층은 데스크탑에서 희박한 단계(`display2`, `display3`)를 두지 않고, 코드용 `code` variant를 추가했다.
+
+## 폰트 스택
+
+```css
+--pds-font-sans:
+  -apple-system, BlinkMacSystemFont,
+  "SF Pro Text", "SF Pro Display",
+  "Apple SD Gothic Neo",
+  "Pretendard Variable", "Pretendard",
+  "Segoe UI Variable", "Segoe UI", "Malgun Gothic",
+  system-ui, sans-serif;
+
+--pds-font-mono:
+  "SF Mono", ui-monospace, "Menlo", "Monaco",
+  "Cascadia Mono", "Consolas", monospace;
+```
+
+- macOS: SF Pro (라틴) + Apple SD Gothic Neo 순
+- Windows/웹: Pretendard Variable 번들 폴백 (오프라인 대응)
+- 모노: SF Mono → 시스템 모노
+
+Pretendard Variable은 `@fluxloop-ai/pds-core/fonts/pretendard-variable.woff2`로 패키지에 포함되어 있어 Electron/Tauri 오프라인에서도 동작한다.
+
+## Variant 스케일
+
+| 이름 | 용도 |
+| --- | --- |
+| display1 | 온보딩 웰컴 큰 타이틀 |
+| title1~3 | 페이지/섹션/다이얼로그 제목 |
+| heading1~2 | 카드 헤딩 |
+| headline1 | 강조 헤드라인 |
+| body1 ★ | 기본 본문 |
+| body1-reading | 긴 아티클 (행간 24) |
+| body2 | 보조 본문 |
+| label1~2 | 폼 라벨·버튼 |
+| caption1~2 | 타임스탬프·메타·각주 |
+| code | 코드 블록 (mono) |
+
+<TypeScale />
+
+## Weight
+
+| 토큰 | 값 |
+| --- | --- |
+| `--pds-font-weight-regular` | 400 |
+| `--pds-font-weight-medium` | 500 |
+| `--pds-font-weight-semibold` | 600 |
+| `--pds-font-weight-bold` | 700 |

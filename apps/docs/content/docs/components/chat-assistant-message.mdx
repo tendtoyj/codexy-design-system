@@ -1,0 +1,39 @@
+---
+title: ChatAssistantMessage
+description: 어시스턴트 응답 — 풍선 없는 plain text 본문
+---
+
+import { ChatAssistantMessageDemo } from "@/components/demos/chat-assistant-message-demo";
+
+PDS 채팅 모델은 **사용자 메시지에는 풍선**, **어시스턴트 응답에는 풍선 없이 본문만** 노출한다. 응답이 곧 본문이라 별도 시각 컨테이너로 가두지 않는다.
+
+## 사용
+
+```tsx
+import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
+import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
+
+<ChatAssistantMessage
+  content="오늘 서울은 **맑아요**."
+  renderMarkdown={renderMarkdown}
+/>
+```
+
+마크다운 렌더는 옵셔널. `renderMarkdown` 미주입 시 plain text 로 떨어진다. 권장 구현체와 커스터마이즈 가이드는 [Chat Markdown](/docs/components/chat-markdown).
+
+기본 복사 버튼이 응답 아래에 내장돼 있다. 메시지 행에 호버하거나 포커스하면 노출되고, 클릭 시 1.5초간 체크 아이콘으로 바뀌며 클립보드에 텍스트가 저장된다. `showCopy={false}` 로 끄거나, `actions` 로 추가 버튼을 붙일 수 있다 (기본 복사 옆에 함께 노출).
+
+스트리밍 중에는 `loading` 을 true 로 둔다. 본문 끝(빈 본문이면 단독)에 [`<ChatLoadingDots />`](/docs/components/chat-loading-dots) 가 inline 으로 붙고, markdown 렌더와 actions(복사 포함)가 자동으로 꺼진다. 스트리밍이 끝나면 `loading` 을 false 로 풀고 `renderMarkdown` 을 다시 넘기면 된다.
+
+<ChatAssistantMessageDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `content` | `string` | — | 응답 본문 |
+| `renderMarkdown` | `(text: string) => ReactNode` | — | 텍스트 렌더러. 미지정 시 plain text 폴백 |
+| `loading` | `boolean` | `false` | 스트리밍 중 표시. 본문 끝에 dots inline, markdown·actions 자동 off |
+| `showCopy` | `boolean` | `true` | 응답 아래 기본 복사 버튼 노출 여부. 텍스트가 있을 때만 그려짐 |
+| `actions` | `ReactNode` | — | 추가 액션 슬롯. 기본 복사 버튼 옆에 함께 노출 |
+| `className` | `string` | — | 루트 클래스 |

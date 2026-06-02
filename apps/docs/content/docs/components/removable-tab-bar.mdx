@@ -1,0 +1,54 @@
+---
+title: RemovableTabBar
+description: 닫기 버튼이 달린 탭 바. chat 세션·노트 탭 등 동적으로 열고 닫는 워크스페이스 탭에 사용.
+---
+
+import { RemovableTabBarDemo } from "@/components/demos/removable-tab-bar-demo";
+
+## 사용
+
+```tsx
+import {
+  RemovableTabBar,
+  type RemovableTab,
+} from "@fluxloop-ai/pds-ui/components/removable-tab-bar";
+
+<RemovableTabBar
+  size="sm"
+  tabs={tabs}
+  activeId={activeId}
+  onSwitch={(id) => store.switchTab(id)}
+  onClose={(id) => store.closeTab(id)}
+/>
+```
+
+- 완전 controlled. 스토어 주입 없음.
+- `active` / hover 상태에서만 close 버튼 노출.
+- 가로 스크롤 되며 스크롤바는 숨김. 가로 자리가 부족하면 wheel 로 이동.
+- width 는 컨텐츠 가변. 사이즈별 `min-width` / `max-width` 만 고정.
+
+<RemovableTabBarDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `tabs` | `RemovableTab[]` | — | `{ id, title }` 배열 |
+| `activeId` | `string \| null` | — | 현재 활성 탭 |
+| `onSwitch` | `(id: string) => void` | — | 탭 클릭 |
+| `onClose` | `(id: string) => void` | — | 닫기 클릭 |
+| `size` | `"sm" \| "md"` | `"sm"` | 탭 사이즈 |
+
+## Sizes
+
+| | sm | md |
+|---|---|---|
+| height | 24px | 32px |
+| min / max width | 40 / 140 | 56 / 200 |
+| font / line | 12 / 18 | 14 / 21 |
+| padding L/R | 8 / 4 | 12 / 6 |
+| gap | 2 | 4 |
+| radius | 6 | 8 |
+| close button | 16×16 (r4) | 20×20 (r6) |
+
+`sm` 은 chat 세션 전환 같은 dense 한 워크스페이스 탭, `md` 는 노트 패널처럼 라벨이 더 길고 클릭 영역이 큰 케이스에 사용.

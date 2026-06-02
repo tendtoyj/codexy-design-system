@@ -1,0 +1,87 @@
+---
+title: Panel
+description: 외곽선·radius·디바이더만 책임지는 cell grid 박스. 셀 내부 콘텐츠는 자유.
+---
+
+import {
+  PanelGridDemo,
+  PanelHeaderlessDemo,
+  PanelMetadataStripDemo,
+  PanelSpanDemo,
+  PanelStackDemo,
+} from "@/components/demos/panel-demo";
+
+## 사용
+
+여러 개의 분할된 셀을 둥근 외곽선 박스로 묶어 보여주는 layout primitive. 메타데이터 strip · 차트 panel · 섹션 stack 등 "외곽선 + 셀 분할" 형태가 필요한 모든 곳에 사용.
+
+```tsx
+import { Panel, PanelCell } from "@fluxloop-ai/pds-ui/components/panel";
+import { Translate, Globe, CalendarCheck } from "@fluxloop-ai/pds-icons/icons";
+
+<Panel columns={3}>
+  <PanelCell title="언어" icon={Translate}>한국어</PanelCell>
+  <PanelCell title="지역" icon={Globe}>Asia/Seoul</PanelCell>
+  <PanelCell title="검증날짜" icon={CalendarCheck}>02/28/2026</PanelCell>
+</Panel>
+```
+
+## Metadata strip (1×N)
+
+`columns` 만큼 셀이 나열되고 자동으로 다음 줄로 wrap. 셀 3개 + `columns={3}` → 1×3 row.
+
+<PanelMetadataStripDemo />
+
+## Grid (M×N)
+
+셀을 6개 넣고 `columns={2}` → 2 칸씩 wrap 되어 3×2 grid. 차트·시각화 panel 그리드에 사용.
+
+<PanelGridDemo />
+
+## Stack (N×1)
+
+`columns={1}` → 세로 stack. 섹션 단위로 본문을 나누는 패턴.
+
+<PanelStackDemo />
+
+## Span
+
+`PanelCell` 의 `span` prop 으로 셀이 차지할 column 수 지정. CSS Grid `grid-column: span N` 으로 동작.
+
+<PanelSpanDemo />
+
+## 헤더 슬롯
+
+`title` · `icon` 모두 옵셔널. 둘 다 / icon-only / title-only / 헤더 없음 모두 지원.
+
+<PanelHeaderlessDemo />
+
+## Props
+
+### `Panel`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `columns` | `number` | (필수) | Cell grid column 수. 자식 셀이 좌→우로 채워지고 자동 wrap |
+| `className` | `string` | - | 추가 클래스 |
+| `...rest` | `HTMLDivElement` | - | 일반 div 속성 |
+
+### `PanelCell`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `span` | `number` | `1` | 셀이 차지할 column 수 |
+| `title` | `string` | - | 셀 헤더 라벨 |
+| `icon` | `PhosphorIcon \| ComponentType` | - | 셀 헤더 좌측 아이콘 |
+| `className` | `string` | - | 추가 클래스 |
+| `...rest` | `HTMLDivElement` | - | 일반 div 속성 |
+
+## 디자인 결정
+
+- **박스만 책임.** Panel 은 외곽선·radius·디바이더만 그린다. 박스 *위* 의 섹션 타이틀(예: "Opening Prompt") 은 별도 `SectionHeader` 가 담당. 박스가 자체 헤더를 가지지 않으므로 어떤 컨텍스트에도 그대로 들어간다.
+- **`columns` 단일 prop.** `<Panel.Row>` 같은 명시적 행 컴포넌트 대신 `columns` 와 자식 셀 개수만으로 layout 이 결정된다. JSX 가 단순하고, 자식 셀을 동적으로 추가/삭제하기 쉽다. 다만 셀 수를 머릿속으로 계산해야 하므로 헷갈리면 명시적으로 주석을 다는 것이 좋다.
+- **셀 내부 padding 고정 (`20px` 사방).** 인스턴스마다 padding 을 조정하지 않는다. 사방 균일한 호흡으로 헤더 · 본문 · 모서리 모두 동일한 안쪽 마진을 갖는다. 차트나 본문이 더 큰 호흡을 원하면 셀 안쪽 콘텐츠에서 자체 padding 을 추가.
+- **헤더 typography 단일 스타일.** title 은 `13px / medium / label-alternative`. 헤더는 셀의 *부속 라벨* 역할만 하며, 강조가 필요한 메인 콘텐츠는 children 에 둔다 (`title="언어"` + children="한국어" 패턴).
+- **디바이더는 grid `gap` + bg.** root 가 line color 를 깔고 cells 가 white 를 덮으며 1px gap 으로 line 이 비치는 방식. nth-child 계산이 필요 없어 셀 수·`span` 변화에 무관하게 동작.
+- **우상단 보조 meta 슬롯 없음.** `meta` 같은 추가 prop 을 두지 않는다. 필요한 경우 셀 children 안에서 직접 마크업 (예: `<div className="flex justify-between">title + meta</div>`).
+- **Panel 외부 타이틀 없음.** 섹션 제목은 `SectionHeader` 가 위에 얹히는 책임 분리 — 자세한 사정은 `SectionHeader` 문서 참고.

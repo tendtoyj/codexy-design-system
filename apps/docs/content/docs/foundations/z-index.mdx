@@ -1,0 +1,24 @@
+---
+title: Z-index
+description: 9단 레이어 순서 — 앱 내부 + OS 크롬 분리
+---
+
+PDS는 **1000 단위 구획**으로 레이어를 잡는다. 각 레이어 사이 여유(100~1500)를 둬서 추후 하위 레이어 삽입을 흡수할 수 있다. `titlebar`만 9000으로 격리해 OS 크롬 근처에 둔다.
+
+| 토큰 | 값 | 용도 |
+| --- | --- | --- |
+| `--pds-z-base` | 0 | 일반 콘텐츠 |
+| `--pds-z-dropdown` | 1000 | Select·Menu 하위 레이어 |
+| `--pds-z-sticky` | 1100 | 스티키 헤더 |
+| `--pds-z-overlay` | 1200 | 스크림 / 배경 오버레이 |
+| `--pds-z-modal` | 1300 | 다이얼로그 본체 |
+| `--pds-z-popover` | 1400 | Popover (모달보다 위, 툴팁보다 아래) |
+| `--pds-z-tooltip` | 1500 | Tooltip |
+| `--pds-z-toast` | 1600 | Toast 알림 |
+| `--pds-z-titlebar` | 9000 | 커스텀 타이틀바 (macOS `hiddenInset` 위) |
+
+## 규칙
+
+- **인라인 `z-index` 숫자 금지** — 반드시 토큰 참조
+- 컴포넌트가 새 레이어를 필요로 하면 토큰 추가 (값 사이 여유 구간에 배치)
+- `z-titlebar`는 앱 크롬 전용. 일반 컴포넌트가 이 값을 초과할 일은 없어야 함

@@ -1,0 +1,37 @@
+---
+title: Switch
+description: Radix Switch. sm/md × on/off · disabled. ON 상태는 `--pds-primary-normal`.
+---
+
+import { SwitchSizeDemo, SwitchStatesDemo } from "@/components/demos/switch-demo";
+
+## 사용
+
+```tsx
+import { Switch } from "@fluxloop-ai/pds-ui/components/switch";
+
+<Switch defaultChecked />
+<Switch checked={value} onCheckedChange={setValue} disabled />
+```
+
+## Size
+
+<SwitchSizeDemo />
+
+## States
+
+<SwitchStatesDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md \| lg` | `md` | 30×18 / 39×24 / 52×32 px |
+| `checked` / `defaultChecked` / `onCheckedChange` | Radix 표준 | - | |
+| `disabled` / `required` | `boolean` | - | |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/switch
+```

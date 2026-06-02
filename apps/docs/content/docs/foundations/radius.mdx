@@ -1,0 +1,37 @@
+---
+title: Radius
+description: px-indexed 9단계 + 전역 squircle 스무딩
+---
+
+import { RadiusGrid, SquircleCompare } from "@/components/demos/radius-grid";
+
+PDS는 **모든 요소에 글로벌 squircle**을 적용한다. `border-radius` 만으로는 macOS 감성의 부드러운 모서리가 나오지 않기 때문.
+
+## Radius 스케일
+
+px-indexed 스케일: **0 / 2 / 4 / 6 / 8 / 10 / 12 / 16 / full**. spacing 토큰과 동일한 컨벤션. t-shirt 이름(`xs`·`sm`·`md`·`lg`·`xl`·`2xl`)은 backwards-compat alias 로 유지. 컴포넌트에서는 사이즈에 비례해 선택 (예: Button h28 → r6, h44 → r12).
+
+<RadiusGrid />
+
+## Squircle
+
+```css
+:root {
+  --pds-corner-smoothing: 0.6;
+}
+*, *::before, *::after {
+  corner-shape: squircle;                                   /* Chromium 139+ 표준 */
+  -electron-corner-smoothing: var(--pds-corner-smoothing);  /* Electron 37+ */
+}
+```
+
+- **Electron 37+** 환경: `-electron-corner-smoothing` 네이티브 (JS 비용 0)
+- **Chromium 웹**: 표준 `corner-shape: squircle`
+- **Safari/Firefox**: 일반 `border-radius`로 자연 폴백 (시각 손실 용인)
+- 표준 원형이 필요한 경우 `corner-shape: round` 로 개별 오버라이드
+
+### Squircle ON / OFF 비교
+
+브라우저 지원 여부에 따라 차이가 보이지 않을 수도 있다(Safari/Firefox는 동일하게 렌더).
+
+<SquircleCompare />

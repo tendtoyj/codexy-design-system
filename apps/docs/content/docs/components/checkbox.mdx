@@ -1,0 +1,52 @@
+---
+title: Checkbox
+description: Radix Checkbox. sm/md × checked/indeterminate/invalid/disabled.
+---
+
+import {
+  CheckboxSizeDemo,
+  CheckboxStatesDemo,
+  CheckboxIndeterminateDemo,
+} from "@/components/demos/checkbox-demo";
+
+## 사용
+
+```tsx
+import { Checkbox } from "@fluxloop-ai/pds-ui/components/checkbox";
+
+<Checkbox defaultChecked />
+<Checkbox indeterminate />
+<Checkbox invalid required />
+```
+
+## Size
+
+<CheckboxSizeDemo />
+
+## States
+
+<CheckboxStatesDemo />
+
+## Indeterminate (parent/child)
+
+`indeterminate={true}` 를 지정하면 내부적으로 Radix 의 `checked="indeterminate"` 로 변환.
+
+<CheckboxIndeterminateDemo />
+
+## Props
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `sm \| md` | `md` | 16 / 20 px |
+| `checked` | `boolean` | - | 제어형 |
+| `defaultChecked` | `boolean` | - | 비제어형 |
+| `onCheckedChange` | `(checked: CheckedState) => void` | - | |
+| `indeterminate` | `boolean` | `false` | 내부에서 `checked="indeterminate"` 로 치환 |
+| `invalid` | `boolean` | `false` | border `--pds-status-negative` |
+| `disabled` / `required` | `boolean` | - | |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/checkbox
+```

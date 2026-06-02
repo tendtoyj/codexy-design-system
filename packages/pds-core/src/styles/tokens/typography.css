@@ -1,0 +1,96 @@
+/**
+ * PDS typography — 데스크탑 밀도 (14px base).
+ * Font stack: SF Pro 라틴 + Pretendard 한글 번들. Montage variant 이름 호환.
+ * --text-* 은 Tailwind v4 유틸리티(text-{name})로 font-size + line-height를 동시에 노출.
+ *
+ * `static` 키워드: 유틸리티로 쓰이지 않아도 모든 variant 를 `:root` 에 방출.
+ * docs/devtools 에서 `var(--text-display1)` 같이 동적으로 읽는 경우를 대비.
+ */
+@theme static {
+  /* font stacks */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Apple SD Gothic Neo",
+    "Pretendard Variable", "Pretendard", "Segoe UI Variable", "Segoe UI", "Malgun Gothic",
+    system-ui, sans-serif;
+
+  --font-mono: "SF Mono", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Consolas", monospace;
+
+  --pds-font-sans: var(--font-sans);
+  --pds-font-mono: var(--font-mono);
+
+  /* weight */
+  --pds-font-weight-regular: 400;
+  --pds-font-weight-medium: 500;
+  --pds-font-weight-semibold: 600;
+  --pds-font-weight-bold: 700;
+
+  /* variant scale — size / line-height / letter-spacing (Montage 공식 값 이식) */
+  --text-display1: 32px;
+  --text-display1--line-height: 42px;
+  --text-display1--letter-spacing: -0.0319em;
+
+  --text-title1: 22px;
+  --text-title1--line-height: 30px;
+  --text-title1--letter-spacing: -0.0253em;
+
+  --text-title2: 18px;
+  --text-title2--line-height: 26px;
+  --text-title2--letter-spacing: -0.0236em;
+
+  --text-title3: 16px;
+  --text-title3--line-height: 22px;
+  --text-title3--letter-spacing: -0.023em;
+
+  --text-heading1: 15px;
+  --text-heading1--line-height: 22px;
+  --text-heading1--letter-spacing: -0.0194em;
+
+  --text-heading2: 14px;
+  --text-heading2--line-height: 20px;
+  --text-heading2--letter-spacing: -0.012em;
+
+  --text-headline1: 14px;
+  --text-headline1--line-height: 22px;
+  --text-headline1--letter-spacing: -0.002em;
+
+  --text-body1: 14px;
+  --text-body1--line-height: 22px;
+  --text-body1--letter-spacing: 0.0057em;
+
+  --text-body1-reading: 14px;
+  --text-body1-reading--line-height: 24px;
+  --text-body1-reading--letter-spacing: 0.0057em;
+
+  --text-body2: 13px;
+  --text-body2--line-height: 20px;
+  --text-body2--letter-spacing: 0.0096em;
+
+  --text-label1: 13px;
+  --text-label1--line-height: 18px;
+  --text-label1--letter-spacing: 0.0145em;
+
+  --text-label2: 12px;
+  --text-label2--line-height: 16px;
+  --text-label2--letter-spacing: 0.0194em;
+
+  --text-caption1: 11px;
+  --text-caption1--line-height: 14px;
+  --text-caption1--letter-spacing: 0.0252em;
+
+  --text-caption2: 10px;
+  --text-caption2--line-height: 13px;
+  --text-caption2--letter-spacing: 0.0311em;
+
+  --text-code: 13px;
+  --text-code--line-height: 20px;
+  --text-code--letter-spacing: 0em;
+  --text-code--font-family: var(--font-mono);
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

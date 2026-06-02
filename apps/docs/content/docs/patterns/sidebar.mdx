@@ -1,0 +1,80 @@
+---
+title: Sidebar
+description: 데스크탑 앱의 좌측 영구 네비게이션. AppShellSidebar 셸 안에 1차 메뉴·섹션 리스트·푸터를 조립하는 권장 형태.
+---
+
+import { SidebarPatternDemo } from "@/components/demos/sidebar-pattern-demo";
+
+## 상황
+
+데스크탑 앱에서 사용자가 *항상 같은 자리*에서 1차 영역(홈/탐색/라이브러리)으로 이동하고, 그 안의 *그룹화된 항목들*(스킬, 채팅, 즐겨찾기 등)을 빠르게 고를 수 있어야 할 때.
+
+영구 네비게이션이 전제다. 모달성·dismissible 패널이면 이 패턴 아님.
+
+## 권장 조합
+
+[`AppShellSidebar`](/docs/components/app-shell) 셸 + 안쪽에 [`SidebarMenu`](/docs/components/sidebar-menu)(고정 1차 nav) + [`SidebarList`](/docs/components/sidebar-list)(그룹 섹션) + 푸터의 단일 액션을 쌓는 구조.
+
+<SidebarPatternDemo />
+
+```tsx
+<AppShell leftInset={72}>
+  <AppShellLeadingControls>
+    <IconButton aria-label="Toggle sidebar" onClick={toggle}>
+      <SidebarSimple />
+    </IconButton>
+  </AppShellLeadingControls>
+
+  <AppShellSidebar open={open} onOpenChange={setOpen} defaultWidth={240}>
+    <AppShellSidebarHeader />
+    <AppShellSidebarBody>
+      <div className="flex flex-col gap-[20px] px-[12px] pt-[4px] pb-[16px]">
+        <SidebarMenu
+          aria-label="Primary"
+          items={PRIMARY_NAV}
+          selectedId={primary}
+          onSelect={setPrimary}
+        />
+        <SidebarList
+          title="Library"
+          count={58}
+          actions={<>{/* Plus / Search / Filter IconButton */}</>}
+          items={LIBRARY}
+          selectedId={skill}
+          onSelect={setSkill}
+          initialVisibleCount={10}
+        />
+      </div>
+    </AppShellSidebarBody>
+    <AppShellSidebarFooter>
+      <div className="px-[12px] pt-[8px] pb-[12px]">
+        <SidebarMenu aria-label="Footer" items={[{ id: "settings", icon: Gear, label: "Settings" }]} />
+      </div>
+    </AppShellSidebarFooter>
+  </AppShellSidebar>
+
+  <AppShellSplitter target="sidebar" doubleClickResetWidth={240} />
+
+  <AppShellMain>{/* ... */}</AppShellMain>
+</AppShell>
+```
+
+## 결정 근거
+
+- **컴포넌트가 아니라 패턴.** 사이드바 안의 *재사용 단위*는 [`SidebarMenu`](/docs/components/sidebar-menu)/[`SidebarList`](/docs/components/sidebar-list) 처럼 모양이 정해진 빌딩 블록이다. 반면 "사이드바 전체"는 *어떤 메뉴를 넣고, 어떤 섹션이 있고, 푸터가 무엇인지* 가 제품 결정 — prop API 로 흡수하면 비대해지고 슬롯 render-prop 으로 풀면 컴포넌트 한 겹이 의미를 못 가진다.
+- **셸과 콘텐츠를 분리.** [`AppShellSidebar`](/docs/components/app-shell) 는 *back layer / titlebar inset / 토글·resize* 같은 셸 책임만 진다. 리스트의 시각·동작은 `SidebarMenu`/`SidebarList` 가 캡슐화. 이 둘이 어떻게 조립되는지를 패턴이 푼다.
+- **푸터의 단일 항목.** Settings 처럼 *현재 페이지가 아닌 액션*은 시맨틱상 nav 보단 액션이지만, 시각 일관성을 위해 `SidebarMenu` 에 항목 하나를 넣고 `selectedId` 를 비워두는 형태가 가장 단순하다. nav 시맨틱이 부담되면 [`Button`](/docs/components/button) 또는 [`IconButton`](/docs/components/icon-button) 으로 대체해도 무방.
+- **토글은 셸 영역에 둔다.** 사이드바 자체가 닫혀도 토글은 같은 자리에 있어야 한다. [`AppShellLeadingControls`](/docs/components/app-shell) 에 두면 `leftInset` 만큼 안쪽으로 들여진 위치에 floating 으로 박혀 사이드바 열림·닫힘과 무관하게 좌표가 고정된다.
+
+## 거절 사례
+
+- **임시·dismissible 네비게이션** — 클릭하면 닫혀야 하는 모달성 패널이면 이 패턴이 아니다. (Drawer/Sheet 류 컴포넌트가 PDS에 추가되면 그쪽으로.)
+- **모바일 폭이 주 타깃** — 사이드바는 데스크탑 영구 네비 전제다. 좁은 viewport 가 1차 시나리오면 별도 모바일 네비 패턴이 필요.
+- **단일 페이지 내 점프용 인덱스** — 스크롤 위치 동기화가 핵심이면 인페이지 TOC 영역이지 사이드바가 아니다.
+
+## 컴포넌트
+
+- [`AppShell` / `AppShellSidebar`](/docs/components/app-shell) — 셸 (back layer, titlebar inset, 토글·리사이즈)
+- [`SidebarMenu`](/docs/components/sidebar-menu) — 아이콘+라벨 고정 nav
+- [`SidebarList`](/docs/components/sidebar-list) — 헤더(타이틀·count·actions) + 라벨 항목 + `more` 토글
+- [`IconButton`](/docs/components/icon-button) — 헤더 actions 슬롯에 들어가는 버튼

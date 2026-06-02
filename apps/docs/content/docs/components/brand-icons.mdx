@@ -1,0 +1,63 @@
+---
+title: Brand Icons
+description: AI 모델/벤더/제품 브랜드 로고 (lobehub 어댑터)
+---
+
+import { BrandIconsGalleryDemo } from "@/components/demos/brand-icons-demo";
+
+`@lobehub/icons` 위에 얹은 얇은 어댑터. 모델 picker, 채팅 헤더, 라이선스 footer 같은 곳에서 쓴다. 공급자 직접 import 금지 — 항상 `@fluxloop-ai/pds-icons/brands` 서브패스 경유.
+
+## 사용
+
+```tsx
+import { Anthropic, Claude } from "@fluxloop-ai/pds-icons/brands";
+
+<Anthropic size={20} />        // Mono (default)
+<Claude size={20} />           // Mono (default)
+<Claude.Color size={20} />     // Color
+```
+
+각 아이콘의 default export 는 **Mono** 변형이고, `.Color` 가 컴파운드 속성으로 붙어 있다 (있는 브랜드만). 없는 브랜드에 `.Color` 를 호출하면 컴파일 에러로 막힌다.
+
+## 지원 브랜드
+
+| 카테고리 | 아이콘 | Mono | Color |
+|---|---|---|---|
+| 회사 | `Anthropic` | ✓ | — |
+| 회사 | `OpenAI` | ✓ | — |
+| 회사 | `Google` | ✓ | ✓ |
+| 회사 | `XAI` | ✓ | — |
+| 모델 | `Claude` | ✓ | ✓ |
+| 모델 | `Gemini` | ✓ | ✓ |
+| 모델 | `Grok` | ✓ | — |
+| 코딩 에이전트 / IDE | `ClaudeCode` | ✓ | ✓ |
+| 코딩 에이전트 / IDE | `Codex` | ✓ | ✓ |
+| 코딩 에이전트 / IDE | `GeminiCLI` | ✓ | ✓ |
+| 코딩 에이전트 / IDE | `OpenCode` | ✓ | — |
+| 코딩 에이전트 / IDE | `Cursor` | ✓ | — |
+| 코딩 에이전트 / IDE | `Antigravity` | ✓ | ✓ |
+| 코딩 에이전트 / IDE | `Copilot` | ✓ | ✓ |
+
+브랜드 자체가 모노 마크인 경우(Anthropic, OpenAI, XAI, Grok, OpenCode, Cursor) Color 변형이 없다.
+
+<BrandIconsGalleryDemo />
+
+## Props
+
+lobehub 의 [`IconType`](https://github.com/lobehub/lobe-icons) 시그니처를 그대로 쓴다.
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `size` | `number` | `24` | 아이콘 한 변 px |
+| `style` | `CSSProperties` | — | 인라인 스타일 |
+| `className` | `string` | — | 외부 클래스 |
+
+Mono 변형은 `currentColor` 를 따라가므로 부모 텍스트 색을 상속한다. Color 변형은 브랜드 팔레트 고정.
+
+## 새 브랜드 추가
+
+1. lobehub 에 해당 아이콘이 있는지 확인 (`https://icons.lobehub.com`).
+2. `packages/pds-icons/src/brands/index.ts` 의 allowlist 에 named export 추가.
+3. 이 페이지 표에 한 줄 추가.
+
+전체를 통째로 재export 하지 않는 이유 — PDS 가 "지원하는 브랜드 = 이 리스트" 라는 시그널을 주기 위함. 번들 사이즈 때문은 아니다 (`sideEffects: false` + 트리쉐이킹으로 미사용 분은 빠진다).

@@ -1,0 +1,109 @@
+---
+title: Chat Markdown
+description: 채팅 메시지의 markdown 렌더 가이드 — 별도 패키지 @fluxloop-ai/pds-markdown
+---
+
+`ChatUserMessage` · `ChatAssistantMessage` 는 모두 `renderMarkdown?: (text: string) => ReactNode` slot 을 받는다. PDS 자체는 markdown 렌더러 의존을 가지지 않고 — 권장 구현체를 별도 패키지 [`@fluxloop-ai/pds-markdown`](https://github.com/Fluxloop-AI/pluto-design-system/tree/main/packages/pds-markdown) 으로 분리해 제공한다.
+
+## 왜 별도 패키지인가
+
+- `pds-ui` 가 `react-markdown`/`remark-gfm` 같은 무거운 deps 를 강제하지 않도록.
+- chat 안 쓰는 컨슈머(예: admin 도구·문서 뷰어)는 markdown 만 가져다 쓸 수 있도록.
+- 컨슈머 앱마다 자체 렌더러(Anthropic SDK 도우미, 자체 Markdown 컴포넌트, streaming 친화 변형 등) 를 끼울 수 있도록.
+
+`pds-icons` 가 `pds-ui` 와 분리된 것과 동일한 원칙.
+
+## 설치
+
+```bash
+pnpm add @fluxloop-ai/pds-markdown
+```
+
+내부 의존성: `react-markdown ^9`, `remark-gfm ^4` (GFM — 테이블·체크박스·autolink 등). React 19 peer.
+
+## 사용
+
+### 1) `renderMarkdown` 헬퍼 — slot 에 그대로 꽂기
+
+가장 흔한 케이스. `(text) => ReactNode` 형태라 그대로 prop 으로 전달.
+
+```tsx
+import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
+import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
+
+<ChatAssistantMessage content={text} renderMarkdown={renderMarkdown} />
+```
+
+### 2) `Markdown` 컴포넌트 — 직접 렌더
+
+slot 외 컨텍스트(예: 단독 본문 영역) 에서 markdown 을 그릴 때.
+
+```tsx
+import { Markdown } from "@fluxloop-ai/pds-markdown";
+
+<Markdown>{`**굵게** 와 \`코드\` 가 들어간 텍스트`}</Markdown>
+```
+
+루트에 `pds-markdown` 클래스가 붙으므로 앱 측에서 typography 오버라이드 가능.
+
+전 element 가 어떻게 그려지는지 시각 결과는 [ChatAssistantMessage](/docs/components/chat-assistant-message) 페이지의 kitchen-sink 데모 참고.
+
+## 폴백 동작
+
+`renderMarkdown` 미제공 시:
+
+- `ChatUserMessage` → `whitespace-pre-wrap` 적용된 plain text
+- `ChatAssistantMessage` → 동일하게 `whitespace-pre-wrap` plain text
+
+즉 **렌더러가 없어도 화면은 정상**. 마크다운 문법(`**`, `` ` ``, `#` 등) 이 그대로 노출되긴 하지만 깨지지는 않는다. user 메시지는 마크다운이 없는 경우가 많아 미주입 운영도 합리적이다.
+
+## 보안
+
+`react-markdown` 은 기본적으로 raw HTML 을 거부하고 mdast → hast 트리만 통과시킨다. assistant 출력처럼 신뢰할 수 없는 텍스트라도 XSS 위험이 낮다. raw HTML 을 의도적으로 허용하려면 `rehype-raw` 등을 추가해야 하지만 — chat 컨텍스트에서는 권장하지 않음.
+
+## 커스터마이즈
+
+### Element 매핑
+
+`Markdown` 컴포넌트는 `components` prop 으로 element 별 렌더 오버라이드를 받는다.
+
+```tsx
+import { Markdown } from "@fluxloop-ai/pds-markdown";
+
+<Markdown
+  components={{
+    a: ({ href, children }) => <a href={href} target="_blank" rel="noopener">{children}</a>,
+    code: ({ children }) => <code className="bg-[var(--pds-fill-alternative)] px-[4px] rounded-[4px]">{children}</code>,
+  }}
+>
+  {text}
+</Markdown>
+```
+
+### 컨슈머 자체 렌더러 사용
+
+`@fluxloop-ai/pds-markdown` 을 안 쓰고 컨슈머가 자체 함수를 만들어도 된다 (slot 시그니처만 지키면 됨).
+
+```tsx
+function myRender(text: string) {
+  return <MyMarkdown>{text}</MyMarkdown>;
+}
+
+<ChatAssistantMessage content={text} renderMarkdown={myRender} />
+```
+
+이 패턴은 다음 경우에 유용:
+
+- 앱이 이미 자체 markdown 렌더러(`@assistant-ui/react-markdown` 등) 를 가지고 있을 때
+- streaming 친화 처리(unfinished fence 보정 등) 가 필요할 때
+- 자체 syntax highlighter 와 한 함수에서 묶어야 할 때
+
+## 확장 (향후)
+
+PDS 본체 의존을 늘리지 않는 선에서 같은 패키지에 추가 예정인 것:
+
+- 코드 블록 syntax highlighting (shiki 또는 prism — 별도 sub-path export 로 옵트인)
+- 수식(KaTeX) 옵션
+- streaming 입력 보정 헬퍼
+
+이 시점까지 컨슈머가 직접 plugin 을 끼우려면 `react-markdown` 의 `remarkPlugins` / `rehypePlugins` 를 사용하면 된다 — 현재 `Markdown` 컴포넌트는 plugin slot 을 노출하지 않으므로, 임의 plugin 이 필요하면 `react-markdown` 을 직접 쓰는 자체 함수를 만들고 slot 에 주입하는 방식이 더 깔끔하다.

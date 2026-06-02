@@ -1,0 +1,128 @@
+---
+title: Tabs
+description: Radix Tabs. icon-only segmented (툴팁 내장) + label (텍스트) 두 variant. horizontal/vertical.
+---
+
+import {
+  TabsHorizontalDemo,
+  TabsLabelDemo,
+  TabsDisabledDemo,
+  TabsVerticalDemo,
+} from "@/components/demos/tabs-demo";
+
+## 사용
+
+`variant` 로 두 가지 시각을 제공한다.
+
+- `segmented` (default) — icon-only 콤팩트 toolbar/segmented bar. 24×24, 아이콘 18px 강제, `aria-label` 이 툴팁 텍스트 + a11y 라벨로 동시에 쓰인다.
+- `label` — 텍스트 라벨이 children 으로 들어가는 ghost-toggle 톤. 페이지 상단의 섹션 스위처 용도. 툴팁은 띄우지 않는다.
+
+```tsx
+import { Atom, PencilRuler } from "@fluxloop-ai/pds-icons/icons";
+import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fluxloop-ai/pds-ui/components/tabs";
+
+// segmented (default)
+<Tabs defaultValue="loop">
+  <TabsList>
+    <TabsTrigger value="loop" aria-label="Loop">
+      <Icon icon={Atom} />
+    </TabsTrigger>
+    <TabsTrigger value="profile" aria-label="Profile">
+      <Icon icon={PencilRuler} />
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="loop">...</TabsContent>
+  <TabsContent value="profile">...</TabsContent>
+</Tabs>
+
+// label
+<Tabs variant="label" defaultValue="spirit">
+  <TabsList>
+    <TabsTrigger value="spirit">Spirit</TabsTrigger>
+    <TabsTrigger value="personas">Personas</TabsTrigger>
+  </TabsList>
+  <TabsContent value="spirit">...</TabsContent>
+</Tabs>
+```
+
+## Segmented (default)
+
+<TabsHorizontalDemo />
+
+## Label
+
+<TabsLabelDemo />
+
+## Disabled
+
+<TabsDisabledDemo />
+
+## Vertical
+
+`tooltipSide="right"` 로 세로 배치에 맞춰 툴팁 위치 조정 (segmented variant 전용).
+
+<TabsVerticalDemo />
+
+## Props
+
+### Tabs
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `segmented \| label` | `segmented` | 시각 variant |
+| `value` / `defaultValue` / `onValueChange` | Radix 표준 | - | |
+| `orientation` | `horizontal \| vertical` | `horizontal` | |
+| `activationMode` | `automatic \| manual` | `automatic` | Radix 기본 |
+
+### TabsTrigger
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `value` | `string` | - | 필수 |
+| `aria-label` | `string` | - | `segmented` 에서는 **필수** (툴팁 + a11y). `label` 에서는 옵셔널 (children 텍스트가 라벨 역할). |
+| `tooltipSide` | `top \| bottom \| left \| right` | `bottom` | 툴팁 위치 (`segmented` 전용) |
+| `disabled` | `boolean` | - | |
+
+`segmented` 의 children 자리에는 `<Icon />` 한 개를 권장. `label` 의 children 자리에는 텍스트 라벨을 직접 넣는다.
+
+## 토큰 매핑
+
+### 공통
+
+| 속성 | 토큰 |
+|---|---|
+| inactive text | `--pds-label-alternative` |
+| disabled text | `--pds-label-disable` |
+| transition | `--pds-duration-fast` |
+
+### segmented
+
+| 속성 | 토큰 |
+|---|---|
+| trigger size | 24×24, 아이콘 18 (강제) |
+| trigger radius | `--pds-radius-6` |
+| 컨테이너 gap | 2px |
+| selected bg | `--pds-fill-strong` |
+| selected text | `--pds-label-normal` |
+| hover bg | `--pds-fill-normal` |
+| hover text | `--pds-label-neutral` |
+
+### label
+
+| 속성 | 토큰 |
+|---|---|
+| trigger height | 28px |
+| trigger padding | `--spacing-8` |
+| trigger radius | `--pds-radius-10` |
+| text | 13/18 (label1) |
+| 컨테이너 gap | `--spacing-4` |
+| selected bg | `--pds-fill-normal` |
+| selected text | `--pds-label-normal` + `font-medium` |
+| hover text | `--pds-label-normal` (배경 변화 없음) |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://pds.pluto.com/r/tabs
+```
