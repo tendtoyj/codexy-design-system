@@ -53,3 +53,6 @@ thoughts/
 # screenshots (ad-hoc visual diffs at repo root, kept locally)
 /*.png
 
+
+# Vercel
+.vercel
