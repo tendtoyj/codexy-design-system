@@ -1,6 +1,6 @@
 # Codexy Design System (CDS)
 
-The Codexy 앱의 **단일 UI 소스**. 토큰 · 프리미티브 · AI 친화 컴포넌트가 하나의 체계로 묶인 모노레포.
+**Codex 스타일의 UI** 디자인 시스템. 토큰 · 프리미티브 · AI 친화 컴포넌트가 하나의 체계로 묶인 모노레포.
 
 - **코드가 SSOT** — Figma 는 역생성으로 유지
 - **macOS-first, Windows-ready** — Electron 37+ 대상 최적화
