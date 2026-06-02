@@ -33,10 +33,10 @@ import {
   ActionTileTitle,
   ActionTileDescription,
   ActionTileFooter,
-} from "@fluxloop-ai/pds-ui/components/action-tile";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
-import { Compass } from "@fluxloop-ai/pds-icons/icons";
+} from "@tendtoyj/cds-ui/components/action-tile";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { Badge } from "@tendtoyj/cds-ui/components/badge";
+import { Compass } from "@tendtoyj/cds-icons/icons";
 
 <ActionTile headerGap="tight" footerGap="wide" headerAlign="between" onClick={...}>
   <ActionTileHeader>
@@ -104,9 +104,9 @@ Content 만 사용한 가장 단순한 형태. Leading + Title + Description.
 
 | variant | rest | hover |
 |---|---|---|
-| `outlined` | border 1px `--pds-line-normal-normal` + bg 투명 | bg `--pds-fill-alternative` |
-| `filled` | border 없음 + bg `--pds-fill-alternative` | bg `--pds-fill-normal` |
-| `ghost` | border 없음 + bg 투명 | bg `--pds-fill-alternative` |
+| `outlined` | border 1px `--cds-line-normal-normal` + bg 투명 | bg `--cds-fill-alternative` |
+| `filled` | border 없음 + bg `--cds-fill-alternative` | bg `--cds-fill-normal` |
+| `ghost` | border 없음 + bg 투명 | bg `--cds-fill-alternative` |
 
 <ActionTileVariantDemo />
 
@@ -115,10 +115,10 @@ Content 만 사용한 가장 단순한 형태. Leading + Title + Description.
 ActionTile 자체가 `<button>` 이라, 그 안에 또 다른 `<button>`(IconButton 등)을 넣으면 **nested button — invalid HTML** 이고 click 이벤트가 예측 불가능해진다. 카드 본체 클릭과 별개로 동작하는 액션 버튼이 필요하면, ActionTile **외부에 absolute 오버레이**로 띄우는 패턴을 사용한다.
 
 ```tsx
-import { ActionTile, ActionTileContent, ActionTileTitle, ActionTileDescription, ActionTileFooter } from "@fluxloop-ai/pds-ui/components/action-tile";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { Bookmark } from "@fluxloop-ai/pds-icons/icons";
+import { ActionTile, ActionTileContent, ActionTileTitle, ActionTileDescription, ActionTileFooter } from "@tendtoyj/cds-ui/components/action-tile";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { Bookmark } from "@tendtoyj/cds-icons/icons";
 
 function DiagnoseCard() {
   const [bookmarked, setBookmarked] = React.useState(false);

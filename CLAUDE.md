@@ -1,1 +1,1 @@
-# Pluto Design System — Repo Conventions
+# Codexy Design System — Repo Conventions

@@ -1,0 +1,15 @@
+/**
+ * CDS z-index — 레이어 순서 고정. overlay 이하는 앱 로컬 레이어, titlebar 는 OS 크롬 근처.
+ * 인라인 숫자 금지 원칙(§4.7)에 따라 반드시 `var(--cds-z-*)` 로 소비 → `:root`.
+ */
+:root {
+  --cds-z-base: 0;
+  --cds-z-dropdown: 1000;
+  --cds-z-sticky: 1100;
+  --cds-z-overlay: 1200;
+  --cds-z-modal: 1300;
+  --cds-z-popover: 1400;
+  --cds-z-tooltip: 1500;
+  --cds-z-toast: 1600;
+  --cds-z-titlebar: 9000;
+}

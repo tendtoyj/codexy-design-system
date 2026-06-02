@@ -10,7 +10,7 @@ import { ChipSizeDemo, ChipVariantDemo, ChipToggleDemo, ChipRemovableDemo } from
 ## 사용
 
 ```tsx
-import { Chip } from "@fluxloop-ai/pds-ui/components/chip";
+import { Chip } from "@tendtoyj/cds-ui/components/chip";
 
 <Chip size="small">필터</Chip>
 <Chip size="small" interactive active onClick={() => {}}>선택됨</Chip>
@@ -34,8 +34,8 @@ radius/padding/typography 가 사이즈별로 비례.
 
 `solid` 와 `outlined` 두 종류. `active` 상태에서 solid 가 outlined 보다 높은 위계를 가짐.
 
-- `solid`: bg `--pds-fill-alternative` → active 시 `--pds-inverse-background` / `--pds-inverse-label`
-- `outlined`: 1px `--pds-line-normal-neutral` → active 시 보더만 `--pds-primary-normal` 43% 로 강조 + 텍스트 `--pds-primary-normal` (배경은 투명 유지)
+- `solid`: bg `--cds-fill-alternative` → active 시 `--cds-inverse-background` / `--cds-inverse-label`
+- `outlined`: 1px `--cds-line-normal-neutral` → active 시 보더만 `--cds-primary-normal` 43% 로 강조 + 텍스트 `--cds-primary-normal` (배경은 투명 유지)
 
 <ChipVariantDemo />
 
@@ -67,5 +67,5 @@ radius/padding/typography 가 사이즈별로 비례.
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/chip
+npx shadcn add https://cds.codexy.com/r/chip
 ```

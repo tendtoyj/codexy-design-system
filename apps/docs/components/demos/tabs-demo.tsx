@@ -8,13 +8,13 @@ import {
   DotsThree,
   Gear,
   PencilRuler,
-} from "@fluxloop-ai/pds-icons/icons";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@fluxloop-ai/pds-ui/components/tabs";
+} from "@tendtoyj/cds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@tendtoyj/cds-ui/components/tabs";
 
 export function TabsHorizontalDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Tabs defaultValue="loop">
         <TabsList>
           <TabsTrigger value="loop" aria-label="Loop">
@@ -50,7 +50,7 @@ export function TabsHorizontalDemo() {
 
 export function TabsDisabledDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Tabs defaultValue="a">
         <TabsList>
           <TabsTrigger value="a" aria-label="Compass">
@@ -71,7 +71,7 @@ export function TabsDisabledDemo() {
 
 export function TabsLabelDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Tabs variant="label" defaultValue="spirit">
         <TabsList>
           <TabsTrigger value="spirit">Spirit</TabsTrigger>
@@ -97,7 +97,7 @@ export function TabsLabelDemo() {
 
 export function TabsVerticalDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Tabs defaultValue="a" orientation="vertical">
         <TabsList>
           <TabsTrigger value="a" aria-label="Compass" tooltipSide="right">
@@ -128,12 +128,12 @@ export function TabsVerticalDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

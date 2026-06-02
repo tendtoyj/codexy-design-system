@@ -1,0 +1,18 @@
+/**
+ * CDS 스타일 진입점. 앱/문서 사이트는 이 파일 하나만 import 하면 전부 로드된다.
+ *
+ *   @import "@tendtoyj/cds-core/styles";
+ *
+ * 순서
+ *   1) tailwindcss       — preflight + 유틸리티 생성 베이스
+ *   2) fonts.css         — @font-face (Pretendard)
+ *   3) theme.css         — @theme 토큰 전부
+ *   4) keyframes.css     — @keyframes + .cds-animate-* 유틸리티
+ *   5) reset.css         — CDS 고유 preflight 보강 (squircle, selection 등)
+ */
+@import "tailwindcss";
+
+@import "./fonts.css";
+@import "./theme.css";
+@import "./keyframes.css";
+@import "./reset.css";

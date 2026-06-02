@@ -1,15 +1,15 @@
 "use client";
 
-import { ChartBar, Check, Compass, Stethoscope, Wrench } from "@fluxloop-ai/pds-icons/icons";
+import { ChartBar, Check, Compass, Stethoscope, Wrench } from "@tendtoyj/cds-icons/icons";
 import {
   ActionCard,
   ActionCardDescription,
   ActionCardLeading,
   ActionCardTitle,
   ActionCardTrailing,
-} from "@fluxloop-ai/pds-ui/components/action-card";
-import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+} from "@tendtoyj/cds-ui/components/action-card";
+import { Badge } from "@tendtoyj/cds-ui/components/badge";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
 import * as React from "react";
 
 export function ActionCardSuggestionsDemo() {
@@ -36,7 +36,7 @@ export function ActionCardSuggestionsDemo() {
     },
   ];
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {items.map((it) => (
         <ActionCard key={it.title} onClick={() => {}}>
           <ActionCardTitle icon={it.icon}>{it.title}</ActionCardTitle>
@@ -68,7 +68,7 @@ export function ActionCardWithLeadingTrailingDemo() {
     cx: false,
   });
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {items.map((it) => {
         const on = !!enabled[it.id];
         return (
@@ -79,13 +79,13 @@ export function ActionCardWithLeadingTrailingDemo() {
                   width: 40,
                   height: 40,
                   borderRadius: 12,
-                  background: "var(--pds-fill-normal)",
+                  background: "var(--cds-fill-normal)",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: 12,
                   fontWeight: 600,
-                  color: "var(--pds-label-alternative)",
+                  color: "var(--cds-label-alternative)",
                 }}
                 aria-hidden
               >
@@ -139,7 +139,7 @@ export function ActionCardTrailingBadgeDemo() {
     },
   ];
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {items.map((it) => (
         <ActionCard key={it.title} onClick={() => {}}>
           <ActionCardTitle icon={it.icon}>{it.title}</ActionCardTitle>
@@ -154,7 +154,7 @@ export function ActionCardTrailingBadgeDemo() {
 
 export function ActionCardTitleOnlyDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <ActionCard onClick={() => {}}>
         <ActionCardTitle>Just a title — no description, no slots</ActionCardTitle>
       </ActionCard>
@@ -168,7 +168,7 @@ export function ActionCardTitleOnlyDemo() {
 
 export function ActionCardImageIconDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <ActionCard onClick={() => {}}>
         <ActionCardTitle icon={Stethoscope}>Phosphor 컴포넌트 — 자동 wrap</ActionCardTitle>
         <ActionCardDescription>
@@ -187,10 +187,10 @@ export function ActionCardImageIconDemo() {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 3,
-                background: "var(--pds-fill-normal)",
+                background: "var(--cds-fill-normal)",
                 fontSize: 9,
                 fontWeight: 700,
-                color: "var(--pds-label-alternative)",
+                color: "var(--cds-label-alternative)",
               }}
             >
               IMG
@@ -209,14 +209,14 @@ export function ActionCardImageIconDemo() {
 export function ActionCardVariantDemo() {
   const variants = ["outlined", "filled", "ghost"] as const;
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       {variants.map((v) => (
         <div key={v} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <span
             style={{
               fontSize: 12,
               fontWeight: 500,
-              color: "var(--pds-label-alternative)",
+              color: "var(--cds-label-alternative)",
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
             }}
           >
@@ -238,14 +238,14 @@ export function ActionCardVariantDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-demo-row > *:not(style) {
+      .cds-demo-row > *:not(style) {
         max-width: 480px;
       }
     `}</style>

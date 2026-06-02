@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: Radix Avatar + PDS 8단계 size, variant(person/company/academy)
+description: Radix Avatar + CDS 8단계 size, variant(person/company/academy)
 ---
 
 import { AvatarSizeDemo, AvatarVariantDemo } from "@/components/demos/avatar-demo";
@@ -8,7 +8,7 @@ import { AvatarSizeDemo, AvatarVariantDemo } from "@/components/demos/avatar-dem
 ## 사용
 
 ```tsx
-import { Avatar } from "@fluxloop-ai/pds-ui/components/avatar";
+import { Avatar } from "@tendtoyj/cds-ui/components/avatar";
 
 <Avatar size="lg" variant="person" src="/me.jpg" alt="me" />
 <Avatar size="md" variant="company" />
@@ -25,7 +25,7 @@ import { Avatar } from "@fluxloop-ai/pds-ui/components/avatar";
 - **person** — 원형 (9999px)
 - **company / academy** — 라운드 스퀘어 (size × ~0.125)
 
-fallback 아이콘은 `@fluxloop-ai/pds-icons/icons` 의 `User` / `Buildings` / `GraduationCap`.
+fallback 아이콘은 `@tendtoyj/cds-icons/icons` 의 `User` / `Buildings` / `GraduationCap`.
 
 <AvatarVariantDemo />
 
@@ -42,5 +42,5 @@ fallback 아이콘은 `@fluxloop-ai/pds-icons/icons` 의 `User` / `Buildings` / 
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/avatar
+npx shadcn add https://cds.codexy.com/r/avatar
 ```

@@ -1,0 +1,21 @@
+/**
+ * CDS chat 특수 토큰 — AI/Agent Chat 공용 (codexy-note 승계).
+ * 별도 AI 카테고리를 만들지 않고 semantic alias 로만 구성.
+ *
+ * 소비는 `var(--cds-chat-*)` 직접 참조. Tailwind 유틸리티 불필요 → `:root`.
+ */
+:root {
+  /* easing — standard CDS 이징과 동일 참조 (motion.css) */
+  --cds-chat-easing: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* agent status dot colors — semantic alias */
+  --cds-chat-dot-idle: var(--cds-label-assistive);
+  --cds-chat-dot-done: var(--cds-status-positive);
+  --cds-chat-dot-error: var(--cds-status-negative);
+  --cds-chat-dot-action: var(--cds-status-cautionary);
+
+  /* tool-call tone backgrounds (10% alpha) — replaces codexy-note hardcoded rgba */
+  --cds-chat-tone-error-bg: color-mix(in srgb, var(--cds-status-negative) 10%, transparent);
+  --cds-chat-tone-error-card-bg: color-mix(in srgb, var(--cds-status-negative) 6%, transparent);
+  --cds-chat-tone-caution-bg: color-mix(in srgb, var(--cds-status-cautionary) 10%, transparent);
+}

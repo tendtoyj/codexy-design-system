@@ -1,0 +1,99 @@
+/**
+ * CDS semantic color tokens — Montage 카테고리·계층 그대로, 이름만 --cds-*.
+ * 1차 배포: light 값만. 다크 모드 값은 Phase 4에서 [data-theme="dark"] 블록에 추가.
+ * 알파가 필요한 토큰은 color-mix() 로 primitive 참조 → 값 교체 시 자동 반영.
+ *
+ * semantic 은 `var(--cds-primary-normal)` 같은 직접 참조 패턴으로만 소비.
+ * Tailwind 유틸리티(`bg-primary-normal`)로는 열어두지 않음 → `:root` 블록 사용.
+ */
+:root {
+  /* primary */
+  --cds-primary-normal: var(--cds-color-cool-neutral-15);
+  --cds-primary-strong: var(--cds-color-cool-neutral-10);
+  --cds-primary-heavy: var(--cds-color-cool-neutral-5);
+
+  /* focus ring — primary 와 분리된 전용 액센트 (블랙 브랜드에서 시인성 확보) */
+  --cds-focus-ring: var(--cds-color-blue-50);
+
+  /* label */
+  --cds-label-normal: var(--cds-color-cool-neutral-10);
+  --cds-label-strong: var(--cds-color-common-0);
+  --cds-label-neutral: color-mix(in srgb, var(--cds-color-cool-neutral-22) 88%, transparent);
+  --cds-label-alternative: color-mix(in srgb, var(--cds-color-cool-neutral-25) 61%, transparent);
+  --cds-label-assistive: color-mix(in srgb, var(--cds-color-cool-neutral-25) 28%, transparent);
+  --cds-label-disable: color-mix(in srgb, var(--cds-color-cool-neutral-25) 16%, transparent);
+
+  /* background */
+  --cds-background-normal-normal: var(--cds-color-common-100);
+  --cds-background-normal-alternative: var(--cds-color-cool-neutral-99);
+  --cds-background-elevated-normal: var(--cds-color-common-100);
+  --cds-background-elevated-alternative: var(--cds-color-cool-neutral-99);
+  --cds-background-transparent-normal: color-mix(
+    in srgb,
+    var(--cds-color-common-100) 8%,
+    transparent
+  );
+  --cds-background-transparent-alternative: color-mix(
+    in srgb,
+    var(--cds-color-common-100) 28%,
+    transparent
+  );
+
+  /* interaction */
+  --cds-interaction-inactive: var(--cds-color-cool-neutral-70);
+  --cds-interaction-disable: var(--cds-color-cool-neutral-98);
+
+  /* line (alpha) */
+  --cds-line-normal-normal: color-mix(in srgb, var(--cds-color-cool-neutral-50) 22%, transparent);
+  --cds-line-normal-neutral: color-mix(in srgb, var(--cds-color-cool-neutral-50) 16%, transparent);
+  --cds-line-normal-alternative: color-mix(
+    in srgb,
+    var(--cds-color-cool-neutral-50) 8%,
+    transparent
+  );
+
+  /* line (solid) */
+  --cds-line-solid-normal: var(--cds-color-cool-neutral-96);
+  --cds-line-solid-neutral: var(--cds-color-cool-neutral-97);
+  --cds-line-solid-alternative: var(--cds-color-cool-neutral-98);
+
+  /* status */
+  --cds-status-positive: var(--cds-color-green-50);
+  --cds-status-cautionary: var(--cds-color-orange-50);
+  --cds-status-negative: var(--cds-color-red-50);
+
+  /* accent — background (solid 50) */
+  --cds-accent-background-red-orange: var(--cds-color-red-orange-50);
+  --cds-accent-background-lime: var(--cds-color-lime-50);
+  --cds-accent-background-cyan: var(--cds-color-cyan-50);
+  --cds-accent-background-light-blue: var(--cds-color-light-blue-50);
+  --cds-accent-background-violet: var(--cds-color-violet-50);
+  --cds-accent-background-purple: var(--cds-color-purple-50);
+  --cds-accent-background-pink: var(--cds-color-pink-50);
+
+  /* accent — foreground (AA contrast 고려한 어두운 톤) */
+  --cds-accent-foreground-red: var(--cds-color-red-40);
+  --cds-accent-foreground-red-orange: var(--cds-color-red-orange-48);
+  --cds-accent-foreground-orange: var(--cds-color-orange-39);
+  --cds-accent-foreground-lime: var(--cds-color-lime-37);
+  --cds-accent-foreground-green: var(--cds-color-green-40);
+  --cds-accent-foreground-cyan: var(--cds-color-cyan-40);
+  --cds-accent-foreground-light-blue: var(--cds-color-light-blue-40);
+  --cds-accent-foreground-blue: var(--cds-color-blue-45);
+  --cds-accent-foreground-violet: var(--cds-color-violet-45);
+  --cds-accent-foreground-purple: var(--cds-color-purple-40);
+  --cds-accent-foreground-pink: var(--cds-color-pink-46);
+
+  /* inverse */
+  --cds-inverse-primary: var(--cds-color-cool-neutral-99);
+  --cds-inverse-background: var(--cds-color-cool-neutral-15);
+  --cds-inverse-label: var(--cds-color-cool-neutral-99);
+
+  /* fill */
+  --cds-fill-normal: color-mix(in srgb, var(--cds-color-cool-neutral-50) 8%, transparent);
+  --cds-fill-strong: color-mix(in srgb, var(--cds-color-cool-neutral-50) 16%, transparent);
+  --cds-fill-alternative: color-mix(in srgb, var(--cds-color-cool-neutral-50) 5%, transparent);
+
+  /* material */
+  --cds-material-dimmer: color-mix(in srgb, var(--cds-color-cool-neutral-10) 52%, transparent);
+}

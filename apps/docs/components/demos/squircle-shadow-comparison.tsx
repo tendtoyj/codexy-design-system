@@ -5,7 +5,7 @@
  * Tauri 전환 시 macOS 에서 떠 있는 패널에 squircle.js 를 적용했을 때
  * drop shadow 가 얼마나 잘리는지, filter: drop-shadow 우회가 얼마나 회복되는지 직관 확인용.
  *
- * - A: arc + box-shadow (현재 PDS 기준)
+ * - A: arc + box-shadow (현재 CDS 기준)
  * - B: arc + filter: drop-shadow (필터 기반 그림자 베이스라인)
  * - C: squircle.js + box-shadow (clip-path 로 그림자 잘림)
  * - D: squircle.js + filter: drop-shadow (우회)
@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
 type Variant = "arc-box" | "arc-filter" | "squircle-box" | "squircle-filter";
 
 const VARIANTS: { id: Variant; title: string; note: string }[] = [
-  { id: "arc-box", title: "A. arc + box-shadow", note: "현재 PDS 기본" },
+  { id: "arc-box", title: "A. arc + box-shadow", note: "현재 CDS 기본" },
   { id: "arc-filter", title: "B. arc + filter: drop-shadow", note: "필터 베이스라인" },
   {
     id: "squircle-box",
@@ -58,20 +58,20 @@ function Panel({ variant }: { variant: Variant }) {
   const useFilter = variant === "arc-filter" || variant === "squircle-filter";
 
   // filter: drop-shadow 는 부모 wrapper 에 걸어야 clip-path 로 잘리지 않는다.
-  const wrapperStyle: React.CSSProperties = useFilter ? { filter: "var(--pds-drop-xl)" } : {};
+  const wrapperStyle: React.CSSProperties = useFilter ? { filter: "var(--cds-drop-xl)" } : {};
 
   const panelStyle: React.CSSProperties = {
-    boxShadow: useBoxShadow ? "var(--pds-shadow-xl)" : "none",
+    boxShadow: useBoxShadow ? "var(--cds-shadow-xl)" : "none",
     // squircle.js 는 corner-shape: squircle (Chromium 139+) 영향과 분리해서 보기 위해 강제로 round
     ["cornerShape" as never]: "round",
   };
 
   return (
-    <figure className="pds-sqsh-cell">
-      <div className="pds-sqsh-panel-wrapper" style={wrapperStyle}>
-        <div ref={ref} className="pds-sqsh-panel" style={panelStyle}>
-          <div className="pds-sqsh-panel-header">Floating Panel</div>
-          <div className="pds-sqsh-panel-body">
+    <figure className="cds-sqsh-cell">
+      <div className="cds-sqsh-panel-wrapper" style={wrapperStyle}>
+        <div ref={ref} className="cds-sqsh-panel" style={panelStyle}>
+          <div className="cds-sqsh-panel-header">Floating Panel</div>
+          <div className="cds-sqsh-panel-body">
             Dialog · Popover · DropdownMenu 같은 떠 있는 레이어의 elevation 을 그림자로 표현합니다.
           </div>
         </div>
@@ -80,7 +80,7 @@ function Panel({ variant }: { variant: Variant }) {
         <strong>{VARIANTS.find((v) => v.id === variant)?.title}</strong>
         <span>{VARIANTS.find((v) => v.id === variant)?.note}</span>
         {(variant === "squircle-box" || variant === "squircle-filter") && (
-          <span className="pds-sqsh-applied" data-on={clipApplied}>
+          <span className="cds-sqsh-applied" data-on={clipApplied}>
             {clipApplied ? "✓ clip-path applied" : "… not applied"}
           </span>
         )}
@@ -91,76 +91,76 @@ function Panel({ variant }: { variant: Variant }) {
 
 export function SquircleShadowComparison() {
   return (
-    <div className="pds-sqsh-grid">
+    <div className="cds-sqsh-grid">
       {VARIANTS.map((v) => (
         <Panel key={v.id} variant={v.id} />
       ))}
       <style>{`
-        .pds-sqsh-grid {
+        .cds-sqsh-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 48px 32px;
           padding: 64px 40px;
-          background: var(--pds-background-normal-alternative);
-          border-radius: var(--pds-radius-lg);
+          background: var(--cds-background-normal-alternative);
+          border-radius: var(--cds-radius-lg);
           margin: 16px 0;
         }
-        .pds-sqsh-cell {
+        .cds-sqsh-cell {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 24px;
           margin: 0;
         }
-        .pds-sqsh-panel-wrapper {
+        .cds-sqsh-panel-wrapper {
           /* filter: drop-shadow 가 걸리는 레이어 */
         }
-        .pds-sqsh-panel {
+        .cds-sqsh-panel {
           width: 260px;
           padding: 32px 28px;
-          background: var(--pds-background-normal-normal);
-          border: 1px solid var(--pds-line-solid-alternative);
+          background: var(--cds-background-normal-normal);
+          border: 1px solid var(--cds-line-solid-alternative);
           border-radius: 30px;
         }
-        .pds-sqsh-panel-header {
+        .cds-sqsh-panel-header {
           font-size: var(--text-label1);
-          font-weight: var(--pds-font-weight-semibold);
-          color: var(--pds-label-normal);
+          font-weight: var(--cds-font-weight-semibold);
+          color: var(--cds-label-normal);
           margin-bottom: 8px;
         }
-        .pds-sqsh-panel-body {
+        .cds-sqsh-panel-body {
           font-size: var(--text-body2);
           line-height: 1.5;
-          color: var(--pds-label-alternative);
+          color: var(--cds-label-alternative);
         }
-        .pds-sqsh-cell figcaption {
+        .cds-sqsh-cell figcaption {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 4px;
           text-align: center;
         }
-        .pds-sqsh-cell figcaption strong {
+        .cds-sqsh-cell figcaption strong {
           font-size: var(--text-label2);
-          color: var(--pds-label-normal);
-          font-family: var(--pds-font-mono);
+          color: var(--cds-label-normal);
+          font-family: var(--cds-font-mono);
         }
-        .pds-sqsh-cell figcaption span {
+        .cds-sqsh-cell figcaption span {
           font-size: var(--text-caption1);
-          color: var(--pds-label-alternative);
+          color: var(--cds-label-alternative);
         }
-        .pds-sqsh-applied {
-          font-family: var(--pds-font-mono);
+        .cds-sqsh-applied {
+          font-family: var(--cds-font-mono);
           padding: 2px 8px;
           border-radius: 999px;
           margin-top: 4px;
         }
-        .pds-sqsh-applied[data-on="true"] {
-          background: var(--pds-color-green-95, color-mix(in srgb, green 12%, transparent));
-          color: var(--pds-color-green-30, green);
+        .cds-sqsh-applied[data-on="true"] {
+          background: var(--cds-color-green-95, color-mix(in srgb, green 12%, transparent));
+          color: var(--cds-color-green-30, green);
         }
-        .pds-sqsh-applied[data-on="false"] {
-          background: color-mix(in srgb, var(--pds-label-alternative) 12%, transparent);
+        .cds-sqsh-applied[data-on="false"] {
+          background: color-mix(in srgb, var(--cds-label-alternative) 12%, transparent);
         }
       `}</style>
     </div>
@@ -172,34 +172,34 @@ export function SquircleShadowSizes() {
   const radii = [8, 12, 16, 24] as const;
 
   return (
-    <div className="pds-sqsh-sizes">
+    <div className="cds-sqsh-sizes">
       {radii.map((r) => (
-        <div key={r} className="pds-sqsh-size-row">
-          <div className="pds-sqsh-size-label">radius {r}px</div>
+        <div key={r} className="cds-sqsh-size-row">
+          <div className="cds-sqsh-size-label">radius {r}px</div>
           <SizeCell radius={r} mode="box" />
           <SizeCell radius={r} mode="filter" />
         </div>
       ))}
       <style>{`
-        .pds-sqsh-sizes {
+        .cds-sqsh-sizes {
           display: flex;
           flex-direction: column;
           gap: 40px;
           padding: 48px 32px;
-          background: var(--pds-background-normal-alternative);
-          border-radius: var(--pds-radius-lg);
+          background: var(--cds-background-normal-alternative);
+          border-radius: var(--cds-radius-lg);
           margin: 16px 0;
         }
-        .pds-sqsh-size-row {
+        .cds-sqsh-size-row {
           display: grid;
           grid-template-columns: 100px 1fr 1fr;
           align-items: center;
           gap: 24px;
         }
-        .pds-sqsh-size-label {
-          font-family: var(--pds-font-mono);
+        .cds-sqsh-size-label {
+          font-family: var(--cds-font-mono);
           font-size: var(--text-caption1);
-          color: var(--pds-label-alternative);
+          color: var(--cds-label-alternative);
         }
       `}</style>
     </div>
@@ -221,32 +221,32 @@ function SizeCell({ radius, mode }: { radius: number; mode: "box" | "filter" }) 
   }, []);
 
   const wrapperStyle: React.CSSProperties =
-    mode === "filter" ? { filter: "var(--pds-drop-xl)" } : {};
+    mode === "filter" ? { filter: "var(--cds-drop-xl)" } : {};
   const panelStyle: React.CSSProperties = {
-    boxShadow: mode === "box" ? "var(--pds-shadow-xl)" : "none",
+    boxShadow: mode === "box" ? "var(--cds-shadow-xl)" : "none",
     borderRadius: `${radius}px`,
     ["cornerShape" as never]: "round",
   };
 
   return (
-    <div className="pds-sqsh-size-cell">
+    <div className="cds-sqsh-size-cell">
       <div style={wrapperStyle}>
         <div
           ref={ref}
           style={{
             width: 160,
             height: 80,
-            background: "var(--pds-background-normal-normal)",
-            border: "1px solid var(--pds-line-solid-alternative)",
+            background: "var(--cds-background-normal-normal)",
+            border: "1px solid var(--cds-line-solid-alternative)",
             ...panelStyle,
           }}
         />
       </div>
       <code
         style={{
-          fontFamily: "var(--pds-font-mono)",
+          fontFamily: "var(--cds-font-mono)",
           fontSize: "var(--text-caption1)",
-          color: "var(--pds-label-alternative)",
+          color: "var(--cds-label-alternative)",
           marginTop: 12,
           display: "block",
           textAlign: "center",
@@ -255,7 +255,7 @@ function SizeCell({ radius, mode }: { radius: number; mode: "box" | "filter" }) 
         squircle.js + {mode === "box" ? "box-shadow" : "drop-shadow"}
       </code>
       <style>{`
-        .pds-sqsh-size-cell {
+        .cds-sqsh-size-cell {
           display: flex;
           flex-direction: column;
           align-items: center;

@@ -1,0 +1,49 @@
+/**
+ * CDS shadow — Montage 3계열 (box / drop / glow) 그대로 이식.
+ * 서로 다른 문제: box-shadow(사각 카드), drop-shadow(비사각 SVG·squircle), ambient glow(포커스/AI).
+ * 색은 neutral.10 참조 → 브랜드 값 변경에 자동 반응.
+ *
+ * 소비는 `boxShadow: var(--cds-shadow-md)` / `filter: var(--cds-drop-md)` 패턴.
+ * Tailwind `shadow-*` 유틸리티 대신 CSS 변수 직접 참조 → `:root`.
+ */
+:root {
+  /* (a) box-shadow — 사각 카드·버튼·다이얼로그 */
+  --cds-shadow-xs: 0px 1px 2px -1px color-mix(in srgb, var(--cds-color-neutral-10) 10%, transparent);
+  --cds-shadow-sm:
+    0px 2px 4px -2px color-mix(in srgb, var(--cds-color-neutral-10) 6%, transparent),
+    0px 4px 6px -1px color-mix(in srgb, var(--cds-color-neutral-10) 6%, transparent);
+  --cds-shadow-md:
+    0px 4px 6px -2px color-mix(in srgb, var(--cds-color-neutral-10) 7%, transparent),
+    0px 10px 15px -3px color-mix(in srgb, var(--cds-color-neutral-10) 7%, transparent);
+  --cds-shadow-lg:
+    0px 6px 10px -4px color-mix(in srgb, var(--cds-color-neutral-10) 8%, transparent),
+    0px 16px 24px -6px color-mix(in srgb, var(--cds-color-neutral-10) 8%, transparent);
+  --cds-shadow-xl:
+    0px 10px 15px -5px color-mix(in srgb, var(--cds-color-neutral-10) 10%, transparent),
+    0px 24px 38px -10px color-mix(in srgb, var(--cds-color-neutral-10) 12%, transparent);
+
+  /* (b) filter: drop-shadow() — 비사각 모양 */
+  --cds-drop-xs: drop-shadow(
+    0px 1px 0.5px color-mix(in srgb, var(--cds-color-neutral-10) 5%, transparent)
+  );
+  --cds-drop-sm: drop-shadow(
+      0px 2px 1px color-mix(in srgb, var(--cds-color-neutral-10) 3%, transparent)
+    )
+    drop-shadow(0px 4px 2.5px color-mix(in srgb, var(--cds-color-neutral-10) 3%, transparent));
+  --cds-drop-md: drop-shadow(
+      0px 4px 2px color-mix(in srgb, var(--cds-color-neutral-10) 3.5%, transparent)
+    )
+    drop-shadow(0px 10px 6px color-mix(in srgb, var(--cds-color-neutral-10) 3.5%, transparent));
+  --cds-drop-lg: drop-shadow(
+      0px 6px 3px color-mix(in srgb, var(--cds-color-neutral-10) 4%, transparent)
+    )
+    drop-shadow(0px 16px 9px color-mix(in srgb, var(--cds-color-neutral-10) 3%, transparent));
+  --cds-drop-xl: drop-shadow(
+      0px 10px 5px color-mix(in srgb, var(--cds-color-neutral-10) 5%, transparent)
+    )
+    drop-shadow(0px 24px 14px color-mix(in srgb, var(--cds-color-neutral-10) 6%, transparent));
+
+  /* (c) ambient glow — 포커스 링, AI 글로우 */
+  --cds-glow-sm: 0px 0px 60px 0px color-mix(in srgb, var(--cds-color-neutral-10) 10%, transparent);
+  --cds-glow-md: 0px 15px 75px 0px color-mix(in srgb, var(--cds-color-neutral-10) 16%, transparent);
+}

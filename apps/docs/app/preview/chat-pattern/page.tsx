@@ -10,8 +10,8 @@ import {
   Plus,
   SidebarSimple,
   Terminal,
-} from "@fluxloop-ai/pds-icons/icons";
-import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
+} from "@tendtoyj/cds-icons/icons";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
 import {
   AppShell,
   AppShellLeadingControls,
@@ -29,28 +29,28 @@ import {
   SegmentedControl,
   SegmentedControlItem,
   useScrollFade,
-} from "@fluxloop-ai/pds-ui";
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
-import { ChatComposer } from "@fluxloop-ai/pds-ui/components/chat-composer";
+} from "@tendtoyj/cds-ui";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
+import { ChatComposer } from "@tendtoyj/cds-ui/components/chat-composer";
 import {
   ChatProcessTrace,
   type ProcessTraceBlock,
   type ResolveToolIcon,
-} from "@fluxloop-ai/pds-ui/components/chat-process-trace";
-import { ChatUserMessage } from "@fluxloop-ai/pds-ui/components/chat-user-message";
+} from "@tendtoyj/cds-ui/components/chat-process-trace";
+import { ChatUserMessage } from "@tendtoyj/cds-ui/components/chat-user-message";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 import {
   type RemovableTab,
   RemovableTabBar,
-} from "@fluxloop-ai/pds-ui/components/removable-tab-bar";
-import { Separator } from "@fluxloop-ai/pds-ui/components/separator";
+} from "@tendtoyj/cds-ui/components/removable-tab-bar";
+import { Separator } from "@tendtoyj/cds-ui/components/separator";
 import { useEffect, useState } from "react";
 
 const TONE_OPTIONS = [
@@ -66,7 +66,7 @@ const MODEL_OPTIONS = [
 ];
 
 const composerChip =
-  "inline-flex items-center gap-[4px] h-[24px] px-[6px] text-[12px] text-[color:var(--pds-label-alternative)] rounded-[6px] bg-transparent border-0 cursor-pointer hover:bg-[color:var(--pds-background-normal-alternative)] hover:text-[color:var(--pds-label-normal)]";
+  "inline-flex items-center gap-[4px] h-[24px] px-[6px] text-[12px] text-[color:var(--cds-label-alternative)] rounded-[6px] bg-transparent border-0 cursor-pointer hover:bg-[color:var(--cds-background-normal-alternative)] hover:text-[color:var(--cds-label-normal)]";
 
 const CASES = [
   { id: "static", label: "정적 멀티탭" },
@@ -83,7 +83,7 @@ const liveResolveToolIcon: ResolveToolIcon = (name) => LIVE_ICON_BY_NAME[name];
 const LIVE_USER_MESSAGE = "여기 주 색상 토큰이 어디서 정의돼? 한 줄만.";
 
 const LIVE_REPLY =
-  "주 색은 `packages/pds-tokens/src/light.css` 의 `--pds-primary-normal: #0063F8` 입니다. Tailwind v4 의 `@theme` 가 같은 변수를 별칭화해서 `bg-primary-normal` 로 사용돼요.";
+  "주 색은 `packages/cds-tokens/src/light.css` 의 `--cds-primary-normal: #0063F8` 입니다. Tailwind v4 의 `@theme` 가 같은 변수를 별칭화해서 `bg-primary-normal` 로 사용돼요.";
 
 const LIVE_TRACE_BLOCKS: ProcessTraceBlock[] = [
   {
@@ -94,7 +94,7 @@ const LIVE_TRACE_BLOCKS: ProcessTraceBlock[] = [
     type: "tool_use",
     id: "lt1",
     name: "bash",
-    input: { command: "ls packages/pds-tokens/src" },
+    input: { command: "ls packages/cds-tokens/src" },
   },
   {
     type: "tool_result",
@@ -105,13 +105,13 @@ const LIVE_TRACE_BLOCKS: ProcessTraceBlock[] = [
     type: "tool_use",
     id: "lt2",
     name: "text_editor",
-    input: { command: "view", path: "packages/pds-tokens/src/light.css" },
+    input: { command: "view", path: "packages/cds-tokens/src/light.css" },
   },
   {
     type: "tool_result",
     tool_use_id: "lt2",
     content:
-      "--pds-primary-normal: #0063F8;\n--pds-label-normal: #18181b;\n--pds-background-normal-normal: #ffffff;\n…",
+      "--cds-primary-normal: #0063F8;\n--cds-label-normal: #18181b;\n--cds-background-normal-normal: #ffffff;\n…",
   },
 ];
 
@@ -129,17 +129,17 @@ type Thread = {
 
 const INITIAL_THREADS: Thread[] = [
   {
-    tab: { id: "tokens", title: "PDS 토큰 질문" },
+    tab: { id: "tokens", title: "CDS 토큰 질문" },
     messages: [
       {
         id: "u1",
         role: "user",
-        text: "PDS 의 spacing 스케일이 4-base 라고 했는데, 컴포넌트 안에서는 왜 arbitrary [12px] 처럼 직접 쓰는 거야? 토큰 클래스로 가면 안 돼?",
+        text: "CDS 의 spacing 스케일이 4-base 라고 했는데, 컴포넌트 안에서는 왜 arbitrary [12px] 처럼 직접 쓰는 거야? 토큰 클래스로 가면 안 돼?",
       },
       {
         id: "a1",
         role: "assistant",
-        text: 'spacing 토큰은 **Montage 호환 px 인덱스**(`--spacing-4: 4px`, `--spacing-12: 12px` …)라 의미적인 시맨틱 토큰이 아니라 **단순 별칭**입니다. 그래서 컴포넌트 내부에서 `gap-[12px]` 처럼 쓰는 게 의미 손실이 없고, 빌드된 CSS 도 1:1 입니다.\n\n반면 색·radius·shadow 는 시맨틱이 붙어 있어서 **반드시 토큰 변수**(`var(--pds-label-normal)`, `var(--pds-radius-12)`)로 참조합니다.\n\n```tsx\n<div className="px-[12px] py-[8px] rounded-[var(--pds-radius-8)]">\n  …\n</div>\n```',
+        text: 'spacing 토큰은 **Montage 호환 px 인덱스**(`--spacing-4: 4px`, `--spacing-12: 12px` …)라 의미적인 시맨틱 토큰이 아니라 **단순 별칭**입니다. 그래서 컴포넌트 내부에서 `gap-[12px]` 처럼 쓰는 게 의미 손실이 없고, 빌드된 CSS 도 1:1 입니다.\n\n반면 색·radius·shadow 는 시맨틱이 붙어 있어서 **반드시 토큰 변수**(`var(--cds-label-normal)`, `var(--cds-radius-12)`)로 참조합니다.\n\n```tsx\n<div className="px-[12px] py-[8px] rounded-[var(--cds-radius-8)]">\n  …\n</div>\n```',
       },
       {
         id: "u2",
@@ -154,12 +154,12 @@ const INITIAL_THREADS: Thread[] = [
       {
         id: "u3",
         role: "user",
-        text: "radius 는 그럼 컴포넌트 안에서 `rounded-[var(--pds-radius-12)]` 이렇게 매번 길게 쓰는 거야? 너무 verbose 한데",
+        text: "radius 는 그럼 컴포넌트 안에서 `rounded-[var(--cds-radius-12)]` 이렇게 매번 길게 쓰는 거야? 너무 verbose 한데",
       },
       {
         id: "a3",
         role: "assistant",
-        text: 'verbose 한 거 맞습니다. 두 가지 단축 방식이 있어요.\n\n1. **시맨틱 alias** — `rounded-lg` / `rounded-md` 같은 의미 단위. PDS 는 컴포넌트 사이즈와 짝지어 `var(--pds-radius-sm|md|lg)` 로 묶어두는 쪽을 권장.\n2. **컴포넌트 내부 const** — 한 컴포넌트 안에서 같은 radius 가 여러 슬롯에 반복되면 tailwind-variants 의 `tv` 안에서 한 번만 박는 게 깔끔.\n\n```ts\nconst panel = tv({\n  base: "rounded-[var(--pds-radius-12)] bg-...",\n});\n```\n\n호출부에선 `rounded-` 못 보고, 대신 `panel()` 만 보입니다.',
+        text: 'verbose 한 거 맞습니다. 두 가지 단축 방식이 있어요.\n\n1. **시맨틱 alias** — `rounded-lg` / `rounded-md` 같은 의미 단위. CDS 는 컴포넌트 사이즈와 짝지어 `var(--cds-radius-sm|md|lg)` 로 묶어두는 쪽을 권장.\n2. **컴포넌트 내부 const** — 한 컴포넌트 안에서 같은 radius 가 여러 슬롯에 반복되면 tailwind-variants 의 `tv` 안에서 한 번만 박는 게 깔끔.\n\n```ts\nconst panel = tv({\n  base: "rounded-[var(--cds-radius-12)] bg-...",\n});\n```\n\n호출부에선 `rounded-` 못 보고, 대신 `panel()` 만 보입니다.',
       },
       {
         id: "u4",
@@ -169,7 +169,7 @@ const INITIAL_THREADS: Thread[] = [
       {
         id: "a4",
         role: "assistant",
-        text: '권장 순서는 이렇습니다.\n\n1. **variant 추가** — 그 "다른 라운드" 가 *의도가 있는 한 변형* 이면 컴포넌트에 `radius: { sm | md | lg }` 같은 variant 로 노출. 일회성 외부 className override 보다 의도가 명시적.\n2. **className prop** — 진짜 일회성이고 한 곳에서만 쓰면 호출부에서 `className="rounded-[var(--pds-radius-8)]"` 로 덮어쓰기. tailwind-merge 가 처리.\n3. **금지** — 컴포넌트 내부에서 `data-[…]` 로 임의 분기 만들지 않기. variant 로 승격하거나 외부 override 둘 중 하나.\n\n---\n\n어느 쪽인지 케이스 알려주면 더 구체적으로 잡을 수 있어요.',
+        text: '권장 순서는 이렇습니다.\n\n1. **variant 추가** — 그 "다른 라운드" 가 *의도가 있는 한 변형* 이면 컴포넌트에 `radius: { sm | md | lg }` 같은 variant 로 노출. 일회성 외부 className override 보다 의도가 명시적.\n2. **className prop** — 진짜 일회성이고 한 곳에서만 쓰면 호출부에서 `className="rounded-[var(--cds-radius-8)]"` 로 덮어쓰기. tailwind-merge 가 처리.\n3. **금지** — 컴포넌트 내부에서 `data-[…]` 로 임의 분기 만들지 않기. variant 로 승격하거나 외부 override 둘 중 하나.\n\n---\n\n어느 쪽인지 케이스 알려주면 더 구체적으로 잡을 수 있어요.',
       },
       {
         id: "u5",
@@ -179,7 +179,7 @@ const INITIAL_THREADS: Thread[] = [
       {
         id: "a5",
         role: "assistant",
-        text: '방향은 **코드 → Figma 단방향**입니다.\n\n- 코드의 CSS 변수 (`--pds-*`) 가 SSOT.\n- Figma Variables 는 *역생성* — 코드에서 정의된 값으로부터 Figma 쪽 변수를 갱신.\n- 디자이너가 Figma 에서 직접 변수를 바꾸면 그건 *제안* 일 뿐, 코드에 반영되어야 비로소 시스템 값.\n\n역생성 파이프라인은 아직 수동입니다 (Figma MCP `set_variables` 로 일괄 push). 자동 sync 는 첫 릴리즈 이후 검토 예정이고, 그전까지는 토큰 변경 PR 에서 "Figma 도 갱신했음" 체크박스를 수동으로 관리합니다.',
+        text: '방향은 **코드 → Figma 단방향**입니다.\n\n- 코드의 CSS 변수 (`--cds-*`) 가 SSOT.\n- Figma Variables 는 *역생성* — 코드에서 정의된 값으로부터 Figma 쪽 변수를 갱신.\n- 디자이너가 Figma 에서 직접 변수를 바꾸면 그건 *제안* 일 뿐, 코드에 반영되어야 비로소 시스템 값.\n\n역생성 파이프라인은 아직 수동입니다 (Figma MCP `set_variables` 로 일괄 push). 자동 sync 는 첫 릴리즈 이후 검토 예정이고, 그전까지는 토큰 변경 PR 에서 "Figma 도 갱신했음" 체크박스를 수동으로 관리합니다.',
       },
     ],
   },
@@ -318,7 +318,7 @@ export default function ChatPatternPreviewPage() {
             <AppShellSidebarHeader />
             <AppShellSidebarBody>
               <div className="flex h-full items-center justify-center">
-                <span className="font-mono text-[11px] text-[color:var(--pds-label-alternative)] uppercase tracking-[0.16em]">
+                <span className="font-mono text-[11px] text-[color:var(--cds-label-alternative)] uppercase tracking-[0.16em]">
                   Sidebar
                 </span>
               </div>
@@ -332,7 +332,7 @@ export default function ChatPatternPreviewPage() {
             <AppShellMainHeader />
             <AppShellMainBody>
               <div className="flex h-full flex-col items-center justify-center gap-[14px] p-[24px]">
-                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--pds-label-alternative)]">
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--cds-label-alternative)]">
                   Case
                 </span>
                 <SegmentedControl
@@ -391,10 +391,10 @@ export default function ChatPatternPreviewPage() {
                 </>
               ) : (
                 <div className="flex min-w-0 flex-1 items-center gap-[8px] pl-[4px]">
-                  <span className="truncate text-[13px] font-medium text-[color:var(--pds-label-normal)]">
+                  <span className="truncate text-[13px] font-medium text-[color:var(--cds-label-normal)]">
                     응답 생성 시연
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--pds-label-alternative)]">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--cds-label-alternative)]">
                     LIVE
                   </span>
                 </div>
@@ -513,7 +513,7 @@ function ChatThread({ thread }: { thread: Thread | null }) {
 
   if (!thread) {
     return (
-      <div className="flex min-h-0 flex-1 items-center justify-center text-[13px] text-[color:var(--pds-label-alternative)]">
+      <div className="flex min-h-0 flex-1 items-center justify-center text-[13px] text-[color:var(--cds-label-alternative)]">
         열린 탭이 없습니다. 우측 상단의 + 로 새 채팅을 시작하세요.
       </div>
     );
@@ -521,7 +521,7 @@ function ChatThread({ thread }: { thread: Thread | null }) {
 
   if (thread.messages.length === 0) {
     return (
-      <div className="flex min-h-0 flex-1 items-center justify-center text-[13px] text-[color:var(--pds-label-alternative)]">
+      <div className="flex min-h-0 flex-1 items-center justify-center text-[13px] text-[color:var(--cds-label-alternative)]">
         아래에서 첫 메시지를 보내세요.
       </div>
     );

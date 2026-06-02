@@ -30,33 +30,33 @@ const VARIANTS: Variant[] = [
   { name: "code", size: "13", line: "20", tracking: "0", mono: true },
 ];
 
-const SAMPLE = "Pluto Design System — 디자인 시스템 MVP";
+const SAMPLE = "Codexy Design System — 디자인 시스템 MVP";
 const SAMPLE_MONO = "const tokens = getPdsTokens();";
 
 export function TypeScale() {
   return (
-    <div className="pds-type-scale">
+    <div className="cds-type-scale">
       {VARIANTS.map((v) => {
         const styleVar = `--text-${v.name}`;
         return (
-          <article key={v.name} className="pds-type-row">
-            <header className="pds-type-meta">
-              <span className="pds-type-name">
+          <article key={v.name} className="cds-type-row">
+            <header className="cds-type-meta">
+              <span className="cds-type-name">
                 {v.name}
-                {v.note ? <small className="pds-type-note"> {v.note}</small> : null}
+                {v.note ? <small className="cds-type-note"> {v.note}</small> : null}
               </span>
-              <span className="pds-type-specs">
+              <span className="cds-type-specs">
                 {v.size} / {v.line} · tracking {v.tracking}
                 {v.mono ? " · mono" : ""}
               </span>
             </header>
             <p
-              className="pds-type-sample"
+              className="cds-type-sample"
               style={{
                 fontSize: `var(${styleVar})`,
                 lineHeight: `var(${styleVar}--line-height)`,
                 letterSpacing: `var(${styleVar}--letter-spacing)`,
-                fontFamily: v.mono ? "var(--pds-font-mono)" : "var(--pds-font-sans)",
+                fontFamily: v.mono ? "var(--cds-font-mono)" : "var(--cds-font-sans)",
               }}
             >
               {v.mono ? SAMPLE_MONO : SAMPLE}
@@ -65,45 +65,45 @@ export function TypeScale() {
         );
       })}
       <style>{`
-        .pds-type-scale {
+        .cds-type-scale {
           display: flex;
           flex-direction: column;
           gap: 14px;
           margin: 16px 0;
         }
-        .pds-type-row {
+        .cds-type-row {
           padding: 14px 16px;
-          border: 1px solid var(--pds-line-solid-normal);
-          border-radius: var(--pds-radius-lg);
-          background: var(--pds-background-normal-normal);
+          border: 1px solid var(--cds-line-solid-normal);
+          border-radius: var(--cds-radius-lg);
+          background: var(--cds-background-normal-normal);
         }
-        .pds-type-meta {
+        .cds-type-meta {
           display: flex;
           justify-content: space-between;
           gap: 12px;
           margin-bottom: 6px;
           flex-wrap: wrap;
         }
-        .pds-type-name {
+        .cds-type-name {
           font-size: var(--text-label1);
           line-height: var(--text-label1--line-height);
-          color: var(--pds-label-normal);
-          font-weight: var(--pds-font-weight-semibold);
+          color: var(--cds-label-normal);
+          font-weight: var(--cds-font-weight-semibold);
           font-variant-numeric: tabular-nums;
         }
-        .pds-type-note {
-          font-weight: var(--pds-font-weight-regular);
-          color: var(--pds-primary-normal);
+        .cds-type-note {
+          font-weight: var(--cds-font-weight-regular);
+          color: var(--cds-primary-normal);
         }
-        .pds-type-specs {
-          font-family: var(--pds-font-mono);
+        .cds-type-specs {
+          font-family: var(--cds-font-mono);
           font-size: var(--text-caption1);
           line-height: var(--text-caption1--line-height);
-          color: var(--pds-label-alternative);
+          color: var(--cds-label-alternative);
         }
-        .pds-type-sample {
+        .cds-type-sample {
           margin: 0;
-          color: var(--pds-label-normal);
+          color: var(--cds-label-normal);
         }
       `}</style>
     </div>

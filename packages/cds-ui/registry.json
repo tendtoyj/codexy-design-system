@@ -1,0 +1,644 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "codexy-design-system",
+  "homepage": "https://codexy-design-system-docs.vercel.app",
+  "items": [
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Radix-based horizontal/vertical divider using CDS line tokens.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-separator"],
+      "files": [
+        {
+          "path": "src/components/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Radix Avatar, 8 sizes, person/company/academy fallback icons from cds-icons.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-avatar", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "phosphor wrapper with CDS size/color tokens. Accepts custom SVG components.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/icon.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "4 variants × 3 sizes, icon slots, loading state, asChild support.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "9-slot TextField with invalid/positive/disabled/readOnly + leading/trailing + reset.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "@radix-ui/react-compose-refs",
+        "@tendtoyj/cds-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Radix Tooltip with size, shortcut slot, and mode(hover/always/click).",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-tooltip"],
+      "files": [
+        {
+          "path": "src/components/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "DropdownMenu",
+      "description": "Radix DropdownMenu with items/checkbox/radio/submenu/shortcut slot.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "@radix-ui/react-dropdown-menu",
+        "@tendtoyj/cds-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Radix Dialog — popup/full × sm/md/lg/xl × fixed/free. Navigation/Body/ActionArea slots.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-dialog", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["close-button"],
+      "files": [
+        {
+          "path": "src/components/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Radix Toast with info/success/warning/error variants.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-toast", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["close-button"],
+      "files": [
+        {
+          "path": "src/components/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "ScrollArea",
+      "description": "Radix ScrollArea with macOS-style thin scrollbar + hover expand.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-scroll-area"],
+      "files": [
+        {
+          "path": "src/components/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Radix Popover — sm/md/lg × normal/custom. Header/Body/ActionArea slots.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "@radix-ui/react-popover",
+        "@tendtoyj/cds-icons"
+      ],
+      "registryDependencies": ["close-button"],
+      "files": [
+        {
+          "path": "src/components/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Pure SVG loading indicator. sm/md/lg (16/20/28px). Respects prefers-reduced-motion.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status label — solid/outlined × xs/sm/md × 5 colors.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "Chip",
+      "description": "Compact action chip — solid/outlined × xsmall/small/medium/large with active toggle and leading/trailing slots.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot"],
+      "files": [
+        {
+          "path": "src/components/chip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Radix Progress — determinate + indeterminate, sm/md track.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-progress"],
+      "files": [
+        {
+          "path": "src/components/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Radix Checkbox — sm/md, checked/indeterminate/invalid/disabled states.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "@radix-ui/react-checkbox",
+        "@tendtoyj/cds-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Radix Switch — sm/md track, primary-normal on-state.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-switch"],
+      "files": [
+        {
+          "path": "src/components/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "RadioGroup",
+      "description": "Radix RadioGroup — sm/md, horizontal/vertical orientation, loop on by default.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-radio-group"],
+      "files": [
+        {
+          "path": "src/components/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "SegmentedControl",
+      "description": "Trackless single-select control for 2-3 inline options — sm/md, hug or fullWidth, snap selection.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-radio-group"],
+      "files": [
+        {
+          "path": "src/components/segmented-control.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/segmented-control.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Radix Select — sm/md/lg trigger with Input-aligned tokens, item-aligned/popper content.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-select", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "FormField + FormLabel + FormControl + FormDescription + FormErrorMessage — useId-based id wiring via context.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot"],
+      "files": [
+        {
+          "path": "src/components/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Radix Tabs — sm/md/lg × hug/fill, horizontal/vertical, underline indicator.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-tabs"],
+      "files": [
+        {
+          "path": "src/components/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "cmdk inside Radix Popover — searchable select wrapped behind CDS vocabulary.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "cmdk",
+        "@radix-ui/react-popover",
+        "@tendtoyj/cds-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "title": "IconButton",
+      "description": "Square icon-only Button — variant × size, asChild support.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot"],
+      "files": [
+        {
+          "path": "src/components/icon-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/icon-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-button",
+      "type": "registry:ui",
+      "title": "TextButton",
+      "description": "Inline link-like Button — variant × size, optional leading/trailing icon, loading state.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/text-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/text-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "panel",
+      "type": "registry:ui",
+      "title": "Panel",
+      "description": "Surface container with optional leading icon and PanelCell layout primitive.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "registryDependencies": ["icon"],
+      "files": [
+        {
+          "path": "src/components/panel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-container",
+      "type": "registry:ui",
+      "title": "PageContainer",
+      "description": "Padded page-level wrapper with size variants for content alignment.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/page-container.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/page-container.tsx"
+        }
+      ]
+    },
+    {
+      "name": "section-header",
+      "type": "registry:ui",
+      "title": "SectionHeader",
+      "description": "Section heading with title/description and optional trailing slot.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/section-header.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/section-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "removable-tab-bar",
+      "type": "registry:ui",
+      "title": "RemovableTabBar",
+      "description": "Horizontal tab bar with per-tab close affordance.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/removable-tab-bar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/removable-tab-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "action-card",
+      "type": "registry:ui",
+      "title": "ActionCard",
+      "description": "Card-shaped action surface — leading icon, title, description, trailing slot.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot"],
+      "registryDependencies": ["icon"],
+      "files": [
+        {
+          "path": "src/components/action-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/action-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "action-tile",
+      "type": "registry:ui",
+      "title": "ActionTile",
+      "description": "Compact tile with header/leading/title/description/footer slots for action grids.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-slot"],
+      "registryDependencies": ["icon"],
+      "files": [
+        {
+          "path": "src/components/action-tile.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/action-tile.tsx"
+        }
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:ui",
+      "title": "AppShell",
+      "description": "Root layout — sidebar, optional side panel, main column. Splitter and Electron titlebar slot.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/app-shell.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/app-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-menu",
+      "type": "registry:ui",
+      "title": "SidebarMenu",
+      "description": "Vertical icon-first menu list for app sidebars.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "registryDependencies": ["icon"],
+      "files": [
+        {
+          "path": "src/components/sidebar-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-list",
+      "type": "registry:ui",
+      "title": "SidebarList",
+      "description": "Sidebar list of items with leading icon, label, and trailing overflow menu.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["icon"],
+      "files": [
+        {
+          "path": "src/components/sidebar-list.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-types",
+      "type": "registry:lib",
+      "title": "Chat content block types",
+      "description": "Shared types for chat content blocks (text, image, etc.) used by chat-* components.",
+      "files": [
+        {
+          "path": "src/types/chat.ts",
+          "type": "registry:lib",
+          "target": "lib/chat-types.ts"
+        }
+      ]
+    },
+    {
+      "name": "chat-copy-button",
+      "type": "registry:ui",
+      "title": "ChatCopyButton (internal)",
+      "description": "Internal copy-to-clipboard button used by chat message components.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["icon-button", "tooltip", "chat-types"],
+      "files": [
+        {
+          "path": "src/components/internal/chat-copy-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/internal/chat-copy-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-loading-dots",
+      "type": "registry:ui",
+      "title": "ChatLoadingDots",
+      "description": "Single-orb pulse loading indicator for in-progress assistant responses.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "files": [
+        {
+          "path": "src/components/chat-loading-dots.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-loading-dots.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-attachment-chip",
+      "type": "registry:ui",
+      "title": "ChatAttachmentChip",
+      "description": "Chip preview for chat composer attachments (file label, remove action).",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/chat-attachment-chip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-attachment-chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-composer",
+      "type": "registry:ui",
+      "title": "ChatComposer",
+      "description": "Chat input — auto-grow textarea with attachments and send action.",
+      "dependencies": [
+        "@tendtoyj/cds-core",
+        "@radix-ui/react-compose-refs",
+        "@tendtoyj/cds-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/chat-composer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-composer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-user-message",
+      "type": "registry:ui",
+      "title": "ChatUserMessage",
+      "description": "User chat bubble — supports text and attachment blocks, copy action.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["tooltip", "chat-attachment-chip", "chat-copy-button"],
+      "files": [
+        {
+          "path": "src/components/chat-user-message.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-user-message.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-assistant-message",
+      "type": "registry:ui",
+      "title": "ChatAssistantMessage",
+      "description": "Assistant response — plain text (no bubble), copy action, loading state.",
+      "dependencies": ["@tendtoyj/cds-core"],
+      "registryDependencies": ["tooltip", "chat-loading-dots", "chat-copy-button"],
+      "files": [
+        {
+          "path": "src/components/chat-assistant-message.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-assistant-message.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-process-trace",
+      "type": "registry:ui",
+      "title": "ChatProcessTrace",
+      "description": "Collapsible trace UI for assistant tool/process steps.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/chat-process-trace.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chat-process-trace.tsx"
+        }
+      ]
+    },
+    {
+      "name": "close-button",
+      "type": "registry:ui",
+      "title": "CloseButton (internal)",
+      "description": "Internal close affordance shared by dialog/popover/toast.",
+      "dependencies": ["@tendtoyj/cds-core", "@tendtoyj/cds-icons"],
+      "files": [
+        {
+          "path": "src/components/internal/close-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/internal/close-button.tsx"
+        }
+      ]
+    }
+  ]
+}

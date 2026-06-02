@@ -7,16 +7,16 @@ import {
   PencilSimple,
   Plus,
   Trash,
-} from "@fluxloop-ai/pds-icons/icons";
+} from "@tendtoyj/cds-icons/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { SidebarList } from "@fluxloop-ai/pds-ui/components/sidebar-list";
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { SidebarList } from "@tendtoyj/cds-ui/components/sidebar-list";
 import * as React from "react";
 
 const SKILLS = [
@@ -125,9 +125,9 @@ function SidebarFrame({ children }: { children: React.ReactNode }) {
         style={{
           width: 220,
           padding: "8px 12px",
-          background: "var(--pds-fill-alternative)",
-          borderRadius: "var(--pds-radius-lg)",
-          border: "1px solid var(--pds-line-solid-normal)",
+          background: "var(--cds-fill-alternative)",
+          borderRadius: "var(--cds-radius-lg)",
+          border: "1px solid var(--cds-line-solid-normal)",
         }}
       >
         {children}
@@ -140,12 +140,12 @@ function SidebarFrame({ children }: { children: React.ReactNode }) {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

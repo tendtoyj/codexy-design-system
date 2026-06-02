@@ -1,11 +1,11 @@
 {
-  "name": "@fluxloop-ai/pds-docs",
+  "name": "@tendtoyj/cds-docs",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build:registry": "shadcn build registry.json --cwd ../../packages/pds-ui --output ../../apps/docs/public/r",
+    "build:registry": "shadcn build registry.json --cwd ../../packages/cds-ui --output ../../apps/docs/public/r",
     "build": "pnpm build:registry && NODE_OPTIONS=--max-old-space-size=4096 next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
@@ -13,10 +13,10 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "@fluxloop-ai/pds-core": "workspace:*",
-    "@fluxloop-ai/pds-icons": "workspace:*",
-    "@fluxloop-ai/pds-markdown": "workspace:*",
-    "@fluxloop-ai/pds-ui": "workspace:*",
+    "@tendtoyj/cds-core": "workspace:*",
+    "@tendtoyj/cds-icons": "workspace:*",
+    "@tendtoyj/cds-markdown": "workspace:*",
+    "@tendtoyj/cds-ui": "workspace:*",
     "fumadocs-core": "^15.0.0",
     "fumadocs-mdx": "^11.0.0",
     "fumadocs-ui": "^15.0.0",

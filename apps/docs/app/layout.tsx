@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "./global.css";
 
 export const metadata = {
-  title: "Pluto Design System",
-  description: "PDS — tokens, primitives, and AI-ready components for Pluto apps.",
+  title: "Codexy Design System",
+  description: "CDS — tokens, primitives, and AI-ready components for Codexy apps.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

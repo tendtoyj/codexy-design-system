@@ -9,8 +9,8 @@ import {
   Robot,
   Ruler,
   Translate,
-} from "@fluxloop-ai/pds-icons/icons";
-import { Panel, PanelCell } from "@fluxloop-ai/pds-ui/components/panel";
+} from "@tendtoyj/cds-icons/icons";
+import { Panel, PanelCell } from "@tendtoyj/cds-ui/components/panel";
 
 export function PanelMetadataStripDemo() {
   return (
@@ -114,8 +114,8 @@ function Value({ children }: { children: React.ReactNode }) {
   return (
     <span
       style={{
-        font: "var(--pds-font-body1-medium)",
-        color: "var(--pds-label-strong)",
+        font: "var(--cds-font-body1-medium)",
+        color: "var(--cds-label-strong)",
       }}
     >
       {children}
@@ -127,8 +127,8 @@ function Body({ children }: { children: React.ReactNode }) {
   return (
     <span
       style={{
-        font: "var(--pds-font-label1-regular)",
-        color: "var(--pds-label-neutral)",
+        font: "var(--cds-font-label1-regular)",
+        color: "var(--cds-label-neutral)",
       }}
     >
       {children}
@@ -141,14 +141,14 @@ function ChartPlaceholder({ height, label }: { height: number; label: string }) 
     <div
       style={{
         height,
-        borderRadius: "var(--pds-radius-8)",
-        border: "1px dashed var(--pds-line-solid-normal)",
-        background: "var(--pds-background-normal-alternative)",
+        borderRadius: "var(--cds-radius-8)",
+        border: "1px dashed var(--cds-line-solid-normal)",
+        background: "var(--cds-background-normal-alternative)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "var(--pds-label-alternative)",
-        font: "var(--pds-font-label1-regular)",
+        color: "var(--cds-label-alternative)",
+        font: "var(--cds-font-label1-regular)",
       }}
     >
       {label}

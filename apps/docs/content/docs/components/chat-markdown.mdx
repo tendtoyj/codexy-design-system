@@ -1,22 +1,22 @@
 ---
 title: Chat Markdown
-description: 채팅 메시지의 markdown 렌더 가이드 — 별도 패키지 @fluxloop-ai/pds-markdown
+description: 채팅 메시지의 markdown 렌더 가이드 — 별도 패키지 @tendtoyj/cds-markdown
 ---
 
-`ChatUserMessage` · `ChatAssistantMessage` 는 모두 `renderMarkdown?: (text: string) => ReactNode` slot 을 받는다. PDS 자체는 markdown 렌더러 의존을 가지지 않고 — 권장 구현체를 별도 패키지 [`@fluxloop-ai/pds-markdown`](https://github.com/Fluxloop-AI/pluto-design-system/tree/main/packages/pds-markdown) 으로 분리해 제공한다.
+`ChatUserMessage` · `ChatAssistantMessage` 는 모두 `renderMarkdown?: (text: string) => ReactNode` slot 을 받는다. CDS 자체는 markdown 렌더러 의존을 가지지 않고 — 권장 구현체를 별도 패키지 [`@tendtoyj/cds-markdown`](https://github.com/tendtoyj/codexy-design-system/tree/main/packages/cds-markdown) 으로 분리해 제공한다.
 
 ## 왜 별도 패키지인가
 
-- `pds-ui` 가 `react-markdown`/`remark-gfm` 같은 무거운 deps 를 강제하지 않도록.
+- `cds-ui` 가 `react-markdown`/`remark-gfm` 같은 무거운 deps 를 강제하지 않도록.
 - chat 안 쓰는 컨슈머(예: admin 도구·문서 뷰어)는 markdown 만 가져다 쓸 수 있도록.
 - 컨슈머 앱마다 자체 렌더러(Anthropic SDK 도우미, 자체 Markdown 컴포넌트, streaming 친화 변형 등) 를 끼울 수 있도록.
 
-`pds-icons` 가 `pds-ui` 와 분리된 것과 동일한 원칙.
+`cds-icons` 가 `cds-ui` 와 분리된 것과 동일한 원칙.
 
 ## 설치
 
 ```bash
-pnpm add @fluxloop-ai/pds-markdown
+pnpm add @tendtoyj/cds-markdown
 ```
 
 내부 의존성: `react-markdown ^9`, `remark-gfm ^4` (GFM — 테이블·체크박스·autolink 등). React 19 peer.
@@ -28,8 +28,8 @@ pnpm add @fluxloop-ai/pds-markdown
 가장 흔한 케이스. `(text) => ReactNode` 형태라 그대로 prop 으로 전달.
 
 ```tsx
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
-import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
 
 <ChatAssistantMessage content={text} renderMarkdown={renderMarkdown} />
 ```
@@ -39,12 +39,12 @@ import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
 slot 외 컨텍스트(예: 단독 본문 영역) 에서 markdown 을 그릴 때.
 
 ```tsx
-import { Markdown } from "@fluxloop-ai/pds-markdown";
+import { Markdown } from "@tendtoyj/cds-markdown";
 
 <Markdown>{`**굵게** 와 \`코드\` 가 들어간 텍스트`}</Markdown>
 ```
 
-루트에 `pds-markdown` 클래스가 붙으므로 앱 측에서 typography 오버라이드 가능.
+루트에 `cds-markdown` 클래스가 붙으므로 앱 측에서 typography 오버라이드 가능.
 
 전 element 가 어떻게 그려지는지 시각 결과는 [ChatAssistantMessage](/docs/components/chat-assistant-message) 페이지의 kitchen-sink 데모 참고.
 
@@ -68,12 +68,12 @@ import { Markdown } from "@fluxloop-ai/pds-markdown";
 `Markdown` 컴포넌트는 `components` prop 으로 element 별 렌더 오버라이드를 받는다.
 
 ```tsx
-import { Markdown } from "@fluxloop-ai/pds-markdown";
+import { Markdown } from "@tendtoyj/cds-markdown";
 
 <Markdown
   components={{
     a: ({ href, children }) => <a href={href} target="_blank" rel="noopener">{children}</a>,
-    code: ({ children }) => <code className="bg-[var(--pds-fill-alternative)] px-[4px] rounded-[4px]">{children}</code>,
+    code: ({ children }) => <code className="bg-[var(--cds-fill-alternative)] px-[4px] rounded-[4px]">{children}</code>,
   }}
 >
   {text}
@@ -82,7 +82,7 @@ import { Markdown } from "@fluxloop-ai/pds-markdown";
 
 ### 컨슈머 자체 렌더러 사용
 
-`@fluxloop-ai/pds-markdown` 을 안 쓰고 컨슈머가 자체 함수를 만들어도 된다 (slot 시그니처만 지키면 됨).
+`@tendtoyj/cds-markdown` 을 안 쓰고 컨슈머가 자체 함수를 만들어도 된다 (slot 시그니처만 지키면 됨).
 
 ```tsx
 function myRender(text: string) {
@@ -100,7 +100,7 @@ function myRender(text: string) {
 
 ## 확장 (향후)
 
-PDS 본체 의존을 늘리지 않는 선에서 같은 패키지에 추가 예정인 것:
+CDS 본체 의존을 늘리지 않는 선에서 같은 패키지에 추가 예정인 것:
 
 - 코드 블록 syntax highlighting (shiki 또는 prism — 별도 sub-path export 로 옵트인)
 - 수식(KaTeX) 옵션

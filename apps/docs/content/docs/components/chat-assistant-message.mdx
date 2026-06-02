@@ -5,13 +5,13 @@ description: 어시스턴트 응답 — 풍선 없는 plain text 본문
 
 import { ChatAssistantMessageDemo } from "@/components/demos/chat-assistant-message-demo";
 
-PDS 채팅 모델은 **사용자 메시지에는 풍선**, **어시스턴트 응답에는 풍선 없이 본문만** 노출한다. 응답이 곧 본문이라 별도 시각 컨테이너로 가두지 않는다.
+CDS 채팅 모델은 **사용자 메시지에는 풍선**, **어시스턴트 응답에는 풍선 없이 본문만** 노출한다. 응답이 곧 본문이라 별도 시각 컨테이너로 가두지 않는다.
 
 ## 사용
 
 ```tsx
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
-import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
 
 <ChatAssistantMessage
   content="오늘 서울은 **맑아요**."

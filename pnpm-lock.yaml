@@ -23,18 +23,18 @@ importers:
 
   apps/docs:
     dependencies:
-      '@fluxloop-ai/pds-core':
+      '@tendtoyj/cds-core':
         specifier: workspace:*
-        version: link:../../packages/pds-core
-      '@fluxloop-ai/pds-icons':
+        version: link:../../packages/cds-core
+      '@tendtoyj/cds-icons':
         specifier: workspace:*
-        version: link:../../packages/pds-icons
-      '@fluxloop-ai/pds-markdown':
+        version: link:../../packages/cds-icons
+      '@tendtoyj/cds-markdown':
         specifier: workspace:*
-        version: link:../../packages/pds-markdown
-      '@fluxloop-ai/pds-ui':
+        version: link:../../packages/cds-markdown
+      '@tendtoyj/cds-ui':
         specifier: workspace:*
-        version: link:../../packages/pds-ui
+        version: link:../../packages/cds-ui
       fumadocs-core:
         specifier: ^15.0.0
         version: 15.8.5(@types/react@19.2.14)(lucide-react@1.14.0(react@19.2.5))(next@15.5.15(@babel/core@7.29.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -82,7 +82,7 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
-  packages/pds-core:
+  packages/cds-core:
     dependencies:
       clsx:
         specifier: ^2.1.1
@@ -107,7 +107,7 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
-  packages/pds-icons:
+  packages/cds-icons:
     dependencies:
       '@lobehub/icons':
         specifier: ^5.6.0
@@ -135,7 +135,7 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
-  packages/pds-markdown:
+  packages/cds-markdown:
     dependencies:
       react-markdown:
         specifier: ^9.0.1
@@ -163,14 +163,8 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
-  packages/pds-ui:
+  packages/cds-ui:
     dependencies:
-      '@fluxloop-ai/pds-core':
-        specifier: workspace:*
-        version: link:../pds-core
-      '@fluxloop-ai/pds-icons':
-        specifier: workspace:*
-        version: link:../pds-icons
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -219,6 +213,12 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@tendtoyj/cds-core':
+        specifier: workspace:*
+        version: link:../cds-core
+      '@tendtoyj/cds-icons':
+        specifier: workspace:*
+        version: link:../cds-icons
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

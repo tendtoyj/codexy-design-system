@@ -1,13 +1,13 @@
 "use client";
 
-import { Code, FolderSimple, MagnifyingGlass, Terminal } from "@fluxloop-ai/pds-icons/icons";
-import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
+import { Code, FolderSimple, MagnifyingGlass, Terminal } from "@tendtoyj/cds-icons/icons";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
 import {
   ChatProcessTrace,
   type ProcessTraceBlock,
   type ResolveToolIcon,
-} from "@fluxloop-ai/pds-ui/components/chat-process-trace";
+} from "@tendtoyj/cds-ui/components/chat-process-trace";
 import { useEffect, useState } from "react";
 
 const ICON_BY_NAME: Record<string, React.ReactNode> = {
@@ -153,7 +153,7 @@ export function ChatProcessTraceDemo() {
   }, [running]);
 
   return (
-    <div className="pds-trace-demo">
+    <div className="cds-trace-demo">
       <Section title="① Thinking only (정적)">
         <ChatProcessTrace
           blocks={THINKING_ONLY}
@@ -213,7 +213,7 @@ export function ChatProcessTraceDemo() {
           resolveToolIcon={resolveToolIcon}
           renderMarkdown={renderMarkdown}
         />
-        <p className="pds-trace-demo__caption">
+        <p className="cds-trace-demo__caption">
           {running ? "진행 중 — trigger 라벨에 shimmer 적용" : "완료 — 'Thought for Xs' 정적 표시"}
         </p>
       </Section>
@@ -225,9 +225,9 @@ export function ChatProcessTraceDemo() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="pds-trace-demo__section">
-      <h4 className="pds-trace-demo__title">{title}</h4>
-      <div className="pds-trace-demo__card">{children}</div>
+    <section className="cds-trace-demo__section">
+      <h4 className="cds-trace-demo__title">{title}</h4>
+      <div className="cds-trace-demo__card">{children}</div>
     </section>
   );
 }
@@ -235,38 +235,38 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Styles() {
   return (
     <style>{`
-      .pds-trace-demo {
+      .cds-trace-demo {
         display: flex;
         flex-direction: column;
         gap: 20px;
         margin: 16px 0;
       }
-      .pds-trace-demo__section {
+      .cds-trace-demo__section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-      .pds-trace-demo__title {
+      .cds-trace-demo__title {
         margin: 0;
         font-size: var(--text-caption1);
-        font-weight: var(--pds-font-weight-semibold);
-        color: var(--pds-label-neutral);
+        font-weight: var(--cds-font-weight-semibold);
+        color: var(--cds-label-neutral);
       }
-      .pds-trace-demo__card {
+      .cds-trace-demo__card {
         display: flex;
         flex-direction: column;
         gap: 12px;
         width: 400px;
         max-width: 100%;
         padding: 16px 18px;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-trace-demo__caption {
+      .cds-trace-demo__caption {
         margin: 0;
         font-size: var(--text-caption1);
-        color: var(--pds-label-assistive);
+        color: var(--cds-label-assistive);
       }
     `}</style>
   );

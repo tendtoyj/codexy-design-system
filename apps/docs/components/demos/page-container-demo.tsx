@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowSquareOut } from "@fluxloop-ai/pds-icons/icons";
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
-import { PageContainer } from "@fluxloop-ai/pds-ui/components/page-container";
+import { ArrowSquareOut } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import { PageContainer } from "@tendtoyj/cds-ui/components/page-container";
 
 export function PageContainerBasicDemo() {
   return (
@@ -20,12 +20,12 @@ export function PageContainerBasicDemo() {
  */
 export function PageContainerVariantsDemo() {
   return (
-    <div className="my-[16px] flex items-center justify-between gap-[16px] rounded-[var(--pds-radius-12)] border border-[var(--pds-line-normal-alternative)] bg-[var(--pds-background-normal-alternative)] px-[20px] py-[16px]">
+    <div className="my-[16px] flex items-center justify-between gap-[16px] rounded-[var(--cds-radius-12)] border border-[var(--cds-line-normal-alternative)] bg-[var(--cds-background-normal-alternative)] px-[20px] py-[16px]">
       <div className="flex flex-col gap-[2px]">
-        <span className="font-medium text-[13px] text-[color:var(--pds-label-normal)]">
+        <span className="font-medium text-[13px] text-[color:var(--cds-label-normal)]">
           전체 화면에서 비교하기
         </span>
-        <span className="text-[12px] text-[color:var(--pds-label-alternative)]">
+        <span className="text-[12px] text-[color:var(--cds-label-alternative)]">
           4개 variant 의 max-width 차이는 docs column 보다 넓은 viewport 가 필요해 새 창에서 띄운다.
         </span>
       </div>
@@ -48,8 +48,8 @@ export function PageContainerWithContentDemo() {
         <h1
           style={{
             margin: 0,
-            font: "var(--pds-font-title2-bold)",
-            color: "var(--pds-label-strong)",
+            font: "var(--cds-font-title2-bold)",
+            color: "var(--cds-label-strong)",
           }}
         >
           페이지 제목
@@ -57,8 +57,8 @@ export function PageContainerWithContentDemo() {
         <p
           style={{
             marginTop: 8,
-            font: "var(--pds-font-body1-regular)",
-            color: "var(--pds-label-neutral)",
+            font: "var(--cds-font-body1-regular)",
+            color: "var(--cds-label-neutral)",
           }}
         >
           PageContainer 는 max-width · 좌우 gutter · 상하 padding 만 책임지는 wrapper. 첫 자식이
@@ -68,8 +68,8 @@ export function PageContainerWithContentDemo() {
           style={{
             marginTop: 24,
             height: 240,
-            borderRadius: "var(--pds-radius-12)",
-            background: "var(--pds-fill-normal)",
+            borderRadius: "var(--cds-radius-12)",
+            background: "var(--cds-fill-normal)",
           }}
         />
       </PageContainer>
@@ -86,9 +86,9 @@ function ParentFrame({ children }: { children: React.ReactNode }) {
     <div
       style={{
         margin: "16px 0",
-        borderRadius: "var(--pds-radius-12)",
-        border: "1px solid var(--pds-line-solid-normal)",
-        background: "var(--pds-background-normal-alternative)",
+        borderRadius: "var(--cds-radius-12)",
+        border: "1px solid var(--cds-line-solid-normal)",
+        background: "var(--cds-background-normal-alternative)",
         overflow: "hidden",
       }}
     >
@@ -105,11 +105,11 @@ function Placeholder({ label }: { label: string }) {
         alignItems: "center",
         justifyContent: "center",
         height: 120,
-        borderRadius: "var(--pds-radius-12)",
-        border: "1px dashed var(--pds-line-solid-normal)",
-        background: "var(--pds-background-normal-normal)",
-        color: "var(--pds-label-neutral)",
-        font: "var(--pds-font-label1-regular)",
+        borderRadius: "var(--cds-radius-12)",
+        border: "1px dashed var(--cds-line-solid-normal)",
+        background: "var(--cds-background-normal-normal)",
+        color: "var(--cds-label-neutral)",
+        font: "var(--cds-font-label1-regular)",
       }}
     >
       {label}

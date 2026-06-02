@@ -1,11 +1,11 @@
 "use client";
 
-import { CheckCircle } from "@fluxloop-ai/pds-icons/icons";
-import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
+import { CheckCircle } from "@tendtoyj/cds-icons/icons";
+import { Badge } from "@tendtoyj/cds-ui/components/badge";
 
 export function BadgeGridDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Section label="Variants × Color (default accentColor=cyan, neutralColor=alternative)">
         {(["solid", "outlined"] as const).map((variant) => (
           <Row key={variant}>
@@ -69,7 +69,7 @@ export function BadgeGridDemo() {
 
 export function BadgeContentDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 8 }}>
       <Badge size="sm" accentColor="positive" leadingContent={<CheckCircle />}>
         승인됨
       </Badge>
@@ -87,7 +87,7 @@ function Section({ label, children }: { label: string; children: React.ReactNode
       <div
         style={{
           fontSize: 11,
-          color: "var(--pds-label-alternative)",
+          color: "var(--cds-label-alternative)",
           marginBottom: 8,
           textTransform: "uppercase",
           letterSpacing: "0.04em",
@@ -109,7 +109,7 @@ function Cell({ children }: { children: React.ReactNode }) {
     <div
       style={{
         fontSize: 11,
-        color: "var(--pds-label-assistive)",
+        color: "var(--cds-label-assistive)",
         width: 60,
       }}
     >
@@ -121,12 +121,12 @@ function Cell({ children }: { children: React.ReactNode }) {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChatCircle, SidebarSimple } from "@fluxloop-ai/pds-icons/icons";
+import { ChatCircle, SidebarSimple } from "@tendtoyj/cds-icons/icons";
 import {
   AppShell,
   AppShellLeadingControls,
@@ -15,8 +15,8 @@ import {
   AppShellSidePanelHeader,
   AppShellSplitter,
   AppShellTrailingControls,
-} from "@fluxloop-ai/pds-ui";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+} from "@tendtoyj/cds-ui";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 import { useState } from "react";
 
 /**
@@ -131,8 +131,8 @@ function PlaceholderLabel({ label, tone }: { label: string; tone: "back" | "fron
       <span
         className={`font-mono text-[11px] uppercase tracking-[0.16em] ${
           tone === "back"
-            ? "text-[color:var(--pds-label-assistive)]"
-            : "text-[color:var(--pds-label-alternative)]"
+            ? "text-[color:var(--cds-label-assistive)]"
+            : "text-[color:var(--cds-label-alternative)]"
         }`}
       >
         {label}

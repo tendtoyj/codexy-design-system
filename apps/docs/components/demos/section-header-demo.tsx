@@ -1,11 +1,11 @@
 "use client";
 
-import { ArrowRight, Funnel, Plus } from "@fluxloop-ai/pds-icons/icons";
-import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
-import { Chip } from "@fluxloop-ai/pds-ui/components/chip";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { SectionHeader } from "@fluxloop-ai/pds-ui/components/section-header";
-import { TextButton } from "@fluxloop-ai/pds-ui/components/text-button";
+import { ArrowRight, Funnel, Plus } from "@tendtoyj/cds-icons/icons";
+import { Badge } from "@tendtoyj/cds-ui/components/badge";
+import { Chip } from "@tendtoyj/cds-ui/components/chip";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { SectionHeader } from "@tendtoyj/cds-ui/components/section-header";
+import { TextButton } from "@tendtoyj/cds-ui/components/text-button";
 
 export function SectionHeaderBasicDemo() {
   return (
@@ -122,9 +122,9 @@ function Frame({ children }: { children: React.ReactNode }) {
       style={{
         padding: "20px 24px",
         margin: "16px 0",
-        borderRadius: "var(--pds-radius-lg)",
-        border: "1px solid var(--pds-line-solid-normal)",
-        background: "var(--pds-background-normal-normal)",
+        borderRadius: "var(--cds-radius-lg)",
+        border: "1px solid var(--cds-line-solid-normal)",
+        background: "var(--cds-background-normal-normal)",
       }}
     >
       {children}

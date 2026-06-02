@@ -3,12 +3,12 @@
 import {
   type RemovableTab,
   RemovableTabBar,
-} from "@fluxloop-ai/pds-ui/components/removable-tab-bar";
+} from "@tendtoyj/cds-ui/components/removable-tab-bar";
 import { useState } from "react";
 
 const INITIAL: RemovableTab[] = [
   { id: "t1", title: "새 탭" },
-  { id: "t2", title: "PDS 토큰 질문" },
+  { id: "t2", title: "CDS 토큰 질문" },
   { id: "t3", title: "Bug triage" },
   { id: "t4", title: "Refactor notes" },
 ];
@@ -43,21 +43,21 @@ function TabBarPreview({ size, initial }: { size: "sm" | "md"; initial: Removabl
 
 export function RemovableTabBarDemo() {
   return (
-    <div className="pds-removable-tab-demo-card">
-      <div className="pds-removable-tab-demo-row">
-        <span className="pds-removable-tab-demo-label">sm</span>
+    <div className="cds-removable-tab-demo-card">
+      <div className="cds-removable-tab-demo-row">
+        <span className="cds-removable-tab-demo-label">sm</span>
         <TabBarPreview size="sm" initial={INITIAL} />
       </div>
-      <div className="pds-removable-tab-demo-row">
-        <span className="pds-removable-tab-demo-label">md</span>
+      <div className="cds-removable-tab-demo-row">
+        <span className="cds-removable-tab-demo-label">md</span>
         <TabBarPreview size="md" initial={INITIAL} />
       </div>
-      <div className="pds-removable-tab-demo-row">
-        <span className="pds-removable-tab-demo-label">sm — truncate</span>
+      <div className="cds-removable-tab-demo-row">
+        <span className="cds-removable-tab-demo-label">sm — truncate</span>
         <TabBarPreview size="sm" initial={TRUNCATED} />
       </div>
-      <div className="pds-removable-tab-demo-row">
-        <span className="pds-removable-tab-demo-label">md — truncate</span>
+      <div className="cds-removable-tab-demo-row">
+        <span className="cds-removable-tab-demo-label">md — truncate</span>
         <TabBarPreview size="md" initial={TRUNCATED} />
       </div>
       <Styles />
@@ -68,26 +68,26 @@ export function RemovableTabBarDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-removable-tab-demo-card {
+      .cds-removable-tab-demo-card {
         display: flex;
         flex-direction: column;
         gap: 16px;
         padding: 12px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-removable-tab-demo-row {
+      .cds-removable-tab-demo-row {
         display: flex;
         flex-direction: column;
         gap: 6px;
         min-width: 0;
       }
-      .pds-removable-tab-demo-label {
+      .cds-removable-tab-demo-label {
         font-size: 11px;
         font-weight: 500;
-        color: var(--pds-label-assistive);
+        color: var(--cds-label-assistive);
         text-transform: uppercase;
         letter-spacing: 0.04em;
       }

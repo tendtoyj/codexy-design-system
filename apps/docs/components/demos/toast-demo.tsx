@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
-import { Toast, ToastProvider, ToastViewport } from "@fluxloop-ai/pds-ui/components/toast";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import { Toast, ToastProvider, ToastViewport } from "@tendtoyj/cds-ui/components/toast";
 import { useState } from "react";
 
 type Item = {
@@ -20,9 +20,9 @@ export function ToastDemo() {
 
   return (
     <ToastProvider swipeDirection="right" duration={3000}>
-      <div className="not-prose pds-toast-card">
-        <div className="pds-toast-section-label">With description</div>
-        <div className="pds-toast-row">
+      <div className="not-prose cds-toast-card">
+        <div className="cds-toast-section-label">With description</div>
+        <div className="cds-toast-row">
           <Button onClick={() => push("info", "정보", "새 업데이트가 있어요.")}>Info</Button>
           <Button
             variant="frosted"
@@ -40,8 +40,8 @@ export function ToastDemo() {
             Error
           </Button>
         </div>
-        <div className="pds-toast-section-label">Title only</div>
-        <div className="pds-toast-row">
+        <div className="cds-toast-section-label">Title only</div>
+        <div className="cds-toast-row">
           <Button onClick={() => push("info", "새 업데이트가 있어요")}>Info</Button>
           <Button variant="frosted" onClick={() => push("success", "저장됨")}>
             Success
@@ -74,28 +74,28 @@ export function ToastDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-toast-card {
+      .cds-toast-card {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-      .pds-toast-row {
+      .cds-toast-row {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-      .pds-toast-section-label {
+      .cds-toast-section-label {
         font-size: 12px;
         font-weight: 500;
-        color: var(--pds-label-alternative);
+        color: var(--cds-label-alternative);
         margin-top: 4px;
       }
-      .pds-toast-section-label:first-child {
+      .cds-toast-section-label:first-child {
         margin-top: 0;
       }
     `}</style>

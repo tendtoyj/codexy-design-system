@@ -2,11 +2,11 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
-/* PDS 토큰·keyframes·reset. Fumadocs preset 뒤에 와서 브랜드를 덮어쓴다. */
-@import "@fluxloop-ai/pds-core/styles/theme.css";
-@import "@fluxloop-ai/pds-core/styles/fonts.css";
-@import "@fluxloop-ai/pds-core/styles/keyframes.css";
+/* CDS 토큰·keyframes·reset. Fumadocs preset 뒤에 와서 브랜드를 덮어쓴다. */
+@import "@tendtoyj/cds-core/styles/theme.css";
+@import "@tendtoyj/cds-core/styles/fonts.css";
+@import "@tendtoyj/cds-core/styles/keyframes.css";
 
-/* pds-ui 컴포넌트 Tailwind class 스캐닝 경로 */
-@source "../../../packages/pds-ui/src/**/*.{ts,tsx}";
+/* cds-ui 컴포넌트 Tailwind class 스캐닝 경로 */
+@source "../../../packages/cds-ui/src/**/*.{ts,tsx}";
 @source "../components/demos/**/*.{ts,tsx}";

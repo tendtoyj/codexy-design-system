@@ -1,6 +1,6 @@
 ---
 title: Separator
-description: Radix 기반 수평·수직 분리선, PDS line 토큰 사용
+description: Radix 기반 수평·수직 분리선, CDS line 토큰 사용
 ---
 
 import { SeparatorHorizontalDemo, SeparatorVerticalDemo } from "@/components/demos/separator-demo";
@@ -8,7 +8,7 @@ import { SeparatorHorizontalDemo, SeparatorVerticalDemo } from "@/components/dem
 ## 사용
 
 ```tsx
-import { Separator } from "@fluxloop-ai/pds-ui/components/separator";
+import { Separator } from "@tendtoyj/cds-ui/components/separator";
 
 <Separator />
 <Separator color="neutral" />
@@ -29,12 +29,12 @@ import { Separator } from "@fluxloop-ai/pds-ui/components/separator";
 | Prop | 타입 | 기본 | 설명 |
 |---|---|---|---|
 | `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Radix `Separator.Root` 의 orientation |
-| `color` | `"normal" \| "neutral" \| "alternative" \| "alpha-normal" \| "alpha-neutral" \| "alpha-alternative"` | `"normal"` | solid 는 `--pds-line-solid-*`, alpha 는 `--pds-line-normal-*` |
+| `color` | `"normal" \| "neutral" \| "alternative" \| "alpha-normal" \| "alpha-neutral" \| "alpha-alternative"` | `"normal"` | solid 는 `--cds-line-solid-*`, alpha 는 `--cds-line-normal-*` |
 | `thickness` | `1 \| 2` | `1` | 선 두께(px). `2` 는 `h-0.5` / `w-0.5` 로 매핑 |
 | `decorative` | `boolean` | `true` | Radix `decorative` prop. 의미 없는 분리선일 때 `true` |
 
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/separator
+npx shadcn add https://cds.codexy.com/r/separator
 ```

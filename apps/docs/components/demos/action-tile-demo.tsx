@@ -7,7 +7,7 @@ import {
   Sparkle,
   Stethoscope,
   Wrench,
-} from "@fluxloop-ai/pds-icons/icons";
+} from "@tendtoyj/cds-icons/icons";
 import {
   ActionTile,
   ActionTileContent,
@@ -16,10 +16,10 @@ import {
   ActionTileHeader,
   ActionTileLeading,
   ActionTileTitle,
-} from "@fluxloop-ai/pds-ui/components/action-tile";
-import { Badge } from "@fluxloop-ai/pds-ui/components/badge";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+} from "@tendtoyj/cds-ui/components/action-tile";
+import { Badge } from "@tendtoyj/cds-ui/components/badge";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 import * as React from "react";
 
 export function ActionTileBasicDemo() {
@@ -29,7 +29,7 @@ export function ActionTileBasicDemo() {
     { icon: ChartBar, title: "Review runs", desc: "Walk through recent runs" },
   ];
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       {items.map((it) => (
         <ActionTile key={it.title} onClick={() => {}}>
           <ActionTileContent>
@@ -53,7 +53,7 @@ export function ActionTileCenterDemo() {
     { icon: ChartBar, title: "Review runs", desc: "Walk through recent runs" },
   ];
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       {items.map((it) => (
         <ActionTile key={it.title} contentAlign="center" onClick={() => {}}>
           <ActionTileContent>
@@ -63,7 +63,7 @@ export function ActionTileCenterDemo() {
                   width: 40,
                   height: 40,
                   borderRadius: 12,
-                  background: "var(--pds-fill-normal)",
+                  background: "var(--cds-fill-normal)",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -122,7 +122,7 @@ export function ActionTileFooterDemo() {
     },
   ];
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       {items.map((it) => (
         <ActionTile key={it.title} footerGap="wide" onClick={() => {}}>
           <ActionTileContent>
@@ -170,11 +170,11 @@ export function ActionTileHeaderDemo() {
     },
   ];
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       {items.map((it) => (
         <ActionTile key={it.title} headerGap="tight" headerAlign="between" onClick={() => {}}>
           <ActionTileHeader>
-            <span style={{ fontSize: 12, color: "var(--pds-label-alternative)", fontWeight: 500 }}>
+            <span style={{ fontSize: 12, color: "var(--cds-label-alternative)", fontWeight: 500 }}>
               {it.label}
             </span>
             {it.tag}
@@ -231,10 +231,10 @@ function DiagnoseCard() {
 
 export function ActionTileFullSpecDemo() {
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       <ActionTile padding="compact" headerGap="tight" footerGap="wide" onClick={() => {}}>
         <ActionTileHeader>
-          <span style={{ fontSize: 12, color: "var(--pds-label-alternative)", fontWeight: 500 }}>
+          <span style={{ fontSize: 12, color: "var(--cds-label-alternative)", fontWeight: 500 }}>
             Tutorial
           </span>
         </ActionTileHeader>
@@ -275,7 +275,7 @@ export function ActionTileFullSpecDemo() {
 export function ActionTileVariantDemo() {
   const variants = ["outlined", "filled", "ghost"] as const;
   return (
-    <div className="pds-demo-row pds-demo-grid">
+    <div className="cds-demo-row cds-demo-grid">
       {variants.map((v) => (
         <ActionTile key={v} variant={v} onClick={() => {}}>
           <ActionTileContent>
@@ -295,14 +295,14 @@ export function ActionTileVariantDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-demo-grid {
+      .cds-demo-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;

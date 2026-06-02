@@ -1,20 +1,20 @@
 "use client";
 
-import { ArrowRight, Plus, Trash } from "@fluxloop-ai/pds-icons/icons";
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+import { ArrowRight, Plus, Trash } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
 import { useState } from "react";
 
 export function ButtonVariantDemo() {
   return (
-    <div className="pds-btn-card">
-      <div className="pds-btn-row">
+    <div className="cds-btn-card">
+      <div className="cds-btn-row">
         <Button variant="solid">Solid</Button>
         <Button variant="outlined">Outlined</Button>
         <Button variant="frosted">Frosted</Button>
         <Button variant="danger">Danger</Button>
       </div>
-      <div className="pds-btn-row">
+      <div className="cds-btn-row">
         <Button variant="solid" disabled>
           Solid
         </Button>
@@ -35,8 +35,8 @@ export function ButtonVariantDemo() {
 
 export function ButtonSizeDemo() {
   return (
-    <div className="pds-btn-card">
-      <div className="pds-btn-row">
+    <div className="cds-btn-card">
+      <div className="cds-btn-row">
         <Button size="xs">Extra Small</Button>
         <Button size="sm">Small</Button>
         <Button size="md">Medium</Button>
@@ -49,8 +49,8 @@ export function ButtonSizeDemo() {
 
 export function ButtonWithIconDemo() {
   return (
-    <div className="pds-btn-card">
-      <div className="pds-btn-row">
+    <div className="cds-btn-card">
+      <div className="cds-btn-row">
         <Button leadingContent={<Icon icon={Plus} />}>새로 만들기</Button>
         <Button variant="frosted" trailingContent={<Icon icon={ArrowRight} />}>
           다음
@@ -70,8 +70,8 @@ export function ButtonWithIconDemo() {
 export function ButtonLoadingDemo() {
   const [loading, setLoading] = useState(false);
   return (
-    <div className="pds-btn-card">
-      <div className="pds-btn-row">
+    <div className="cds-btn-card">
+      <div className="cds-btn-row">
         <Button
           loading={loading}
           onClick={() => {
@@ -96,17 +96,17 @@ export function ButtonLoadingDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-btn-card {
+      .cds-btn-card {
         display: flex;
         flex-direction: column;
         gap: 12px;
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-btn-row {
+      .cds-btn-row {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;

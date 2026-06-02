@@ -1,0 +1,44 @@
+/**
+ * CDS reset — Tailwind preflight 보강.
+ * (1) opt-in squircle — `data-cds-squircle` 가 표시된 요소에만 적용.
+ *     Electron 37+ 네이티브 / Chromium 139+ 표준. 표시가 없으면 표준 round 로 그려져
+ *     `rounded-full` 같은 원형이 환경(Electron/브라우저) 에 무관하게 동일하게 렌더된다.
+ * (2) 접근성: reduce-motion 전역 단축은 keyframes.css 에서 처리.
+ * (3) macOS 데스크탑 감각: 기본 배경·텍스트·선택색.
+ */
+:root {
+  color-scheme: light;
+  background-color: var(--cds-background-normal-normal);
+  color: var(--cds-label-normal);
+}
+
+[data-cds-squircle],
+[data-cds-squircle]::before,
+[data-cds-squircle]::after {
+  corner-shape: squircle;
+  -electron-corner-smoothing: var(--cds-corner-smoothing);
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--cds-primary-normal) 24%, transparent);
+  color: var(--cds-label-normal);
+}
+
+/* Electron / Tauri 데스크탑 기본 */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--cds-font-sans);
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
+}
+
+/* 입력 요소·본문은 selectable */
+input,
+textarea,
+[contenteditable="true"],
+[data-cds-selectable] {
+  -webkit-user-select: text;
+  user-select: text;
+}

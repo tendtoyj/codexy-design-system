@@ -5,12 +5,12 @@ description: AI 모델/벤더/제품 브랜드 로고 (lobehub 어댑터)
 
 import { BrandIconsGalleryDemo } from "@/components/demos/brand-icons-demo";
 
-`@lobehub/icons` 위에 얹은 얇은 어댑터. 모델 picker, 채팅 헤더, 라이선스 footer 같은 곳에서 쓴다. 공급자 직접 import 금지 — 항상 `@fluxloop-ai/pds-icons/brands` 서브패스 경유.
+`@lobehub/icons` 위에 얹은 얇은 어댑터. 모델 picker, 채팅 헤더, 라이선스 footer 같은 곳에서 쓴다. 공급자 직접 import 금지 — 항상 `@tendtoyj/cds-icons/brands` 서브패스 경유.
 
 ## 사용
 
 ```tsx
-import { Anthropic, Claude } from "@fluxloop-ai/pds-icons/brands";
+import { Anthropic, Claude } from "@tendtoyj/cds-icons/brands";
 
 <Anthropic size={20} />        // Mono (default)
 <Claude size={20} />           // Mono (default)
@@ -57,7 +57,7 @@ Mono 변형은 `currentColor` 를 따라가므로 부모 텍스트 색을 상속
 ## 새 브랜드 추가
 
 1. lobehub 에 해당 아이콘이 있는지 확인 (`https://icons.lobehub.com`).
-2. `packages/pds-icons/src/brands/index.ts` 의 allowlist 에 named export 추가.
+2. `packages/cds-icons/src/brands/index.ts` 의 allowlist 에 named export 추가.
 3. 이 페이지 표에 한 줄 추가.
 
-전체를 통째로 재export 하지 않는 이유 — PDS 가 "지원하는 브랜드 = 이 리스트" 라는 시그널을 주기 위함. 번들 사이즈 때문은 아니다 (`sideEffects: false` + 트리쉐이킹으로 미사용 분은 빠진다).
+전체를 통째로 재export 하지 않는 이유 — CDS 가 "지원하는 브랜드 = 이 리스트" 라는 시그널을 주기 위함. 번들 사이즈 때문은 아니다 (`sideEffects: false` + 트리쉐이킹으로 미사용 분은 빠진다).

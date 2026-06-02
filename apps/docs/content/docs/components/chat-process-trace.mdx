@@ -8,7 +8,7 @@ import { ChatProcessTraceDemo } from "@/components/demos/chat-process-trace-demo
 ## 사용
 
 ```tsx
-import { ChatProcessTrace } from "@fluxloop-ai/pds-ui/components/chat-process-trace";
+import { ChatProcessTrace } from "@tendtoyj/cds-ui/components/chat-process-trace";
 
 <ChatProcessTrace blocks={blocks} isRunning={false} durationMs={4200} />
 ```
@@ -19,7 +19,7 @@ Anthropic Messages API 의 `thinking` · `tool_use` · `tool_result` · 중간 `
 
 - **항상 접힘** 이 기본 상태. 진행 중에도 자동으로 펼쳐지지 않으며, 사용자 클릭으로만 펼침.
 - Trigger 라벨은 진행 상태에 따라 자연 전환:
-  - `isRunning={true}` → `Thinking` + 텍스트 shimmer (`.pds-animate-text-shimmer`)
+  - `isRunning={true}` → `Thinking` + 텍스트 shimmer (`.cds-animate-text-shimmer`)
   - `isRunning={false}` + `durationMs` 있음 → `Thought for {⌈ms/1000⌉}s`
   - `isRunning={false}` + `durationMs` 없음 → `Thought`
 - Tool 호출은 1 `tool_use` = 1 row. 같은 도구가 연속 호출되어도 묶지 않음.
@@ -28,9 +28,9 @@ Anthropic Messages API 의 `thinking` · `tool_use` · `tool_result` · 중간 `
 
 ### 도구 라벨 결정 순서
 
-`(1) resolveToolLabel` 사용자 정의 → `(2)` PDS 빌트인 매핑 → `(3)` 도구명 raw fallback.
+`(1) resolveToolLabel` 사용자 정의 → `(2)` CDS 빌트인 매핑 → `(3)` 도구명 raw fallback.
 
-PDS 빌트인은 Anthropic SDK 표준 도구 4종만 알고 있다:
+CDS 빌트인은 Anthropic SDK 표준 도구 4종만 알고 있다:
 
 | `tool_use.name` | 라벨 형식 | 예시 |
 |---|---|---|
@@ -49,7 +49,7 @@ MCP 도구 (`mcp__linear__*` 등) 와 커스텀 도구는 `resolveToolLabel` 로
       const action = name.replace("mcp__linear__", "");
       return `Linear · ${action}`;
     }
-    // undefined 반환 → PDS 빌트인 / 도구명 raw fallback
+    // undefined 반환 → CDS 빌트인 / 도구명 raw fallback
   }}
 />
 ```
@@ -69,7 +69,7 @@ MCP 도구 (`mcp__linear__*` 등) 와 커스텀 도구는 `resolveToolLabel` 로
 | `blocks` | `ProcessTraceBlock[]` | — | trace 에 포함될 콘텐츠 블록들. `text` · `thinking` · `tool_use` · `tool_result`. |
 | `isRunning` | `boolean` | `false` | 진행 중이면 trigger 라벨 shimmer + `Thinking`. |
 | `durationMs` | `number` | — | 완료 시 trigger 라벨에 표시할 경과시간(ms). |
-| `resolveToolLabel` | `(name, input) => string \| undefined` | — | 도구 라벨 resolver. `undefined` 반환 시 PDS 빌트인 → 도구명 fallback. |
+| `resolveToolLabel` | `(name, input) => string \| undefined` | — | 도구 라벨 resolver. `undefined` 반환 시 CDS 빌트인 → 도구명 fallback. |
 | `resolveToolIcon` | `(name, input) => ReactNode \| undefined` | — | 카테고리 아이콘 resolver. 미주입 시 아이콘 생략. |
 | `renderMarkdown` | `(text) => ReactNode` | — | thinking · 중간 멘트 · tool 결과 모두 동일하게 적용. |
 | `open` | `boolean` | — | controlled 모드. |

@@ -1,6 +1,6 @@
 /**
  * Primitive 팔레트 시각화.
- * pds-core의 --pds-color-{hue}-{step} 변수 이름을 그대로 읽어 표시한다.
+ * cds-core의 --cds-color-{hue}-{step} 변수 이름을 그대로 읽어 표시한다.
  * 값은 CSS 변수에서 온다 — 여기선 이름·스텝만 선언.
  */
 
@@ -45,22 +45,22 @@ const HUES: Hue[] = [
 
 export function ColorSwatchGrid() {
   return (
-    <div className="pds-swatch-grid">
+    <div className="cds-swatch-grid">
       {HUES.map((hue) => (
-        <section key={hue.slug} className="pds-swatch-row">
-          <h4 className="pds-swatch-row-title">{hue.name}</h4>
-          <div className="pds-swatch-row-cells">
+        <section key={hue.slug} className="cds-swatch-row">
+          <h4 className="cds-swatch-row-title">{hue.name}</h4>
+          <div className="cds-swatch-row-cells">
             {hue.steps.map((step) => {
-              const varName = `--pds-color-${hue.slug}-${step}`;
+              const varName = `--cds-color-${hue.slug}-${step}`;
               return (
-                <div key={step} className="pds-swatch-cell">
+                <div key={step} className="cds-swatch-cell">
                   <div
                     role="img"
                     aria-label={`${hue.name} ${step}`}
-                    className="pds-swatch-chip"
+                    className="cds-swatch-chip"
                     style={{ background: `var(${varName})` }}
                   />
-                  <span className="pds-swatch-step">{step}</span>
+                  <span className="cds-swatch-step">{step}</span>
                 </div>
               );
             })}
@@ -69,42 +69,42 @@ export function ColorSwatchGrid() {
       ))}
 
       <style>{`
-        .pds-swatch-grid {
+        .cds-swatch-grid {
           display: flex;
           flex-direction: column;
           gap: 20px;
           margin: 16px 0;
         }
-        .pds-swatch-row-title {
+        .cds-swatch-row-title {
           font-size: var(--text-heading2);
           line-height: var(--text-heading2--line-height);
           letter-spacing: var(--text-heading2--letter-spacing);
-          font-weight: var(--pds-font-weight-semibold);
+          font-weight: var(--cds-font-weight-semibold);
           margin: 0 0 8px;
-          color: var(--pds-label-normal);
+          color: var(--cds-label-normal);
         }
-        .pds-swatch-row-cells {
+        .cds-swatch-row-cells {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
           gap: 6px;
         }
-        .pds-swatch-cell {
+        .cds-swatch-cell {
           display: flex;
           flex-direction: column;
           gap: 4px;
           align-items: stretch;
           min-width: 0;
         }
-        .pds-swatch-chip {
+        .cds-swatch-chip {
           aspect-ratio: 1 / 1;
-          border-radius: var(--pds-radius-md);
-          border: 1px solid var(--pds-line-solid-normal);
+          border-radius: var(--cds-radius-md);
+          border: 1px solid var(--cds-line-solid-normal);
         }
-        .pds-swatch-step {
+        .cds-swatch-step {
           font-size: var(--text-caption1);
           line-height: var(--text-caption1--line-height);
           letter-spacing: var(--text-caption1--letter-spacing);
-          color: var(--pds-label-alternative);
+          color: var(--cds-label-alternative);
           text-align: center;
           font-variant-numeric: tabular-nums;
         }

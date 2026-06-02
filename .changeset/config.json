@@ -4,15 +4,15 @@
   "commit": false,
   "fixed": [
     [
-      "@fluxloop-ai/pds-core",
-      "@fluxloop-ai/pds-icons",
-      "@fluxloop-ai/pds-ui",
-      "@fluxloop-ai/pds-markdown"
+      "@tendtoyj/cds-core",
+      "@tendtoyj/cds-icons",
+      "@tendtoyj/cds-ui",
+      "@tendtoyj/cds-markdown"
     ]
   ],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@fluxloop-ai/pds-docs"]
+  "ignore": ["@tendtoyj/cds-docs"]
 }

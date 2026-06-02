@@ -1,8 +1,8 @@
 "use client";
 
-import { renderMarkdown } from "@fluxloop-ai/pds-markdown";
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
-import { ChatUserMessage } from "@fluxloop-ai/pds-ui/components/chat-user-message";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
+import { ChatUserMessage } from "@tendtoyj/cds-ui/components/chat-user-message";
 
 const USER_QUESTION =
   "Anthropic SDK 로 스트리밍 응답 받는 방법 알려줘. `messages.stream()` 이랑 `create({ stream: true })` 차이도 궁금해.";
@@ -88,7 +88,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 export function ChatAssistantMessageDemo() {
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatUserMessage content={USER_QUESTION} />
       <ChatAssistantMessage content={ASSISTANT_REPLY} renderMarkdown={renderMarkdown} />
       <Styles />
@@ -99,16 +99,16 @@ export function ChatAssistantMessageDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-chat-demo-card {
+      .cds-chat-demo-card {
         display: flex;
         flex-direction: column;
         gap: 16px;
         padding: 20px;
         margin: 16px 0;
         max-width: 400px;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

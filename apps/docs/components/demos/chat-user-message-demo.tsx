@@ -1,7 +1,7 @@
 "use client";
 
-import { ChatUserMessage } from "@fluxloop-ai/pds-ui/components/chat-user-message";
-import type { ContentBlock } from "@fluxloop-ai/pds-ui/types";
+import { ChatUserMessage } from "@tendtoyj/cds-ui/components/chat-user-message";
+import type { ContentBlock } from "@tendtoyj/cds-ui/types";
 
 const IMAGE_A: ContentBlock = {
   type: "image",
@@ -38,7 +38,7 @@ const EMPTY_TEXT: ContentBlock = { type: "text", text: "(no message)" };
 
 export function ChatUserMessageDemo() {
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatUserMessage content="안녕하세요. 오늘 날씨는 어떤가요?" />
       <ChatUserMessage content={MULTILINE_TEXT} />
       <ChatUserMessage content={LONG_TEXT} />
@@ -54,16 +54,16 @@ export function ChatUserMessageDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-chat-demo-card {
+      .cds-chat-demo-card {
         display: flex;
         flex-direction: column;
         gap: 16px;
         max-width: 400px;
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

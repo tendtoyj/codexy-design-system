@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-24 text-center">
-      <h1 className="font-semibold text-4xl tracking-tight">Pluto Design System</h1>
+      <h1 className="font-semibold text-4xl tracking-tight">Codexy Design System</h1>
       <p className="max-w-xl text-balance text-fd-muted-foreground">
-        토큰 · 프리미티브 · AI 친화 컴포넌트. Pluto 데스크탑 앱의 단일 UI 소스.
+        토큰 · 프리미티브 · AI 친화 컴포넌트. Codexy 데스크탑 앱의 단일 UI 소스.
       </p>
       <Link
         href="/docs"

@@ -1,9 +1,9 @@
 "use client";
 
-import { Info } from "@fluxloop-ai/pds-icons/icons";
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { Input } from "@fluxloop-ai/pds-ui/components/input";
+import { Info } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { Input } from "@tendtoyj/cds-ui/components/input";
 import {
   Popover,
   PopoverActionArea,
@@ -16,11 +16,11 @@ import {
   PopoverTitle,
   PopoverTitleRow,
   PopoverTrigger,
-} from "@fluxloop-ai/pds-ui/components/popover";
+} from "@tendtoyj/cds-ui/components/popover";
 
 export function PopoverNormalDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outlined">정보 보기</Button>
@@ -58,7 +58,7 @@ export function PopoverNormalDemo() {
 
 export function PopoverSizeDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 8 }}>
       {(["sm", "md", "lg"] as const).map((s) => (
         <Popover key={s}>
           <PopoverTrigger asChild>
@@ -82,7 +82,7 @@ export function PopoverSizeDemo() {
 
 export function PopoverCustomDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Popover>
         <PopoverTrigger asChild>
           <IconButton size="sm" variant="normal" aria-label="도움말">
@@ -90,8 +90,8 @@ export function PopoverCustomDemo() {
           </IconButton>
         </PopoverTrigger>
         <PopoverContent variant="custom" size="sm" className="p-0 overflow-hidden">
-          <div className="p-[12px] text-[12px] leading-[1.5] text-[color:var(--pds-label-neutral)]">
-            <b className="text-[color:var(--pds-label-normal)]">variant=&quot;custom&quot;</b>
+          <div className="p-[12px] text-[12px] leading-[1.5] text-[color:var(--cds-label-neutral)]">
+            <b className="text-[color:var(--cds-label-normal)]">variant=&quot;custom&quot;</b>
             <div>헤더/액션 크롬 없이 children 만 렌더링.</div>
           </div>
         </PopoverContent>
@@ -104,12 +104,12 @@ export function PopoverCustomDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

@@ -5,7 +5,7 @@ description: box-shadow / drop-shadow / ambient glow 3계열
 
 import { BoxShadowRow, DropShadowRow, GlowRow } from "@/components/demos/shadow-grid";
 
-PDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로 통합하지 않는다.
+CDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로 통합하지 않는다.
 
 ## (a) Box Shadow — 사각 카드·버튼·다이얼로그
 
@@ -14,7 +14,7 @@ PDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로
 <BoxShadowRow />
 
 ```tsx
-<div style={{ boxShadow: "var(--pds-shadow-md)" }} />
+<div style={{ boxShadow: "var(--cds-shadow-md)" }} />
 ```
 
 ## (b) Drop Shadow — 비사각 / SVG / squircle 외곽
@@ -24,7 +24,7 @@ PDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로
 <DropShadowRow />
 
 ```tsx
-<svg style={{ filter: "var(--pds-drop-md)" }} />
+<svg style={{ filter: "var(--cds-drop-md)" }} />
 ```
 
 ## (c) Glow — 포커스 링 / AI Ambient
@@ -34,7 +34,7 @@ PDS는 서로 **다른 문제를 푸는 3계열**을 유지한다. 한 계열로
 <GlowRow />
 
 ```tsx
-<div style={{ boxShadow: "var(--pds-glow-sm)" }} />
+<div style={{ boxShadow: "var(--cds-glow-sm)" }} />
 ```
 
 ## 선택 가이드

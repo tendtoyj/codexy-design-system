@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowSquareOut } from "@fluxloop-ai/pds-icons/icons";
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
+import { ArrowSquareOut } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
 
 /**
  * AppShell 은 viewport 전체를 차지하는 데스크탑 셸이라 docs 페이지 안에서 충분히 보여주기 어렵다.
@@ -9,12 +9,12 @@ import { Button } from "@fluxloop-ai/pds-ui/components/button";
  */
 export function AppShellDemo() {
   return (
-    <div className="my-[16px] flex items-center justify-between gap-[16px] rounded-[var(--pds-radius-12)] border border-[var(--pds-line-normal-alternative)] bg-[var(--pds-background-normal-alternative)] px-[20px] py-[16px]">
+    <div className="my-[16px] flex items-center justify-between gap-[16px] rounded-[var(--cds-radius-12)] border border-[var(--cds-line-normal-alternative)] bg-[var(--cds-background-normal-alternative)] px-[20px] py-[16px]">
       <div className="flex flex-col gap-[2px]">
-        <span className="font-medium text-[13px] text-[color:var(--pds-label-normal)]">
+        <span className="font-medium text-[13px] text-[color:var(--cds-label-normal)]">
           전체 화면에서 보기
         </span>
-        <span className="text-[12px] text-[color:var(--pds-label-alternative)]">
+        <span className="text-[12px] text-[color:var(--cds-label-alternative)]">
           AppShell 은 데스크탑 셸이라 새 창에서 풀 viewport 로 띄운다.
         </span>
       </div>

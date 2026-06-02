@@ -1,0 +1,30 @@
+/**
+ * CDS motion — duration / easing / transition 프리셋.
+ * ease-standard 는 codexy-note chat-easing 과 동일 — 모든 step-in·fade·collapse 기본값.
+ *
+ * 소비는 `transition: var(--cds-transition-all)` / `animation-timing-function: var(--cds-ease-*)`
+ * 패턴. Tailwind `duration-*` / `ease-*` 유틸리티 대체용이 아님 → `:root`.
+ */
+:root {
+  /* duration */
+  --cds-duration-instant: 80ms;
+  --cds-duration-fast: 150ms;
+  --cds-duration-normal: 200ms;
+  --cds-duration-slow: 300ms;
+  --cds-duration-slower: 450ms;
+
+  /* easing */
+  --cds-ease-linear: linear;
+  --cds-ease-standard: cubic-bezier(0.23, 1, 0.32, 1);
+  --cds-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --cds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --cds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --cds-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* transition 프리셋 */
+  --cds-transition-color: color var(--cds-duration-fast) var(--cds-ease-standard);
+  --cds-transition-bg: background-color var(--cds-duration-fast) var(--cds-ease-standard);
+  --cds-transition-transform: transform var(--cds-duration-normal) var(--cds-ease-standard);
+  --cds-transition-opacity: opacity var(--cds-duration-normal) var(--cds-ease-standard);
+  --cds-transition-all: all var(--cds-duration-normal) var(--cds-ease-standard);
+}

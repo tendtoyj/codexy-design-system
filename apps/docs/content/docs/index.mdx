@@ -1,11 +1,11 @@
 ---
 title: Getting Started
-description: Pluto Design System 개요와 설치 안내
+description: Codexy Design System 개요와 설치 안내
 ---
 
-## PDS란
+## CDS란
 
-Pluto Design System(PDS)은 The Pluto 앱의 **단일 UI 소스**다.
+Codexy Design System(CDS)은 The Codexy 앱의 **단일 UI 소스**다.
 토큰 · 프리미티브 · AI 친화 컴포넌트가 하나의 체계로 묶인다.
 
 - **코드가 SSOT** — Figma는 역생성으로 유지
@@ -16,22 +16,22 @@ Pluto Design System(PDS)은 The Pluto 앱의 **단일 UI 소스**다.
 
 | 패키지 | 역할 |
 | --- | --- |
-| `@fluxloop-ai/pds-core` | 토큰(@theme), Tailwind preset, Pretendard, motion, utility helpers (`cn`/`tv`) |
-| `@fluxloop-ai/pds-ui` | Radix + Tailwind 컴포넌트 (shadcn 레지스트리) |
-| `@fluxloop-ai/pds-icons` | phosphor 래퍼 + PDS 아이콘 + 브랜드 아이콘 |
-| `@fluxloop-ai/pds-markdown` | chat 슬롯용 markdown 렌더러 |
+| `@tendtoyj/cds-core` | 토큰(@theme), Tailwind preset, Pretendard, motion, utility helpers (`cn`/`tv`) |
+| `@tendtoyj/cds-ui` | Radix + Tailwind 컴포넌트 (shadcn 레지스트리) |
+| `@tendtoyj/cds-icons` | phosphor 래퍼 + CDS 아이콘 + 브랜드 아이콘 |
+| `@tendtoyj/cds-markdown` | chat 슬롯용 markdown 렌더러 |
 
 ## 설치 (앱 레포)
 
 ```bash
-pnpm add @fluxloop-ai/pds-core @fluxloop-ai/pds-icons @fluxloop-ai/pds-markdown
-npx shadcn add https://pds.pluto.com/r/button
+pnpm add @tendtoyj/cds-core @tendtoyj/cds-icons @tendtoyj/cds-markdown
+npx shadcn add https://cds.codexy.com/r/button
 ```
 
 그다음 앱 루트 CSS 에 토큰을 연결:
 
 ```css
-@import "@fluxloop-ai/pds-core/styles";
+@import "@tendtoyj/cds-core/styles";
 ```
 
 ## 현재 상태

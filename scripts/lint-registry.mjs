@@ -4,9 +4,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(fileURLToPath(import.meta.url), "../..");
-const pdsUi = path.join(repoRoot, "packages/pds-ui");
-const registryPath = path.join(pdsUi, "registry.json");
-const componentsDir = path.join(pdsUi, "src/components");
+const cdsUi = path.join(repoRoot, "packages/cds-ui");
+const registryPath = path.join(cdsUi, "registry.json");
+const componentsDir = path.join(cdsUi, "src/components");
 
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 
@@ -19,7 +19,7 @@ for (const item of registry.items ?? []) {
 
 const missingOnDisk = [];
 for (const rel of registeredPaths) {
-  if (!fs.existsSync(path.join(pdsUi, rel))) missingOnDisk.push(rel);
+  if (!fs.existsSync(path.join(cdsUi, rel))) missingOnDisk.push(rel);
 }
 
 const topLevelComponents = fs

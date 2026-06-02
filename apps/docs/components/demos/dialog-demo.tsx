@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
+import { Button } from "@tendtoyj/cds-ui/components/button";
 import {
   Dialog,
   DialogActionArea,
@@ -11,12 +11,12 @@ import {
   DialogNavigation,
   DialogTitle,
   DialogTrigger,
-} from "@fluxloop-ai/pds-ui/components/dialog";
-import { Input } from "@fluxloop-ai/pds-ui/components/input";
+} from "@tendtoyj/cds-ui/components/dialog";
+import { Input } from "@tendtoyj/cds-ui/components/input";
 
 export function DialogPopupDemo() {
   return (
-    <div className="pds-dlg-card">
+    <div className="cds-dlg-card">
       <Dialog>
         <DialogTrigger asChild>
           <Button>프로젝트 만들기</Button>
@@ -47,7 +47,7 @@ export function DialogPopupDemo() {
 
 export function DialogFullDemo() {
   return (
-    <div className="pds-dlg-card">
+    <div className="cds-dlg-card">
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="frosted">전체 설정 열기</Button>
@@ -58,7 +58,7 @@ export function DialogFullDemo() {
             <DialogClose />
           </DialogNavigation>
           <DialogBody>
-            <p className="text-[color:var(--pds-label-alternative)] text-[13px]">
+            <p className="text-[color:var(--cds-label-alternative)] text-[13px]">
               Dialog 의 <code>variant=&quot;full&quot;</code> 데모. 데스크탑 앱 기준이라{" "}
               <code>bottom</code> variant 는 제외.
             </p>
@@ -73,12 +73,12 @@ export function DialogFullDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-dlg-card {
+      .cds-dlg-card {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

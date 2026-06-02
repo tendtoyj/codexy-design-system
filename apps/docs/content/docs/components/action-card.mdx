@@ -22,8 +22,8 @@ import {
   ActionCardTitle,
   ActionCardDescription,
   ActionCardTrailing,
-} from "@fluxloop-ai/pds-ui/components/action-card";
-import { Compass, Check } from "@fluxloop-ai/pds-icons/icons";
+} from "@tendtoyj/cds-ui/components/action-card";
+import { Compass, Check } from "@tendtoyj/cds-icons/icons";
 
 <ActionCard onClick={...}>
   <ActionCardTitle icon={Compass}>Where should I start?</ActionCardTitle>
@@ -73,9 +73,9 @@ description / leading / trailing 없이 title 단독. 모든 슬롯이 필수가
 
 | variant | rest | hover |
 |---|---|---|
-| `outlined` | border 1px `--pds-line-normal-normal` + bg 투명 | bg `--pds-fill-alternative` |
-| `filled` | border 없음 + bg `--pds-fill-alternative` | bg `--pds-fill-normal` |
-| `ghost` | border 없음 + bg 투명 | bg `--pds-fill-alternative` |
+| `outlined` | border 1px `--cds-line-normal-normal` + bg 투명 | bg `--cds-fill-alternative` |
+| `filled` | border 없음 + bg `--cds-fill-alternative` | bg `--cds-fill-normal` |
+| `ghost` | border 없음 + bg 투명 | bg `--cds-fill-alternative` |
 
 <ActionCardVariantDemo />
 
@@ -120,8 +120,8 @@ description / leading / trailing 없이 title 단독. 모든 슬롯이 필수가
 |---|---|
 | radius | `12px` |
 | padding | `14px 16px` |
-| title typography | 14px / 20px / semibold / `--pds-label-strong` |
-| description typography | 13px / 18px / `--pds-label-alternative` |
+| title typography | 14px / 20px / semibold / `--cds-label-strong` |
+| description typography | 13px / 18px / `--cds-label-alternative` |
 | Leading ↔ Title 간격 | `12px` (Leading 의 `margin-right`) |
 | Title ↔ Trailing 간격 | `12px` (Trailing 의 `margin-left`) |
 | Title ↔ Description 간격 | `2px` (row-gap) |

@@ -1,17 +1,17 @@
 "use client";
 
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
+import { Button } from "@tendtoyj/cds-ui/components/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@fluxloop-ai/pds-ui/components/tooltip";
+} from "@tendtoyj/cds-ui/components/tooltip";
 
 export function TooltipBasicDemo() {
   return (
     <TooltipProvider delayDuration={200}>
-      <div className="pds-tt-card">
+      <div className="cds-tt-card">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="frosted">Hover me</Button>
@@ -35,7 +35,7 @@ export function TooltipBasicDemo() {
 export function TooltipSideDemo() {
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="pds-tt-card">
+      <div className="cds-tt-card">
         {(["top", "right", "bottom", "left"] as const).map((side) => (
           <Tooltip key={side}>
             <TooltipTrigger asChild>
@@ -55,7 +55,7 @@ export function TooltipSideDemo() {
 export function TooltipSizeDemo() {
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="pds-tt-card">
+      <div className="cds-tt-card">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="frosted">size sm</Button>
@@ -77,15 +77,15 @@ export function TooltipSizeDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-tt-card {
+      .cds-tt-card {
         display: flex;
         flex-wrap: wrap;
         gap: 16px;
         padding: 40px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

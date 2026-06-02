@@ -1,18 +1,18 @@
 "use client";
 
-import { ArrowRight, Plus } from "@fluxloop-ai/pds-icons/icons";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { TextButton } from "@fluxloop-ai/pds-ui/components/text-button";
+import { ArrowRight, Plus } from "@tendtoyj/cds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { TextButton } from "@tendtoyj/cds-ui/components/text-button";
 import { useState } from "react";
 
 export function TextButtonColorDemo() {
   return (
-    <div className="pds-tbtn-card">
-      <div className="pds-tbtn-row">
+    <div className="cds-tbtn-card">
+      <div className="cds-tbtn-row">
         <TextButton color="primary">Primary</TextButton>
         <TextButton color="assistive">Assistive</TextButton>
       </div>
-      <div className="pds-tbtn-row">
+      <div className="cds-tbtn-row">
         <TextButton color="primary" disabled>
           Primary
         </TextButton>
@@ -27,8 +27,8 @@ export function TextButtonColorDemo() {
 
 export function TextButtonSizeDemo() {
   return (
-    <div className="pds-tbtn-card">
-      <div className="pds-tbtn-row">
+    <div className="cds-tbtn-card">
+      <div className="cds-tbtn-row">
         <TextButton size="sm">Small</TextButton>
         <TextButton size="md">Medium</TextButton>
       </div>
@@ -39,8 +39,8 @@ export function TextButtonSizeDemo() {
 
 export function TextButtonWithIconDemo() {
   return (
-    <div className="pds-tbtn-card">
-      <div className="pds-tbtn-row">
+    <div className="cds-tbtn-card">
+      <div className="cds-tbtn-row">
         <TextButton leadingContent={<Icon icon={Plus} />}>새로 만들기</TextButton>
         <TextButton trailingContent={<Icon icon={ArrowRight} />}>더 보기</TextButton>
         <TextButton color="assistive" trailingContent={<Icon icon={ArrowRight} />}>
@@ -55,8 +55,8 @@ export function TextButtonWithIconDemo() {
 export function TextButtonLoadingDemo() {
   const [loading, setLoading] = useState(false);
   return (
-    <div className="pds-tbtn-card">
-      <div className="pds-tbtn-row">
+    <div className="cds-tbtn-card">
+      <div className="cds-tbtn-row">
         <TextButton
           loading={loading}
           onClick={() => {
@@ -78,17 +78,17 @@ export function TextButtonLoadingDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-tbtn-card {
+      .cds-tbtn-card {
         display: flex;
         flex-direction: column;
         gap: 12px;
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-tbtn-row {
+      .cds-tbtn-row {
         display: flex;
         flex-wrap: wrap;
         gap: 16px;

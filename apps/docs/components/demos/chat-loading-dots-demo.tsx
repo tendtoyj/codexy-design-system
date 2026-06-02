@@ -1,8 +1,8 @@
 "use client";
 
-import { ChatAssistantMessage } from "@fluxloop-ai/pds-ui/components/chat-assistant-message";
-import { ChatLoadingDots } from "@fluxloop-ai/pds-ui/components/chat-loading-dots";
-import { ChatUserMessage } from "@fluxloop-ai/pds-ui/components/chat-user-message";
+import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
+import { ChatLoadingDots } from "@tendtoyj/cds-ui/components/chat-loading-dots";
+import { ChatUserMessage } from "@tendtoyj/cds-ui/components/chat-user-message";
 import { useEffect, useState } from "react";
 
 const USER_QUESTION = "이건 어떻게 하는 거야?";
@@ -51,8 +51,8 @@ export function ChatLoadingDotsDemo() {
   const showDot = phase === "idle" || phase === "typing";
 
   return (
-    <div className="pds-chat-demo-card">
-      <div className="pds-chat-thread">
+    <div className="cds-chat-demo-card">
+      <div className="cds-chat-thread">
         <ChatUserMessage content={USER_QUESTION} />
         <ChatAssistantMessage
           content={text}
@@ -65,7 +65,7 @@ export function ChatLoadingDotsDemo() {
         />
       </div>
 
-      <footer className="pds-chat-demo-caption">
+      <footer className="cds-chat-demo-caption">
         <span className={phase === "idle" ? "is-active" : ""}>① 응답 대기 (placeholder)</span>
         <span aria-hidden="true">→</span>
         <span className={phase === "typing" ? "is-active" : ""}>
@@ -83,34 +83,34 @@ export function ChatLoadingDotsDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-chat-demo-card {
+      .cds-chat-demo-card {
         display: flex;
         flex-direction: column;
         gap: 16px;
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-chat-thread {
+      .cds-chat-thread {
         display: flex;
         flex-direction: column;
         gap: 16px;
         height: 220px;
         overflow: hidden;
       }
-      .pds-chat-demo-caption {
+      .cds-chat-demo-caption {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
         align-items: center;
         font-size: var(--text-caption1);
-        color: var(--pds-label-assistive);
+        color: var(--cds-label-assistive);
       }
-      .pds-chat-demo-caption .is-active {
-        color: var(--pds-primary-normal);
-        font-weight: var(--pds-font-weight-semibold);
+      .cds-chat-demo-caption .is-active {
+        color: var(--cds-primary-normal);
+        font-weight: var(--cds-font-weight-semibold);
       }
     `}</style>
   );

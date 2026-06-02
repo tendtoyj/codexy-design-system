@@ -1,0 +1,48 @@
+/**
+ * CDS radius. px-indexed 스케일 (2/4/6/8/10/12/16).
+ * spacing 토큰과 동일한 px-indexed 컨벤션. t-shirt 이름은 alias 로 유지.
+ * 전역 squircle(§4.5)과 조합해 macOS 감각의 모서리 스무딩을 획득.
+ * `static`: 모든 단계를 `:root` 에도 방출 (동적 `var(--cds-radius-10)` 참조 대비).
+ */
+@theme static {
+  /* px-indexed primary scale */
+  --radius-0: 0;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-full: 9999px;
+
+  --cds-radius-0: var(--radius-0);
+  --cds-radius-2: var(--radius-2);
+  --cds-radius-4: var(--radius-4);
+  --cds-radius-6: var(--radius-6);
+  --cds-radius-8: var(--radius-8);
+  --cds-radius-10: var(--radius-10);
+  --cds-radius-12: var(--radius-12);
+  --cds-radius-16: var(--radius-16);
+  --cds-radius-full: var(--radius-full);
+
+  /* t-shirt aliases (backwards compat) */
+  --radius-none: var(--radius-0);
+  --radius-xs: var(--radius-2);
+  --radius-sm: var(--radius-4);
+  --radius-md: var(--radius-6);
+  --radius-lg: var(--radius-8);
+  --radius-xl: var(--radius-12);
+  --radius-2xl: var(--radius-16);
+
+  --cds-radius-none: var(--radius-0);
+  --cds-radius-xs: var(--radius-2);
+  --cds-radius-sm: var(--radius-4);
+  --cds-radius-md: var(--radius-6);
+  --cds-radius-lg: var(--radius-8);
+  --cds-radius-xl: var(--radius-12);
+  --cds-radius-2xl: var(--radius-16);
+
+  /* 전역 squircle 강도 (0 = 표준 원형, 0.6 = macOS/iOS 감각) */
+  --cds-corner-smoothing: 0.6;
+}

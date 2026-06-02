@@ -1,6 +1,6 @@
 "use client";
 
-import { MagnifyingGlass } from "@fluxloop-ai/pds-icons/icons";
+import { MagnifyingGlass } from "@tendtoyj/cds-icons/icons";
 import {
   Combobox,
   ComboboxContent,
@@ -11,7 +11,7 @@ import {
   ComboboxList,
   ComboboxSeparator,
   ComboboxTrigger,
-} from "@fluxloop-ai/pds-ui/components/combobox";
+} from "@tendtoyj/cds-ui/components/combobox";
 import * as React from "react";
 
 const FRAMEWORKS = [
@@ -27,7 +27,7 @@ export function ComboboxBasicDemo() {
   const [value, setValue] = React.useState<string>("react");
   const selectedLabel = FRAMEWORKS.find((f) => f.value === value)?.label ?? value;
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Combobox value={value} onValueChange={setValue}>
         <ComboboxTrigger placeholder="프레임워크 선택" style={{ width: 280 }}>
           {selectedLabel}
@@ -56,7 +56,7 @@ const CITIES = [
 
 export function ComboboxGroupDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Combobox size="md" defaultValue="Seoul">
         <ComboboxTrigger style={{ width: 280 }} />
         <ComboboxContent>
@@ -87,7 +87,7 @@ export function ComboboxFilledDemo() {
   const [value, setValue] = React.useState<string>("react");
   const selectedLabel = FRAMEWORKS.find((f) => f.value === value)?.label ?? value;
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Combobox value={value} onValueChange={setValue}>
         <ComboboxTrigger variant="filled" placeholder="프레임워크 선택" style={{ width: 280 }}>
           {selectedLabel}
@@ -111,7 +111,7 @@ export function ComboboxFilledDemo() {
 
 export function ComboboxDisabledDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Combobox disabled defaultValue="react">
         <ComboboxTrigger style={{ width: 280 }}>React (disabled)</ComboboxTrigger>
         <ComboboxContent>
@@ -133,12 +133,12 @@ export function ComboboxDisabledDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

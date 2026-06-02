@@ -13,7 +13,7 @@ import {
   Plus,
   SidebarSimple,
   Trash,
-} from "@fluxloop-ai/pds-icons/icons";
+} from "@tendtoyj/cds-icons/icons";
 import {
   AppShell,
   AppShellLeadingControls,
@@ -26,17 +26,17 @@ import {
   AppShellSidebarHeader,
   AppShellSplitter,
   useScrollFade,
-} from "@fluxloop-ai/pds-ui";
+} from "@tendtoyj/cds-ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { SidebarList } from "@fluxloop-ai/pds-ui/components/sidebar-list";
-import { SidebarMenu } from "@fluxloop-ai/pds-ui/components/sidebar-menu";
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { SidebarList } from "@tendtoyj/cds-ui/components/sidebar-list";
+import { SidebarMenu } from "@tendtoyj/cds-ui/components/sidebar-menu";
 import { useState } from "react";
 
 const PRIMARY_NAV = [
@@ -200,7 +200,7 @@ export default function SidebarPatternPreviewPage() {
             <AppShellMainHeader />
             <AppShellMainBody>
               <div className="flex h-full items-center justify-center">
-                <span className="font-mono text-[11px] text-[color:var(--pds-label-alternative)] uppercase tracking-[0.16em]">
+                <span className="font-mono text-[11px] text-[color:var(--cds-label-alternative)] uppercase tracking-[0.16em]">
                   Main
                 </span>
               </div>

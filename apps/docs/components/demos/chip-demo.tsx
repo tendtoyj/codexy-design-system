@@ -1,12 +1,12 @@
 "use client";
 
-import { Hash, X } from "@fluxloop-ai/pds-icons/icons";
-import { Chip } from "@fluxloop-ai/pds-ui/components/chip";
+import { Hash, X } from "@tendtoyj/cds-icons/icons";
+import { Chip } from "@tendtoyj/cds-ui/components/chip";
 import * as React from "react";
 
 export function ChipSizeDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", alignItems: "center", gap: 8 }}>
       {(["xsmall", "small", "medium", "large"] as const).map((s) => (
         <Chip key={s} size={s}>
           size {s}
@@ -19,7 +19,7 @@ export function ChipSizeDemo() {
 
 export function ChipVariantDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div className="cds-demo-row" style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <Chip variant="solid">solid</Chip>
       <Chip variant="solid" active>
         solid · active
@@ -42,7 +42,7 @@ export function ChipToggleDemo() {
   const toggle = (key: string) =>
     setActive((a) => (a.includes(key) ? a.filter((x) => x !== key) : [...a, key]));
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 6 }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 6 }}>
       {options.map((opt) => (
         <Chip
           key={opt}
@@ -69,7 +69,7 @@ function RemoveButton({ label, onRemove }: { label: string; onRemove: () => void
         e.stopPropagation();
         onRemove();
       }}
-      className="pds-chip-remove"
+      className="cds-chip-remove"
     >
       <X />
     </button>
@@ -80,9 +80,9 @@ export function ChipRemovableDemo() {
   const [outlined, setOutlined] = React.useState(["React", "Tailwind", "Radix"]);
   const [solid, setSolid] = React.useState(["React", "Tailwind", "Radix"]);
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <span style={{ width: 64, fontSize: 12, color: "var(--pds-label-assistive)" }}>
+        <span style={{ width: 64, fontSize: 12, color: "var(--cds-label-assistive)" }}>
           outlined
         </span>
         {outlined.map((t) => (
@@ -101,11 +101,11 @@ export function ChipRemovableDemo() {
           </Chip>
         ))}
         {outlined.length === 0 ? (
-          <span style={{ fontSize: 12, color: "var(--pds-label-assistive)" }}>(모두 제거됨)</span>
+          <span style={{ fontSize: 12, color: "var(--cds-label-assistive)" }}>(모두 제거됨)</span>
         ) : null}
       </div>
       <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <span style={{ width: 64, fontSize: 12, color: "var(--pds-label-assistive)" }}>solid</span>
+        <span style={{ width: 64, fontSize: 12, color: "var(--cds-label-assistive)" }}>solid</span>
         {solid.map((t) => (
           <Chip
             key={t}
@@ -122,7 +122,7 @@ export function ChipRemovableDemo() {
           </Chip>
         ))}
         {solid.length === 0 ? (
-          <span style={{ fontSize: 12, color: "var(--pds-label-assistive)" }}>(모두 제거됨)</span>
+          <span style={{ fontSize: 12, color: "var(--cds-label-assistive)" }}>(모두 제거됨)</span>
         ) : null}
       </div>
       <Styles />
@@ -133,14 +133,14 @@ export function ChipRemovableDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-chip-remove {
+      .cds-chip-remove {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -153,8 +153,8 @@ function Styles() {
         opacity: 0.6;
         transition: opacity 0.15s ease;
       }
-      .pds-chip-remove:hover { opacity: 1; }
-      button.pds-chip-remove svg { width: 10px !important; height: 10px !important; }
+      .cds-chip-remove:hover { opacity: 1; }
+      button.cds-chip-remove svg { width: 10px !important; height: 10px !important; }
     `}</style>
   );
 }

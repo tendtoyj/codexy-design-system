@@ -1,0 +1,209 @@
+/**
+ * CDS motion keyframes — codexy-note chat-animations.css 를 CDS 네이밍으로 승계.
+ * 유틸 클래스는 .cds-animate-* 로 노출하고, 컴포넌트는 이를 직접 쓰거나
+ * Framer Motion variants(@tendtoyj/cds-core/motion) 로 접근한다.
+ */
+
+/* ---- fade / step-in ---- */
+@keyframes cds-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cds-fade-in-card {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cds-fade-collapse {
+  0% {
+    max-height: var(--cds-collapse-from, 640px);
+    opacity: 1;
+  }
+  100% {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* ---- loading / status dots ---- */
+@keyframes cds-dot-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cds-dot-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.28;
+  }
+  70% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+/* ---- icon pop — selected/active 진입 시 1회 ---- */
+@keyframes cds-icon-pop {
+  0% {
+    transform: rotate(-12deg) scale(0.88);
+  }
+  55% {
+    transform: rotate(5deg) scale(1.06);
+  }
+  100% {
+    transform: rotate(0) scale(1);
+  }
+}
+
+/* ---- skeleton shimmer ---- */
+@keyframes cds-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ---- text shimmer (ChatProcessTrace `Thinking` trigger) ---- */
+@keyframes cds-text-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ---- utility classes ---- */
+.cds-animate-step-in {
+  animation: cds-fade-in-up var(--cds-duration-slower) var(--cds-ease-standard) both;
+}
+
+.cds-animate-card-in {
+  animation: cds-fade-in-card 500ms var(--cds-ease-standard) both;
+}
+
+.cds-animate-icon-pop {
+  animation: cds-icon-pop var(--cds-duration-slow) var(--cds-ease-out) both;
+  transform-origin: center;
+}
+
+.cds-animate-dot-pulse {
+  display: inline-block;
+  border-radius: var(--cds-radius-full);
+  background: currentColor;
+  animation: cds-dot-pulse 1.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.cds-animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cds-fill-alternative) 0%,
+    var(--cds-fill-normal) 50%,
+    var(--cds-fill-alternative) 100%
+  );
+  background-size: 200% 100%;
+  animation: cds-shimmer 1.6s linear infinite;
+}
+
+.cds-animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cds-label-alternative) 0%,
+    var(--cds-label-normal) 50%,
+    var(--cds-label-alternative) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: cds-text-shimmer 2s linear infinite;
+}
+
+/* ---- dot ripple — ChatStepDot `running` 상태에서 동심원 퍼짐 ---- */
+.cds-animate-dot-ripple {
+  position: relative;
+}
+.cds-animate-dot-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--cds-radius-full);
+  background: currentColor;
+  animation: cds-dot-ripple 1.4s ease-out infinite;
+  pointer-events: none;
+}
+
+/* ---- chat collapsible (grid-template-rows 트릭) ---- */
+.cds-chat-collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms var(--cds-chat-easing);
+}
+.cds-chat-collapsible[data-expanded="true"] {
+  grid-template-rows: 1fr;
+}
+.cds-chat-collapsible > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ---- reduced motion ----
+ * !important 는 user preference(OS 접근성)가 모든 덮어쓰기를 이기도록 강제하기 위함.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .cds-animate-step-in,
+  .cds-animate-card-in,
+  .cds-animate-icon-pop,
+  .cds-animate-dot-pulse,
+  .cds-animate-dot-ripple::after,
+  .cds-chat-collapsible,
+  .cds-animate-shimmer,
+  .cds-animate-text-shimmer {
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    transition-duration: 0.01ms !important;
+  }
+
+  /* text-shimmer 는 background-clip:text + color:transparent 라서
+     애니메이션만 멈추면 텍스트가 보이지 않음 → 정적 색상으로 fallback. */
+  .cds-animate-text-shimmer {
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    background: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    -webkit-background-clip: initial !important;
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    background-clip: initial !important;
+    /* biome-ignore lint/complexity/noImportantStyles: accessibility override */
+    color: var(--cds-label-alternative) !important;
+  }
+}

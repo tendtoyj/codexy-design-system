@@ -1,35 +1,35 @@
 "use client";
 
-import { Checkbox } from "@fluxloop-ai/pds-ui/components/checkbox";
+import { Checkbox } from "@tendtoyj/cds-ui/components/checkbox";
 import {
   FormControl,
   FormDescription,
   FormErrorMessage,
   FormField,
   FormLabel,
-} from "@fluxloop-ai/pds-ui/components/form";
-import { Input } from "@fluxloop-ai/pds-ui/components/input";
+} from "@tendtoyj/cds-ui/components/form";
+import { Input } from "@tendtoyj/cds-ui/components/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@fluxloop-ai/pds-ui/components/select";
+} from "@tendtoyj/cds-ui/components/select";
 import * as React from "react";
 
 export function FormInputDemo() {
   const [email, setEmail] = React.useState("");
   const invalid = email.length > 0 && !email.includes("@");
   return (
-    <div className="pds-demo-row" style={{ maxWidth: 360 }}>
+    <div className="cds-demo-row" style={{ maxWidth: 360 }}>
       <FormField>
         <FormLabel required>이메일</FormLabel>
         <FormControl>
           <Input
             type="email"
             size="md"
-            placeholder="you@pluto.com"
+            placeholder="you@codexy.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             invalid={invalid}
@@ -46,7 +46,7 @@ export function FormInputDemo() {
 
 export function FormSelectDemo() {
   return (
-    <div className="pds-demo-row" style={{ maxWidth: 360 }}>
+    <div className="cds-demo-row" style={{ maxWidth: 360 }}>
       <FormField>
         <FormLabel>팀</FormLabel>
         <FormControl>
@@ -70,7 +70,7 @@ export function FormSelectDemo() {
 
 export function FormCheckboxDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <FormField orientation="inline">
         <FormControl>
           <Checkbox />
@@ -86,12 +86,12 @@ export function FormCheckboxDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

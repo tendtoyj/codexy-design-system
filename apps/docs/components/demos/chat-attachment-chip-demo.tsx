@@ -1,6 +1,6 @@
 "use client";
 
-import { ChatAttachmentChip } from "@fluxloop-ai/pds-ui/components/chat-attachment-chip";
+import { ChatAttachmentChip } from "@tendtoyj/cds-ui/components/chat-attachment-chip";
 import { useState } from "react";
 
 const THUMB_A =
@@ -11,7 +11,7 @@ const THUMB_B =
 
 export function ChatAttachmentChipBasicDemo() {
   return (
-    <div className="pds-attach-frame">
+    <div className="cds-attach-frame">
       <ChatAttachmentChip type="image" name="ui-reference.png" imageSrc={THUMB_A} />
       <ChatAttachmentChip type="image" name="color-palette-draft-2026.jpg" imageSrc={THUMB_B} />
       <ChatAttachmentChip type="file" name="release-notes-2026-q2.md" />
@@ -34,7 +34,7 @@ const REMOVABLE_INITIAL: Array<
 export function ChatAttachmentChipRemovableDemo() {
   const [items, setItems] = useState(REMOVABLE_INITIAL);
   return (
-    <div className="pds-attach-frame">
+    <div className="cds-attach-frame">
       {items.map((a) =>
         a.type === "image" ? (
           <ChatAttachmentChip
@@ -56,7 +56,7 @@ export function ChatAttachmentChipRemovableDemo() {
       {items.length === 0 ? (
         <button
           type="button"
-          className="pds-attach-reset"
+          className="cds-attach-reset"
           onClick={() => setItems(REMOVABLE_INITIAL)}
         >
           reset
@@ -70,30 +70,30 @@ export function ChatAttachmentChipRemovableDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-attach-frame {
+      .cds-attach-frame {
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
         padding: 24px;
         margin: 16px 0;
         max-width: 560px;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-attach-reset {
+      .cds-attach-reset {
         height: 28px;
         padding: 0 12px;
         font-size: 12px;
-        border: 1px solid var(--pds-line-normal-normal);
+        border: 1px solid var(--cds-line-normal-normal);
         border-radius: 999px;
         background: transparent;
-        color: var(--pds-label-alternative);
+        color: var(--cds-label-alternative);
         cursor: pointer;
       }
-      .pds-attach-reset:hover {
-        background: var(--pds-fill-normal);
-        color: var(--pds-label-normal);
+      .cds-attach-reset:hover {
+        background: var(--cds-fill-normal);
+        color: var(--cds-label-normal);
       }
     `}</style>
   );

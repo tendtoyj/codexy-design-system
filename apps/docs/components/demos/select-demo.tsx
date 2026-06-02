@@ -9,13 +9,13 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "@fluxloop-ai/pds-ui/components/select";
+} from "@tendtoyj/cds-ui/components/select";
 import * as React from "react";
 
 export function SelectBasicDemo() {
   const [value, setValue] = React.useState("seoul");
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 12 }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 12 }}>
       <Select value={value} onValueChange={setValue}>
         <SelectTrigger size="sm" style={{ width: 200 }}>
           <SelectValue placeholder="지역 선택" />
@@ -36,7 +36,7 @@ export function SelectBasicDemo() {
 
 export function SelectSizeDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
       {(["sm", "md", "lg"] as const).map((s) => (
         <Select key={s} defaultValue="apple">
           <SelectTrigger size={s} style={{ width: 160 }}>
@@ -56,7 +56,7 @@ export function SelectSizeDemo() {
 
 export function SelectGroupDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Select defaultValue="react">
         <SelectTrigger size="sm" style={{ width: 200 }}>
           <SelectValue />
@@ -84,7 +84,7 @@ export function SelectGroupDemo() {
 
 export function SelectVariantDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
       {(["outlined", "filled"] as const).map((v) => (
         <Select key={v} defaultValue="always">
           <SelectTrigger variant={v} size="md" style={{ width: 200 }}>
@@ -104,7 +104,7 @@ export function SelectVariantDemo() {
 
 export function SelectInvalidDemo() {
   return (
-    <div className="pds-demo-row">
+    <div className="cds-demo-row">
       <Select>
         <SelectTrigger size="sm" invalid style={{ width: 200 }}>
           <SelectValue placeholder="필수 항목" />
@@ -122,12 +122,12 @@ export function SelectInvalidDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

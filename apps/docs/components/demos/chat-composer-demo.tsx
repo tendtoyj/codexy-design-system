@@ -1,28 +1,28 @@
 "use client";
 
-import { CaretDown, HandWaving, Microphone, Plus } from "@fluxloop-ai/pds-icons/icons";
-import { ChatAttachmentChip } from "@fluxloop-ai/pds-ui/components/chat-attachment-chip";
-import { ChatComposer } from "@fluxloop-ai/pds-ui/components/chat-composer";
+import { CaretDown, HandWaving, Microphone, Plus } from "@tendtoyj/cds-icons/icons";
+import { ChatAttachmentChip } from "@tendtoyj/cds-ui/components/chat-attachment-chip";
+import { ChatComposer } from "@tendtoyj/cds-ui/components/chat-composer";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@fluxloop-ai/pds-ui/components/tooltip";
+} from "@tendtoyj/cds-ui/components/tooltip";
 import { useState } from "react";
 
 export function ChatComposerIdleDemo() {
   const [value, setValue] = useState("");
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatComposer
         value={value}
         onChange={setValue}
@@ -40,7 +40,7 @@ export function ChatComposerStreamingDemo() {
   const [value, setValue] = useState("작성 중인 메시지…");
   const [streaming, setStreaming] = useState(true);
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatComposer
         value={value}
         onChange={setValue}
@@ -54,7 +54,7 @@ export function ChatComposerStreamingDemo() {
           window.alert("Cancelled");
         }}
       />
-      <button type="button" className="pds-chat-demo-ctrl" onClick={() => setStreaming((s) => !s)}>
+      <button type="button" className="cds-chat-demo-ctrl" onClick={() => setStreaming((s) => !s)}>
         toggle streaming
       </button>
       <Styles />
@@ -107,7 +107,7 @@ export function ChatComposerAccessoriesDemo() {
   const [model, setModel] = useState("5.5-high");
   const [attachments, setAttachments] = useState(INITIAL_ATTACHMENTS);
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatComposer
         value={value}
         onChange={setValue}
@@ -118,7 +118,7 @@ export function ChatComposerAccessoriesDemo() {
         placeholder="후속 변경 사항을 부탁하세요"
         topAccessory={
           attachments.length > 0 ? (
-            <div className="pds-chat-demo-attachments">
+            <div className="cds-chat-demo-attachments">
               {attachments.map((a) =>
                 a.type === "image" ? (
                   <ChatAttachmentChip
@@ -151,10 +151,10 @@ export function ChatComposerAccessoriesDemo() {
           </IconButton>
         }
         bottomAccessory={
-          <div className="pds-chat-demo-row">
+          <div className="cds-chat-demo-row">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button type="button" className="pds-chat-demo-chip" aria-label="톤 선택">
+                <button type="button" className="cds-chat-demo-chip" aria-label="톤 선택">
                   <HandWaving width={14} height={14} />
                   <CaretDown width={10} height={10} />
                 </button>
@@ -171,7 +171,7 @@ export function ChatComposerAccessoriesDemo() {
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button type="button" className="pds-chat-demo-chip" aria-label="모델 선택">
+                <button type="button" className="cds-chat-demo-chip" aria-label="모델 선택">
                   {MODEL_OPTIONS.find((o) => o.id === model)?.label}
                   <CaretDown width={10} height={10} />
                 </button>
@@ -198,7 +198,7 @@ export function ChatComposerAccessoriesDemo() {
 export function ChatComposerStatesDemo() {
   const [v1, setV1] = useState("");
   return (
-    <div className="pds-chat-demo-card">
+    <div className="cds-chat-demo-card">
       <ChatComposer value={v1} onChange={setV1} onSubmit={() => {}} disabled />
       <Styles />
     </div>
@@ -259,51 +259,51 @@ function ContextRing({ percent }: { percent: number }) {
 function Styles() {
   return (
     <style>{`
-      .pds-chat-demo-card {
+      .cds-chat-demo-card {
         display: flex;
         flex-direction: column;
         gap: 8px;
         padding: 8px 0;
         margin: 16px 0;
         max-width: 400px;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-chat-demo-ctrl {
+      .cds-chat-demo-ctrl {
         align-self: flex-end;
         margin-right: 16px;
         padding: 4px 10px;
         font-size: 12px;
-        border: 1px solid var(--pds-line-normal-normal);
-        border-radius: var(--pds-radius-sm);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-normal-normal);
+        border-radius: var(--cds-radius-sm);
+        background: var(--cds-background-normal-normal);
         cursor: pointer;
       }
-      .pds-chat-demo-chip {
+      .cds-chat-demo-chip {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         height: 24px;
         padding: 0 6px;
         font-size: 12px;
-        color: var(--pds-label-alternative);
+        color: var(--cds-label-alternative);
         border: 0;
         border-radius: 6px;
         background: transparent;
         cursor: pointer;
       }
-      .pds-chat-demo-chip:hover {
-        background: var(--pds-background-normal-alternative);
-        color: var(--pds-label-normal);
+      .cds-chat-demo-chip:hover {
+        background: var(--cds-background-normal-alternative);
+        color: var(--cds-label-normal);
       }
-      .pds-chat-demo-row {
+      .cds-chat-demo-row {
         display: flex;
         align-items: center;
         gap: 4px;
         padding: 0 6px;
       }
-      .pds-chat-demo-attachments {
+      .cds-chat-demo-attachments {
         display: flex;
         flex-wrap: wrap;
         gap: 4px;

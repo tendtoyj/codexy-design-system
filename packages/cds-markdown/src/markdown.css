@@ -1,0 +1,117 @@
+.cds-markdown code,
+.cds-markdown pre {
+  font-size: 12px;
+}
+
+.cds-markdown code {
+  border: 0;
+}
+
+.cds-markdown pre {
+  background: var(--cds-fill-alternative);
+  padding: 12px 14px;
+  border-radius: var(--cds-radius-md);
+  overflow-x: auto;
+}
+
+.cds-markdown pre code {
+  display: block;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.cds-markdown p {
+  font-size: var(--text-body2);
+  line-height: var(--text-body2--line-height);
+  letter-spacing: var(--text-body2--letter-spacing);
+  margin: 4px 0;
+}
+
+.cds-markdown > :first-child {
+  margin-top: 0;
+}
+
+.cds-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.cds-markdown hr {
+  margin: 16px 0;
+}
+
+.cds-markdown h1 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.cds-markdown h2 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.cds-markdown h3 {
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.cds-markdown :is(h4, h5, h6) {
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.cds-markdown a {
+  color: var(--cds-accent-foreground-blue);
+  text-decoration: none;
+}
+
+.cds-markdown ul.contains-task-list {
+  padding-inline-start: 0;
+}
+
+.cds-markdown li.task-list-item {
+  list-style: none;
+}
+
+.cds-markdown li.task-list-item > input[type="checkbox"] {
+  margin-right: 6px;
+  vertical-align: middle;
+  position: relative;
+  top: 0;
+}
+
+.cds-markdown-table-scroll {
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.cds-markdown-table-scroll > table {
+  background: var(--cds-background-normal-normal);
+  border: 0;
+  border-radius: 0;
+  border-collapse: collapse;
+  margin: 0;
+  width: max-content;
+  min-width: 100%;
+}
+
+.cds-markdown-table-scroll th,
+.cds-markdown-table-scroll td {
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
+  min-width: 80px;
+}
+
+.cds-markdown-table-scroll thead th {
+  border-bottom: 1px solid var(--cds-line-solid-normal);
+}
+
+.cds-markdown-table-scroll tbody td {
+  border-bottom: 1px solid var(--cds-line-solid-normal);
+}
+
+.cds-markdown-table-scroll tbody tr:last-child td {
+  border-bottom: 0;
+}

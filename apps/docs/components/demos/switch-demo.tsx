@@ -1,6 +1,6 @@
 "use client";
 
-import { Switch } from "@fluxloop-ai/pds-ui/components/switch";
+import { Switch } from "@tendtoyj/cds-ui/components/switch";
 import * as React from "react";
 
 function LabeledSwitch({
@@ -20,7 +20,7 @@ function LabeledSwitch({
 
 export function SwitchSizeDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 16, alignItems: "center" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 16, alignItems: "center" }}>
       {(["sm", "md", "lg"] as const).map((s) => (
         <LabeledSwitch key={s} id={`sw-size-${s}`} size={s} defaultChecked label={s} />
       ))}
@@ -32,7 +32,7 @@ export function SwitchSizeDemo() {
 export function SwitchStatesDemo() {
   const [on, setOn] = React.useState(true);
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
       <LabeledSwitch id="sw-ctrl" checked={on} onCheckedChange={setOn} label={on ? "ON" : "OFF"} />
       <LabeledSwitch id="sw-disabled" disabled label="disabled" />
       <LabeledSwitch id="sw-disabled-on" defaultChecked disabled label="disabled on" />
@@ -44,12 +44,12 @@ export function SwitchStatesDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

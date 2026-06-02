@@ -18,9 +18,9 @@ import {
 - `label` — 텍스트 라벨이 children 으로 들어가는 ghost-toggle 톤. 페이지 상단의 섹션 스위처 용도. 툴팁은 띄우지 않는다.
 
 ```tsx
-import { Atom, PencilRuler } from "@fluxloop-ai/pds-icons/icons";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fluxloop-ai/pds-ui/components/tabs";
+import { Atom, PencilRuler } from "@tendtoyj/cds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@tendtoyj/cds-ui/components/tabs";
 
 // segmented (default)
 <Tabs defaultValue="loop">
@@ -92,21 +92,21 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fluxloop-ai/pds-ui/co
 
 | 속성 | 토큰 |
 |---|---|
-| inactive text | `--pds-label-alternative` |
-| disabled text | `--pds-label-disable` |
-| transition | `--pds-duration-fast` |
+| inactive text | `--cds-label-alternative` |
+| disabled text | `--cds-label-disable` |
+| transition | `--cds-duration-fast` |
 
 ### segmented
 
 | 속성 | 토큰 |
 |---|---|
 | trigger size | 24×24, 아이콘 18 (강제) |
-| trigger radius | `--pds-radius-6` |
+| trigger radius | `--cds-radius-6` |
 | 컨테이너 gap | 2px |
-| selected bg | `--pds-fill-strong` |
-| selected text | `--pds-label-normal` |
-| hover bg | `--pds-fill-normal` |
-| hover text | `--pds-label-neutral` |
+| selected bg | `--cds-fill-strong` |
+| selected text | `--cds-label-normal` |
+| hover bg | `--cds-fill-normal` |
+| hover text | `--cds-label-neutral` |
 
 ### label
 
@@ -114,15 +114,15 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fluxloop-ai/pds-ui/co
 |---|---|
 | trigger height | 28px |
 | trigger padding | `--spacing-8` |
-| trigger radius | `--pds-radius-10` |
+| trigger radius | `--cds-radius-10` |
 | text | 13/18 (label1) |
 | 컨테이너 gap | `--spacing-4` |
-| selected bg | `--pds-fill-normal` |
-| selected text | `--pds-label-normal` + `font-medium` |
-| hover text | `--pds-label-normal` (배경 변화 없음) |
+| selected bg | `--cds-fill-normal` |
+| selected text | `--cds-label-normal` + `font-medium` |
+| hover text | `--cds-label-normal` (배경 변화 없음) |
 
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/tabs
+npx shadcn add https://cds.codexy.com/r/tabs
 ```

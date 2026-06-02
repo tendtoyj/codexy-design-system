@@ -15,7 +15,7 @@ import {
   OpenAI,
   OpenCode,
   XAI,
-} from "@fluxloop-ai/pds-icons/brands";
+} from "@tendtoyj/cds-icons/brands";
 import type { ComponentType } from "react";
 
 type BrandGlyph = ComponentType<{ size?: number; className?: string }>;
@@ -45,18 +45,18 @@ const BRANDS: BrandEntry[] = [
 
 export function BrandIconsGalleryDemo() {
   return (
-    <div className="pds-brand-card">
-      <div className="pds-brand-grid">
+    <div className="cds-brand-card">
+      <div className="cds-brand-grid">
         {BRANDS.map(({ name, Mono, Color }) => (
-          <div key={name} className="pds-brand-cell">
-            <div className="pds-brand-glyphs">
+          <div key={name} className="cds-brand-cell">
+            <div className="cds-brand-glyphs">
               <Mono size={24} />
-              {Color ? <Color size={24} /> : <span className="pds-brand-empty">—</span>}
+              {Color ? <Color size={24} /> : <span className="cds-brand-empty">—</span>}
             </div>
             <code>{name}</code>
-            <div className="pds-brand-variants">
+            <div className="cds-brand-variants">
               <span>Mono</span>
-              <span className={Color ? undefined : "pds-brand-na"}>{Color ? "Color" : "n/a"}</span>
+              <span className={Color ? undefined : "cds-brand-na"}>{Color ? "Color" : "n/a"}</span>
             </div>
           </div>
         ))}
@@ -69,53 +69,53 @@ export function BrandIconsGalleryDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-brand-card {
+      .cds-brand-card {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-brand-grid {
+      .cds-brand-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 16px;
       }
-      .pds-brand-cell {
+      .cds-brand-cell {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
         padding: 16px 12px;
-        border: 1px solid var(--pds-line-normal-alternative);
-        border-radius: var(--pds-radius-md);
+        border: 1px solid var(--cds-line-normal-alternative);
+        border-radius: var(--cds-radius-md);
       }
-      .pds-brand-glyphs {
+      .cds-brand-glyphs {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 16px;
         min-height: 28px;
-        color: var(--pds-label-normal);
+        color: var(--cds-label-normal);
       }
-      .pds-brand-empty {
-        color: var(--pds-label-disable);
-        font-family: var(--pds-font-mono);
+      .cds-brand-empty {
+        color: var(--cds-label-disable);
+        font-family: var(--cds-font-mono);
       }
-      .pds-brand-cell code {
-        font-family: var(--pds-font-mono);
+      .cds-brand-cell code {
+        font-family: var(--cds-font-mono);
         font-size: var(--text-caption1);
-        color: var(--pds-label-normal);
+        color: var(--cds-label-normal);
       }
-      .pds-brand-variants {
+      .cds-brand-variants {
         display: flex;
         gap: 12px;
-        font-family: var(--pds-font-mono);
+        font-family: var(--cds-font-mono);
         font-size: var(--text-caption2);
-        color: var(--pds-label-alternative);
+        color: var(--cds-label-alternative);
       }
-      .pds-brand-na {
-        color: var(--pds-label-disable);
+      .cds-brand-na {
+        color: var(--cds-label-disable);
       }
     `}</style>
   );

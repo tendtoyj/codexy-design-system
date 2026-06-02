@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox } from "@fluxloop-ai/pds-ui/components/checkbox";
+import { Checkbox } from "@tendtoyj/cds-ui/components/checkbox";
 import * as React from "react";
 
 function LabeledCheckbox({
@@ -23,7 +23,7 @@ function LabeledCheckbox({
 
 export function CheckboxSizeDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 16, alignItems: "center" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 16, alignItems: "center" }}>
       {(["sm", "md"] as const).map((s) => (
         <LabeledCheckbox key={s} id={`cb-size-${s}`} size={s} defaultChecked label={s} />
       ))}
@@ -34,7 +34,7 @@ export function CheckboxSizeDemo() {
 
 export function CheckboxStatesDemo() {
   return (
-    <div className="pds-demo-row" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+    <div className="cds-demo-row" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
       <LabeledCheckbox id="cb-unchecked" label="unchecked" />
       <LabeledCheckbox id="cb-checked" defaultChecked label="checked" />
       <LabeledCheckbox id="cb-indeterminate" indeterminate label="indeterminate" />
@@ -51,7 +51,7 @@ export function CheckboxIndeterminateDemo() {
   const allChecked = ones.every(Boolean);
   const noneChecked = ones.every((v) => !v);
   return (
-    <div className="pds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+    <div className="cds-demo-row" style={{ display: "flex", flexDirection: "column", gap: 6 }}>
       <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600 }}>
         <Checkbox
           id="cb-all"
@@ -90,12 +90,12 @@ export function CheckboxIndeterminateDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-demo-row {
+      .cds-demo-row {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
     `}</style>
   );

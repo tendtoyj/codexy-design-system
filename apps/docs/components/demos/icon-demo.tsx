@@ -1,7 +1,7 @@
 "use client";
 
-import { Check, Gear, Lightning, MagnifyingGlass, Warning, X } from "@fluxloop-ai/pds-icons/icons";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
+import { Check, Gear, Lightning, MagnifyingGlass, Warning, X } from "@tendtoyj/cds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
 
 const SIZES = ["xs", "sm", "md", "lg", "xl"] as const;
 const COLORS = [
@@ -16,10 +16,10 @@ const COLORS = [
 
 export function IconSizeDemo() {
   return (
-    <div className="pds-icon-card">
-      <div className="pds-icon-row">
+    <div className="cds-icon-card">
+      <div className="cds-icon-row">
         {SIZES.map((s) => (
-          <div key={s} className="pds-icon-cell">
+          <div key={s} className="cds-icon-cell">
             <Icon icon={MagnifyingGlass} size={s} />
             <code>{s}</code>
           </div>
@@ -32,10 +32,10 @@ export function IconSizeDemo() {
 
 export function IconColorDemo() {
   return (
-    <div className="pds-icon-card">
-      <div className="pds-icon-row">
+    <div className="cds-icon-card">
+      <div className="cds-icon-row">
         {COLORS.map((c) => (
-          <div key={c} className="pds-icon-cell">
+          <div key={c} className="cds-icon-cell">
             <Icon icon={Lightning} size="lg" color={c} />
             <code>{c}</code>
           </div>
@@ -56,10 +56,10 @@ export function IconGalleryDemo() {
     { icon: Lightning, name: "Lightning" },
   ];
   return (
-    <div className="pds-icon-card">
-      <div className="pds-icon-row">
+    <div className="cds-icon-card">
+      <div className="cds-icon-row">
         {items.map((it) => (
-          <div key={it.name} className="pds-icon-cell">
+          <div key={it.name} className="cds-icon-cell">
             <Icon icon={it.icon} size="lg" color="label-normal" />
             <code>{it.name}</code>
           </div>
@@ -73,29 +73,29 @@ export function IconGalleryDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-icon-card {
+      .cds-icon-card {
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-icon-row {
+      .cds-icon-row {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-end;
         gap: 20px;
       }
-      .pds-icon-cell {
+      .cds-icon-cell {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 6px;
       }
-      .pds-icon-cell code {
-        font-family: var(--pds-font-mono);
+      .cds-icon-cell code {
+        font-family: var(--cds-font-mono);
         font-size: var(--text-caption1);
-        color: var(--pds-label-alternative);
+        color: var(--cds-label-alternative);
       }
     `}</style>
   );

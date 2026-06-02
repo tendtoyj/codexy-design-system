@@ -1,13 +1,13 @@
 "use client";
 
-import { Heart, MagnifyingGlass, Plus, Trash, X } from "@fluxloop-ai/pds-icons/icons";
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
+import { Heart, MagnifyingGlass, Plus, Trash, X } from "@tendtoyj/cds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 
 export function IconButtonVariantDemo() {
   return (
-    <div className="pds-icon-btn-card">
-      <div className="pds-icon-btn-row">
+    <div className="cds-icon-btn-card">
+      <div className="cds-icon-btn-row">
         <IconButton variant="normal" aria-label="검색">
           <Icon icon={MagnifyingGlass} />
         </IconButton>
@@ -24,7 +24,7 @@ export function IconButtonVariantDemo() {
           <Icon icon={Plus} />
         </IconButton>
       </div>
-      <div className="pds-icon-btn-row">
+      <div className="cds-icon-btn-row">
         <IconButton variant="normal" disabled aria-label="검색">
           <Icon icon={MagnifyingGlass} />
         </IconButton>
@@ -48,8 +48,8 @@ export function IconButtonVariantDemo() {
 
 export function IconButtonSizeDemo() {
   return (
-    <div className="pds-icon-btn-card">
-      <div className="pds-icon-btn-row">
+    <div className="cds-icon-btn-card">
+      <div className="cds-icon-btn-row">
         <IconButton size="xs" variant="background" aria-label="좋아요">
           <Icon icon={Heart} />
         </IconButton>
@@ -63,7 +63,7 @@ export function IconButtonSizeDemo() {
           <Icon icon={Heart} />
         </IconButton>
       </div>
-      <div className="pds-icon-btn-row">
+      <div className="cds-icon-btn-row">
         <IconButton size="xs" variant="outlined" aria-label="삭제">
           <Icon icon={Trash} />
         </IconButton>
@@ -84,8 +84,8 @@ export function IconButtonSizeDemo() {
 
 export function IconButtonInlineDemo() {
   return (
-    <div className="pds-icon-btn-card">
-      <div className="pds-inline-row">
+    <div className="cds-icon-btn-card">
+      <div className="cds-inline-row">
         <span>알림이 도착했어요</span>
         <IconButton size="sm" aria-label="닫기">
           <Icon icon={X} />
@@ -99,30 +99,30 @@ export function IconButtonInlineDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-icon-btn-card {
+      .cds-icon-btn-card {
         display: flex;
         flex-direction: column;
         gap: 12px;
         padding: 20px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-icon-btn-row {
+      .cds-icon-btn-row {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         align-items: center;
       }
-      .pds-inline-row {
+      .cds-inline-row {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         padding: 8px 12px;
-        border-radius: var(--pds-radius-md);
-        background: var(--pds-fill-normal);
-        color: var(--pds-label-normal);
+        border-radius: var(--cds-radius-md);
+        background: var(--cds-fill-normal);
+        color: var(--cds-label-normal);
         font-size: 13px;
       }
     `}</style>

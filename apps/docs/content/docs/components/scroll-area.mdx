@@ -12,7 +12,7 @@ import {
 ## 사용
 
 ```tsx
-import { ScrollArea } from "@fluxloop-ai/pds-ui/components/scroll-area";
+import { ScrollArea } from "@tendtoyj/cds-ui/components/scroll-area";
 
 <ScrollArea className="h-[220px] w-[320px]">
   ...
@@ -34,8 +34,8 @@ import { ScrollArea } from "@fluxloop-ai/pds-ui/components/scroll-area";
 <ScrollAreaFadeDemo />
 
 ```tsx
-import { ScrollArea } from "@fluxloop-ai/pds-ui/components/scroll-area";
-import { useScrollFade } from "@fluxloop-ai/pds-ui";
+import { ScrollArea } from "@tendtoyj/cds-ui/components/scroll-area";
+import { useScrollFade } from "@tendtoyj/cds-ui";
 
 function Sidebar() {
   const { ref, onScroll, maskImage } = useScrollFade<HTMLDivElement>({ size: 40 });
@@ -78,12 +78,12 @@ ScrollArea 가 아닌 임의의 `overflow:auto` 컨테이너에도 동일하게 
 
 ## 스타일 상세
 
-- 기본 두께는 `--pds-sb-size` CSS 변수로 제어, hover 시 10px 확장
-- thumb 색상은 `color-mix(--pds-label-alternative 45%)`, hover 시 65%
+- 기본 두께는 `--cds-sb-size` CSS 변수로 제어, hover 시 10px 확장
+- thumb 색상은 `color-mix(--cds-label-alternative 45%)`, hover 시 65%
 - min hit-area 44×44 (before pseudo) — 포인터 여유
 
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/scroll-area
+npx shadcn add https://cds.codexy.com/r/scroll-area
 ```

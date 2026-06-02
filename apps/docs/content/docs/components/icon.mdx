@@ -1,6 +1,6 @@
 ---
 title: Icon
-description: phosphor 래퍼 + pds-icons 커스텀 슬롯
+description: phosphor 래퍼 + cds-icons 커스텀 슬롯
 ---
 
 import {
@@ -9,13 +9,13 @@ import {
   IconGalleryDemo,
 } from "@/components/demos/icon-demo";
 
-@phosphor-icons/react 의 아이콘 컴포넌트를 `icon` prop 으로 주입하고 PDS 기본 size / color 를 적용한다. 공급자는 `@fluxloop-ai/pds-icons/icons` 중립 서브패스로만 소비한다(공급자 직접 import 금지).
+@phosphor-icons/react 의 아이콘 컴포넌트를 `icon` prop 으로 주입하고 CDS 기본 size / color 를 적용한다. 공급자는 `@tendtoyj/cds-icons/icons` 중립 서브패스로만 소비한다(공급자 직접 import 금지).
 
 ## 사용
 
 ```tsx
-import { Icon } from "@fluxloop-ai/pds-ui/components/icon";
-import { MagnifyingGlass } from "@fluxloop-ai/pds-icons/icons";
+import { Icon } from "@tendtoyj/cds-ui/components/icon";
+import { MagnifyingGlass } from "@tendtoyj/cds-icons/icons";
 
 <Icon icon={MagnifyingGlass} size="md" color="label-normal" />
 ```
@@ -23,7 +23,7 @@ import { MagnifyingGlass } from "@fluxloop-ai/pds-icons/icons";
 커스텀 SVG 도 동일하게 붙인다.
 
 ```tsx
-import { MyCustomIcon } from "@fluxloop-ai/pds-icons";
+import { MyCustomIcon } from "@tendtoyj/cds-icons";
 
 <Icon icon={MyCustomIcon} size="lg" color="primary" label="커스텀 아이콘" />
 ```
@@ -55,7 +55,7 @@ semantic 토큰 이름을 값으로 받는다. 기본은 `inherit` — 부모 te
 | Prop | 타입 | 기본 | 설명 |
 |---|---|---|---|
 | `icon` | `PhosphorIcon \| ComponentType<SVGAttributes>` | — | 렌더할 아이콘 컴포넌트 |
-| `size` | `xs \| sm \| md \| lg \| xl` | `md` | PDS 5단계 |
+| `size` | `xs \| sm \| md \| lg \| xl` | `md` | CDS 5단계 |
 | `color` | semantic token 이름 | `inherit` | 아래 표 참조 |
 | `label` | `string` | — | 있으면 `role="img"` + `aria-label`. 없으면 `aria-hidden` |
 
@@ -65,5 +65,5 @@ semantic 토큰 이름을 값으로 받는다. 기본은 `inherit` — 부모 te
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/icon
+npx shadcn add https://cds.codexy.com/r/icon
 ```

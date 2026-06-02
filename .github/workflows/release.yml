@@ -32,7 +32,7 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
           registry-url: https://npm.pkg.github.com
-          scope: "@fluxloop-ai"
+          scope: "@tendtoyj"
 
       - name: Install
         run: pnpm install --frozen-lockfile

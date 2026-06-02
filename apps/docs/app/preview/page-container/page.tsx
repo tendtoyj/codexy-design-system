@@ -1,6 +1,6 @@
 "use client";
 
-import { ChatCircle, SidebarSimple } from "@fluxloop-ai/pds-icons/icons";
+import { ChatCircle, SidebarSimple } from "@tendtoyj/cds-icons/icons";
 import {
   AppShell,
   AppShellLeadingControls,
@@ -15,9 +15,9 @@ import {
   AppShellSidePanelHeader,
   AppShellSplitter,
   AppShellTrailingControls,
-} from "@fluxloop-ai/pds-ui";
-import { IconButton } from "@fluxloop-ai/pds-ui/components/icon-button";
-import { PageContainer } from "@fluxloop-ai/pds-ui/components/page-container";
+} from "@tendtoyj/cds-ui";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { PageContainer } from "@tendtoyj/cds-ui/components/page-container";
 import { useState } from "react";
 
 /**
@@ -143,25 +143,25 @@ export default function PageContainerPreviewPage() {
 function VariantBlock({ label, spec, note }: { label: string; spec: string; note: string }) {
   return (
     <div
-      className="flex flex-col gap-[6px] rounded-[var(--pds-radius-12)] border border-dashed px-[24px] py-[20px]"
+      className="flex flex-col gap-[6px] rounded-[var(--cds-radius-12)] border border-dashed px-[24px] py-[20px]"
       style={{
-        borderColor: "var(--pds-line-solid-normal)",
-        background: "var(--pds-background-normal-alternative)",
+        borderColor: "var(--cds-line-solid-normal)",
+        background: "var(--cds-background-normal-alternative)",
       }}
     >
       <div className="flex items-baseline gap-[8px]">
-        <span style={{ font: "var(--pds-font-title3-bold)", color: "var(--pds-label-strong)" }}>
+        <span style={{ font: "var(--cds-font-title3-bold)", color: "var(--cds-label-strong)" }}>
           {label}
         </span>
         <span
           className="font-mono"
-          style={{ font: "var(--pds-font-label2-regular)", color: "var(--pds-label-neutral)" }}
+          style={{ font: "var(--cds-font-label2-regular)", color: "var(--cds-label-neutral)" }}
         >
           {spec}
         </span>
       </div>
       <span
-        style={{ font: "var(--pds-font-label1-regular)", color: "var(--pds-label-alternative)" }}
+        style={{ font: "var(--cds-font-label1-regular)", color: "var(--cds-label-alternative)" }}
       >
         {note}
       </span>
@@ -172,7 +172,7 @@ function VariantBlock({ label, spec, note }: { label: string; spec: string; note
 function SidePlaceholder({ label }: { label: string }) {
   return (
     <div className="flex h-full items-center justify-center">
-      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--pds-label-assistive)]">
+      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--cds-label-assistive)]">
         {label}
       </span>
     </div>

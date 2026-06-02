@@ -9,8 +9,8 @@ import {
   Plus,
   ShareNetwork,
   Trash,
-} from "@fluxloop-ai/pds-icons/icons";
-import { Button } from "@fluxloop-ai/pds-ui/components/button";
+} from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -26,12 +26,12 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@fluxloop-ai/pds-ui/components/dropdown-menu";
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
 import { useState } from "react";
 
 export function DropdownBasicDemo() {
   return (
-    <div className="pds-dd-card">
+    <div className="cds-dd-card">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="frosted">메뉴 열기</Button>
@@ -89,7 +89,7 @@ export function DropdownCheckDemo() {
   const [panel, setPanel] = useState(true);
   const [ruler, setRuler] = useState(false);
   return (
-    <div className="pds-dd-card">
+    <div className="cds-dd-card">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="frosted">보기 옵션</Button>
@@ -130,7 +130,7 @@ export function DropdownPlacementDemo() {
   );
 
   return (
-    <div className="pds-dd-card pds-dd-row">
+    <div className="cds-dd-card cds-dd-row">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="frosted">align=&quot;start&quot;</Button>
@@ -167,7 +167,7 @@ export function DropdownPlacementDemo() {
 
 export function DropdownSizeDemo() {
   return (
-    <div className="pds-dd-card pds-dd-row">
+    <div className="cds-dd-card cds-dd-row">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="frosted" size="sm">
@@ -233,7 +233,7 @@ export function DropdownSizeDemo() {
 export function DropdownRadioDemo() {
   const [pos, setPos] = useState("bottom");
   return (
-    <div className="pds-dd-card">
+    <div className="cds-dd-card">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="frosted">패널 위치: {pos}</Button>
@@ -255,14 +255,14 @@ export function DropdownRadioDemo() {
 function Styles() {
   return (
     <style>{`
-      .pds-dd-card {
+      .cds-dd-card {
         padding: 24px;
         margin: 16px 0;
-        border: 1px solid var(--pds-line-solid-normal);
-        border-radius: var(--pds-radius-lg);
-        background: var(--pds-background-normal-normal);
+        border: 1px solid var(--cds-line-solid-normal);
+        border-radius: var(--cds-radius-lg);
+        background: var(--cds-background-normal-normal);
       }
-      .pds-dd-row {
+      .cds-dd-row {
         display: flex;
         gap: 16px;
         align-items: flex-start;

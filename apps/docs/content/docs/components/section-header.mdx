@@ -16,9 +16,9 @@ import {
 콘텐츠 영역 / 섹션의 시작점을 명확히 표시할 때. 한 줄 row 모델로, 타이틀 옆에 보조 chip/icon 을 붙이거나 우측 끝에 "전체 보기" 같은 trailing 액션을 둘 수 있다. 페이지 진입 헤더(eyebrow + 타이틀 + 설명 stack 패턴)는 `SectionHeader` 가 아닌 별도 컴포넌트를 사용한다.
 
 ```tsx
-import { SectionHeader } from "@fluxloop-ai/pds-ui/components/section-header";
-import { TextButton } from "@fluxloop-ai/pds-ui/components/text-button";
-import { ArrowRight } from "@fluxloop-ai/pds-icons/icons";
+import { SectionHeader } from "@tendtoyj/cds-ui/components/section-header";
+import { TextButton } from "@tendtoyj/cds-ui/components/text-button";
+import { ArrowRight } from "@tendtoyj/cds-icons/icons";
 
 <SectionHeader
   trailingContent={
@@ -73,21 +73,21 @@ import { ArrowRight } from "@fluxloop-ai/pds-icons/icons";
 | `headingAs` | `"h1"~"h6"` | `"h2"` | 시맨틱 헤딩 태그 |
 | `headingContent` | `ReactNode` | - | 타이틀 우측 슬롯 (Chip / IconButton 등) |
 | `trailingContent` | `ReactNode` | - | 우측 끝 슬롯 (TextButton / IconButton 등) |
-| `color` | `string` | - | 기본 색 override. CSS color value 또는 `var(--pds-…)`. 자식이 inherit 한다 |
+| `color` | `string` | - | 기본 색 override. CSS color value 또는 `var(--cds-…)`. 자식이 inherit 한다 |
 | `children` | `ReactNode` | - | 타이틀 텍스트 |
 
 ## 디자인 결정
 
 - **1라인 row 모델만.** Eyebrow + 타이틀 + 설명을 수직으로 쌓는 페이지 진입 헤더는 별도 컴포넌트로 분리. SectionHeader 는 한 줄 헤더 패턴에만 책임진다.
-- **`platform` prop 없음.** PDS 는 데스크톱 기준 단일 밀도. 반응형 typography 는 별도 토큰 계층이 잡힌 뒤 도입.
+- **`platform` prop 없음.** CDS 는 데스크톱 기준 단일 밀도. 반응형 typography 는 별도 토큰 계층이 잡힌 뒤 도입.
 - **Pagination 서브 미동봉.** Prev/next 페이지네이터는 별도 `Pagination` 컴포넌트로 잡고, 여기서는 `trailingContent` 슬롯으로 받는다.
 - **`color` 는 root 에만 적용, 자식은 inherit.** `headingContent` / `trailingContent` 안의 `IconButton` / `TextButton` 은 자체 variant 색을 갖는다 — 헤더 색에 강제로 동기화하지 않는다. 톤을 맞추려면 슬롯 안에서 직접 지정.
-- **수직 정렬은 center (Montage 와 차이).** Montage 는 `align-items: flex-end` (베이스라인) 을 쓰지만, 한글 타이틀 + Chip/Button 조합에서 시각적으로 어긋나 보이는 케이스가 있어 PDS 는 `items-center` 로 통일. 슬롯 콘텐츠 높이는 자연스럽게 결정되며, row 전체 높이 = max(slot heights).
+- **수직 정렬은 center (Montage 와 차이).** Montage 는 `align-items: flex-end` (베이스라인) 을 쓰지만, 한글 타이틀 + Chip/Button 조합에서 시각적으로 어긋나 보이는 케이스가 있어 CDS 는 `items-center` 로 통일. 슬롯 콘텐츠 높이는 자연스럽게 결정되며, row 전체 높이 = max(slot heights).
 - **타이틀 ↔ headingContent gap 은 사이즈별로 차등.** xs `4px` / sm·md `6px` / lg `8px`. 헤더 typography 스케일에 비례. 타이틀과 한 덩어리로 읽히는 의도라 의도적으로 좁게 둠 (Montage 의 균일 10px 보다 타이트).
 - **`not-prose` 자동 적용.** MDX `.prose` 컨테이너 안에 들어가도 내부 `<h2>` 가 prose 의 `margin-top/bottom` 영향을 받지 않도록 root 에 `not-prose` 가 박혀있다.
 
 ## Registry 설치
 
 ```bash
-npx shadcn add https://pds.pluto.com/r/section-header
+npx shadcn add https://cds.codexy.com/r/section-header
 ```

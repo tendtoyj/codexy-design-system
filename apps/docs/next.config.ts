@@ -6,7 +6,7 @@ const withMDX = createMDX();
 
 const config: NextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@fluxloop-ai/pds-core", "@fluxloop-ai/pds-icons", "@fluxloop-ai/pds-ui"],
+  transpilePackages: ["@tendtoyj/cds-core", "@tendtoyj/cds-icons", "@tendtoyj/cds-ui"],
   outputFileTracingRoot: path.join(import.meta.dirname ?? "", "..", ".."),
 };
 
