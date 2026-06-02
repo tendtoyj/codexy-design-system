@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { Slot } from "@radix-ui/react-slot";
+import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as React from "react";
 
 const iconButton = tv({

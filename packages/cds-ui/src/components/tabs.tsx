@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv } from "@tendtoyj/cds-core";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { cn, tv } from "@tendtoyj/cds-core";
 import * as React from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 

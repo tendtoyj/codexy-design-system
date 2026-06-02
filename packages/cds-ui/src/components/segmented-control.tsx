@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as React from "react";
 
 const segmentedControl = tv({

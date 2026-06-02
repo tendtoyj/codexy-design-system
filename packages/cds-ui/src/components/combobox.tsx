@@ -1,8 +1,8 @@
 "use client";
 
+import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { CaretDown } from "@tendtoyj/cds-icons/icons";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { Command as CommandRoot } from "cmdk";
 import * as React from "react";
 
@@ -81,7 +81,8 @@ const combobox = tv({
     },
     size: {
       sm: {
-        trigger: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
+        trigger:
+          "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
         icon: "w-[var(--cds-field-icon-xs)] h-[var(--cds-field-icon-xs)]",
         content: "rounded-[var(--cds-menu-content-radius-sm)]",
         inputWrap: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)]",
@@ -91,7 +92,8 @@ const combobox = tv({
         separator: "my-[2px] mx-[8px]",
       },
       md: {
-        trigger: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
+        trigger:
+          "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
         icon: "w-[var(--cds-field-icon-sm)] h-[var(--cds-field-icon-sm)]",
         content: "rounded-[var(--cds-menu-content-radius-md)]",
         inputWrap: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)]",

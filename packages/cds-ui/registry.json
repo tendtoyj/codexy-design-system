@@ -64,11 +64,7 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "9-slot TextField with invalid/positive/disabled/readOnly + leading/trailing + reset.",
-      "dependencies": [
-        "@tendtoyj/cds-core",
-        "@radix-ui/react-compose-refs",
-        "@tendtoyj/cds-icons"
-      ],
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-compose-refs", "@tendtoyj/cds-icons"],
       "files": [
         {
           "path": "src/components/input.tsx",
@@ -158,11 +154,7 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Radix Popover — sm/md/lg × normal/custom. Header/Body/ActionArea slots.",
-      "dependencies": [
-        "@tendtoyj/cds-core",
-        "@radix-ui/react-popover",
-        "@tendtoyj/cds-icons"
-      ],
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-popover", "@tendtoyj/cds-icons"],
       "registryDependencies": ["close-button"],
       "files": [
         {
@@ -233,11 +225,7 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Radix Checkbox — sm/md, checked/indeterminate/invalid/disabled states.",
-      "dependencies": [
-        "@tendtoyj/cds-core",
-        "@radix-ui/react-checkbox",
-        "@tendtoyj/cds-icons"
-      ],
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-checkbox", "@tendtoyj/cds-icons"],
       "files": [
         {
           "path": "src/components/checkbox.tsx",
@@ -569,11 +557,7 @@
       "type": "registry:ui",
       "title": "ChatComposer",
       "description": "Chat input — auto-grow textarea with attachments and send action.",
-      "dependencies": [
-        "@tendtoyj/cds-core",
-        "@radix-ui/react-compose-refs",
-        "@tendtoyj/cds-icons"
-      ],
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-compose-refs", "@tendtoyj/cds-icons"],
       "files": [
         {
           "path": "src/components/chat-composer.tsx",

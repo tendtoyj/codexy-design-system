@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
+import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as React from "react";
 
 const switchStyles = tv({

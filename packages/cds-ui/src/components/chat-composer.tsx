@@ -1,8 +1,8 @@
 "use client";
 
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { cn, tv } from "@tendtoyj/cds-core";
 import { ArrowUp } from "@tendtoyj/cds-icons/icons";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as React from "react";
 
 const chatComposer = tv({

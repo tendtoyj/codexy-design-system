@@ -1,8 +1,8 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import type { PhosphorIcon } from "@tendtoyj/cds-icons/icons";
-import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
 import { Icon } from "./icon";
 

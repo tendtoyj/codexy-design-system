@@ -1,8 +1,8 @@
 "use client";
 
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { Buildings, GraduationCap, User } from "@tendtoyj/cds-icons/icons";
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as React from "react";
 
 const avatar = tv({

@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as React from "react";
 
 const scrollArea = tv({

@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
+import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import * as React from "react";
 
 const separator = tv({

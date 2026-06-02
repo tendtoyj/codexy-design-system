@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  type RemovableTab,
-  RemovableTabBar,
-} from "@tendtoyj/cds-ui/components/removable-tab-bar";
+import { type RemovableTab, RemovableTabBar } from "@tendtoyj/cds-ui/components/removable-tab-bar";
 import { useState } from "react";
 
 const INITIAL: RemovableTab[] = [

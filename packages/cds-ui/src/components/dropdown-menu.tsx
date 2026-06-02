@@ -1,8 +1,8 @@
 "use client";
 
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { CaretRight, Check } from "@tendtoyj/cds-icons/icons";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import * as React from "react";
 
 const menu = tv({

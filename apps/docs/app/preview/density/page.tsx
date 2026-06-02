@@ -103,7 +103,8 @@ export default function DensityPreviewPage() {
           Density rollout — control components
         </h1>
         <p className="text-[length:var(--text-body1)] text-[color:var(--cds-label-neutral)] mb-[32px]">
-          동일한 컴포넌트 코드. 오른쪽만 <code>data-density=&quot;touch&quot;</code> 스코프로 감쌌습니다.
+          동일한 컴포넌트 코드. 오른쪽만 <code>data-density=&quot;touch&quot;</code> 스코프로
+          감쌌습니다.
         </p>
         <div className="flex flex-wrap gap-[24px]">
           <Panel label="comfortable (desktop)" />

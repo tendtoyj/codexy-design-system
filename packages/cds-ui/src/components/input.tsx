@@ -1,8 +1,8 @@
 "use client";
 
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { Check, X, XCircle as XCircleFill } from "@tendtoyj/cds-icons/icons";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as React from "react";
 
 const input = tv({
@@ -51,39 +51,55 @@ const input = tv({
     size: {
       xs: {
         wrapper: "rounded-[var(--cds-control-radius-xs)]",
-        field: "h-[var(--cds-control-height-xs)] px-[var(--cds-control-pad-x-xs)] rounded-[var(--cds-control-radius-xs)] text-[length:var(--cds-control-text-xs)]",
+        field:
+          "h-[var(--cds-control-height-xs)] px-[var(--cds-control-pad-x-xs)] rounded-[var(--cds-control-radius-xs)] text-[length:var(--cds-control-text-xs)]",
         leading: "[&_svg]:!w-[var(--cds-field-icon-xs)] [&_svg]:!h-[var(--cds-field-icon-xs)]",
         trailing: "[&_svg]:!w-[var(--cds-field-icon-xs)] [&_svg]:!h-[var(--cds-field-icon-xs)]",
-        reset: "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
-        invalidIcon: "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
-        positiveIcon: "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
+        reset:
+          "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
+        invalidIcon:
+          "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
+        positiveIcon:
+          "size-[var(--cds-field-affordance-xs)] [&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
       },
       sm: {
         wrapper: "rounded-[var(--cds-control-radius-sm)]",
-        field: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
+        field:
+          "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
         leading: "[&_svg]:!w-[var(--cds-field-icon-sm)] [&_svg]:!h-[var(--cds-field-icon-sm)]",
         trailing: "[&_svg]:!w-[var(--cds-field-icon-sm)] [&_svg]:!h-[var(--cds-field-icon-sm)]",
-        reset: "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
-        invalidIcon: "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
-        positiveIcon: "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
+        reset:
+          "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
+        invalidIcon:
+          "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
+        positiveIcon:
+          "size-[var(--cds-field-affordance-sm)] [&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
       },
       md: {
         wrapper: "rounded-[var(--cds-control-radius-md)]",
-        field: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
+        field:
+          "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
         leading: "[&_svg]:!w-[var(--cds-field-icon-md)] [&_svg]:!h-[var(--cds-field-icon-md)]",
         trailing: "[&_svg]:!w-[var(--cds-field-icon-md)] [&_svg]:!h-[var(--cds-field-icon-md)]",
-        reset: "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
-        invalidIcon: "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
-        positiveIcon: "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
+        reset:
+          "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
+        invalidIcon:
+          "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
+        positiveIcon:
+          "size-[var(--cds-field-affordance-md)] [&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
       },
       lg: {
         wrapper: "rounded-[var(--cds-control-radius-lg)]",
-        field: "h-[var(--cds-control-height-lg)] px-[var(--cds-control-pad-x-lg)] rounded-[var(--cds-control-radius-lg)] text-[length:var(--cds-control-text-lg)]",
+        field:
+          "h-[var(--cds-control-height-lg)] px-[var(--cds-control-pad-x-lg)] rounded-[var(--cds-control-radius-lg)] text-[length:var(--cds-control-text-lg)]",
         leading: "[&_svg]:!w-[var(--cds-field-icon-lg)] [&_svg]:!h-[var(--cds-field-icon-lg)]",
         trailing: "[&_svg]:!w-[var(--cds-field-icon-lg)] [&_svg]:!h-[var(--cds-field-icon-lg)]",
-        reset: "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
-        invalidIcon: "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
-        positiveIcon: "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
+        reset:
+          "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
+        invalidIcon:
+          "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
+        positiveIcon:
+          "size-[var(--cds-field-affordance-lg)] [&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
       },
     },
     invalid: {

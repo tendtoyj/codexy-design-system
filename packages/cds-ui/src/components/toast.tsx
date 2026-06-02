@@ -1,8 +1,8 @@
 "use client";
 
+import * as ToastPrimitive from "@radix-ui/react-toast";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { Check, Info, Warning, WarningCircle } from "@tendtoyj/cds-icons/icons";
-import * as ToastPrimitive from "@radix-ui/react-toast";
 import * as React from "react";
 import { Icon } from "./icon";
 import { CloseButton } from "./internal/close-button";

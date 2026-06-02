@@ -1,8 +1,8 @@
 "use client";
 
+import * as SelectPrimitive from "@radix-ui/react-select";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { CaretDown, CaretUp, Check } from "@tendtoyj/cds-icons/icons";
-import * as SelectPrimitive from "@radix-ui/react-select";
 import * as React from "react";
 
 const select = tv({
@@ -69,7 +69,8 @@ const select = tv({
     },
     size: {
       sm: {
-        trigger: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
+        trigger:
+          "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
         icon: "w-[var(--cds-field-icon-xs)] h-[var(--cds-field-icon-xs)]",
         content: "rounded-[var(--cds-menu-content-radius-sm)]",
         item: "px-[var(--cds-menu-item-pad-x-sm)] py-[var(--cds-menu-item-pad-y-sm)] rounded-[var(--cds-menu-item-radius-sm)] text-[13px] [&_svg]:w-[var(--cds-menu-item-icon-sm)] [&_svg]:h-[var(--cds-menu-item-icon-sm)]",
@@ -78,7 +79,8 @@ const select = tv({
         separator: "my-[2px] mx-[8px]",
       },
       md: {
-        trigger: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
+        trigger:
+          "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
         icon: "w-[var(--cds-field-icon-sm)] h-[var(--cds-field-icon-sm)]",
         content: "rounded-[var(--cds-menu-content-radius-md)]",
         item: "px-[var(--cds-menu-item-pad-x-md)] py-[var(--cds-menu-item-pad-y-md)] rounded-[var(--cds-menu-item-radius-md)] text-[14px] [&_svg]:w-[var(--cds-menu-item-icon-md)] [&_svg]:h-[var(--cds-menu-item-icon-md)]",
@@ -87,7 +89,8 @@ const select = tv({
         separator: "my-[4px] mx-[10px]",
       },
       lg: {
-        trigger: "h-[var(--cds-control-height-lg)] px-[var(--cds-control-pad-x-lg)] rounded-[var(--cds-control-radius-lg)] text-[length:var(--cds-control-text-lg)]",
+        trigger:
+          "h-[var(--cds-control-height-lg)] px-[var(--cds-control-pad-x-lg)] rounded-[var(--cds-control-radius-lg)] text-[length:var(--cds-control-text-lg)]",
         icon: "w-[var(--cds-field-icon-lg)] h-[var(--cds-field-icon-lg)]",
         content: "rounded-[var(--cds-menu-content-radius-md)]",
         item: "px-[12px] py-[8px] rounded-[var(--cds-menu-item-radius-md)] text-[14px] [&_svg]:w-[var(--cds-menu-item-icon-md)] [&_svg]:h-[var(--cds-menu-item-icon-md)]",

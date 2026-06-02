@@ -46,10 +46,7 @@ import {
   DropdownMenuTrigger,
 } from "@tendtoyj/cds-ui/components/dropdown-menu";
 import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
-import {
-  type RemovableTab,
-  RemovableTabBar,
-} from "@tendtoyj/cds-ui/components/removable-tab-bar";
+import { type RemovableTab, RemovableTabBar } from "@tendtoyj/cds-ui/components/removable-tab-bar";
 import { Separator } from "@tendtoyj/cds-ui/components/separator";
 import { useEffect, useState } from "react";
 

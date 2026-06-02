@@ -1,8 +1,8 @@
 "use client";
 
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { cn, tv, type VariantProps } from "@tendtoyj/cds-core";
 import { Check, Minus } from "@tendtoyj/cds-icons/icons";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import * as React from "react";
 
 const checkbox = tv({
