@@ -27,12 +27,12 @@ const radio = tv({
   variants: {
     size: {
       sm: {
-        item: "w-[16px] h-[16px]",
-        dot: "w-[5px] h-[5px]",
+        item: "w-[var(--cds-radio-size-sm)] h-[var(--cds-radio-size-sm)]",
+        dot: "w-[var(--cds-radio-dot-sm)] h-[var(--cds-radio-dot-sm)]",
       },
       md: {
-        item: "w-[20px] h-[20px]",
-        dot: "w-[6px] h-[6px]",
+        item: "w-[var(--cds-radio-size-md)] h-[var(--cds-radio-size-md)]",
+        dot: "w-[var(--cds-radio-dot-md)] h-[var(--cds-radio-dot-md)]",
       },
     },
   },

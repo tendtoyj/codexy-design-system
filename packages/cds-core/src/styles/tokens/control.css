@@ -83,3 +83,196 @@
   --cds-control-gap-lead: 6px;
   --cds-control-gap-trail: 4px;
 }
+
+/* ── field affordances (input/select/combobox 내부 아이콘) ──── */
+/* field 본체 높이·패딩·radius·text 는 --cds-control-* 재사용. */
+:root {
+  /* leading/trailing 아이콘 (버튼보다 한 스텝 큼) */
+  --cds-field-icon-xs: 14px;
+  --cds-field-icon-sm: 16px;
+  --cds-field-icon-md: 18px;
+  --cds-field-icon-lg: 18px;
+
+  /* reset/status 어포던스 컨테이너 (내부 아이콘은 --cds-control-icon-* 재사용) */
+  --cds-field-affordance-xs: 18px;
+  --cds-field-affordance-sm: 20px;
+  --cds-field-affordance-md: 22px;
+  --cds-field-affordance-lg: 22px;
+}
+[data-density="touch"] {
+  --cds-field-icon-xs: 18px;
+  --cds-field-icon-sm: 20px;
+  --cds-field-icon-md: 22px;
+  --cds-field-icon-lg: 22px;
+
+  --cds-field-affordance-xs: 22px;
+  --cds-field-affordance-sm: 24px;
+  --cds-field-affordance-md: 26px;
+  --cds-field-affordance-lg: 26px;
+}
+
+/* ── toggle (checkbox / radio 박스 + 인디케이터) ────────────── */
+:root {
+  --cds-toggle-size-sm: 12px;
+  --cds-toggle-size-md: 16px;
+  --cds-toggle-icon-sm: 8px;
+  --cds-toggle-icon-md: 12px;
+}
+[data-density="touch"] {
+  --cds-toggle-size-sm: 18px;
+  --cds-toggle-size-md: 22px;
+  --cds-toggle-icon-sm: 12px;
+  --cds-toggle-icon-md: 16px;
+}
+
+/* ── menu (dropdown / select / combobox / sidebar 메뉴 항목) ── */
+:root {
+  --cds-menu-content-pad-sm: 4px;
+  --cds-menu-content-pad-md: 6px;
+  --cds-menu-content-radius-sm: 10px;
+  --cds-menu-content-radius-md: 12px;
+  --cds-menu-content-min-w-sm: 140px;
+  --cds-menu-content-min-w-md: 160px;
+
+  --cds-menu-item-pad-x-sm: 8px;
+  --cds-menu-item-pad-x-md: 10px;
+  --cds-menu-item-pad-y-sm: 4px;
+  --cds-menu-item-pad-y-md: 6px;
+  --cds-menu-item-radius-sm: 8px;
+  --cds-menu-item-radius-md: 10px;
+  --cds-menu-item-icon-sm: 14px;
+  --cds-menu-item-icon-md: 16px;
+}
+[data-density="touch"] {
+  --cds-menu-content-pad-sm: 6px;
+  --cds-menu-content-pad-md: 8px;
+  --cds-menu-content-radius-sm: 12px;
+  --cds-menu-content-radius-md: 14px;
+  --cds-menu-content-min-w-sm: 180px;
+  --cds-menu-content-min-w-md: 200px;
+
+  --cds-menu-item-pad-x-sm: 12px;
+  --cds-menu-item-pad-x-md: 14px;
+  --cds-menu-item-pad-y-sm: 10px;
+  --cds-menu-item-pad-y-md: 12px;
+  --cds-menu-item-radius-sm: 10px;
+  --cds-menu-item-radius-md: 12px;
+  --cds-menu-item-icon-sm: 18px;
+  --cds-menu-item-icon-md: 20px;
+}
+
+/* ── chip / badge / attachment-chip (small·medium·large·xlarge) ─ */
+:root {
+  --cds-chip-radius-sm: 6px;
+  --cds-chip-radius-md: 8px;
+  --cds-chip-radius-lg: 8px;
+  --cds-chip-radius-xl: 10px;
+
+  --cds-chip-pad-x-sm: 7px;
+  --cds-chip-pad-x-md: 8px;
+  --cds-chip-pad-x-lg: 11px;
+  --cds-chip-pad-x-xl: 12px;
+
+  --cds-chip-pad-y-sm: 4px;
+  --cds-chip-pad-y-md: 6px;
+  --cds-chip-pad-y-lg: 7px;
+  --cds-chip-pad-y-xl: 9px;
+
+  --cds-chip-gap-sm: 2px;
+  --cds-chip-gap-md: 2px;
+  --cds-chip-gap-lg: 3px;
+  --cds-chip-gap-xl: 3px;
+
+  --cds-chip-icon-sm: 12px;
+  --cds-chip-icon-md: 14px;
+  --cds-chip-icon-lg: 14px;
+  --cds-chip-icon-xl: 16px;
+}
+[data-density="touch"] {
+  --cds-chip-radius-sm: 8px;
+  --cds-chip-radius-md: 10px;
+  --cds-chip-radius-lg: 10px;
+  --cds-chip-radius-xl: 12px;
+
+  --cds-chip-pad-x-sm: 10px;
+  --cds-chip-pad-x-md: 12px;
+  --cds-chip-pad-x-lg: 15px;
+  --cds-chip-pad-x-xl: 16px;
+
+  --cds-chip-pad-y-sm: 6px;
+  --cds-chip-pad-y-md: 8px;
+  --cds-chip-pad-y-lg: 9px;
+  --cds-chip-pad-y-xl: 11px;
+
+  --cds-chip-gap-sm: 3px;
+  --cds-chip-gap-md: 3px;
+  --cds-chip-gap-lg: 4px;
+  --cds-chip-gap-xl: 4px;
+
+  --cds-chip-icon-sm: 14px;
+  --cds-chip-icon-md: 18px;
+  --cds-chip-icon-lg: 18px;
+  --cds-chip-icon-xl: 20px;
+}
+
+/* ── icon-button (정사각 컨트롤, 버튼과 다른 자체 스케일) ───── */
+:root {
+  --cds-iconbtn-size-xs: 18px;
+  --cds-iconbtn-size-sm: 24px;
+  --cds-iconbtn-size-md: 32px;
+  --cds-iconbtn-size-lg: 40px;
+
+  --cds-iconbtn-radius-xs: 4px;
+  --cds-iconbtn-radius-sm: 6px;
+  --cds-iconbtn-radius-md: 8px;
+  --cds-iconbtn-radius-lg: 10px;
+
+  --cds-iconbtn-icon-xs: 14px;
+  --cds-iconbtn-icon-sm: 14px;
+  --cds-iconbtn-icon-md: 16px;
+  --cds-iconbtn-icon-lg: 20px;
+}
+[data-density="touch"] {
+  --cds-iconbtn-size-xs: 28px;
+  --cds-iconbtn-size-sm: 36px;
+  --cds-iconbtn-size-md: 44px;
+  --cds-iconbtn-size-lg: 52px;
+
+  --cds-iconbtn-radius-xs: 6px;
+  --cds-iconbtn-radius-sm: 8px;
+  --cds-iconbtn-radius-md: 10px;
+  --cds-iconbtn-radius-lg: 12px;
+
+  --cds-iconbtn-icon-xs: 16px;
+  --cds-iconbtn-icon-sm: 18px;
+  --cds-iconbtn-icon-md: 20px;
+  --cds-iconbtn-icon-lg: 24px;
+}
+
+/* ── radio (box + dot, checkbox 보다 한 스텝 큼) ───────────── */
+:root {
+  --cds-radio-size-sm: 16px;
+  --cds-radio-size-md: 20px;
+  --cds-radio-dot-sm: 5px;
+  --cds-radio-dot-md: 6px;
+}
+[data-density="touch"] {
+  --cds-radio-size-sm: 22px;
+  --cds-radio-size-md: 26px;
+  --cds-radio-dot-sm: 7px;
+  --cds-radio-dot-md: 9px;
+}
+
+/* ── nav item (sidebar 항목 행) ────────────────────────────── */
+:root {
+  --cds-nav-item-height: 32px;
+  --cds-nav-item-height-compact: 28px;
+  --cds-nav-item-pad-x: 10px;
+  --cds-nav-item-radius: 8px;
+}
+[data-density="touch"] {
+  --cds-nav-item-height: 44px;
+  --cds-nav-item-height-compact: 40px;
+  --cds-nav-item-pad-x: 14px;
+  --cds-nav-item-radius: 10px;
+}

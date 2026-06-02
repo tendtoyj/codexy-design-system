@@ -28,11 +28,11 @@ const segmentedControl = tv({
     size: {
       sm: {
         root: "gap-[2px]",
-        item: "h-[32px] px-[10px] rounded-[10px] text-[13px]",
+        item: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)]",
       },
       md: {
         root: "gap-[4px]",
-        item: "h-[36px] px-[12px] rounded-[12px] text-[14px]",
+        item: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)]",
       },
     },
     fullWidth: {

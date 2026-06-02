@@ -23,28 +23,28 @@ const chip = tv({
   variants: {
     size: {
       xsmall: {
-        root: "rounded-[6px] px-[7px] py-[4px] gap-[2px] text-caption2 font-medium",
+        root: "rounded-[var(--cds-chip-radius-sm)] px-[var(--cds-chip-pad-x-sm)] py-[var(--cds-chip-pad-y-sm)] gap-[var(--cds-chip-gap-sm)] text-caption2 font-medium",
         label: "px-[1px]",
-        leading: "[&_svg]:w-[12px] [&_svg]:h-[12px]",
-        trailing: "[&_svg]:w-[12px] [&_svg]:h-[12px]",
+        leading: "[&_svg]:w-[var(--cds-chip-icon-sm)] [&_svg]:h-[var(--cds-chip-icon-sm)]",
+        trailing: "[&_svg]:w-[var(--cds-chip-icon-sm)] [&_svg]:h-[var(--cds-chip-icon-sm)]",
       },
       small: {
-        root: "rounded-[8px] px-[8px] py-[6px] gap-[2px] text-label2 font-medium",
+        root: "rounded-[var(--cds-chip-radius-md)] px-[var(--cds-chip-pad-x-md)] py-[var(--cds-chip-pad-y-md)] gap-[var(--cds-chip-gap-md)] text-label2 font-medium",
         label: "px-[2px]",
-        leading: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
-        trailing: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
+        leading: "[&_svg]:w-[var(--cds-chip-icon-md)] [&_svg]:h-[var(--cds-chip-icon-md)]",
+        trailing: "[&_svg]:w-[var(--cds-chip-icon-md)] [&_svg]:h-[var(--cds-chip-icon-md)]",
       },
       medium: {
-        root: "rounded-[8px] px-[11px] py-[7px] gap-[3px] text-label1 font-medium",
+        root: "rounded-[var(--cds-chip-radius-lg)] px-[var(--cds-chip-pad-x-lg)] py-[var(--cds-chip-pad-y-lg)] gap-[var(--cds-chip-gap-lg)] text-label1 font-medium",
         label: "px-[2px]",
-        leading: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
-        trailing: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
+        leading: "[&_svg]:w-[var(--cds-chip-icon-lg)] [&_svg]:h-[var(--cds-chip-icon-lg)]",
+        trailing: "[&_svg]:w-[var(--cds-chip-icon-lg)] [&_svg]:h-[var(--cds-chip-icon-lg)]",
       },
       large: {
-        root: "rounded-[10px] px-[12px] py-[9px] gap-[3px] text-label1 font-medium",
+        root: "rounded-[var(--cds-chip-radius-xl)] px-[var(--cds-chip-pad-x-xl)] py-[var(--cds-chip-pad-y-xl)] gap-[var(--cds-chip-gap-xl)] text-label1 font-medium",
         label: "px-[2px]",
-        leading: "[&_svg]:w-[16px] [&_svg]:h-[16px]",
-        trailing: "[&_svg]:w-[16px] [&_svg]:h-[16px]",
+        leading: "[&_svg]:w-[var(--cds-chip-icon-xl)] [&_svg]:h-[var(--cds-chip-icon-xl)]",
+        trailing: "[&_svg]:w-[var(--cds-chip-icon-xl)] [&_svg]:h-[var(--cds-chip-icon-xl)]",
       },
     },
     variant: {

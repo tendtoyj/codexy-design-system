@@ -32,12 +32,12 @@ const checkbox = tv({
   variants: {
     size: {
       sm: {
-        root: "w-[12px] h-[12px]",
-        indicator: "[&_svg]:w-[8px] [&_svg]:h-[8px]",
+        root: "w-[var(--cds-toggle-size-sm)] h-[var(--cds-toggle-size-sm)]",
+        indicator: "[&_svg]:w-[var(--cds-toggle-icon-sm)] [&_svg]:h-[var(--cds-toggle-icon-sm)]",
       },
       md: {
-        root: "w-[16px] h-[16px]",
-        indicator: "[&_svg]:w-[12px] [&_svg]:h-[12px]",
+        root: "w-[var(--cds-toggle-size-md)] h-[var(--cds-toggle-size-md)]",
+        indicator: "[&_svg]:w-[var(--cds-toggle-icon-md)] [&_svg]:h-[var(--cds-toggle-icon-md)]",
       },
     },
   },

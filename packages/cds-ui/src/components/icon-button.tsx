@@ -51,10 +51,10 @@ const iconButton = tv({
       ],
     },
     size: {
-      xs: "w-[18px] h-[18px] rounded-[4px] [&_svg]:w-[14px] [&_svg]:h-[14px]",
-      sm: "w-[24px] h-[24px] rounded-[6px] [&_svg]:w-[14px] [&_svg]:h-[14px]",
-      md: "w-[32px] h-[32px] rounded-[8px] [&_svg]:w-[16px] [&_svg]:h-[16px]",
-      lg: "w-[40px] h-[40px] rounded-[10px] [&_svg]:w-[20px] [&_svg]:h-[20px]",
+      xs: "w-[var(--cds-iconbtn-size-xs)] h-[var(--cds-iconbtn-size-xs)] rounded-[var(--cds-iconbtn-radius-xs)] [&_svg]:w-[var(--cds-iconbtn-icon-xs)] [&_svg]:h-[var(--cds-iconbtn-icon-xs)]",
+      sm: "w-[var(--cds-iconbtn-size-sm)] h-[var(--cds-iconbtn-size-sm)] rounded-[var(--cds-iconbtn-radius-sm)] [&_svg]:w-[var(--cds-iconbtn-icon-sm)] [&_svg]:h-[var(--cds-iconbtn-icon-sm)]",
+      md: "w-[var(--cds-iconbtn-size-md)] h-[var(--cds-iconbtn-size-md)] rounded-[var(--cds-iconbtn-radius-md)] [&_svg]:w-[var(--cds-iconbtn-icon-md)] [&_svg]:h-[var(--cds-iconbtn-icon-md)]",
+      lg: "w-[var(--cds-iconbtn-size-lg)] h-[var(--cds-iconbtn-size-lg)] rounded-[var(--cds-iconbtn-radius-lg)] [&_svg]:w-[var(--cds-iconbtn-icon-lg)] [&_svg]:h-[var(--cds-iconbtn-icon-lg)]",
     },
   },
   defaultVariants: {

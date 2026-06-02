@@ -41,23 +41,25 @@ const menu = tv({
   variants: {
     size: {
       sm: {
-        content: "min-w-[140px] rounded-[10px] p-[4px]",
+        content:
+          "min-w-[var(--cds-menu-content-min-w-sm)] rounded-[var(--cds-menu-content-radius-sm)] p-[var(--cds-menu-content-pad-sm)]",
         item: [
-          "gap-[8px] rounded-[8px] px-[8px] py-[4px] text-body2",
-          "[&>svg:first-child]:w-[14px] [&>svg:first-child]:h-[14px]",
+          "gap-[8px] rounded-[var(--cds-menu-item-radius-sm)] px-[var(--cds-menu-item-pad-x-sm)] py-[var(--cds-menu-item-pad-y-sm)] text-body2",
+          "[&>svg:first-child]:w-[var(--cds-menu-item-icon-sm)] [&>svg:first-child]:h-[var(--cds-menu-item-icon-sm)]",
         ],
-        trailing: "w-[14px] h-[14px]",
+        trailing: "w-[var(--cds-menu-item-icon-sm)] h-[var(--cds-menu-item-icon-sm)]",
         label: "px-[8px] py-[4px] text-caption1",
         separator: "my-[2px] mx-[8px]",
         shortcut: "text-caption1",
       },
       md: {
-        content: "min-w-[160px] rounded-[12px] p-[6px]",
+        content:
+          "min-w-[var(--cds-menu-content-min-w-md)] rounded-[var(--cds-menu-content-radius-md)] p-[var(--cds-menu-content-pad-md)]",
         item: [
-          "gap-[8px] rounded-[10px] px-[10px] py-[6px] text-body1",
-          "[&>svg:first-child]:w-[16px] [&>svg:first-child]:h-[16px]",
+          "gap-[8px] rounded-[var(--cds-menu-item-radius-md)] px-[var(--cds-menu-item-pad-x-md)] py-[var(--cds-menu-item-pad-y-md)] text-body1",
+          "[&>svg:first-child]:w-[var(--cds-menu-item-icon-md)] [&>svg:first-child]:h-[var(--cds-menu-item-icon-md)]",
         ],
-        trailing: "w-[16px] h-[16px]",
+        trailing: "w-[var(--cds-menu-item-icon-md)] h-[var(--cds-menu-item-icon-md)]",
         label: "px-[10px] py-[4px] text-body2",
         separator: "my-[4px] mx-[10px]",
         shortcut: "text-label2",
@@ -198,7 +200,9 @@ const DropdownMenuSubTrigger = React.forwardRef<
       <CaretRight
         className={cn(
           "ml-auto shrink-0 [color:var(--cds-label-assistive)]",
-          size === "sm" ? "w-[14px] h-[14px]" : "w-[16px] h-[16px]",
+          size === "sm"
+            ? "w-[var(--cds-menu-item-icon-sm)] h-[var(--cds-menu-item-icon-sm)]"
+            : "w-[var(--cds-menu-item-icon-md)] h-[var(--cds-menu-item-icon-md)]",
         )}
       />
     </DropdownMenuPrimitive.SubTrigger>

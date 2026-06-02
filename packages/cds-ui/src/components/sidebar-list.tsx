@@ -29,7 +29,7 @@ const sidebarList = tv({
     body: "flex flex-col gap-[2px]",
     item: [
       "group/item",
-      "flex items-center w-full h-[32px] px-[10px] data-[has-trailing=true]:pr-[6px] rounded-[8px]",
+      "flex items-center w-full h-[var(--cds-nav-item-height)] px-[var(--cds-nav-item-pad-x)] data-[has-trailing=true]:pr-[6px] rounded-[var(--cds-nav-item-radius)]",
       "text-[13px] leading-[18px] text-left",
       "text-[color:var(--cds-label-neutral)] bg-transparent",
       "transition-[background-color,color] duration-[var(--cds-duration-fast)]",
@@ -52,7 +52,7 @@ const sidebarList = tv({
       "has-[[data-state=open]]:opacity-100",
     ],
     more: [
-      "flex items-center gap-[10px] w-full h-[28px] px-[10px] rounded-[8px]",
+      "flex items-center gap-[10px] w-full h-[var(--cds-nav-item-height-compact)] px-[var(--cds-nav-item-pad-x)] rounded-[var(--cds-nav-item-radius)]",
       "text-[13px] leading-[18px] text-left",
       "text-[color:var(--cds-label-assistive)] bg-transparent",
       "transition-[background-color,color] duration-[var(--cds-duration-fast)]",

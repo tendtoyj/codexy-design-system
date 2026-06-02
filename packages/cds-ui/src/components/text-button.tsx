@@ -43,16 +43,16 @@ const textButton = tv({
     },
     size: {
       sm: {
-        root: "h-[32px] px-[10px] rounded-[10px] text-[13px] font-medium",
+        root: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)] font-medium",
         content:
-          "[&_svg]:w-[14px] [&_svg]:h-[14px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
+          "[&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
       },
       md: {
-        root: "h-[36px] px-[12px] rounded-[12px] text-[14px] font-medium",
+        root: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)] font-medium",
         content:
-          "[&_svg]:w-[16px] [&_svg]:h-[16px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[16px] [&_svg]:h-[16px]",
+          "[&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
       },
     },
     loading: {

@@ -9,7 +9,7 @@ const sidebarMenu = tv({
   slots: {
     root: "flex flex-col gap-[2px]",
     item: [
-      "flex items-center gap-[10px] w-full h-[32px] px-[10px] rounded-[8px]",
+      "flex items-center gap-[10px] w-full h-[var(--cds-nav-item-height)] px-[var(--cds-nav-item-pad-x)] rounded-[var(--cds-nav-item-radius)]",
       "text-[13px] leading-[18px] text-left",
       "text-[color:var(--cds-label-neutral)] bg-transparent",
       "transition-[background-color,color] duration-[var(--cds-duration-fast)]",
