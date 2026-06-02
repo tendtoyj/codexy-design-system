@@ -124,14 +124,28 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "Radix Toast with info/success/warning/error variants.",
+      "description": "Montage-style dark, message-only toast. Bottom-center, non-interactive, auto-dismiss.",
       "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-toast", "@tendtoyj/cds-icons"],
-      "registryDependencies": ["close-button"],
       "files": [
         {
           "path": "src/components/toast.tsx",
           "type": "registry:ui",
           "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "snackbar",
+      "type": "registry:ui",
+      "title": "Snackbar",
+      "description": "Interactive bottom snackbar with leading icon, heading/description, action, and close.",
+      "dependencies": ["@tendtoyj/cds-core", "@radix-ui/react-toast", "@tendtoyj/cds-icons"],
+      "registryDependencies": ["close-button"],
+      "files": [
+        {
+          "path": "src/components/snackbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/snackbar.tsx"
         }
       ]
     },
