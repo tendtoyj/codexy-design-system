@@ -61,30 +61,35 @@ const button = tv({
         ],
       },
     },
+    /**
+     * 사이즈는 density-aware 시맨틱 토큰(--cds-control-*)만 참조한다.
+     * 리터럴 px 없음 → <html data-density="touch"> 한 줄로 전체 밀도가 전환된다.
+     * (토큰 정의: @tendtoyj/cds-core › styles/tokens/control.css)
+     */
     size: {
       xs: {
-        root: "h-[28px] px-[8px] rounded-[8px] text-[12px] font-medium",
+        root: "h-[var(--cds-control-height-xs)] px-[var(--cds-control-pad-x-xs)] rounded-[var(--cds-control-radius-xs)] text-[length:var(--cds-control-text-xs)] font-medium",
         content:
-          "[&_svg]:w-[12px] [&_svg]:h-[12px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[12px] [&_svg]:h-[12px]",
+          "[&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-xs)] [&_svg]:h-[var(--cds-control-icon-xs)]",
       },
       sm: {
-        root: "h-[32px] px-[10px] rounded-[10px] text-[13px] font-medium",
+        root: "h-[var(--cds-control-height-sm)] px-[var(--cds-control-pad-x-sm)] rounded-[var(--cds-control-radius-sm)] text-[length:var(--cds-control-text-sm)] font-medium",
         content:
-          "[&_svg]:w-[14px] [&_svg]:h-[14px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[14px] [&_svg]:h-[14px]",
+          "[&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-sm)] [&_svg]:h-[var(--cds-control-icon-sm)]",
       },
       md: {
-        root: "h-[36px] px-[12px] rounded-[12px] text-[14px] font-medium",
+        root: "h-[var(--cds-control-height-md)] px-[var(--cds-control-pad-x-md)] rounded-[var(--cds-control-radius-md)] text-[length:var(--cds-control-text-md)] font-medium",
         content:
-          "[&_svg]:w-[16px] [&_svg]:h-[16px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[16px] [&_svg]:h-[16px]",
+          "[&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-md)] [&_svg]:h-[var(--cds-control-icon-md)]",
       },
       lg: {
-        root: "h-[44px] px-[14px] rounded-[12px] text-[14px] font-medium",
+        root: "h-[var(--cds-control-height-lg)] px-[var(--cds-control-pad-x-lg)] rounded-[var(--cds-control-radius-lg)] text-[length:var(--cds-control-text-lg)] font-medium",
         content:
-          "[&_svg]:w-[16px] [&_svg]:h-[16px] [&_[data-slot=leading]]:mr-[4px] [&_[data-slot=trailing]]:ml-[2px]",
-        loading: "[&_svg]:w-[16px] [&_svg]:h-[16px]",
+          "[&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)] [&_[data-slot=leading]]:mr-[var(--cds-control-gap-lead)] [&_[data-slot=trailing]]:ml-[var(--cds-control-gap-trail)]",
+        loading: "[&_svg]:w-[var(--cds-control-icon-lg)] [&_svg]:h-[var(--cds-control-icon-lg)]",
       },
     },
     fullWidth: {
