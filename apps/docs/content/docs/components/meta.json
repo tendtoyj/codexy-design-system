@@ -43,6 +43,7 @@
     "progress",
     "spinner",
     "toast",
+    "snackbar",
     "scroll-area",
     "---AI / Agent Chat---",
     "chat-loading-dots",

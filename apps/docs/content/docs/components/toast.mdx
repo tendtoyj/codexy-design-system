@@ -1,11 +1,13 @@
 ---
 title: Toast
-description: Radix Toast 기반 알림 — info / success / warning / error
+description: Montage(WDS) 포팅 — 어두운 반투명 표면 + 메시지 한 줄
 ---
 
 import { ToastDemo } from "@/components/demos/toast-demo";
 
-헤드리스는 `@radix-ui/react-toast` 로 고정. sonner 전환은 검토했으나 채택하지 않음.
+어두운 반투명(blur) 표면에 leading 아이콘과 **메시지 한 줄**만 담는 가벼운 피드백. 하단 중앙에서 자동 소멸하며 사용자 조작이 필요 없다. close 버튼·설명·action 이 필요하면 [Snackbar](/docs/components/snackbar) 를 쓴다.
+
+표면은 두 겹 오버레이(`inverse-background` 52% + `primary` 5%) 위에 `backdrop-blur(32px)`. 데스크톱 min 356 / max 420px, 모바일 full-width. 헤드리스는 `@radix-ui/react-toast` 로 고정.
 
 ## 사용
 
@@ -14,8 +16,8 @@ import {
   Toast, ToastProvider, ToastViewport,
 } from "@tendtoyj/cds-ui/components/toast";
 
-<ToastProvider>
-  <Toast variant="success" title="저장됨" description="변경사항이 저장됐어요." />
+<ToastProvider swipeDirection="down" duration={3000}>
+  <Toast variant="positive">변경사항을 저장했어요.</Toast>
   <ToastViewport />
 </ToastProvider>
 ```
@@ -30,25 +32,39 @@ import {
 
 | Prop | 타입 | 기본 | 설명 |
 |---|---|---|---|
-| `variant` | `info \| success \| warning \| error` | `info` | 좌측 아이콘 + 색상 |
-| `title` | `ReactNode` | — | 제목 |
-| `description` | `ReactNode` | — | 설명 |
-| `action` | `ReactNode` | — | `<ToastAction>` 버튼 |
+| `variant` | `normal \| positive \| cautionary \| negative \| question` | `normal` | leading 아이콘 + 색상 |
+| `icon` | `PhosphorIcon \| ComponentType \| false \| null` | — | 아이콘 오버라이드. 컴포넌트면 Custom(흰색·backing 없음), `false`/`null` 이면 숨김 |
+| `children` | `ReactNode` | — | 메시지 (한 줄) |
 | `duration` | `number` | `3000` | auto-close ms. `Infinity` 면 유지 |
 | `open` / `defaultOpen` / `onOpenChange` | Radix | — | controlled API |
 
 ### `<ToastProvider />`
 
-Radix Provider — `duration`, `swipeDirection`, `swipeThreshold`. viewport 는 `<ToastViewport />`.
+Radix Provider — `duration`, `swipeDirection`, `swipeThreshold`. viewport 는 `<ToastViewport />` (하단 중앙).
 
-## Variant 색상
+## Variant
 
-| Variant | 아이콘 | 토큰 |
+메시지는 항상 static white(`--cds-color-common-100`, opacity 88%). leading 아이콘은 `@tendtoyj/cds-icons/custom` 의 채워진(fill) 상태 아이콘이며, 어두운 표면 대비를 위해 atomic 60 색을 쓴다. 빌트인 아이콘은 컷아웃 글리프가 비치도록 흰 backing 을 깐다. `normal` 은 Montage 와 동일하게 기본 아이콘이 없다.
+
+| Variant | 아이콘 | 아이콘 색 |
 |---|---|---|
-| `info` | Info | `--cds-label-alternative` |
-| `success` | CheckCircle2 | `--cds-status-positive` |
-| `warning` | AlertTriangle | `--cds-status-cautionary` |
-| `error` | AlertCircle | `--cds-status-negative` |
+| `normal` | (없음) | — |
+| `positive` | CheckCircleFill | `--cds-color-green-60` |
+| `cautionary` | WarningTriangleFill | `--cds-color-orange-60` |
+| `negative` | XCircleFill | `--cds-color-red-60` |
+| `question` | QuestionCircleFill | static white |
+| Custom | `icon` prop 으로 임의 지정 | static white |
+
+## Toast vs Snackbar
+
+둘 다 동일한 어두운 반투명 표면을 쓴다. 차이는 구조와 상호작용이다.
+
+| | Toast | Snackbar |
+|---|---|---|
+| 내용 | 메시지 한 줄 | heading + description |
+| close / action | ❌ | ✅ (인라인) |
+| 성격 | 비대화형 | 대화형 |
+| duration | 3000 | 4000 / 16000 |
 
 ## Registry 설치
 

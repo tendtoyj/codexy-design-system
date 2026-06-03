@@ -1,68 +1,58 @@
 "use client";
 
+import { Copy } from "@tendtoyj/cds-icons/icons";
 import { Button } from "@tendtoyj/cds-ui/components/button";
 import { Toast, ToastProvider, ToastViewport } from "@tendtoyj/cds-ui/components/toast";
 import { useState } from "react";
 
+type Variant = "normal" | "positive" | "cautionary" | "negative" | "question";
+
 type Item = {
   id: number;
-  variant: "info" | "success" | "warning" | "error";
-  title: string;
-  description?: string;
+  variant: Variant;
+  message: string;
+  custom?: boolean;
 };
 
 export function ToastDemo() {
   const [items, setItems] = useState<Item[]>([]);
 
-  const push = (variant: Item["variant"], title: string, description?: string) => {
-    setItems((xs) => [...xs, { id: Date.now() + Math.random(), variant, title, description }]);
+  const push = (variant: Variant, message: string, custom?: boolean) => {
+    setItems((xs) => [...xs, { id: Date.now() + Math.random(), variant, message, custom }]);
   };
 
   return (
-    <ToastProvider swipeDirection="right" duration={3000}>
+    <ToastProvider swipeDirection="down" duration={3000}>
       <div className="not-prose cds-toast-card">
-        <div className="cds-toast-section-label">With description</div>
         <div className="cds-toast-row">
-          <Button onClick={() => push("info", "정보", "새 업데이트가 있어요.")}>Info</Button>
+          <Button onClick={() => push("normal", "링크를 복사했어요.", true)}>Custom</Button>
+          <Button variant="frosted" onClick={() => push("positive", "변경사항을 저장했어요.")}>
+            Positive
+          </Button>
           <Button
             variant="frosted"
-            onClick={() => push("success", "저장됨", "변경사항이 저장되었습니다.")}
+            onClick={() => push("cautionary", "최대 5개까지 선택할 수 있어요.")}
           >
-            Success
-          </Button>
-          <Button variant="frosted" onClick={() => push("warning", "주의", "연결이 불안정합니다.")}>
-            Warning
+            Cautionary
           </Button>
           <Button
             variant="danger"
-            onClick={() => push("error", "실패", "요청을 처리하지 못했습니다.")}
+            onClick={() => push("negative", "요청을 처리하지 못했어요. 다시 시도해 주세요.")}
           >
-            Error
-          </Button>
-        </div>
-        <div className="cds-toast-section-label">Title only</div>
-        <div className="cds-toast-row">
-          <Button onClick={() => push("info", "새 업데이트가 있어요")}>Info</Button>
-          <Button variant="frosted" onClick={() => push("success", "저장됨")}>
-            Success
-          </Button>
-          <Button variant="frosted" onClick={() => push("warning", "연결이 불안정합니다")}>
-            Warning
-          </Button>
-          <Button variant="danger" onClick={() => push("error", "요청 실패")}>
-            Error
+            Negative
           </Button>
         </div>
         {items.map((item) => (
           <Toast
             key={item.id}
             variant={item.variant}
-            title={item.title}
-            description={item.description}
+            icon={item.custom ? Copy : undefined}
             onOpenChange={(open) => {
               if (!open) setItems((xs) => xs.filter((x) => x.id !== item.id));
             }}
-          />
+          >
+            {item.message}
+          </Toast>
         ))}
         <ToastViewport />
         <Styles />
@@ -88,15 +78,6 @@ function Styles() {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-      }
-      .cds-toast-section-label {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--cds-label-alternative);
-        margin-top: 4px;
-      }
-      .cds-toast-section-label:first-child {
-        margin-top: 0;
       }
     `}</style>
   );

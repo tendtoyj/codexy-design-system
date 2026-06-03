@@ -1,0 +1,72 @@
+---
+title: Snackbar
+description: Montage(WDS) 포팅 — 어두운 반투명 표면 + heading/description + 인라인 action·close
+---
+
+import { SnackbarDemo } from "@/components/demos/snackbar-demo";
+
+Toast 와 **동일한 어두운 반투명(blur) 표면** 위에 leading content, heading/description, 그리고 **인라인 action·close 버튼**을 얹은 대화형 피드백. 하단 중앙에서 자동 소멸하되 사용자가 직접 닫거나 되돌리기 같은 행동을 할 수 있다. 단순 메시지 한 줄이면 [Toast](/docs/components/toast) 를 쓴다.
+
+action·close 는 텍스트 옆 같은 행에 수직 중앙으로 정렬된다. 헤드리스는 `@radix-ui/react-toast` 로 고정. Toast 와 함께 쓰려면 각자의 Provider/Viewport 를 중첩한다.
+
+## 사용
+
+```tsx
+import {
+  Snackbar, SnackbarAction, SnackbarProvider, SnackbarViewport,
+} from "@tendtoyj/cds-ui/components/snackbar";
+
+<SnackbarProvider swipeDirection="down" duration={4000}>
+  <Snackbar
+    variant="positive"
+    title="저장됨"
+    description="변경사항을 저장했어요."
+    action={<SnackbarAction altText="되돌리기" onClick={undo}>되돌리기</SnackbarAction>}
+  />
+  <SnackbarViewport />
+</SnackbarProvider>
+```
+
+`SnackbarAction` 은 그 자체가 Montage 스타일(흰색·body2 bold)로 스타일된 버튼이다. Radix `Toast.Action` 기반이라 `altText` 가 필요하다.
+
+## Demo
+
+<SnackbarDemo />
+
+## Props
+
+### `<Snackbar />`
+
+| Prop | 타입 | 기본 | 설명 |
+|---|---|---|---|
+| `variant` | `normal \| positive \| cautionary \| negative \| question` | `normal` | leading 아이콘 + 색상 |
+| `title` | `ReactNode` | — | heading (한 줄) |
+| `description` | `ReactNode` | — | 설명 (최대 2줄, 넘치면 말줄임) |
+| `action` | `ReactNode` | — | `<SnackbarAction>` 버튼 (undo 등). 인라인 배치 |
+| `icon` | `PhosphorIcon \| ComponentType \| false \| null` | — | leading 오버라이드. `false`/`null` 이면 숨김 |
+| `closable` | `boolean` | `true` | close 버튼 표시 |
+| `closeLabel` | `string` | `"닫기"` | close 버튼 aria-label |
+| `duration` | `number` | `4000` | auto-close ms. 긴 메시지/액션은 `16000` 권장 |
+| `open` / `defaultOpen` / `onOpenChange` | Radix | — | controlled API |
+
+### `<SnackbarProvider />`
+
+Radix Provider — `duration`, `swipeDirection`, `swipeThreshold`. viewport 는 `<SnackbarViewport />` (하단 중앙).
+
+## Variant
+
+heading(body2 bold)·description(label2)·action·close 는 모두 static white(`--cds-color-common-100`, opacity 88%). leading 아이콘은 Toast 와 동일한 채워진(fill) 상태 아이콘 + atomic 60 색. `normal` 은 기본 아이콘이 없다.
+
+| Variant | 아이콘 | 아이콘 색 |
+|---|---|---|
+| `normal` | (없음) | — |
+| `positive` | CheckCircleFill | `--cds-color-green-60` |
+| `cautionary` | WarningTriangleFill | `--cds-color-orange-60` |
+| `negative` | XCircleFill | `--cds-color-red-60` |
+| `question` | QuestionCircleFill | static white |
+
+## Registry 설치
+
+```bash
+npx shadcn add https://cds.codexy.com/r/snackbar
+```

@@ -228,6 +228,15 @@ export type { SidebarListItem, SidebarListProps } from "./components/sidebar-lis
 export { SidebarList, sidebarList } from "./components/sidebar-list";
 export type { SidebarMenuItem, SidebarMenuProps } from "./components/sidebar-menu";
 export { SidebarMenu, sidebarMenu } from "./components/sidebar-menu";
+export type { SnackbarActionProps, SnackbarRootProps } from "./components/snackbar";
+export {
+  Snackbar,
+  SnackbarAction,
+  SnackbarClose,
+  SnackbarProvider,
+  SnackbarViewport,
+  snackbar,
+} from "./components/snackbar";
 export type { SpinnerProps } from "./components/spinner";
 export { Spinner, spinner } from "./components/spinner";
 export type { SwitchProps } from "./components/switch";
