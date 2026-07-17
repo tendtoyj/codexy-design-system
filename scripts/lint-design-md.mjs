@@ -115,6 +115,13 @@ export function validateDocuments(inputs) {
   const errors = [];
   const documents = [];
 
+  for (const profile of profileNames) {
+    const count = inputs.filter((input) => input.profile === profile).length;
+    if (count !== 1) {
+      errors.push(`[${profile}] design-md/${profile}/DESIGN.md: 파일이 정확히 하나 있어야 합니다.`);
+    }
+  }
+
   for (const input of inputs) {
     try {
       const document = { ...input, tokens: parseFrontmatter(input.content, input.profile) };
@@ -124,10 +131,14 @@ export function validateDocuments(inputs) {
         ...findOfficialErrors(document),
         ...findPlatformErrors(document),
       ]) {
-        errors.push(`${document.profile}: ${message}`);
+        errors.push(
+          `[${document.profile}] design-md/${document.profile}/DESIGN.md: ${message}`,
+        );
       }
     } catch (error) {
-      errors.push(`${input.profile}: ${error instanceof Error ? error.message : String(error)}`);
+      errors.push(
+        `[${input.profile}] design-md/${input.profile}/DESIGN.md: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   }
 
@@ -142,7 +153,9 @@ export function validateDocuments(inputs) {
     for (const document of documents.filter((item) => item !== baseline)) {
       for (const [label, select] of invariants) {
         if (!same(select(baseline.tokens), select(document.tokens))) {
-          errors.push(`${document.profile}: general과 공통 ${label} invariant가 다릅니다.`);
+          errors.push(
+            `[${document.profile}] design-md/${document.profile}/DESIGN.md: general과 공통 ${label} invariant가 다릅니다.`,
+          );
         }
       }
     }

@@ -24,6 +24,34 @@ CDS code (implementation SSOT)
 | `mobile` | native mobile 또는 app-like PWA | 16px body, 44px 이상 touch target, touch-first | hover 의존, 영구 sidebar, 3-panel shell |
 | `web` | 320px부터 wide desktop까지 반응하는 SaaS/product UI | 16px body, keyboard + pointer + coarse touch | OS titlebar, draggable window chrome, marketing hero 중심 구성 |
 
+### Selection guide
+
+| If the product is primarily… | Choose | Why |
+| --- | --- | --- |
+| 아직 플랫폼이 정해지지 않은 프로토타입 또는 테마 탐색 | `general` | 플랫폼 구조를 강제하지 않고 CDS의 시각 언어와 component tone만 전달한다. |
+| 설치형 macOS/Windows 작업 도구, Electron/Tauri 앱 | `desktop` | 고밀도 pointer·keyboard UI, persistent navigation, multi-panel workspace를 정의한다. |
+| native mobile 또는 app-like PWA의 phone-first 경험 | `mobile` | touch target, bottom navigation, sheet, safe area, keyboard 대응을 정의한다. |
+| 브라우저 기반 SaaS/product UI | `web` | compact/medium/wide reflow와 mixed-input interaction을 정의한다. |
+
+여러 파일을 동시에 주지 않는다. 실제 결과가 두 플랫폼을 함께 다뤄야 한다면 대표 소비 환경의 프로필 하나를 선택하고, 다른 환경의 요구사항은 별도 제품 요구사항으로 전달한다.
+
+## Standalone usage
+
+1. 만들려는 결과의 기본 소비 환경을 위 표에서 고른다.
+2. 해당 폴더의 `DESIGN.md` 한 파일만 생성 도구 또는 작업자에게 전달한다.
+3. 제품 기능, 콘텐츠, 화면 목적을 별도 prompt로 제공한다.
+4. 생성 결과를 아래 rubric으로 검토한다.
+
+권장 지시문:
+
+```text
+Use the attached DESIGN.md as the complete visual and platform profile.
+Apply its structured tokens exactly and follow its prose rules for layout,
+interaction, overlays, and AI content. Do not assume access to CDS code or packages.
+```
+
+`general/DESIGN.md`를 먼저 주고 다른 파일로 덮어쓰는 방식은 사용하지 않는다. 모든 프로필은 공통 토큰을 이미 포함한 독립 문서다.
+
 ## Profile contract
 
 ### Shared invariants
@@ -65,6 +93,8 @@ CDS code (implementation SSOT)
 | Last reviewed | 2026-07-17 |
 
 프로필을 갱신할 때 package version, source commit, format version, last reviewed를 함께 변경한다. 작업 트리의 미커밋 변경은 provenance 기준에 포함하지 않는다.
+
+Format reference는 [Google Labs DESIGN.md repository](https://github.com/google-labs-code/design.md)와 [alpha specification](https://github.com/google-labs-code/design.md/blob/main/docs/spec.md)을 따른다. 현재 spec은 alpha이므로 구조 변경 가능성을 전제로 유지보수한다.
 
 ## Source map
 
@@ -121,3 +151,79 @@ frontmatter에는 CSS 변수 이름 대신 생성 도구가 바로 이해할 sem
 - Desktop은 OS window chrome을 재현하지 않는다. CDS가 담당하는 것은 window 내부 layout과 surface hierarchy다.
 - DESIGN.md는 React props, package import, Tailwind utility, Radix API 문서가 아니다.
 - 모든 프로필의 정식 제목은 공식 DESIGN.md section order를 따른다. responsive, motion, safe area는 canonical section 아래 하위 규칙으로 둔다.
+
+## Evaluation prompts
+
+네 프로필을 비교할 때 기능은 같게 유지하고 프로필만 바꾼다. 그래야 브랜드 불변값과 플랫폼 번역값을 분리해서 볼 수 있다.
+
+### Common prompts
+
+**Settings and form**
+
+```text
+Create an account settings screen with profile fields, notification preferences,
+save and cancel actions, inline validation, loading, success, and error states.
+```
+
+**Destructive action**
+
+```text
+Add a delete-workspace flow with consequence copy, confirmation input,
+cancel path, destructive action, and recoverable error feedback.
+```
+
+**AI conversation**
+
+```text
+Create an AI conversation area with a user message, long assistant answer,
+tool activity trace, attachments, streaming state, and composer with stop action.
+```
+
+### Profile-specific prompts
+
+| Profile | Prompt |
+| --- | --- |
+| Desktop | `Create a multi-panel research workspace with persistent navigation, a resizable context panel, removable chat sessions, and a docked composer.` |
+| Mobile | `Create a phone-first session list and single active AI thread with bottom navigation, a bottom sheet action menu, virtual keyboard, and safe-area-aware composer.` |
+| Web | `Create a responsive SaaS analytics dashboard that reflows through compact, medium, and wide ranges with collapsible navigation, filters, a data table, and contextual AI panel.` |
+
+### Review rubric
+
+| Axis | Pass condition | Typical failure |
+| --- | --- | --- |
+| Color identity | black primary, cool neutral layers, blue focus, semantic status가 일관된다. | blue를 모든 CTA의 브랜드 accent로 남용한다. |
+| Type hierarchy | role, weight, line height로 정보 위계를 만들고 reading copy가 충분히 열린다. | 모든 텍스트가 같은 크기이거나 marketing display type이 지배한다. |
+| Density | General은 중립, Desktop은 고밀도, Mobile은 touch, Web은 responsive baseline이다. | Desktop을 과도하게 키우거나 Mobile target을 44px 아래로 만든다. |
+| Navigation | 각 프로필의 기본 구조와 viewport 전환이 문서 규칙을 따른다. | phone에 영구 sidebar를 두거나 Web에 OS titlebar를 그린다. |
+| Overlay | Desktop dialog/menu, Mobile sheet/full-screen, Web collision-aware overlay가 구분된다. | 모든 환경에서 같은 centered modal만 사용한다. |
+| Interaction | focus, pressed, selected, disabled, loading이 입력 방식에 맞고 hover-only 기능이 없다. | 상태를 색 하나 또는 hover 하나로만 표현한다. |
+| AI UI | user bubble, assistant plain content, subordinate trace, stable composer가 유지된다. | assistant까지 큰 bubble로 감싸거나 AI gradient가 콘텐츠를 압도한다. |
+
+## Maintenance workflow
+
+### CDS release checklist
+
+CDS release 또는 source commit을 번역 기준으로 올릴 때 다음을 순서대로 확인한다.
+
+- semantic color 값과 역할, foreground/background 조합의 AA 대비
+- typography role, font stack, weight, size, line height, letter spacing
+- spacing 및 rounded scale과 squircle fallback 원칙
+- comfortable/touch control scale, icon button, field, menu, navigation dimension
+- Button, form, overlay, panel, navigation component tone과 state
+- AppShell, Sidebar, Chat 등 pattern의 구조 또는 interaction 변경
+- 공식 DESIGN.md spec version과 structured field 변경
+- 네 파일의 provenance와 README source map
+
+### Change rules
+
+- 공통 invariant가 바뀌면 `general`, `desktop`, `mobile`, `web` 네 파일을 같은 변경에서 갱신한다.
+- 플랫폼 전용 번역만 바뀌면 해당 프로필과 README의 platform matrix/rubric만 갱신한다.
+- 구현되지 않은 Mobile/Web 규칙은 계속 `new translation`으로 표시하고 CDS 코드 구현처럼 서술하지 않는다.
+- package version, source commit, spec version, last reviewed를 함께 검토한다.
+- `pnpm design:lint`와 `pnpm design:test`로 공식 형식, AA 대비, 파일 존재, 공통 invariant를 확인한다.
+
+### Migration triggers
+
+현재 responsive range, motion, elevation, safe area는 공식 frontmatter의 first-class token이 아니므로 canonical body section에서 prose extension으로 관리한다. 공식 spec이 해당 필드를 지원하면 다음 release에서 prose의 정확한 값을 structured token으로 옮기고, 네 파일을 동시에 migration한다.
+
+다중 파일 상속이 spec에 추가되더라도 자동 도입하지 않는다. 한 파일 전달만으로 재현되는 현재 계약과 도구 호환성을 먼저 재평가한다.
