@@ -1,0 +1,351 @@
+.desktopShowcase {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.brandMark {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--on-primary);
+  background: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.desktopWindow {
+  display: grid;
+  grid-template-columns: 220px minmax(420px, 1fr) 270px;
+  min-height: 660px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 20px 56px rgb(15 15 16 / 9%);
+}
+
+.desktopSidebar,
+.contextPanel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  background: var(--canvas-subtle);
+}
+
+.desktopSidebar {
+  border-right: 1px solid var(--line);
+}
+.contextPanel {
+  border-left: 1px solid var(--line);
+}
+
+.desktopBrand {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  gap: 9px;
+  padding: 0 12px;
+}
+
+.desktopBrand strong {
+  flex: 1;
+  font-size: 13px;
+}
+.desktopBrand button,
+.compactIconButton,
+.contextHeader button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  color: var(--label-muted);
+  background: transparent;
+}
+
+.desktopNav,
+.sidebarSection {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+}
+
+.desktopNav a,
+.sidebarSection a,
+.sidebarFooter {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  gap: 9px;
+  padding: 0 9px;
+  border-radius: 8px;
+  color: var(--label-muted);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.desktopNav .desktopNavActive {
+  color: var(--label);
+  background: var(--fill);
+  font-weight: 600;
+}
+
+.sidebarSection {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.sidebarSection a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sidebarSectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 5px;
+  color: var(--label-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.sidebarFooter {
+  margin: auto 10px 10px;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  padding-top: 10px;
+}
+
+.desktopMain {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  background: var(--canvas);
+}
+
+.desktopToolbar {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sessionTabs {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 4px;
+}
+
+.sessionTabs button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--label-muted);
+  background: transparent;
+  font-size: 11px;
+}
+
+.sessionTabs button:last-child {
+  display: grid;
+  width: 30px;
+  padding: 0;
+  place-items: center;
+}
+.sessionTabs .sessionTabActive {
+  color: var(--label);
+  background: var(--fill);
+  font-weight: 600;
+}
+
+.desktopThread {
+  display: flex;
+  width: min(100%, 680px);
+  flex: 1;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+.threadDate {
+  color: var(--label-muted);
+  font-size: 10px;
+  text-align: center;
+}
+
+.userBubble {
+  align-self: flex-end;
+  max-width: 72%;
+  padding: 9px 11px;
+  border-radius: 10px 10px 3px;
+  background: var(--fill);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.trace {
+  margin-left: 38px;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+
+.trace summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.trace summary svg:last-child {
+  margin-left: auto;
+}
+.trace p {
+  margin: 8px 0 0;
+  padding-left: 21px;
+}
+
+.desktopComposerWrap {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 0 24px 18px;
+}
+
+.desktopComposerWrap > p {
+  margin: 6px 0 0;
+  color: var(--label-muted);
+  font-size: 9px;
+  text-align: center;
+}
+
+.contextHeader {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.contextHeader span,
+.contextHeader strong {
+  display: block;
+}
+.contextHeader span {
+  margin-bottom: 3px;
+  color: var(--label-muted);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.contextHeader strong {
+  font-size: 12px;
+}
+.contextContent {
+  padding: 14px;
+}
+
+.contextFile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+}
+
+.contextFile strong,
+.contextFile small {
+  display: block;
+}
+.contextFile strong {
+  font-size: 11px;
+}
+.contextFile small {
+  margin-top: 3px;
+  color: var(--label-muted);
+  font-size: 9px;
+}
+.contextContent h3 {
+  margin: 22px 0 8px;
+  font-size: 11px;
+}
+
+.checkList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkList li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--label-muted);
+  font-size: 10px;
+}
+
+.checkList svg {
+  color: var(--positive);
+}
+
+.contextNote {
+  margin-top: 22px;
+  padding: 12px;
+  border-radius: 9px;
+  background: var(--fill);
+}
+
+.contextNote strong {
+  font-size: 10px;
+}
+.contextNote p {
+  margin: 5px 0 0;
+  color: var(--label-muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1040px) {
+  .desktopWindow {
+    grid-template-columns: 190px minmax(400px, 1fr);
+  }
+  .contextPanel {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .desktopWindow {
+    grid-template-columns: 1fr;
+    min-height: 620px;
+    border-radius: 12px;
+  }
+  .desktopSidebar,
+  .contextPanel {
+    display: none;
+  }
+  .sessionTabs button:nth-child(2) {
+    display: none;
+  }
+  .desktopThread {
+    padding: 24px 16px;
+  }
+  .desktopComposerWrap {
+    padding: 0 12px 14px;
+  }
+}

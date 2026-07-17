@@ -1,0 +1,265 @@
+.generalShowcase {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sectionLabel {
+  margin: 0 0 6px;
+  color: var(--label-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.generalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.settingsSurface,
+.aiSurface {
+  display: flex;
+  min-height: 440px;
+  padding: 24px;
+  flex-direction: column;
+}
+
+.surfaceHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.surfaceHeading h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.statusBadge,
+.onlineDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--positive);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.onlineDot::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--positive);
+  content: "";
+}
+
+.fieldGroup {
+  display: grid;
+  gap: 7px;
+  padding: 20px 0;
+}
+
+.fieldGroup > span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fieldGroup p {
+  margin: 0;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+
+.inputPreview {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.inputPreview svg {
+  color: var(--label-muted);
+}
+
+.preferenceList {
+  border-top: 1px solid var(--line);
+}
+
+.preferenceRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.preferenceIcon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--fill);
+}
+
+.preferenceRow strong,
+.preferenceRow small {
+  display: block;
+}
+
+.preferenceRow strong {
+  font-size: 13px;
+}
+
+.preferenceRow small {
+  margin-top: 3px;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--label);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.primaryButton {
+  border-color: var(--primary);
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.conversation {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+.userBubble {
+  align-self: flex-end;
+  max-width: 78%;
+  padding: 10px 12px;
+  border-radius: 10px 10px 3px;
+  background: var(--fill);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.foundationStrip {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr 0.8fr;
+  gap: 24px;
+  margin-top: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.swatches,
+.shapeSpecimen {
+  display: flex;
+  gap: 8px;
+}
+
+.swatches span {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.swatchPrimary {
+  background: var(--primary);
+}
+.swatchCanvas {
+  background: var(--canvas);
+}
+.swatchFill {
+  background: var(--fill);
+}
+.swatchFocus {
+  background: var(--focus);
+}
+.swatchPositive {
+  background: var(--positive);
+}
+
+.typeSpecimen p {
+  margin: 0;
+  color: var(--label-muted);
+  font-size: 12px;
+}
+
+.typeSpecimen .specimenTitle {
+  margin-bottom: 4px;
+  color: var(--label);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.shapeSpecimen span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--label-muted);
+  font-size: 10px;
+}
+
+.shapeSpecimen span:nth-child(2) {
+  border-radius: 6px;
+}
+.shapeSpecimen span:nth-child(3) {
+  border-radius: 8px;
+}
+.shapeSpecimen span:nth-child(4) {
+  border-radius: 12px;
+}
+.shapeSpecimen span:nth-child(5) {
+  border-radius: 16px;
+}
+
+@media (max-width: 760px) {
+  .generalGrid,
+  .foundationStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .settingsSurface,
+  .aiSurface {
+    min-height: 420px;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,236 @@
+.mobileShowcase {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.mobileStage {
+  display: grid;
+  grid-template-columns: minmax(340px, 420px) minmax(280px, 360px);
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  min-height: 760px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.phone {
+  position: relative;
+  display: flex;
+  width: 390px;
+  height: 720px;
+  overflow: hidden;
+  flex-direction: column;
+  border: 8px solid var(--primary);
+  border-radius: 36px;
+  background: var(--canvas);
+  box-shadow: 0 24px 60px rgb(15 15 16 / 16%);
+}
+
+.phoneStatus {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mobileHeader {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  min-height: 60px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mobileHeader button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: var(--label);
+  background: transparent;
+}
+
+.mobileHeader > span {
+  text-align: center;
+}
+.mobileHeader strong,
+.mobileHeader small {
+  display: block;
+}
+.mobileHeader strong {
+  font-size: 14px;
+}
+.mobileHeader small {
+  margin-top: 2px;
+  color: var(--positive);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.mobileThread {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 22px;
+  overflow: auto;
+  padding: 20px 16px;
+}
+
+.mobileDate {
+  margin: 0;
+  color: var(--label-muted);
+  font-size: 10px;
+  text-align: center;
+}
+.userBubble {
+  align-self: flex-end;
+  max-width: 80%;
+  padding: 11px 13px;
+  border-radius: 12px 12px 4px;
+  background: var(--fill);
+  font-size: 14px;
+}
+
+.mobileSuggestionRow {
+  display: flex;
+  gap: 8px;
+  margin-left: 38px;
+}
+
+.mobileSuggestionRow button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--label);
+  background: var(--surface);
+  font-size: 11px;
+}
+
+.mobileComposerWrap {
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+}
+.mobileComposerWrap > fieldset {
+  min-height: 52px;
+  border-radius: 16px;
+}
+.mobileComposerWrap button {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.bottomNavigation {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 64px;
+  padding: 4px 8px 2px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.bottomNavigation a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--label-muted);
+  font-size: 9px;
+  text-decoration: none;
+  flex-direction: column;
+}
+
+.bottomNavigation .bottomNavActive {
+  color: var(--label);
+  font-weight: 600;
+}
+.homeIndicator {
+  width: 120px;
+  height: 4px;
+  margin: 5px auto 7px;
+  border-radius: 9999px;
+  background: var(--primary);
+}
+
+.mobileNotes {
+  display: grid;
+  gap: 22px;
+}
+.mobileNotes > div:not(.mobileTranslationTag) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.mobileNotes h2 {
+  margin: 5px 0 6px;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+.mobileNotes p {
+  margin: 0;
+  color: var(--label-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.noteNumber {
+  color: var(--focus);
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mobileTranslationTag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--fill);
+}
+
+.mobileTranslationTag strong,
+.mobileTranslationTag small {
+  display: block;
+}
+.mobileTranslationTag strong {
+  font-size: 12px;
+}
+.mobileTranslationTag small {
+  margin-top: 3px;
+  color: var(--label-muted);
+  font-size: 10px;
+}
+
+@media (max-width: 1040px) {
+  .mobileStage {
+    grid-template-columns: 390px 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 760px) {
+  .mobileStage {
+    display: block;
+    min-height: 0;
+    padding: 12px;
+  }
+  .phone {
+    width: min(100%, 390px);
+    height: 700px;
+    margin: 0 auto;
+    border-width: 5px;
+    border-radius: 30px;
+  }
+  .mobileNotes {
+    margin-top: 32px;
+    padding: 12px;
+  }
+}

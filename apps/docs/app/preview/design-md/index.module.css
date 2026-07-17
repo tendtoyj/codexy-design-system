@@ -1,0 +1,209 @@
+.indexIntro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 72px 32px 40px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--label-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.indexIntro h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.04;
+}
+
+.indexIntro > p:last-child {
+  max-width: 640px;
+  margin: 20px auto 0;
+  color: var(--label-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1180px;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0 32px 72px;
+}
+
+.profileCard {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--label);
+  background: var(--surface);
+  text-decoration: none;
+  transition:
+    border-color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.profileCard:hover {
+  border-color: #b8b9bd;
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.profileCard:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.profileCardBody {
+  padding: 20px;
+}
+
+.profileCardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profileCardTitle h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.025em;
+}
+
+.profileCardBody > p:not(.eyebrow) {
+  margin: 8px 0 16px;
+  color: var(--label-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.cardTraits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cardTraits li {
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+
+.miniPreview {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--canvas-subtle);
+}
+
+.miniPreview span {
+  position: absolute;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.miniBar {
+  top: 16px;
+  right: 16px;
+  left: 16px;
+  height: 24px;
+}
+.miniSide {
+  top: 48px;
+  bottom: 16px;
+  left: 16px;
+  width: 22%;
+}
+.miniMain {
+  top: 48px;
+  right: 26%;
+  bottom: 16px;
+  left: calc(22% + 24px);
+}
+.miniPanel {
+  top: 48px;
+  right: 16px;
+  bottom: 16px;
+  width: 22%;
+}
+.miniPreview .miniBubble {
+  right: 31%;
+  bottom: 40px;
+  width: 22%;
+  height: 20px;
+  background: var(--fill);
+}
+.mini_general .miniSide {
+  display: none;
+}
+.mini_general .miniMain {
+  right: calc(50% + 4px);
+  left: 16px;
+}
+.mini_general .miniPanel {
+  right: 16px;
+  width: calc(50% - 28px);
+}
+.mini_mobile .miniBar {
+  top: 10px;
+  right: calc(50% - 80px);
+  left: calc(50% - 80px);
+}
+.mini_mobile .miniSide {
+  display: none;
+}
+.mini_mobile .miniMain {
+  top: 40px;
+  right: calc(50% - 80px);
+  left: calc(50% - 80px);
+  border-radius: 14px;
+}
+.mini_mobile .miniPanel {
+  display: none;
+}
+.mini_mobile .miniBubble {
+  right: calc(50% - 66px);
+  bottom: 48px;
+  width: 62px;
+}
+.mini_web .miniSide {
+  width: 16%;
+}
+.mini_web .miniMain {
+  right: 16px;
+  left: calc(16% + 24px);
+}
+.mini_web .miniPanel {
+  top: 82px;
+  right: 32px;
+  bottom: 32px;
+  width: 26%;
+}
+
+@media (max-width: 760px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 48px;
+  }
+
+  .indexIntro {
+    padding: 48px 20px 28px;
+  }
+}

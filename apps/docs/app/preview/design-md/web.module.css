@@ -1,0 +1,455 @@
+.webShowcase {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.brandMark {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--on-primary);
+  background: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.webApp {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  grid-template-rows: 58px 1fr;
+  min-height: 680px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--canvas-subtle);
+  box-shadow: 0 18px 52px rgb(15 15 16 / 8%);
+}
+
+.webHeader {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 190px minmax(180px, 420px) 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.webBrand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.webBrand strong {
+  font-size: 13px;
+}
+
+.webSearch {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+
+.webSearch span {
+  flex: 1;
+}
+.webSearch kbd {
+  padding: 2px 5px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 9px;
+}
+.webHeaderActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.webHeaderActions button,
+.webMenuButton {
+  display: grid;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: var(--label-muted);
+  background: transparent;
+}
+.webHeaderActions .webPrimaryButton {
+  display: flex;
+  padding: 0 12px;
+  color: var(--on-primary);
+  background: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+}
+.webAvatar {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--on-primary);
+  background: var(--primary);
+  font-size: 10px;
+}
+.webMenuButton {
+  display: none;
+}
+
+.webSidebar {
+  display: flex;
+  min-width: 0;
+  justify-content: space-between;
+  padding: 14px 10px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+  flex-direction: column;
+}
+
+.webSidebar nav {
+  display: grid;
+  gap: 3px;
+}
+.webSidebar a {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  gap: 9px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: var(--label-muted);
+  font-size: 11px;
+  text-decoration: none;
+}
+.webSidebar .webNavActive {
+  color: var(--label);
+  background: var(--fill);
+  font-weight: 600;
+}
+
+.webMain {
+  min-width: 0;
+  padding: 28px;
+}
+.webTitleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.sectionLabel {
+  margin: 0 0 5px;
+  color: var(--label-muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.webTitleRow h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.025em;
+}
+.webTitleRow p:not(.sectionLabel) {
+  margin: 6px 0 0;
+  color: var(--label-muted);
+  font-size: 11px;
+}
+.dateControl {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--label);
+  background: var(--surface);
+  font-size: 10px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+.metricsGrid article {
+  position: relative;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.metricsGrid span,
+.metricsGrid strong {
+  display: block;
+}
+.metricsGrid span {
+  color: var(--label-muted);
+  font-size: 10px;
+}
+.metricsGrid strong {
+  margin-top: 8px;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+.metricsGrid small {
+  position: absolute;
+  right: 14px;
+  bottom: 16px;
+  color: var(--label-muted);
+  font-size: 9px;
+}
+.metricsGrid .metricPositive {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--positive);
+}
+
+.webContentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 10px;
+  margin-top: 10px;
+}
+.projectSection,
+.aiInsight {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.projectSection {
+  overflow: hidden;
+}
+.webSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.webSectionHeader h3 {
+  margin: 0;
+  font-size: 13px;
+}
+.webSectionHeader p {
+  margin: 4px 0 0;
+  color: var(--label-muted);
+  font-size: 9px;
+}
+.webSectionHeader button {
+  border: 0;
+  color: var(--label-muted);
+  background: transparent;
+  font-size: 10px;
+}
+
+.projectTable {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.projectTable th,
+.projectTable td {
+  height: 42px;
+  padding: 0 16px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+.projectTable thead th {
+  height: 34px;
+  border-top: 0;
+  color: var(--label-muted);
+  background: var(--canvas-subtle);
+  font-size: 9px;
+  font-weight: 500;
+}
+.projectTable tbody th {
+  font-size: 10px;
+  font-weight: 650;
+}
+.openStatus,
+.completeStatus {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: var(--fill);
+}
+.completeStatus {
+  color: var(--positive);
+}
+
+.aiInsight {
+  padding: 16px;
+}
+.aiInsightHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.aiInsightHeader > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--label-muted);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.aiInsightHeader button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: var(--label-muted);
+  background: transparent;
+}
+.aiInsight h3 {
+  margin: 22px 0 8px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.aiInsight p {
+  margin: 0;
+  color: var(--label-muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.insightAction {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  gap: 7px;
+  margin-top: 18px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--label);
+  background: var(--surface);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+@media (max-width: 1040px) {
+  .webApp {
+    grid-template-columns: 72px 1fr;
+  }
+  .webHeader {
+    grid-template-columns: 52px minmax(180px, 360px) 1fr;
+  }
+  .webBrand strong {
+    display: none;
+  }
+  .webSidebar a {
+    justify-content: center;
+    padding: 0;
+    font-size: 0;
+  }
+  .webContentGrid {
+    grid-template-columns: 1fr;
+  }
+  .aiInsight {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 20px;
+  }
+  .aiInsightHeader {
+    grid-column: 1 / -1;
+  }
+  .aiInsight h3 {
+    margin: 10px 0 0;
+  }
+  .aiInsight p {
+    grid-column: 1;
+  }
+  .insightAction {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: center;
+    margin: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .webApp {
+    display: block;
+    min-height: 0;
+    border-radius: 12px;
+  }
+  .webHeader {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    min-height: 56px;
+    gap: 8px;
+  }
+  .webBrand,
+  .webSidebar,
+  .webSearch,
+  .webHeaderActions > button:first-child {
+    display: none;
+  }
+  .webMenuButton {
+    display: grid;
+  }
+  .webHeaderActions .webPrimaryButton {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+  }
+  .webMain {
+    padding: 20px 14px;
+  }
+  .webTitleRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+  .metricsGrid article {
+    min-height: 84px;
+  }
+  .projectSection {
+    overflow-x: auto;
+  }
+  .aiInsight {
+    display: block;
+  }
+  .aiInsight h3 {
+    margin-top: 18px;
+  }
+  .insightAction {
+    margin-top: 16px;
+  }
+}
