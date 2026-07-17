@@ -15,7 +15,7 @@ colors:
   fill: "#f1f1f2"
   positive: "#00a638"
   cautionary: "#d97700"
-  negative: "#d92d2d"
+  negative: "#c52222"
   inverse-surface: "#1b1c1e"
   inverse-label: "#f7f7f8"
 typography:
@@ -43,12 +43,24 @@ typography:
     fontWeight: 400
     lineHeight: 22px
     letterSpacing: "0em"
+  body-reading:
+    fontFamily: "SF Pro Text, Pretendard Variable, Pretendard, Segoe UI, sans-serif"
+    fontSize: 14px
+    fontWeight: 400
+    lineHeight: 24px
+    letterSpacing: "0.0057em"
   label:
     fontFamily: "SF Pro Text, Pretendard Variable, Pretendard, Segoe UI, sans-serif"
     fontSize: 12px
     fontWeight: 500
     lineHeight: 17px
     letterSpacing: "0em"
+  caption:
+    fontFamily: "SF Pro Text, Pretendard Variable, Pretendard, Segoe UI, sans-serif"
+    fontSize: 11px
+    fontWeight: 400
+    lineHeight: 14px
+    letterSpacing: "0.0252em"
   code:
     fontFamily: "SF Mono, JetBrains Mono, Consolas, monospace"
     fontSize: 12px
