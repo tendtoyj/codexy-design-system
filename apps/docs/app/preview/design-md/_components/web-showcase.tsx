@@ -4,21 +4,19 @@ import {
   Bell,
   CaretDown,
   ChartBar,
-  ChatCircle,
   CheckCircle,
-  DotsThree,
   Folders,
   Gear,
   House,
   List,
   MagnifyingGlass,
   Plus,
-  Sparkle,
   TrendUp,
   Users,
 } from "@tendtoyj/cds-icons/icons";
 import { profiles } from "../profile-data";
 import styles from "../web.module.css";
+import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
 import { ProfileIntro } from "./shared-ui";
 
 const tableRows = [
@@ -151,20 +149,20 @@ export function WebShowcase() {
               </table>
             </section>
 
-            <aside className={styles.aiInsight}>
-              <div className={styles.aiInsightHeader}>
-                <span>
-                  <Sparkle width={15} height={15} /> AI insight
-                </span>
-                <button type="button" aria-label="더보기">
-                  <DotsThree width={17} height={17} />
-                </button>
+            <aside className={styles.aiChat} aria-label="Web AI chat panel">
+              <div className={styles.aiChatHeader}>
+                <div>
+                  <span>AI workspace</span>
+                  <strong>DESIGN.md 검토</strong>
+                </div>
+                <span className={styles.aiOnline}>Online</span>
               </div>
-              <h3>Mobile 문서의 접근성 검토가 필요해요.</h3>
-              <p>새로운 bottom sheet 규칙 중 두 항목에 focus 이동 원칙을 추가하면 좋습니다.</p>
-              <button type="button" className={styles.insightAction}>
-                <ChatCircle width={15} height={15} /> AI와 검토하기
-              </button>
+              <div className={styles.webChatThread}>
+                <CdsChatConversation profile="web" showTrace />
+              </div>
+              <div className={styles.webChatComposer}>
+                <CdsChatComposer placeholder="AI와 문서를 검토하세요" />
+              </div>
             </aside>
           </div>
         </main>

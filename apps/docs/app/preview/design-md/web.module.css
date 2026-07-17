@@ -222,12 +222,12 @@
 
 .webContentGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 350px);
   gap: 10px;
   margin-top: 10px;
 }
 .projectSection,
-.aiInsight {
+.aiChat {
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--surface);
@@ -307,57 +307,66 @@
   color: var(--positive);
 }
 
-.aiInsight {
-  padding: 16px;
+.aiChat {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  flex-direction: column;
 }
-.aiInsightHeader {
+
+.aiChatHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 54px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--line);
 }
-.aiInsightHeader > span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+
+.aiChatHeader span,
+.aiChatHeader strong {
+  display: block;
+}
+
+.aiChatHeader span {
   color: var(--label-muted);
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
 }
-.aiInsightHeader button {
-  display: grid;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  place-items: center;
-  border: 0;
-  color: var(--label-muted);
-  background: transparent;
+
+.aiChatHeader strong {
+  margin-top: 3px;
+  font-size: 12px;
 }
-.aiInsight h3 {
-  margin: 22px 0 8px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-.aiInsight p {
-  margin: 0;
-  color: var(--label-muted);
-  font-size: 10px;
-  line-height: 1.6;
-}
-.insightAction {
-  display: flex;
+
+.aiChatHeader .aiOnline {
+  display: inline-flex;
   align-items: center;
-  min-height: 36px;
-  gap: 7px;
-  margin-top: 18px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--label);
-  background: var(--surface);
-  font-size: 10px;
-  font-weight: 600;
+  gap: 5px;
+  color: var(--positive);
+  text-transform: none;
+}
+
+.aiOnline::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--positive);
+  content: "";
+}
+
+.webChatThread {
+  min-height: 250px;
+  max-height: 330px;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.webChatComposer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 1040px) {
@@ -377,26 +386,6 @@
   }
   .webContentGrid {
     grid-template-columns: 1fr;
-  }
-  .aiInsight {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 8px 20px;
-  }
-  .aiInsightHeader {
-    grid-column: 1 / -1;
-  }
-  .aiInsight h3 {
-    margin: 10px 0 0;
-  }
-  .aiInsight p {
-    grid-column: 1;
-  }
-  .insightAction {
-    grid-column: 2;
-    grid-row: 2 / 4;
-    align-self: center;
-    margin: 0;
   }
 }
 
@@ -443,13 +432,7 @@
   .projectSection {
     overflow-x: auto;
   }
-  .aiInsight {
-    display: block;
-  }
-  .aiInsight h3 {
-    margin-top: 18px;
-  }
-  .insightAction {
-    margin-top: 16px;
+  .aiChat {
+    order: -1;
   }
 }

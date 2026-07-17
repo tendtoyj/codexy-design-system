@@ -174,9 +174,10 @@
   width: min(100%, 680px);
   flex: 1;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
   margin: 0 auto;
   padding: 30px 24px;
+  overflow-y: auto;
 }
 
 .threadDate {
@@ -185,49 +186,10 @@
   text-align: center;
 }
 
-.userBubble {
-  align-self: flex-end;
-  max-width: 72%;
-  padding: 9px 11px;
-  border-radius: 10px 10px 3px;
-  background: var(--fill);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.trace {
-  margin-left: 38px;
-  color: var(--label-muted);
-  font-size: 11px;
-}
-
-.trace summary {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  list-style: none;
-}
-
-.trace summary svg:last-child {
-  margin-left: auto;
-}
-.trace p {
-  margin: 8px 0 0;
-  padding-left: 21px;
-}
-
 .desktopComposerWrap {
   width: min(100%, 680px);
   margin: 0 auto;
-  padding: 0 24px 18px;
-}
-
-.desktopComposerWrap > p {
-  margin: 6px 0 0;
-  color: var(--label-muted);
-  font-size: 9px;
-  text-align: center;
+  padding: 0 8px 2px;
 }
 
 .contextHeader {
@@ -346,6 +308,6 @@
     padding: 24px 16px;
   }
   .desktopComposerWrap {
-    padding: 0 12px 14px;
+    padding: 0 0 2px;
   }
 }

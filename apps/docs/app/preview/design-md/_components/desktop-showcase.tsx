@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Brain,
-  CaretDown,
   ChatCircle,
   Check,
   ClockCounterClockwise,
@@ -16,7 +14,8 @@ import {
 } from "@tendtoyj/cds-icons/icons";
 import styles from "../desktop.module.css";
 import { profiles } from "../profile-data";
-import { AssistantAnswer, Composer, ProfileIntro } from "./shared-ui";
+import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
+import { ProfileIntro } from "./shared-ui";
 
 const navItems = [
   { icon: ChatCircle, label: "Sessions", active: true },
@@ -76,19 +75,14 @@ export function DesktopShowcase() {
           </header>
           <div className={styles.desktopThread}>
             <div className={styles.threadDate}>Today · 10:42</div>
-            <div className={styles.userBubble}>네 프로필의 공통 원칙을 한 문장으로 정리해줘.</div>
-            <AssistantAnswer compact />
-            <details className={styles.trace}>
-              <summary>
-                <Brain width={14} height={14} /> 3개의 디자인 규칙을 확인했어요
-                <CaretDown width={13} height={13} />
-              </summary>
-              <p>Color identity, platform density, AI message hierarchy</p>
-            </details>
+            <CdsChatConversation profile="desktop" showTrace />
           </div>
           <div className={styles.desktopComposerWrap}>
-            <Composer />
-            <p>Enter to send · Shift + Enter for a new line</p>
+            <CdsChatComposer
+              placeholder="메시지를 입력하세요…"
+              attachment="desktop/DESIGN.md"
+              footerText="Enter to send · Shift + Enter for a new line"
+            />
           </div>
         </main>
 

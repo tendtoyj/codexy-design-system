@@ -160,18 +160,11 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
   padding: 24px 0;
 }
 
-.userBubble {
-  align-self: flex-end;
-  max-width: 78%;
-  padding: 10px 12px;
-  border-radius: 10px 10px 3px;
-  background: var(--fill);
-  font-size: 13px;
-  line-height: 1.5;
+.generalComposer {
+  margin: 0 -16px -16px;
 }
 
 .foundationStrip {

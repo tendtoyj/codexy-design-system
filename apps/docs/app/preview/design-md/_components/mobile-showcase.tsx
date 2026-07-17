@@ -11,7 +11,8 @@ import {
 } from "@tendtoyj/cds-icons/icons";
 import styles from "../mobile.module.css";
 import { profiles } from "../profile-data";
-import { AssistantAnswer, Composer, ProfileIntro } from "./shared-ui";
+import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
+import { ProfileIntro } from "./shared-ui";
 
 export function MobileShowcase() {
   return (
@@ -37,15 +38,14 @@ export function MobileShowcase() {
           </header>
           <div className={styles.mobileThread}>
             <p className={styles.mobileDate}>오늘 오전 10:42</p>
-            <div className={styles.userBubble}>모바일에서 중요한 알림만 남겨줘.</div>
-            <AssistantAnswer compact />
+            <CdsChatConversation profile="mobile" />
             <div className={styles.mobileSuggestionRow}>
               <button type="button">변경사항 보기</button>
               <button type="button">되돌리기</button>
             </div>
           </div>
           <div className={styles.mobileComposerWrap}>
-            <Composer label="메시지" />
+            <CdsChatComposer placeholder="메시지" />
           </div>
           <nav className={styles.bottomNavigation} aria-label="Mobile primary navigation">
             <a href="#mobile" className={styles.bottomNavActive}>

@@ -3,7 +3,8 @@
 import { Bell, Check, Circle, User } from "@tendtoyj/cds-icons/icons";
 import styles from "../general.module.css";
 import { profiles } from "../profile-data";
-import { AssistantAnswer, Composer, ProfileIntro, Surface, Toggle } from "./shared-ui";
+import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
+import { ProfileIntro, Surface, Toggle } from "./shared-ui";
 
 export function GeneralShowcase() {
   const profile = profiles.general;
@@ -70,10 +71,14 @@ export function GeneralShowcase() {
             <span className={styles.onlineDot}>Online</span>
           </div>
           <div className={styles.conversation}>
-            <div className={styles.userBubble}>업무에 필요한 알림만 남겨줘.</div>
-            <AssistantAnswer />
+            <CdsChatConversation profile="general" />
           </div>
-          <Composer label="알림 설정에 대해 물어보세요" />
+          <div className={styles.generalComposer}>
+            <CdsChatComposer
+              placeholder="DESIGN.md 전략에 대해 물어보세요"
+              attachment="general/DESIGN.md"
+            />
+          </div>
         </Surface>
       </div>
 
