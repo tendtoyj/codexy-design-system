@@ -97,14 +97,43 @@ spacing:
   "18": 72px
   "20": 80px
 components:
-  primary-button:
+  compact-visual-control:
+    backgroundColor: "{colors.fill}"
+    textColor: "{colors.label}"
+    typography: "{typography.label}"
+    rounded: "{rounded.xl}"
+    height: 40px
+  button-sm:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    typography: "{typography.label}"
+    rounded: "{rounded.2xl}"
+    height: 44px
+  button-md:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
     typography: "{typography.label}"
     rounded: "{rounded.lg}"
     height: 48px
+  button-lg:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    typography: "{typography.label}"
+    rounded: "{rounded.3xl}"
+    height: 56px
+  icon-button:
+    backgroundColor: "{colors.fill}"
+    textColor: "{colors.label}"
+    rounded: "{rounded.2xl}"
+    size: 44px
   text-input:
     backgroundColor: "{colors.canvas}"
+    textColor: "{colors.label}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    height: 48px
+  menu-row:
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.label}"
     typography: "{typography.body}"
     rounded: "{rounded.lg}"
@@ -120,39 +149,97 @@ components:
     textColor: "{colors.label}"
     rounded: "{rounded.3xl}"
     padding: 24px
+  temporary-drawer:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.label}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 16px
+    width: 320px
+  alert-dialog:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.label}"
+    typography: "{typography.body}"
+    rounded: "{rounded.3xl}"
+    padding: 24px
+    width: 320px
+  chat-composer:
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.label}"
+    typography: "{typography.body}"
+    rounded: "{rounded.3xl}"
+    height: 56px
 ---
 
 ## Overview
 
-CDS Mobile translates the desktop-origin visual language into a touch-first, single-column product experience. Bottom navigation, sheets, and safe-area behavior are platform translations rather than claims about current CDS code.
+CDS Mobile translates the desktop-origin visual language into a touch-first, single-column product experience. Bottom navigation, temporary drawers, sheets, safe-area behavior, and mobile chat flow are new platform translations rather than claims about the current CDS implementation.
+
+Preserve the calm neutral tone and AI-native content hierarchy, but reorganize the experience around reach, interruption, virtual keyboard behavior, and one active task at a time.
 
 ## Colors
 
-Keep the canvas bright and neutral. Use dark primary controls sparingly, retain blue focus for external keyboard access, and pair every status color with text or icon meaning.
+Keep the canvas bright and neutral. Use dark primary controls sparingly, retain blue focus for switch access and external keyboard use, and pair every status color with text or icon meaning.
+
+Pressed and selected fills should be visible under a finger without producing a saturated flash. Errors use negative text, icon, and nearby guidance; never mark an invalid field only by changing its border color.
 
 ## Typography
 
-Body text begins at 16px with a 24px line height. Use larger headings than desktop while preserving the same families and weights across semantic roles.
+Body text begins at 16px with a 24px line height. Reading content may use up to 27px line height. Labels begin at 14px and captions at 12px; preserve the same families and weights across semantic roles.
+
+Avoid shrinking content to recover space. Shorten labels, reveal details progressively, or move secondary information to a follow-up surface first.
 
 ## Layout
 
-Design for 320–599px single-column viewports. Apply 16px horizontal gutters, respect top and bottom safe areas, and keep the current task above persistent bottom navigation.
+### Phone-first structure
+
+Design for 320–599px phone-first single-column viewports. Apply 16px horizontal gutters, respect top and bottom safe-area insets, and keep the current task above persistent navigation and actions.
+
+Translate a permanent sidebar into three to five bottom navigation destinations. If destinations are numerous or contextual, use a temporary drawer opened by a clearly labeled control. Preserve the information architecture; do not squeeze a desktop sidebar into the phone width.
+
+At 600px and above on a touch device, a limited two-column layout may pair a list with its selected detail. Do not automatically switch to a desktop three-panel shell; input mode and task continuity matter as much as width.
+
+### Keyboard and scrolling
+
+The virtual keyboard reduces the usable viewport. Scroll the focused field and its validation message into view, keep a small visible gap above the keyboard, and let content continue behind neither the keyboard nor a fixed composer.
+
+Only the content region scrolls when top navigation or a bottom composer is fixed. Include top safe area in the header and bottom safe area in navigation or composer padding rather than adding empty decorative bars.
 
 ## Elevation & Depth
 
-Use surface separation and a soft scrim for sheets. Bottom sheets should feel attached to the viewport edge; reserve centered modals for exceptional compact decisions.
+Use surface separation and a soft scrim for sheets. A bottom sheet handles contextual choices and short forms; a full-screen surface handles multi-step or content-heavy tasks. Reserve a centered alert for a short, urgent decision that cannot wait.
+
+Sheets attach to the bottom edge with rounded top corners, a clear dismiss path, and content that remains reachable above the bottom inset. Stacked sheets are not allowed.
 
 ## Shapes
 
-Use 8px controls and 16px sheet corners. Avoid excessive pills, but allow full rounding for avatar, status, and compact selection elements.
+Use 10–16px controls according to size and 16px sheet corners. A 40px visual control is allowed only inside a touch container of at least 44px; the visual bounds and hit bounds may differ.
+
+Avoid excessive pills, but allow full rounding for avatars, status, and compact selection elements. Use standard radius fallback if continuous squircle corners are unavailable.
 
 ## Components
 
-All interactive targets are at least 44px. Prefer bottom sheets for contextual actions, full-screen flows for complex tasks, pressed states for touch feedback, and clear loading or disabled states.
+### Touch controls
+
+All primary actions, fields, menu rows, navigation items, icon actions, and destructive confirmations have a touch target of at least 44px. The shared touch scale is 40/44/48/56px: 40px is a visual compact size only and must sit inside a 44px hit region.
+
+Every action is understandable without hover. Use immediate pressed feedback, persistent selected styling, visible focus for accessibility input, explicit labels or accessible names, and state icons where they add meaning.
+
+Destructive actions use precise wording and confirmation proportional to consequence. Loading keeps the action footprint stable. Streaming exposes a stop action within thumb reach and does not replace the entire layout with a blocking spinner.
+
+### Mobile AI workspace
+
+Default to a session list followed by one active thread. Do not show removable multi-session tabs across the top of a phone. Back navigation returns to the session list without discarding the current draft.
+
+The thread scrolls independently between its header and composer. User messages remain compact bubbles; assistant answers remain plain reading content. The 56px composer stays above the virtual keyboard and bottom safe area, with send or cancel on the trailing side within thumb reach.
 
 ## Do's and Don'ts
 
 - Do keep primary actions reachable and account for safe-area insets.
 - Do use pressed, selected, and focus states that remain visible without hover.
+- Do move the focused field and its error message above the virtual keyboard.
+- Do use a session list before entering one active conversation.
 - Don't use a persistent desktop sidebar or three-panel shell.
 - Don't place essential information behind hover interactions.
+- Don't dock a composer underneath the keyboard or bottom inset.
+- Don't present a centered modal for content that needs a sheet or full-screen flow.
