@@ -1,7 +1,8 @@
 "use client";
 
-import { Microphone, Paperclip } from "@tendtoyj/cds-icons/icons";
+import { CaretDown, Microphone, Paperclip } from "@tendtoyj/cds-icons/icons";
 import { renderMarkdown } from "@tendtoyj/cds-markdown";
+import { Button } from "@tendtoyj/cds-ui/components/button";
 import { ChatAssistantMessage } from "@tendtoyj/cds-ui/components/chat-assistant-message";
 import { ChatAttachmentChip } from "@tendtoyj/cds-ui/components/chat-attachment-chip";
 import { ChatComposer } from "@tendtoyj/cds-ui/components/chat-composer";
@@ -10,6 +11,13 @@ import {
   type ProcessTraceBlock,
 } from "@tendtoyj/cds-ui/components/chat-process-trace";
 import { ChatUserMessage } from "@tendtoyj/cds-ui/components/chat-user-message";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
 import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
 import { useState } from "react";
 import styles from "../chat-showcase.module.css";
@@ -58,6 +66,18 @@ const traceBlocks: ProcessTraceBlock[] = [
   },
 ];
 
+const toneOptions = [
+  { id: "friendly", label: "친근하게" },
+  { id: "concise", label: "간결하게" },
+  { id: "formal", label: "정중하게" },
+];
+
+const modelOptions = [
+  { id: "5.5-high", label: "5.5 높음" },
+  { id: "5.5-balanced", label: "5.5 균형" },
+  { id: "4.5-fast", label: "4.5 빠름" },
+];
+
 export function CdsChatConversation({
   profile,
   showTrace = false,
@@ -88,6 +108,8 @@ export function CdsChatComposer({
   footerText?: string;
 }) {
   const [value, setValue] = useState("");
+  const [tone, setTone] = useState("friendly");
+  const [model, setModel] = useState("5.5-high");
 
   return (
     <ChatComposer
@@ -117,8 +139,46 @@ export function CdsChatComposer({
       }
       bottomAccessory={
         <div className={styles.composerMeta}>
-          <span>친근하게</span>
-          <span>5.5 높음</span>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="frosted"
+                size="xs"
+                trailingContent={<CaretDown aria-hidden="true" />}
+              >
+                {toneOptions.find((option) => option.id === tone)?.label}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent size="sm" align="start">
+              <DropdownMenuRadioGroup value={tone} onValueChange={setTone}>
+                {toneOptions.map((option) => (
+                  <DropdownMenuRadioItem key={option.id} value={option.id}>
+                    {option.label}
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="frosted"
+                size="xs"
+                trailingContent={<CaretDown aria-hidden="true" />}
+              >
+                {modelOptions.find((option) => option.id === model)?.label}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent size="sm" align="start">
+              <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
+                {modelOptions.map((option) => (
+                  <DropdownMenuRadioItem key={option.id} value={option.id}>
+                    {option.label}
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       }
     />

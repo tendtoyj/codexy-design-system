@@ -225,6 +225,8 @@ All primary actions, fields, menu rows, navigation items, icon actions, and dest
 
 Every action is understandable without hover. Use immediate pressed feedback, persistent selected styling, visible focus for accessibility input, explicit labels or accessible names, and state icons where they add meaning.
 
+Use SegmentedControl for two or three peer modes that fit without truncation. Use Button and IconButton with a 44px minimum hit area, and Switch for immediate binary settings. A short DropdownMenu may stay anchored to its trigger; longer, descriptive, or destructive choice lists translate into a bottom sheet while preserving the same labels and selection state.
+
 Destructive actions use precise wording and confirmation proportional to consequence. Loading keeps the action footprint stable. Streaming exposes a stop action within thumb reach and does not replace the entire layout with a blocking spinner.
 
 ### Mobile AI workspace

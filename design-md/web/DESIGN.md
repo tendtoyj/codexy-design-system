@@ -224,6 +224,8 @@ Use 40–44px form controls as the browser baseline. Choose 44px or larger when 
 
 Every pointer-only menu has a keyboard route and a coarse-touch trigger. Tooltips cannot contain the only instructions or action. Zoom and text resizing must not hide controls or force horizontal scrolling in primary content.
 
+Use SegmentedControl for compact view or mode switching, DropdownMenu for collision-aware option and overflow lists, Switch for immediate preferences, and Select for persistent form values. Button and IconButton retain their semantic action hierarchy across breakpoints; only their label presentation or placement may adapt. Never collapse distinct control roles into visually similar custom pills.
+
 ### Responsive AI workspace
 
 On compact screens, show one thread with its composer and move session selection into temporary navigation. At medium, session navigation may use a rail or adjacent list. At wide, session navigation, the thread, and optional context may coexist when the thread keeps a readable measure.

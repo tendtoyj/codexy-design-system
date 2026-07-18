@@ -31,11 +31,3 @@ export function ProfileIntro({
 export function Surface({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <section className={`${styles.surface} ${className}`}>{children}</section>;
 }
-
-export function Toggle({ checked = false }: { checked?: boolean }) {
-  return (
-    <span className={checked ? styles.toggleChecked : styles.toggle} aria-hidden="true">
-      <span />
-    </span>
-  );
-}

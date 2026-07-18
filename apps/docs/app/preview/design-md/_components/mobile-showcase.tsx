@@ -9,12 +9,21 @@ import {
   MagnifyingGlass,
   User,
 } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@tendtoyj/cds-ui/components/segmented-control";
+import { useState } from "react";
 import styles from "../mobile.module.css";
 import { profiles } from "../profile-data";
 import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
 import { ProfileIntro } from "./shared-ui";
 
 export function MobileShowcase() {
+  const [mode, setMode] = useState("chat");
+
   return (
     <div className={styles.mobileShowcase}>
       <ProfileIntro {...profiles.mobile} />
@@ -25,23 +34,38 @@ export function MobileShowcase() {
             <span>● ● ▰</span>
           </div>
           <header className={styles.mobileHeader}>
-            <button type="button" aria-label="세션 목록으로 돌아가기">
+            <IconButton size="lg" variant="subtle" aria-label="세션 목록으로 돌아가기">
               <ArrowLeft width={20} height={20} />
-            </button>
+            </IconButton>
             <span>
               <strong>디자인 시스템 도우미</strong>
               <small>온라인</small>
             </span>
-            <button type="button" aria-label="대화 메뉴">
+            <IconButton size="lg" variant="subtle" aria-label="대화 메뉴">
               <DotsThree width={21} height={21} />
-            </button>
+            </IconButton>
           </header>
           <div className={styles.mobileThread}>
             <p className={styles.mobileDate}>오늘 오전 10:42</p>
+            <SegmentedControl
+              className={styles.mobileModeControl}
+              size="md"
+              fullWidth
+              value={mode}
+              onValueChange={setMode}
+              aria-label="모바일 AI 작업 모드"
+            >
+              <SegmentedControlItem value="chat">대화</SegmentedControlItem>
+              <SegmentedControlItem value="task">작업</SegmentedControlItem>
+            </SegmentedControl>
             <CdsChatConversation profile="mobile" />
             <div className={styles.mobileSuggestionRow}>
-              <button type="button">변경사항 보기</button>
-              <button type="button">되돌리기</button>
+              <Button type="button" variant="outlined" size="md">
+                변경사항 보기
+              </Button>
+              <Button type="button" variant="outlined" size="md">
+                되돌리기
+              </Button>
             </div>
           </div>
           <div className={styles.mobileComposerWrap}>

@@ -12,6 +12,9 @@ import {
   SidebarSimple,
   Sparkle,
 } from "@tendtoyj/cds-icons/icons";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import { type RemovableTab, RemovableTabBar } from "@tendtoyj/cds-ui/components/removable-tab-bar";
+import { useState } from "react";
 import styles from "../desktop.module.css";
 import { profiles } from "../profile-data";
 import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
@@ -23,7 +26,29 @@ const navItems = [
   { icon: ClockCounterClockwise, label: "History" },
 ];
 
+const initialTabs: RemovableTab[] = [
+  { id: "profile", title: "DESIGN.md profile" },
+  { id: "mobile", title: "Mobile audit" },
+];
+
 export function DesktopShowcase() {
+  const [tabs, setTabs] = useState(initialTabs);
+  const [activeId, setActiveId] = useState<string | null>(initialTabs[0]?.id ?? null);
+
+  const closeTab = (id: string) => {
+    setTabs((current) => {
+      const remaining = current.filter((tab) => tab.id !== id);
+      if (activeId === id) setActiveId(remaining[0]?.id ?? null);
+      return remaining;
+    });
+  };
+
+  const addTab = () => {
+    const id = `review-${tabs.length + 1}`;
+    setTabs((current) => [...current, { id, title: "새 검토" }]);
+    setActiveId(id);
+  };
+
   return (
     <div className={styles.desktopShowcase}>
       <ProfileIntro {...profiles.desktop} />
@@ -32,9 +57,9 @@ export function DesktopShowcase() {
           <div className={styles.desktopBrand}>
             <span className={styles.brandMark}>C</span>
             <strong>Codexy</strong>
-            <button type="button" aria-label="사이드바 접기">
+            <IconButton size="xs" variant="subtle" aria-label="사이드바 접기">
               <SidebarSimple width={15} height={15} />
-            </button>
+            </IconButton>
           </div>
           <nav className={styles.desktopNav} aria-label="Workspace navigation">
             {navItems.map(({ icon: Icon, label, active }) => (
@@ -61,17 +86,20 @@ export function DesktopShowcase() {
         <main className={styles.desktopMain} id="main">
           <header className={styles.desktopToolbar}>
             <div className={styles.sessionTabs}>
-              <button type="button" className={styles.sessionTabActive}>
-                DESIGN.md profile
-              </button>
-              <button type="button">Mobile audit</button>
-              <button type="button" aria-label="새 세션">
+              <RemovableTabBar
+                size="sm"
+                tabs={tabs}
+                activeId={activeId}
+                onSwitch={setActiveId}
+                onClose={closeTab}
+              />
+              <IconButton size="xs" variant="subtle" aria-label="새 세션" onClick={addTab}>
                 <Plus width={14} height={14} />
-              </button>
+              </IconButton>
             </div>
-            <button type="button" className={styles.compactIconButton} aria-label="검색">
+            <IconButton size="xs" variant="subtle" aria-label="검색">
               <MagnifyingGlass width={14} height={14} />
-            </button>
+            </IconButton>
           </header>
           <div className={styles.desktopThread}>
             <div className={styles.threadDate}>Today · 10:42</div>
@@ -92,9 +120,9 @@ export function DesktopShowcase() {
               <span>Context</span>
               <strong>Profile checklist</strong>
             </div>
-            <button type="button" className={styles.compactIconButton} aria-label="더보기">
+            <IconButton size="xs" variant="subtle" aria-label="AI 컨텍스트 도구">
               <Sparkle width={14} height={14} />
-            </button>
+            </IconButton>
           </div>
           <div className={styles.contextContent}>
             <div className={styles.contextFile}>

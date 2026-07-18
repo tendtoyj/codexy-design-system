@@ -14,6 +14,20 @@ import {
   TrendUp,
   Users,
 } from "@tendtoyj/cds-icons/icons";
+import { Button } from "@tendtoyj/cds-ui/components/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@tendtoyj/cds-ui/components/dropdown-menu";
+import { IconButton } from "@tendtoyj/cds-ui/components/icon-button";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@tendtoyj/cds-ui/components/segmented-control";
+import { useState } from "react";
 import { profiles } from "../profile-data";
 import styles from "../web.module.css";
 import { CdsChatComposer, CdsChatConversation } from "./cds-chat-showcase";
@@ -25,7 +39,16 @@ const tableRows = [
   ["Accessibility audit", "박서연", "Complete", "Jul 18"],
 ];
 
+const rangeOptions = [
+  { id: "7d", label: "최근 7일" },
+  { id: "30d", label: "최근 30일" },
+  { id: "90d", label: "최근 90일" },
+];
+
 export function WebShowcase() {
+  const [view, setView] = useState("overview");
+  const [range, setRange] = useState("30d");
+
   return (
     <div className={styles.webShowcase}>
       <ProfileIntro {...profiles.web} />
@@ -35,21 +58,32 @@ export function WebShowcase() {
             <span className={styles.brandMark}>C</span>
             <strong>Codexy</strong>
           </div>
-          <button type="button" className={styles.webMenuButton} aria-label="내비게이션 열기">
+          <IconButton
+            size="md"
+            variant="subtle"
+            className={styles.webMenuButton}
+            aria-label="내비게이션 열기"
+          >
             <List width={18} height={18} />
-          </button>
+          </IconButton>
           <div className={styles.webSearch}>
             <MagnifyingGlass width={16} height={16} />
             <span>프로젝트 검색</span>
             <kbd>⌘ K</kbd>
           </div>
           <div className={styles.webHeaderActions}>
-            <button type="button" aria-label="알림">
+            <IconButton size="md" variant="subtle" aria-label="알림">
               <Bell width={18} height={18} />
-            </button>
-            <button type="button" className={styles.webPrimaryButton}>
-              <Plus width={15} height={15} /> 새 프로젝트
-            </button>
+            </IconButton>
+            <Button
+              type="button"
+              variant="solid"
+              size="sm"
+              className={styles.webPrimaryButton}
+              leadingContent={<Plus width={15} height={15} />}
+            >
+              <span className={styles.webPrimaryLabel}>새 프로젝트</span>
+            </Button>
             <span className={styles.webAvatar}>YK</span>
           </div>
         </header>
@@ -83,9 +117,38 @@ export function WebShowcase() {
               <h2>안녕하세요, 유정님</h2>
               <p>팀의 디자인 시스템 작업과 최근 진행 상황입니다.</p>
             </div>
-            <button type="button" className={styles.dateControl}>
-              최근 30일 <CaretDown width={14} height={14} />
-            </button>
+            <div className={styles.webTitleControls}>
+              <SegmentedControl
+                size="sm"
+                value={view}
+                onValueChange={setView}
+                aria-label="대시보드 보기"
+              >
+                <SegmentedControlItem value="overview">개요</SegmentedControlItem>
+                <SegmentedControlItem value="activity">활동</SegmentedControlItem>
+              </SegmentedControl>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    size="sm"
+                    trailingContent={<CaretDown width={14} height={14} />}
+                  >
+                    {rangeOptions.find((option) => option.id === range)?.label}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent size="sm" align="end">
+                  <DropdownMenuRadioGroup value={range} onValueChange={setRange}>
+                    {rangeOptions.map((option) => (
+                      <DropdownMenuRadioItem key={option.id} value={option.id}>
+                        {option.label}
+                      </DropdownMenuRadioItem>
+                    ))}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
 
           <div className={styles.metricsGrid}>
@@ -115,7 +178,9 @@ export function WebShowcase() {
                   <h3>Project activity</h3>
                   <p>현재 진행 중인 주요 작업</p>
                 </div>
-                <button type="button">전체 보기</button>
+                <Button type="button" variant="frosted" size="xs">
+                  전체 보기
+                </Button>
               </div>
               <table className={styles.projectTable}>
                 <caption className={styles.srOnly}>Project activity</caption>

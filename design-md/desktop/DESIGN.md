@@ -238,6 +238,8 @@ A thin scrollbar may remain quiet at rest and widen or increase contrast when th
 
 Buttons use 28px extra-small, 32px small, 36px medium, and 44px large heights. Icon buttons use an independent 18/24/32/40px square scale. Inputs normally use 32px or 36px; reserve 44px for prominent entry points.
 
+Use SegmentedControl for two to four dense workspace modes, RemovableTabBar for sessions that can be opened and closed, DropdownMenu for compact command and option lists, and Switch only for preferences that apply immediately. Do not simulate these roles with unrelated Button variants; preserve their selected, expanded, checked, and focus-visible states.
+
 Hover previews interactivity, pressed confirms pointer activation, selected represents persistent choice, and focus-visible supports keyboard navigation. Never communicate a state with hover alone. Add a tooltip for unfamiliar icon-only actions and support context menus only where a visible primary path also exists.
 
 ### Desktop AI workspace

@@ -18,12 +18,3 @@
   gap: 4px;
   padding: 0 6px;
 }
-
-.composerMeta span {
-  padding: 3px 6px;
-  border-radius: var(--cds-radius-6);
-  color: var(--cds-label-alternative);
-  background: var(--cds-background-normal-alternative);
-  font-size: 11px;
-  line-height: 16px;
-}

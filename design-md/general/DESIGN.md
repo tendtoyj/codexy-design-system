@@ -212,6 +212,8 @@ Use a labeled Button for committed actions, an IconButton for recognizable icon-
 
 Focus remains visible and component states never depend on color alone. Loading preserves the control footprint; disabled state remains legible but clearly unavailable.
 
+Use SegmentedControl for two to five mutually exclusive modes within one scope, DropdownMenu for a compact list of secondary choices or overflow actions, and Switch for an immediate boolean preference. Use Select when choosing a form value that must remain visible after selection. These controls share the same label, focus, disabled, and loading hierarchy as actions; do not redraw them as one-off pills or generic buttons.
+
 ### AI-native content
 
 Render the user's message as a compact bubble so the initiating input is easy to scan. Render the assistant response as plain content on the canvas, not a competing bubble. Long assistant content uses the reading body rhythm.
