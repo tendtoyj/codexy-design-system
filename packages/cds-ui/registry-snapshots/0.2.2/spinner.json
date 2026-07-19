@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Pure SVG loading indicator. sm/md/lg (16/20/28px). Respects prefers-reduced-motion.",
+  "dependencies": ["@tendtoyj/cds-core@0.2.2"],
+  "files": [
+    {
+      "path": "src/components/spinner.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport * as React from \"react\";\n\nconst spinner = tv({\n  base: [\n    \"inline-block shrink-0 animate-spin\",\n    \"[animation-duration:var(--cds-duration-slower)]\",\n    \"motion-reduce:animate-none\",\n  ],\n  variants: {\n    size: {\n      sm: \"w-[16px] h-[16px]\",\n      md: \"w-[20px] h-[20px]\",\n      lg: \"w-[28px] h-[28px]\",\n    },\n  },\n  defaultVariants: {\n    size: \"md\",\n  },\n});\n\ntype SpinnerVariants = VariantProps<typeof spinner>;\n\ntype SpinnerProps = Omit<React.HTMLAttributes<HTMLSpanElement>, \"children\"> & {\n  size?: SpinnerVariants[\"size\"];\n  label?: string;\n};\n\nconst Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(function Spinner(\n  { className, size = \"md\", label = \"Loading\", ...props },\n  ref,\n) {\n  return (\n    <span\n      ref={ref}\n      role=\"status\"\n      aria-label={label}\n      className={cn(spinner({ size }), className)}\n      {...props}\n    >\n      <svg\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2.5\"\n        strokeLinecap=\"round\"\n        className=\"h-full w-full\"\n        aria-hidden=\"true\"\n      >\n        <path d=\"M21 12a9 9 0 1 1-6.219-8.56\" opacity=\"1\" />\n      </svg>\n    </span>\n  );\n});\n\nexport type { SpinnerProps };\nexport { Spinner, spinner };\n",
+      "type": "registry:ui",
+      "target": "components/ui/spinner.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "close-button",
+  "title": "CloseButton (internal)",
+  "description": "Internal close affordance shared by dialog/popover/toast.",
+  "dependencies": ["@tendtoyj/cds-core@0.2.2", "@tendtoyj/cds-icons@0.2.2"],
+  "files": [
+    {
+      "path": "src/components/internal/close-button.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport { X } from \"@tendtoyj/cds-icons/icons\";\nimport * as React from \"react\";\n\nconst closeButton = tv({\n  base: [\n    \"inline-flex items-center justify-center shrink-0\",\n    \"text-[color:var(--cds-label-alternative)]\",\n    \"hover:bg-[var(--cds-fill-normal)]\",\n    \"focus-visible:outline-none focus-visible:ring-2\",\n    \"focus-visible:ring-[color:var(--cds-focus-ring)]\",\n    \"transition-colors duration-[var(--cds-duration-fast)]\",\n    \"disabled:pointer-events-none disabled:text-[color:var(--cds-label-disable)]\",\n  ],\n  variants: {\n    size: {\n      sm: \"w-[20px] h-[20px] rounded-[4px] [&_svg]:w-[12px] [&_svg]:h-[12px]\",\n      md: \"w-[24px] h-[24px] rounded-[6px] [&_svg]:w-[14px] [&_svg]:h-[14px]\",\n      lg: \"w-[28px] h-[28px] rounded-[6px] [&_svg]:w-[16px] [&_svg]:h-[16px]\",\n    },\n  },\n  defaultVariants: {\n    size: \"md\",\n  },\n});\n\ntype CloseButtonVariants = VariantProps<typeof closeButton>;\n\ntype CloseButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"children\"> & {\n  size?: CloseButtonVariants[\"size\"];\n  label?: string;\n  children?: React.ReactNode;\n};\n\nconst CloseButton = React.forwardRef<HTMLButtonElement, CloseButtonProps>(function CloseButton(\n  { className, size = \"md\", label = \"닫기\", children, type = \"button\", ...props },\n  ref,\n) {\n  return (\n    <button\n      ref={ref}\n      type={type}\n      aria-label={label}\n      className={cn(closeButton({ size }), className)}\n      {...props}\n    >\n      {children ?? <X />}\n    </button>\n  );\n});\n\nexport type { CloseButtonProps };\nexport { CloseButton, closeButton };\n",
+      "type": "registry:ui",
+      "target": "components/ui/internal/close-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

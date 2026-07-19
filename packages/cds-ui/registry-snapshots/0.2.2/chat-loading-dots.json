@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-loading-dots",
+  "title": "ChatLoadingDots",
+  "description": "Single-orb pulse loading indicator for in-progress assistant responses.",
+  "dependencies": ["@tendtoyj/cds-core@0.2.2"],
+  "files": [
+    {
+      "path": "src/components/chat-loading-dots.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv } from \"@tendtoyj/cds-core\";\nimport * as React from \"react\";\n\nconst chatLoadingDots = tv({\n  slots: {\n    root: [\"inline-flex items-center px-[2px]\", \"text-[color:var(--cds-label-assistive)]\"],\n    dot: [\"cds-animate-dot-pulse w-[8px] h-[8px]\"],\n  },\n});\n\ntype ChatLoadingDotsProps = Omit<React.HTMLAttributes<HTMLDivElement>, \"children\">;\n\nconst ChatLoadingDots = React.forwardRef<HTMLDivElement, ChatLoadingDotsProps>(\n  function ChatLoadingDots({ className, ...props }, ref) {\n    const styles = chatLoadingDots();\n    return (\n      <div\n        ref={ref}\n        data-slot=\"chat-loading-dots\"\n        className={cn(styles.root(), className)}\n        {...props}\n      >\n        <span aria-hidden=\"true\" className={styles.dot()} />\n      </div>\n    );\n  },\n);\n\nexport type { ChatLoadingDotsProps };\nexport { ChatLoadingDots, chatLoadingDots };\n",
+      "type": "registry:ui",
+      "target": "components/ui/chat-loading-dots.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
