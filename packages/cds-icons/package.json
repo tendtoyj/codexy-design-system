@@ -1,6 +1,6 @@
 {
   "name": "@tendtoyj/cds-icons",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "description": "Codexy Design System — phosphor wrappers + CDS-native icons",
   "license": "MIT",
@@ -28,10 +28,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "rm -rf dist && tsup && node scripts/verify-exports.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist .turbo"
+    "clean": "rm -rf dist .turbo",
+    "verify-exports": "node scripts/verify-exports.mjs",
+    "prepublishOnly": "node scripts/verify-exports.mjs"
   },
   "peerDependencies": {
     "react": "^19.0.0",

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-copy-button",
+  "title": "ChatCopyButton (internal)",
+  "description": "Internal copy-to-clipboard button used by chat message components.",
+  "dependencies": ["@tendtoyj/cds-core@0.3.1", "@tendtoyj/cds-icons@0.3.1"],
+  "registryDependencies": [
+    "https://codexy-design-system-docs.vercel.app/r/0.3.1/icon-button.json",
+    "https://codexy-design-system-docs.vercel.app/r/0.3.1/tooltip.json",
+    "https://codexy-design-system-docs.vercel.app/r/0.3.1/chat-types.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/internal/chat-copy-button.tsx",
+      "content": "\"use client\";\n\nimport { Check, Copy } from \"@tendtoyj/cds-icons/icons\";\nimport * as React from \"react\";\nimport type { ContentBlock, TextBlock } from \"../../types/chat\";\nimport { IconButton } from \"../icon-button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"../tooltip\";\n\nconst COPY_RESET_MS = 1500;\n\nfunction extractCopyText(content: string | ContentBlock[]): string {\n  if (typeof content === \"string\") return content;\n  return content\n    .filter((b): b is TextBlock => b.type === \"text\")\n    .map((b) => b.text)\n    .join(\"\\n\\n\");\n}\n\nfunction ChatCopyButton({ text }: { text: string }) {\n  const [copied, setCopied] = React.useState(false);\n  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  React.useEffect(() => {\n    return () => {\n      if (timeoutRef.current) clearTimeout(timeoutRef.current);\n    };\n  }, []);\n\n  const handleClick = async () => {\n    try {\n      await navigator.clipboard.writeText(text);\n      setCopied(true);\n      if (timeoutRef.current) clearTimeout(timeoutRef.current);\n      timeoutRef.current = setTimeout(() => setCopied(false), COPY_RESET_MS);\n    } catch {\n      // clipboard 미지원/거부 — 시각 피드백 없이 무시\n    }\n  };\n\n  const label = copied ? \"복사됨\" : \"복사\";\n\n  return (\n    <Tooltip>\n      <TooltipTrigger asChild>\n        <IconButton variant=\"subtle\" size=\"sm\" aria-label={label} onClick={handleClick}>\n          {copied ? <Check /> : <Copy />}\n        </IconButton>\n      </TooltipTrigger>\n      <TooltipContent size=\"sm\">{label}</TooltipContent>\n    </Tooltip>\n  );\n}\n\nexport { ChatCopyButton, extractCopyText };\n",
+      "type": "registry:ui",
+      "target": "components/ui/internal/chat-copy-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

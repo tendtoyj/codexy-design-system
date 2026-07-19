@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "Radix-based horizontal/vertical divider using CDS line tokens.",
+  "dependencies": ["@tendtoyj/cds-core@0.3.1", "@radix-ui/react-separator"],
+  "files": [
+    {
+      "path": "src/components/separator.tsx",
+      "content": "\"use client\";\n\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport * as React from \"react\";\n\nconst separator = tv({\n  base: \"shrink-0 border-0\",\n  variants: {\n    orientation: {\n      horizontal: \"w-full h-px\",\n      vertical: \"h-[1em] w-px\",\n    },\n    color: {\n      normal: \"bg-[var(--cds-line-solid-normal)]\",\n      neutral: \"bg-[var(--cds-line-solid-neutral)]\",\n      alternative: \"bg-[var(--cds-line-solid-alternative)]\",\n      \"alpha-normal\": \"bg-[var(--cds-line-normal-normal)]\",\n      \"alpha-neutral\": \"bg-[var(--cds-line-normal-neutral)]\",\n      \"alpha-alternative\": \"bg-[var(--cds-line-normal-alternative)]\",\n    },\n    thickness: {\n      1: \"\",\n      2: \"\",\n    },\n  },\n  compoundVariants: [\n    { orientation: \"horizontal\", thickness: 2, class: \"h-[2px]\" },\n    { orientation: \"vertical\", thickness: 2, class: \"w-[2px]\" },\n  ],\n  defaultVariants: {\n    orientation: \"horizontal\",\n    color: \"normal\",\n    thickness: 1,\n  },\n});\n\ntype SeparatorVariants = VariantProps<typeof separator>;\n\ntype SeparatorProps = Omit<\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>,\n  \"orientation\"\n> & {\n  orientation?: SeparatorVariants[\"orientation\"];\n  color?: SeparatorVariants[\"color\"];\n  thickness?: SeparatorVariants[\"thickness\"];\n};\n\nconst Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  SeparatorProps\n>(function Separator(\n  {\n    className,\n    orientation = \"horizontal\",\n    color = \"normal\",\n    thickness = 1,\n    decorative = true,\n    ...props\n  },\n  ref,\n) {\n  return (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      decorative={decorative}\n      orientation={orientation ?? \"horizontal\"}\n      className={cn(separator({ orientation, color, thickness }), className)}\n      {...props}\n    />\n  );\n});\n\nexport type { SeparatorProps };\nexport { Separator, separator };\n",
+      "type": "registry:ui",
+      "target": "components/ui/separator.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

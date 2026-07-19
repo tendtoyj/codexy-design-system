@@ -1,6 +1,6 @@
 {
   "name": "@tendtoyj/cds-ui",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Codexy Design System — Radix + Tailwind components (source-only, shadcn registry)",
   "license": "MIT",

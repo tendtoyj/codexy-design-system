@@ -1,5 +1,11 @@
 # @tendtoyj/cds-ui
 
+## 0.3.1
+
+### Patch Changes
+
+- Fix chat registry type installation for portable shadcn consumer layouts.
+
 ## 0.3.0
 
 ### Minor Changes
