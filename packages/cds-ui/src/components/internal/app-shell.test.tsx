@@ -4,7 +4,7 @@ import { act, type ReactElement, StrictMode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { afterEach, describe, expect, it } from "vitest";
-import { AppShellPageHeader as PublicAppShellPageHeader } from "../index";
+import { AppShellPageHeader as PublicAppShellPageHeader } from "../../index";
 import {
   AppShell,
   AppShellMain,
@@ -18,7 +18,7 @@ import {
   AppShellSidePanelBody,
   AppShellSidePanelHeader,
   AppShellSplitter,
-} from "./app-shell";
+} from "../app-shell";
 
 const actGlobal = globalThis as typeof globalThis & {
   IS_REACT_ACT_ENVIRONMENT?: boolean;
