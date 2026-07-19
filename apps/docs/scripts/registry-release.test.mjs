@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { pinVersionedRegistryDocument } from "./registry-release.mjs";
+import path from "node:path";
+import {
+  cdsUiRoot,
+  pinVersionedRegistryDocument,
+  readJson,
+} from "./registry-release.mjs";
 
 const release = {
   homepage: "https://example.com",
@@ -34,4 +39,17 @@ test("pins every item in a registry catalog", () => {
     release,
   );
   assert.deepEqual(document.items[0].dependencies, ["@tendtoyj/cds-icons@0.2.2"]);
+});
+
+test("ships the AppShell page-header slot as one complete registry install", () => {
+  const registry = readJson(path.join(cdsUiRoot, "registry.json"));
+  const appShell = registry.items.find((item) => item.name === "app-shell");
+
+  assert.deepEqual(
+    appShell.files.map((file) => file.target).sort(),
+    [
+      "components/ui/app-shell.tsx",
+      "components/ui/internal/app-shell-page-header-slot.tsx",
+    ],
+  );
 });

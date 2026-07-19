@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "Radix Checkbox — sm/md, checked/indeterminate/invalid/disabled states.",
+  "dependencies": [
+    "@tendtoyj/cds-core@0.3.0",
+    "@radix-ui/react-checkbox",
+    "@tendtoyj/cds-icons@0.3.0"
+  ],
+  "files": [
+    {
+      "path": "src/components/checkbox.tsx",
+      "content": "\"use client\";\n\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport { Check, Minus } from \"@tendtoyj/cds-icons/icons\";\nimport * as React from \"react\";\n\nconst checkbox = tv({\n  slots: {\n    root: [\n      \"peer inline-flex shrink-0 items-center justify-center\",\n      \"rounded-[4px] border\",\n      \"border-[var(--cds-line-normal-neutral)]\",\n      \"bg-[var(--cds-background-elevated-normal)]\",\n      \"text-[color:var(--cds-inverse-label)]\",\n      \"transition-[background-color,border-color,color]\",\n      \"duration-[var(--cds-duration-fast)]\",\n      \"focus-visible:outline-none focus-visible:ring-2\",\n      \"focus-visible:ring-[color:var(--cds-focus-ring)] focus-visible:ring-offset-2\",\n      \"focus-visible:ring-offset-[color:var(--cds-background-normal-normal)]\",\n      \"data-[state=checked]:bg-[var(--cds-primary-normal)]\",\n      \"data-[state=checked]:border-[var(--cds-primary-normal)]\",\n      \"data-[state=indeterminate]:bg-[var(--cds-primary-normal)]\",\n      \"data-[state=indeterminate]:border-[var(--cds-primary-normal)]\",\n      \"disabled:cursor-default disabled:pointer-events-none\",\n      \"disabled:bg-[var(--cds-interaction-disable)]\",\n      \"disabled:border-[var(--cds-line-normal-alternative)]\",\n      \"aria-invalid:border-[var(--cds-status-negative)]\",\n    ],\n    indicator: [\"flex items-center justify-center\", \"text-[color:var(--cds-inverse-label)]\"],\n  },\n  variants: {\n    size: {\n      sm: {\n        root: \"w-[var(--cds-toggle-size-sm)] h-[var(--cds-toggle-size-sm)]\",\n        indicator: \"[&_svg]:w-[var(--cds-toggle-icon-sm)] [&_svg]:h-[var(--cds-toggle-icon-sm)]\",\n      },\n      md: {\n        root: \"w-[var(--cds-toggle-size-md)] h-[var(--cds-toggle-size-md)]\",\n        indicator: \"[&_svg]:w-[var(--cds-toggle-icon-md)] [&_svg]:h-[var(--cds-toggle-icon-md)]\",\n      },\n    },\n  },\n  defaultVariants: {\n    size: \"md\",\n  },\n});\n\ntype CheckboxVariants = VariantProps<typeof checkbox>;\n\ntype CheckboxProps = Omit<\n  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,\n  \"checked\" | \"defaultChecked\"\n> & {\n  size?: CheckboxVariants[\"size\"];\n  invalid?: boolean;\n  indeterminate?: boolean;\n  checked?: boolean;\n  defaultChecked?: boolean;\n};\n\nconst Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(\n  function Checkbox(\n    {\n      className,\n      size = \"md\",\n      invalid = false,\n      indeterminate = false,\n      checked,\n      defaultChecked,\n      ...props\n    },\n    ref,\n  ) {\n    const styles = checkbox({ size });\n    const resolvedChecked: CheckboxPrimitive.CheckedState | undefined = indeterminate\n      ? \"indeterminate\"\n      : checked;\n    const resolvedDefault: CheckboxPrimitive.CheckedState | undefined = indeterminate\n      ? \"indeterminate\"\n      : defaultChecked;\n\n    return (\n      <CheckboxPrimitive.Root\n        ref={ref}\n        checked={resolvedChecked}\n        defaultChecked={resolvedDefault}\n        aria-invalid={invalid || undefined}\n        className={cn(styles.root(), className)}\n        {...props}\n      >\n        <CheckboxPrimitive.Indicator className={styles.indicator()}>\n          {indeterminate ? <Minus weight=\"bold\" /> : <Check weight=\"bold\" />}\n        </CheckboxPrimitive.Indicator>\n      </CheckboxPrimitive.Root>\n    );\n  },\n);\n\nexport type { CheckboxProps };\nexport { Checkbox, checkbox };\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

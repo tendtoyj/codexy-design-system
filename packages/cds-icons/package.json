@@ -1,6 +1,6 @@
 {
   "name": "@tendtoyj/cds-icons",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": false,
   "description": "Codexy Design System — phosphor wrappers + CDS-native icons",
   "license": "MIT",

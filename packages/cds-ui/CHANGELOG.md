@@ -1,5 +1,19 @@
 # @tendtoyj/cds-ui
 
+## 0.3.0
+
+### Minor Changes
+
+- Add the public `AppShellPageHeader` component and `AppShellPageHeaderProps` type for page-scoped controls that portal into the nearest `AppShellMainHeader`.
+
+  - Preserve hydration-safe portal lifecycle: content waits for the client slot, cleans up on route changes and unmount, and remains deduplicated in React StrictMode.
+  - Render inline outside `AppShellMain`, while avoiding duplicate body content when a main header slot is pending or absent.
+  - Use a documented last-mounted-wins policy for concurrent page headers and isolate nested AppShell instances.
+  - Preserve the AppShell drag surface while marking interactive page-header descendants as Electron `no-drag`; the existing Tauri marker remains unchanged.
+  - Include the internal slot implementation in the `app-shell` shadcn registry item so registry consumers receive a complete, type-safe install.
+  - Keep existing AppShell consumers compatible: this is an additive public API with no breaking changes.
+  - Advance the fixed CDS package group to the synchronized `0.3.0` baseline while keeping `cds-ui` peer ranges aligned with that release.
+
 ## 0.2.2
 
 ### Patch Changes

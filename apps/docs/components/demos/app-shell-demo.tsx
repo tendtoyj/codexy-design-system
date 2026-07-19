@@ -15,7 +15,7 @@ export function AppShellDemo() {
           전체 화면에서 보기
         </span>
         <span className="text-[12px] text-[color:var(--cds-label-alternative)]">
-          AppShell 은 데스크탑 셸이라 새 창에서 풀 viewport 로 띄운다.
+          페이지 전환, header action, 빈 header, sidebar toggle을 한 화면에서 확인한다.
         </span>
       </div>
       <Button
