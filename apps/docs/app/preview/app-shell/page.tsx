@@ -113,7 +113,7 @@ export default function AppShellPreviewPage() {
             <AppShellMainHeader />
             <AppShellMainBody>
               {page === "inventory" ? (
-                <Tabs value={inventoryTab} onValueChange={setInventoryTab}>
+                <Tabs value={inventoryTab} onValueChange={setInventoryTab} variant="label">
                   <AppShellPageHeader>
                     <div className="flex w-full min-w-0 items-center justify-between gap-[12px]">
                       <TabsList>
