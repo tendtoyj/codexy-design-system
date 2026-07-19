@@ -39,6 +39,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Validate immutable registry snapshots
+        run: pnpm registry:validate
+
+      - name: Build registry delivery paths
+        run: pnpm --filter @tendtoyj/cds-docs build:registry
+
       - name: Build
         run: pnpm exec turbo run build --filter='./packages/*'
 
