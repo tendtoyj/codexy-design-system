@@ -2,6 +2,12 @@
 
 import { cn, tv } from "@tendtoyj/cds-core";
 import * as React from "react";
+import {
+  AppShellPageHeader,
+  type AppShellPageHeaderProps,
+  AppShellPageHeaderProvider,
+  AppShellPageHeaderSlot,
+} from "./internal/app-shell-page-header-slot";
 
 /* ============================================================================
  * AppShell — 데스크탑 앱 셸 (3-패널 레이아웃)
@@ -471,17 +477,19 @@ const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(function A
 
   return (
     <PanelRoleContext.Provider value="main">
-      <main
-        ref={ref}
-        data-cds-component="app-shell-main"
-        data-cds-layer="front"
-        data-cds-position="center"
-        data-adjacent-back-left={adjacentBackLeft}
-        className={cn(mainStyles(), className)}
-        {...rest}
-      >
-        {children}
-      </main>
+      <AppShellPageHeaderProvider>
+        <main
+          ref={ref}
+          data-cds-component="app-shell-main"
+          data-cds-layer="front"
+          data-cds-position="center"
+          data-adjacent-back-left={adjacentBackLeft}
+          className={cn(mainStyles(), className)}
+          {...rest}
+        >
+          {children}
+        </main>
+      </AppShellPageHeaderProvider>
     </PanelRoleContext.Provider>
   );
 });
@@ -767,6 +775,7 @@ function makePanelHeader(role: PanelRole, displayName: string) {
         {...rest}
       >
         {children}
+        {role === "main" ? <AppShellPageHeaderSlot /> : null}
       </div>
     );
   });
@@ -861,6 +870,7 @@ const AppShellSidePanelBody = React.forwardRef<
 
 export type {
   AppShellMainProps,
+  AppShellPageHeaderProps,
   AppShellProps,
   AppShellSidebarProps,
   AppShellSidePanelProps,
@@ -873,6 +883,7 @@ export {
   AppShellMain,
   AppShellMainBody,
   AppShellMainHeader,
+  AppShellPageHeader,
   AppShellSidebar,
   AppShellSidebarBody,
   AppShellSidebarFooter,

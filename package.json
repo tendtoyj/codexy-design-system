@@ -17,7 +17,7 @@
     "tokens:test": "node --test scripts/lint-cds-tokens.test.mjs",
     "lint": "biome check . && pnpm lint:registry && pnpm design:lint && pnpm tokens:lint",
     "lint:registry": "node scripts/lint-registry.mjs && pnpm registry:validate",
-    "test": "pnpm design:test && pnpm tokens:test && pnpm registry:test",
+    "test": "pnpm design:test && pnpm tokens:test && pnpm registry:test && pnpm --filter @tendtoyj/cds-ui test",
     "format": "biome format --write .",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",

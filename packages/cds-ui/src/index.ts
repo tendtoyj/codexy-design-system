@@ -44,6 +44,7 @@ export {
 } from "./components/action-tile";
 export type {
   AppShellMainProps,
+  AppShellPageHeaderProps,
   AppShellPanelHeaderProps,
   AppShellProps,
   AppShellSidebarProps,
@@ -56,6 +57,7 @@ export {
   AppShellMain,
   AppShellMainBody,
   AppShellMainHeader,
+  AppShellPageHeader,
   AppShellSidebar,
   AppShellSidebarBody,
   AppShellSidebarFooter,

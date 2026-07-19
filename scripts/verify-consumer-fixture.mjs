@@ -77,6 +77,14 @@ try {
     include: ["src"],
   });
   fs.mkdirSync(path.join(fixtureRoot, "src"));
+  const appShellRegistryItem = JSON.parse(
+    fs.readFileSync(path.join(snapshotRoot, "app-shell.json"), "utf8"),
+  );
+  for (const file of appShellRegistryItem.files) {
+    const target = path.join(fixtureRoot, "src", file.target);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, file.content);
+  }
   fs.writeFileSync(
     path.join(fixtureRoot, "src/index.tsx"),
     `import { cdsStylesEntry } from "@tendtoyj/cds-core";\n` +
@@ -84,6 +92,24 @@ try {
       `import { Plus } from "@tendtoyj/cds-icons/icons";\n` +
       `import { renderMarkdown } from "@tendtoyj/cds-markdown";\n` +
       `export const fixture = { cdsStylesEntry, CheckCircleFill, Plus, rendered: renderMarkdown("ok") };\n`,
+  );
+  fs.writeFileSync(
+    path.join(fixtureRoot, "src/app-shell-consumer.tsx"),
+    `import {\n` +
+      `  AppShell,\n` +
+      `  AppShellMain,\n` +
+      `  AppShellMainBody,\n` +
+      `  AppShellMainHeader,\n` +
+      `  AppShellPageHeader,\n` +
+      `  type AppShellPageHeaderProps,\n` +
+      `} from "./components/ui/app-shell";\n` +
+      `export function AppShellConsumer({ children }: AppShellPageHeaderProps) {\n` +
+      `  return (\n` +
+      `    <AppShell><AppShellMain><AppShellMainHeader /><AppShellMainBody>\n` +
+      `      <AppShellPageHeader>{children}</AppShellPageHeader>\n` +
+      `    </AppShellMainBody></AppShellMain></AppShell>\n` +
+      `  );\n` +
+      `}\n`,
   );
   fs.writeFileSync(
     path.join(fixtureRoot, "src/verify-styles.mjs"),
@@ -122,8 +148,26 @@ try {
     throw new Error("versioned button registry contains unexpected package import paths");
   }
 
+  const appShellTargets = appShellRegistryItem.files.map((file) => file.target).sort();
+  if (
+    JSON.stringify(appShellTargets) !==
+    JSON.stringify([
+      "components/ui/app-shell.tsx",
+      "components/ui/internal/app-shell-page-header-slot.tsx",
+    ])
+  ) {
+    throw new Error(`versioned app-shell registry files are incomplete: ${appShellTargets.join(", ")}`);
+  }
+  const appShellSource = appShellRegistryItem.files.map((file) => file.content ?? "").join("\n");
+  if (
+    !appShellSource.includes("AppShellPageHeader") ||
+    !appShellSource.includes('from "@tendtoyj/cds-core"')
+  ) {
+    throw new Error("versioned app-shell registry is missing its public API or CDS core import");
+  }
+
   console.log(
-    `✓ consumer fixture OK — packed packages, CSS exports, and registry snapshot match ${releaseVersion}`,
+    `✓ consumer fixture OK — packed packages, AppShell source install, CSS exports, and registry snapshot match ${releaseVersion}`,
   );
 } finally {
   fs.rmSync(fixtureRoot, { recursive: true, force: true });

@@ -19,7 +19,8 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf .turbo"
+    "clean": "rm -rf .turbo",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@tendtoyj/cds-core": "workspace:*",
@@ -52,9 +53,11 @@
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "jsdom": "^26.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.7"
   },
   "publishConfig": {
     "access": "restricted",
