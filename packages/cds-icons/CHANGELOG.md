@@ -1,5 +1,11 @@
 # @tendtoyj/cds-icons
 
+## 0.3.1
+
+### Patch Changes
+
+- Isolated the `icons` declaration entry from brand-only `@lobehub/icons` types.
+
 ## 0.3.0
 
 ## 0.2.2

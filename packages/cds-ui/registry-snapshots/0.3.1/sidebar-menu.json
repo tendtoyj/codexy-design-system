@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-menu",
+  "title": "SidebarMenu",
+  "description": "Vertical icon-first menu list for app sidebars.",
+  "dependencies": ["@tendtoyj/cds-core@0.3.1"],
+  "registryDependencies": ["https://codexy-design-system-docs.vercel.app/r/0.3.1/icon.json"],
+  "files": [
+    {
+      "path": "src/components/sidebar-menu.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv } from \"@tendtoyj/cds-core\";\nimport type { PhosphorIcon } from \"@tendtoyj/cds-icons/icons\";\nimport * as React from \"react\";\nimport { Icon } from \"./icon\";\n\nconst sidebarMenu = tv({\n  slots: {\n    root: \"flex flex-col gap-[2px]\",\n    item: [\n      \"flex items-center gap-[10px] w-full h-[var(--cds-nav-item-height)] px-[var(--cds-nav-item-pad-x)] rounded-[var(--cds-nav-item-radius)]\",\n      \"text-[13px] leading-[18px] text-left\",\n      \"text-[color:var(--cds-label-neutral)] bg-transparent\",\n      \"transition-[background-color,color] duration-[var(--cds-duration-fast)]\",\n      \"cursor-pointer select-none\",\n      \"hover:bg-[var(--cds-fill-alternative)]\",\n      \"data-[selected=true]:bg-[var(--cds-fill-normal)]\",\n      \"data-[selected=true]:text-[color:var(--cds-label-normal)]\",\n      \"data-[selected=true]:font-medium\",\n      \"focus-visible:outline-none\",\n      \"focus-visible:ring-2 focus-visible:ring-[color:var(--cds-focus-ring)] focus-visible:ring-offset-2\",\n      \"focus-visible:ring-offset-[color:var(--cds-background-normal-normal)]\",\n    ],\n    label: \"min-w-0 truncate\",\n  },\n});\n\ntype SidebarMenuItem = {\n  id: string;\n  icon: PhosphorIcon | React.ComponentType<React.SVGAttributes<SVGSVGElement>>;\n  label: string;\n};\n\ntype SidebarMenuProps = Omit<React.HTMLAttributes<HTMLElement>, \"onSelect\"> & {\n  items: SidebarMenuItem[];\n  selectedId?: string | null;\n  onSelect?: (id: string) => void;\n  /** `<nav>` 의 aria-label. 페이지에 nav 가 여러 개 있을 때 식별을 위해 권장. */\n  \"aria-label\"?: string;\n};\n\nconst SidebarMenu = React.forwardRef<HTMLElement, SidebarMenuProps>(function SidebarMenu(\n  { items, selectedId = null, onSelect, className, ...props },\n  ref,\n) {\n  const styles = sidebarMenu();\n  return (\n    <nav ref={ref} data-slot=\"sidebar-menu\" className={cn(styles.root(), className)} {...props}>\n      {items.map((item) => {\n        const selected = item.id === selectedId;\n        return (\n          <button\n            key={item.id}\n            type=\"button\"\n            data-selected={selected}\n            aria-current={selected ? \"page\" : undefined}\n            className={styles.item()}\n            onClick={() => onSelect?.(item.id)}\n          >\n            <Icon\n              icon={item.icon}\n              size=\"sm\"\n              weight={selected ? \"fill\" : \"regular\"}\n              className={selected ? \"cds-animate-icon-pop\" : undefined}\n            />\n            <span className={styles.label()}>{item.label}</span>\n          </button>\n        );\n      })}\n    </nav>\n  );\n});\n\nexport type { SidebarMenuItem, SidebarMenuProps };\nexport { SidebarMenu, sidebarMenu };\n",
+      "type": "registry:ui",
+      "target": "components/ui/sidebar-menu.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

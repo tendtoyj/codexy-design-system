@@ -28,7 +28,7 @@
     "registry:snapshot": "pnpm --filter @tendtoyj/cds-docs snapshot:registry",
     "registry:validate": "pnpm --filter @tendtoyj/cds-docs validate:registry",
     "registry:test": "pnpm --filter @tendtoyj/cds-docs test:registry",
-    "verify:consumer": "node scripts/verify-consumer-fixture.mjs"
+    "verify:consumer": "node scripts/verify-consumer-fixture.mjs && node scripts/verify-chat-registry-consumer.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.0",
