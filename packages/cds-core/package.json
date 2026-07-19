@@ -2,7 +2,7 @@
   "name": "@tendtoyj/cds-core",
   "version": "0.2.1",
   "private": false,
-  "description": "Codexy Design System — tokens, Tailwind preset, Pretendard, motion",
+  "description": "Codexy Design System — tokens, Tailwind v4 CSS entry, Pretendard, motion",
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
