@@ -4,6 +4,8 @@
 
 ### Patch Changes
 
+- Historical correction: `data-density="touch"`에서 control 크기와 간격을 확장하는 density-aware token family를 `control.css`에 추가했다. field affordance, toggle, menu, chip, icon button, radio, navigation item token이 포함되며 기존 comfortable 값은 유지된다.
+
 - 65bf874: 라이선스를 `UNLICENSED` 에서 **MIT** 로 변경.
 
   - 각 패키지에 `LICENSE` 동봉 — MIT (c) 2026 The Codexy + `THIRD-PARTY NOTICES` 에 Wanted Montage(WDS) 원저작권 고지(© 2026 Wanted Lab, Inc., MIT) 포함. CDS 토큰 값이 Montage 에서 이식된 부분이 있어 MIT 고지 의무를 이행하는 것.

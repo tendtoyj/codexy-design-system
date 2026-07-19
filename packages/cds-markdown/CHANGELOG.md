@@ -2,6 +2,8 @@
 
 ## 0.2.1
 
+Fixed group version synchronization only; no consumer-visible markdown changes.
+
 ## 0.2.0
 
 ## 0.1.2

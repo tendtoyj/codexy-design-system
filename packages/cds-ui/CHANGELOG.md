@@ -4,6 +4,8 @@
 
 ### Patch Changes
 
+- Historical correction: Button/TextButton/IconButton, Input/Select/Combobox/SegmentedControl, Checkbox/RadioGroup, DropdownMenu, SidebarList/SidebarMenu, Chip의 고정 크기·간격을 cds-core의 density-aware control token 참조로 교체했다. `data-density="touch"` ancestor 아래에서 touch 크기가 적용되고 기본 comfortable 렌더링은 유지된다.
+
 - Updated dependencies [65bf874]
   - @tendtoyj/cds-core@0.2.1
   - @tendtoyj/cds-icons@0.2.1
