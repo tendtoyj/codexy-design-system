@@ -1,6 +1,6 @@
 {
   "name": "@tendtoyj/cds-markdown",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": false,
   "description": "Codexy Design System — markdown renderer (react-markdown + remark-gfm) for chat slots",
   "license": "MIT",

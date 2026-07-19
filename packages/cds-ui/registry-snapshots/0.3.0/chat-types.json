@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-types",
+  "title": "Chat content block types",
+  "description": "Shared types for chat content blocks (text, image, etc.) used by chat-* components.",
+  "files": [
+    {
+      "path": "src/types/chat.ts",
+      "content": "/**\n * Anthropic Messages API 호환 콘텐츠 블록 타입.\n * CDS chat 컴포넌트들의 1차 계약. 앱/어댑터는 이 타입만 맞추면 된다.\n */\n\nexport type TextBlock = {\n  type: \"text\";\n  text: string;\n};\n\nexport type ThinkingBlock = {\n  type: \"thinking\";\n  thinking: string;\n  signature?: string;\n};\n\nexport type ToolUseBlock = {\n  type: \"tool_use\";\n  id: string;\n  name: string;\n  input: unknown;\n};\n\nexport type ToolResultBlock = {\n  type: \"tool_result\";\n  tool_use_id: string;\n  content: unknown;\n  is_error?: boolean;\n};\n\nexport type ImageBlockSource =\n  | { type: \"base64\"; media_type: string; data: string }\n  | { type: \"url\"; url: string };\n\nexport type ImageBlock = {\n  type: \"image\";\n  source: ImageBlockSource;\n};\n\nexport type DocumentBlockSource =\n  | { type: \"base64\"; media_type: string; data: string }\n  | { type: \"url\"; url: string }\n  | { type: \"file\"; file_id: string }\n  | { type: \"text\"; media_type: \"text/plain\"; data: string };\n\nexport type DocumentBlock = {\n  type: \"document\";\n  source: DocumentBlockSource;\n  /** 표시용 파일명. 모델한테도 같이 전달되는 메타. */\n  title?: string;\n  context?: string;\n};\n\nexport type ContentBlock =\n  | TextBlock\n  | ThinkingBlock\n  | ToolUseBlock\n  | ToolResultBlock\n  | ImageBlock\n  | DocumentBlock;\n\nexport type ChatMessageRole = \"user\" | \"assistant\";\n\nexport type ChatMessage = {\n  id: string;\n  role: ChatMessageRole;\n  content: string | ContentBlock[];\n};\n\nexport type ChatStatusPhase = \"pending\" | \"running\" | \"complete\" | \"error\" | \"requires-action\";\n\nexport type ChatAgentStatus =\n  | \"speculating\"\n  | \"thinking\"\n  | \"tool_executing\"\n  | \"generating\"\n  | \"compacting\";\n",
+      "type": "registry:lib",
+      "target": "lib/chat-types.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

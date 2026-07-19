@@ -220,10 +220,10 @@ importers:
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@tendtoyj/cds-core':
-        specifier: workspace:*
+        specifier: workspace:^0.2.2 || ^0.3.0
         version: link:../cds-core
       '@tendtoyj/cds-icons':
-        specifier: workspace:*
+        specifier: workspace:^0.2.2 || ^0.3.0
         version: link:../cds-icons
       clsx:
         specifier: ^2.1.1

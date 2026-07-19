@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-assistant-message",
+  "title": "ChatAssistantMessage",
+  "description": "Assistant response — plain text (no bubble), copy action, loading state.",
+  "dependencies": ["@tendtoyj/cds-core@0.3.0"],
+  "registryDependencies": [
+    "https://codexy-design-system-docs.vercel.app/r/0.3.0/tooltip.json",
+    "https://codexy-design-system-docs.vercel.app/r/0.3.0/chat-loading-dots.json",
+    "https://codexy-design-system-docs.vercel.app/r/0.3.0/chat-copy-button.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/chat-assistant-message.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv } from \"@tendtoyj/cds-core\";\nimport * as React from \"react\";\nimport { ChatLoadingDots } from \"./chat-loading-dots\";\nimport { ChatCopyButton } from \"./internal/chat-copy-button\";\nimport { TooltipProvider } from \"./tooltip\";\n\nconst chatAssistantMessage = tv({\n  slots: {\n    root: \"group/msg flex w-full min-w-0 flex-col items-start\",\n    text: [\n      \"w-full min-w-0 max-w-full break-words\",\n      \"text-body2 text-[color:var(--cds-label-normal)]\",\n    ],\n    actions: [\n      \"flex gap-[2px] mt-[4px]\",\n      \"opacity-0 group-hover/msg:opacity-100 group-focus-within/msg:opacity-100\",\n      \"transition-opacity duration-[var(--cds-duration-fast)]\",\n    ],\n  },\n});\n\ntype ChatAssistantMessageProps = Omit<\n  React.HTMLAttributes<HTMLDivElement>,\n  \"children\" | \"content\"\n> & {\n  content: string;\n  renderMarkdown?: (text: string) => React.ReactNode;\n  /**\n   * 스트리밍 중 표시. true 면 markdown 렌더와 actions(복사 포함)가 모두 꺼지고,\n   * 본문 끝(또는 빈 본문일 때 단독)에 `<ChatLoadingDots />` 가 inline 노출된다.\n   */\n  loading?: boolean;\n  /** 메시지 아래 추가 액션. `showCopy` 가 true 면 기본 복사 버튼 옆에 함께 노출. */\n  actions?: React.ReactNode;\n  /** 기본 복사 버튼 노출 여부. 텍스트 컨텐츠가 있을 때만 실제로 그려짐. 기본 true. */\n  showCopy?: boolean;\n  className?: string;\n};\n\nconst ChatAssistantMessage = React.forwardRef<HTMLDivElement, ChatAssistantMessageProps>(\n  function ChatAssistantMessage(\n    { content, renderMarkdown, loading = false, actions, showCopy = true, className, ...props },\n    ref,\n  ) {\n    const styles = chatAssistantMessage();\n\n    const hasCopy = !loading && showCopy && content.length > 0;\n    const hasActionBar = !loading && (hasCopy || Boolean(actions));\n\n    return (\n      <div\n        ref={ref}\n        data-slot=\"chat-assistant-message\"\n        data-role=\"assistant\"\n        data-loading={loading || undefined}\n        className={cn(styles.root(), className)}\n        {...props}\n      >\n        <div className={styles.text()}>\n          {loading ? (\n            <span className=\"whitespace-pre-wrap\">\n              {content}\n              <ChatLoadingDots />\n            </span>\n          ) : renderMarkdown ? (\n            renderMarkdown(content)\n          ) : (\n            <span className=\"whitespace-pre-wrap\">{content}</span>\n          )}\n        </div>\n        {hasActionBar ? (\n          <TooltipProvider>\n            <div className={styles.actions()}>\n              {hasCopy ? <ChatCopyButton text={content} /> : null}\n              {actions}\n            </div>\n          </TooltipProvider>\n        ) : null}\n      </div>\n    );\n  },\n);\n\nexport type { ChatAssistantMessageProps };\nexport { ChatAssistantMessage, chatAssistantMessage };\n",
+      "type": "registry:ui",
+      "target": "components/ui/chat-assistant-message.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
