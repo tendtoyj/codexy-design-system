@@ -10,7 +10,7 @@ const button = tv({
     root: [
       "relative inline-flex items-center justify-center align-middle box-border",
       "whitespace-nowrap leading-none cursor-pointer select-none",
-      "transition-[background-color,color,box-shadow] duration-[var(--cds-motion-duration-fast)]",
+      "transition-[background-color,color,box-shadow] duration-[var(--cds-duration-fast)]",
       "ease-[cubic-bezier(0.4,0,0.2,1)]",
       "focus-visible:outline-none",
       "focus-visible:ring-2 focus-visible:ring-[color:var(--cds-focus-ring)] focus-visible:ring-offset-2",

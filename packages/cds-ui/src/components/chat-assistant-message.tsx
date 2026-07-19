@@ -16,7 +16,7 @@ const chatAssistantMessage = tv({
     actions: [
       "flex gap-[2px] mt-[4px]",
       "opacity-0 group-hover/msg:opacity-100 group-focus-within/msg:opacity-100",
-      "transition-opacity duration-[var(--cds-motion-duration-fast)]",
+      "transition-opacity duration-[var(--cds-duration-fast)]",
     ],
   },
 });
