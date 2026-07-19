@@ -34,6 +34,12 @@ export function validateSnapshot(directory, version) {
   if (manifest.version !== version || manifest.releaseTag !== expectedTag) {
     throw new Error(`snapshot ${version} release metadata does not match ${expectedTag}`);
   }
+  for (const packageName of Object.keys(manifest.packages)) {
+    const expectedPackageTag = `${packageName}@${version}`;
+    if (manifest.releaseTags?.[packageName] !== expectedPackageTag) {
+      throw new Error(`snapshot ${version} is missing release tag ${expectedPackageTag}`);
+    }
+  }
   if (Object.values(manifest.packages).some((packageVersion) => packageVersion !== version)) {
     throw new Error(`snapshot ${version} package versions are not synchronized`);
   }

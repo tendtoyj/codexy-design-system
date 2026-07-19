@@ -27,7 +27,8 @@
     "verify:readme-imports": "node scripts/verify-readme-imports.mjs",
     "registry:snapshot": "pnpm --filter @tendtoyj/cds-docs snapshot:registry",
     "registry:validate": "pnpm --filter @tendtoyj/cds-docs validate:registry",
-    "registry:test": "pnpm --filter @tendtoyj/cds-docs test:registry"
+    "registry:test": "pnpm --filter @tendtoyj/cds-docs test:registry",
+    "verify:consumer": "node scripts/verify-consumer-fixture.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.0",

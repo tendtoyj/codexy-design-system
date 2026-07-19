@@ -91,6 +91,17 @@ export function buildShadcnRegistry(outputDirectory) {
   }
 }
 
+export function formatRegistryJson(target) {
+  const binary = path.join(repoRoot, "node_modules/.bin/biome");
+  const result = spawnSync(binary, ["format", "--write", target], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+  if (result.status !== 0) {
+    throw new Error(`registry JSON format failed\n${result.stdout}${result.stderr}`);
+  }
+}
+
 export function prepareVersionedSnapshot(directory, release) {
   const sourceRegistry = readJson(path.join(cdsUiRoot, "registry.json"));
   for (const name of listRegistryJson(directory)) {
@@ -105,12 +116,18 @@ export function prepareVersionedSnapshot(directory, release) {
       }),
     );
   }
+  formatRegistryJson(directory);
 
   const itemCount = listRegistryJson(directory).filter((name) => name !== "registry.json").length;
   writeJson(path.join(directory, "release.json"), {
     schemaVersion: 1,
     version: release.version,
     releaseTag: `@tendtoyj/cds-core@${release.version}`,
+    releaseTags: {
+      "@tendtoyj/cds-core": `@tendtoyj/cds-core@${release.version}`,
+      "@tendtoyj/cds-icons": `@tendtoyj/cds-icons@${release.version}`,
+      "@tendtoyj/cds-markdown": `@tendtoyj/cds-markdown@${release.version}`,
+    },
     packages: {
       "@tendtoyj/cds-core": release.versions["@tendtoyj/cds-core"],
       "@tendtoyj/cds-icons": release.versions["@tendtoyj/cds-icons"],
@@ -124,6 +141,7 @@ export function prepareVersionedSnapshot(directory, release) {
       digest: calculateSnapshotDigest(directory),
     },
   });
+  formatRegistryJson(path.join(directory, "release.json"));
 }
 
 export function createTemporaryDirectory(prefix) {
