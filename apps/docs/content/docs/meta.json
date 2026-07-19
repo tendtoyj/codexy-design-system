@@ -1,4 +1,4 @@
 {
   "title": "CDS",
-  "pages": ["index", "foundations", "components", "patterns", "examples"]
+  "pages": ["index", "migrations", "foundations", "components", "patterns", "examples"]
 }

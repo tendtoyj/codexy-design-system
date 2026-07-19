@@ -1,8 +1,16 @@
 # @tendtoyj/cds-core
 
+## 0.2.2
+
+### Patch Changes
+
+- bbf6bed: Publish `0.2.2` as the synchronized PDS→CDS migration baseline. Runtime token values remain compatible with the density-aware `0.2.1` release; release metadata now ties the exact core version to the immutable UI registry snapshot, and the public guidance correctly identifies `@tendtoyj/cds-core/styles` as the Tailwind v4 CSS-first entry and `cdsStylesEntry` as its tooling string constant.
+
 ## 0.2.1
 
 ### Patch Changes
+
+- Historical correction: `data-density="touch"`에서 control 크기와 간격을 확장하는 density-aware token family를 `control.css`에 추가했다. field affordance, toggle, menu, chip, icon button, radio, navigation item token이 포함되며 기존 comfortable 값은 유지된다.
 
 - 65bf874: 라이선스를 `UNLICENSED` 에서 **MIT** 로 변경.
 

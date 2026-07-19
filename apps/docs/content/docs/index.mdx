@@ -16,7 +16,7 @@ Codexy Design System(CDS)은 **Codex 스타일의 UI** 디자인 시스템이다
 
 | 패키지 | 역할 |
 | --- | --- |
-| `@tendtoyj/cds-core` | 토큰(@theme), Tailwind preset, Pretendard, motion, utility helpers (`cn`/`tv`) |
+| `@tendtoyj/cds-core` | 토큰(@theme), Tailwind v4 CSS entry, Pretendard, motion, utility helpers (`cn`/`tv`) |
 | `@tendtoyj/cds-ui` | Radix + Tailwind 컴포넌트 (shadcn 레지스트리) |
 | `@tendtoyj/cds-icons` | phosphor 래퍼 + CDS 아이콘 + 브랜드 아이콘 |
 | `@tendtoyj/cds-markdown` | chat 슬롯용 markdown 렌더러 |
@@ -24,8 +24,8 @@ Codexy Design System(CDS)은 **Codex 스타일의 UI** 디자인 시스템이다
 ## 설치 (앱 레포)
 
 ```bash
-pnpm add @tendtoyj/cds-core @tendtoyj/cds-icons @tendtoyj/cds-markdown
-npx shadcn add https://cds.codexy.com/r/button
+pnpm add --save-exact @tendtoyj/cds-core@0.2.2 @tendtoyj/cds-icons@0.2.2 @tendtoyj/cds-markdown@0.2.2
+pnpm dlx shadcn@latest add https://codexy-design-system-docs.vercel.app/r/0.2.2/button.json
 ```
 
 그다음 앱 루트 CSS 에 토큰을 연결:
@@ -37,3 +37,5 @@ npx shadcn add https://cds.codexy.com/r/button
 ## 현재 상태
 
 Pre-release. 첫 공개 버전은 `0.1.0`. 0.x 동안은 breaking change 가 자유롭게 들어온다 — 1.0 이전에는 마이너 단위에서도 깨지는 변경이 포함될 수 있다. 컴포넌트 카탈로그는 [Components](/docs/components), 토큰은 [Foundations](/docs/foundations) 에서 확인.
+
+PDS consumer는 package와 UI source를 분리해서 옮기는 [PDS → CDS 0.2.2 Migration](/docs/migrations/pds-to-cds-0.2.2)을 따른다.

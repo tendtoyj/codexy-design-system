@@ -24,7 +24,7 @@ const chatUserMessage = tv({
     actions: [
       "flex gap-[2px] mt-[4px]",
       "opacity-0 group-hover/msg:opacity-100 group-focus-within/msg:opacity-100",
-      "transition-opacity duration-[var(--cds-motion-duration-fast)]",
+      "transition-opacity duration-[var(--cds-duration-fast)]",
     ],
     image: "block w-[64px] h-[64px] shrink-0 !my-0 rounded-[10px] object-cover",
     imageError: [

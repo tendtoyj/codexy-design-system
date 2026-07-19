@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build:registry": "shadcn build registry.json --cwd ../../packages/cds-ui --output ../../apps/docs/public/r",
+    "build:registry": "node scripts/build-registry.mjs",
     "build": "pnpm build:registry && NODE_OPTIONS=--max-old-space-size=4096 next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .next .source .turbo public/r",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "snapshot:registry": "node scripts/snapshot-registry.mjs",
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "test:registry": "node --test scripts/registry-release.test.mjs"
   },
   "dependencies": {
     "@tendtoyj/cds-core": "workspace:*",

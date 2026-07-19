@@ -1,6 +1,14 @@
 # @tendtoyj/cds-icons
 
+## 0.2.2
+
+### Patch Changes
+
+- bbf6bed: Add six CDS-native status fill icons to `@tendtoyj/cds-icons/custom`: `CheckCircleFill`, `ExclamationCircleFill`, `InfoCircleFill`, `QuestionCircleFill`, `WarningTriangleFill`, and `XCircleFill`.
+
 ## 0.2.1
+
+Fixed group version synchronization only; no consumer-visible icon changes.
 
 ## 0.2.0
 

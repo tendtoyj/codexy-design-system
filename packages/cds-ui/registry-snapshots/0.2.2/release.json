@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "version": "0.2.2",
+  "releaseTag": "@tendtoyj/cds-core@0.2.2",
+  "releaseTags": {
+    "@tendtoyj/cds-core": "@tendtoyj/cds-core@0.2.2",
+    "@tendtoyj/cds-icons": "@tendtoyj/cds-icons@0.2.2",
+    "@tendtoyj/cds-markdown": "@tendtoyj/cds-markdown@0.2.2"
+  },
+  "packages": {
+    "@tendtoyj/cds-core": "0.2.2",
+    "@tendtoyj/cds-icons": "0.2.2",
+    "@tendtoyj/cds-markdown": "0.2.2"
+  },
+  "registry": {
+    "package": "@tendtoyj/cds-ui",
+    "version": "0.2.2",
+    "source": "packages/cds-ui/registry.json",
+    "itemCount": 44,
+    "digest": "sha256:7b7e60dd160b07ef3b3c209521776ad404cf7ae6585d4515648aaa01f96392eb"
+  }
+}

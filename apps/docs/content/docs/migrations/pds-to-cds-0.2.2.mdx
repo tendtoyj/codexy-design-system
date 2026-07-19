@@ -1,0 +1,98 @@
+---
+title: PDS → CDS 0.2.2 Migration
+description: PDS consumer를 재현 가능한 CDS 0.2.2 baseline으로 옮기는 절차
+---
+
+CDS `0.2.2`는 Pluto Design System(PDS) consumer를 Codexy Design System(CDS)으로 옮기기 위한 고정 migration baseline이다. CDS는 pre-1.0이므로 아래 세 package를 모두 정확한 `0.2.2`에 pin하고, UI source도 versioned registry에서 가져온다.
+
+## 1. 인증을 먼저 고정한다
+
+consumer repository의 `.npmrc`:
+
+```ini
+@tendtoyj:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+- 로컬 token에는 GitHub Packages의 `read:packages` 권한이 필요하다.
+- Actions에서는 `actions/setup-node`에 `registry-url: https://npm.pkg.github.com`과 `scope: "@tendtoyj"`를 설정하고 `NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}`을 전달한다.
+- 다른 repository의 `GITHUB_TOKEN`으로 package를 읽는 경우, CDS package의 GitHub Packages 설정에서 consumer repository를 **Manage Actions access**에 추가해야 한다. 권한을 추가하지 않으면 token 자체가 유효해도 package 다운로드가 거부된다.
+
+## 2. package migration과 UI source upgrade를 분리한다
+
+두 작업은 별도 commit으로 진행한다.
+
+1. package scope, CSS/DOM namespace, named export를 먼저 바꾸고 build를 통과시킨다.
+2. 그다음 PDS-origin shadcn source와 CDS `0.2.2` source를 파일별로 비교해 필요한 변경만 merge한다.
+
+package migration은 import와 token contract를 바꾸는 작업이고, UI source upgrade는 이미 consumer가 소유하며 수정했을 수 있는 파일을 갱신하는 작업이다. 한 commit에서 섞으면 package rename 오류와 local UI conflict를 구분하거나 rollback하기 어렵다.
+
+## 3. 식별자를 기계적으로 매핑한 뒤 검토한다
+
+| PDS | CDS |
+| --- | --- |
+| `@fluxloop-ai/pds-core` | `@tendtoyj/cds-core` |
+| `@fluxloop-ai/pds-icons` | `@tendtoyj/cds-icons` |
+| `@fluxloop-ai/pds-markdown` | `@tendtoyj/cds-markdown` |
+| `@fluxloop-ai/pds-ui` source | CDS versioned shadcn registry source |
+| `--pds-*` | `--cds-*` |
+| `pds-animate-*` | `cds-animate-*` |
+| `data-pds-*` | `data-cds-*` |
+| `pdsCardIn` | `cdsCardIn` |
+| `pdsDuration` | `cdsDuration` |
+| `pdsEasing` | `cdsEasing` |
+| `pdsFadeCollapse` | `cdsFadeCollapse` |
+| `pdsStepIn` | `cdsStepIn` |
+| `pdsStylesEntry` | `cdsStylesEntry` |
+| `PDS_TYPOGRAPHY_VARIANTS` | `CDS_TYPOGRAPHY_VARIANTS` |
+
+`cn`, `tv`, `VariantProps`, `twMergeConfig`, `Markdown`, `renderMarkdown`처럼 prefix가 없던 export 이름은 그대로다. 문자열 전체 치환 뒤에는 lockfile, CSS arbitrary value, test fixture, snapshot, DOM query selector를 별도로 확인한다.
+
+## 4. package와 CSS를 0.2.2로 고정한다
+
+```bash
+pnpm remove @fluxloop-ai/pds-core @fluxloop-ai/pds-icons @fluxloop-ai/pds-markdown
+pnpm add --save-exact @tendtoyj/cds-core@0.2.2 @tendtoyj/cds-icons@0.2.2 @tendtoyj/cds-markdown@0.2.2
+```
+
+Tailwind v4에서는 JavaScript preset 대신 앱의 root CSS에서 CSS-first entry를 import한다.
+
+```css
+@import "@tendtoyj/cds-core/styles";
+@import "@tendtoyj/cds-markdown/styles";
+```
+
+```tsx
+import { cdsCardIn, cdsDuration, CDS_TYPOGRAPHY_VARIANTS } from "@tendtoyj/cds-core";
+import { Plus } from "@tendtoyj/cds-icons/icons";
+import { CheckCircleFill } from "@tendtoyj/cds-icons/custom";
+import { renderMarkdown } from "@tendtoyj/cds-markdown";
+```
+
+`cdsStylesEntry`는 값이 `"@tendtoyj/cds-core/styles"`인 tooling용 문자열 상수다. CSS를 import하거나 Tailwind preset 객체를 반환하지 않는다.
+
+## 5. PDS-origin UI의 local edits를 보존한다
+
+기존 `components/ui/*`를 바로 `--overwrite`하지 않는다. 먼저 현재 변경을 commit하고, 별도 임시 consumer에 CDS source를 설치한다.
+
+```bash
+mkdir ../cds-0.2.2-reference
+cd ../cds-0.2.2-reference
+pnpm init
+pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add https://codexy-design-system-docs.vercel.app/r/0.2.2/button.json
+```
+
+그다음 원래 repository의 `components/ui/button.tsx`와 reference 파일을 `git diff --no-index` 또는 IDE diff로 비교하고, CDS 변경만 수동으로 적용한다. component마다 반복한다. local behavior와 styling을 유지할지 CDS baseline을 따를지 파일별로 결정할 수 있고, 원본 파일은 덮어쓰지 않는다.
+
+`/r/*`는 latest channel이므로 migration 중에는 사용하지 않는다. `0.2.2` item의 `registryDependencies`도 같은 `/r/0.2.2/*`를 가리켜야 package와 UI source가 섞이지 않는다.
+
+## 6. 검증한다
+
+package migration commit에서 install, lint, typecheck, test, production build를 먼저 통과시킨다. UI merge commit에서는 DOM selector(`data-cds-*`), animation class(`cds-animate-*`), CSS variable(`--cds-*`)과 component interaction을 다시 검증한다.
+
+CDS가 pre-1.0인 동안 `^0.2.2`나 `~0.2.2` 대신 정확한 `0.2.2` pin을 권장한다. 다음 baseline으로 올릴 때 package와 versioned registry를 함께 바꾼다.
+
+## License
+
+CDS는 MIT License다. 일부 token과 UI 표현은 Wanted Montage(WDS)를 토대로 하며 Wanted Lab, Inc.의 MIT third-party notice가 CDS의 root/package `LICENSE`에 포함된다. CDS source 또는 상당 부분을 재배포할 때 Codexy와 Wanted Montage의 저작권 표시 및 license notice를 함께 보존한다.

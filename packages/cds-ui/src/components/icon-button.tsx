@@ -8,7 +8,7 @@ const iconButton = tv({
   base: [
     "inline-flex items-center justify-center shrink-0 align-middle box-border",
     "cursor-pointer select-none",
-    "transition-[background-color,color,box-shadow,filter] duration-[var(--cds-motion-duration-fast)]",
+    "transition-[background-color,color,box-shadow,filter] duration-[var(--cds-duration-fast)]",
     "ease-[cubic-bezier(0.4,0,0.2,1)]",
     "focus-visible:outline-none",
     "focus-visible:ring-2 focus-visible:ring-[color:var(--cds-focus-ring)] focus-visible:ring-offset-2",

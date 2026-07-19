@@ -39,5 +39,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Test
+        run: pnpm test
+
       - name: Build
         run: pnpm build
+
+      - name: Verify packed consumer fixture
+        run: pnpm verify:consumer

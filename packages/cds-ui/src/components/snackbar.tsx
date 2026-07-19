@@ -59,7 +59,7 @@ const snackbar = tv({
       "text-[color:var(--cds-color-common-100)] opacity-[0.61]",
       "hover:opacity-100 hover:bg-[color-mix(in_srgb,var(--cds-color-common-100)_12%,transparent)]",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--cds-focus-ring)]",
-      "transition-[opacity,background-color] duration-[var(--cds-motion-duration-fast)]",
+      "transition-[opacity,background-color] duration-[var(--cds-duration-fast)]",
     ],
   },
   variants: {
@@ -184,7 +184,7 @@ const snackbarAction = tv({
     "text-[13px] leading-[20px] font-bold text-[color:var(--cds-color-common-100)]",
     "hover:bg-[color-mix(in_srgb,var(--cds-color-common-100)_12%,transparent)]",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--cds-focus-ring)]",
-    "transition-colors duration-[var(--cds-motion-duration-fast)]",
+    "transition-colors duration-[var(--cds-duration-fast)]",
   ],
 });
 

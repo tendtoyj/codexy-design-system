@@ -1,0 +1,20 @@
+.conversation {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attachments {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.composerMeta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+}

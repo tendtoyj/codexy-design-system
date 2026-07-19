@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-container",
+  "title": "PageContainer",
+  "description": "Padded page-level wrapper with size variants for content alignment.",
+  "dependencies": ["@tendtoyj/cds-core@0.2.2"],
+  "files": [
+    {
+      "path": "src/components/page-container.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport * as React from \"react\";\n\n/* ============================================================================\n * PageContainer — 페이지 본문 frame (max-width · gutter · padding)\n * ============================================================================\n *\n * AppShell 과 독립된 generic wrapper. AppShellMain / Modal / SidePanel /\n * AppShell 없는 단독 페이지 어디서든 본문을 감싸는 표준 컨테이너.\n *\n * 책임\n *   • max-width  — variant 로 결정 (narrow | default | full)\n *   • 좌우 gutter — 32px 고정 (full variant 도 유지)\n *   • 상하 padding — top 32 / bottom 64 (스크롤 끝 호흡)\n *   • 가운데 정렬 — mx-auto\n *\n * 비책임\n *   • scroll  — 부모가 책임 (예: AppShellMainBody 의 overflow-y-auto)\n *   • header slot — 페이지 코드 자유. 첫 자식에 그대로 헤더 마크업 둠\n *   • 좌측 정렬 옵션 — YAGNI. 필요해지면 비파괴적으로 추가\n *\n * @example\n * ```tsx\n * <AppShellMain>\n *   <AppShellMainHeader>...</AppShellMainHeader>\n *   <AppShellMainBody>\n *     <PageContainer>\n *       <h1>제목</h1>\n *       <p>본문</p>\n *     </PageContainer>\n *   </AppShellMainBody>\n * </AppShellMain>\n *\n * // 단일 컬럼 텍스트·폼·문서\n * <PageContainer variant=\"narrow\">...</PageContainer>\n *\n * // full-bleed (테이블/리스트). gutter 32 는 그대로 유지됨\n * <PageContainer variant=\"full\">...</PageContainer>\n * ```\n * ========================================================================== */\n\nconst pageContainer = tv({\n  base: [\"w-full mx-auto\", \"px-[32px] pt-[32px] pb-[64px]\"],\n  variants: {\n    variant: {\n      narrow: \"max-w-[480px]\",\n      default: \"max-w-[800px]\",\n      full: \"max-w-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n  },\n});\n\ntype PageContainerVariants = VariantProps<typeof pageContainer>;\n\ninterface PageContainerProps extends React.ComponentPropsWithoutRef<\"div\"> {\n  /**\n   * 본문 max-width 변종.\n   * - `narrow`  480px — 단일 컬럼 텍스트·폼·문서\n   * - `default` 800px — 일반 페이지 (기본)\n   * - `full`    제한 없음 — 테이블·리스트 등 full-bleed (gutter 32 는 유지)\n   */\n  variant?: PageContainerVariants[\"variant\"];\n}\n\nconst PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(function PageContainer(\n  { className, variant = \"default\", ...rest },\n  ref,\n) {\n  return (\n    <div\n      ref={ref}\n      data-cds-component=\"page-container\"\n      data-cds-variant={variant}\n      className={cn(pageContainer({ variant }), className)}\n      {...rest}\n    />\n  );\n});\n\nexport type { PageContainerProps };\nexport { PageContainer, pageContainer };\n",
+      "type": "registry:ui",
+      "target": "components/ui/page-container.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

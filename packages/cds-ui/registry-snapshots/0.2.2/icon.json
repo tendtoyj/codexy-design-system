@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "title": "Icon",
+  "description": "phosphor wrapper with CDS size/color tokens. Accepts custom SVG components.",
+  "dependencies": ["@tendtoyj/cds-core@0.2.2", "@tendtoyj/cds-icons@0.2.2"],
+  "files": [
+    {
+      "path": "src/components/icon.tsx",
+      "content": "\"use client\";\n\nimport { cn, tv, type VariantProps } from \"@tendtoyj/cds-core\";\nimport type { IconWeight, PhosphorIcon } from \"@tendtoyj/cds-icons/icons\";\nimport * as React from \"react\";\n\nconst icon = tv({\n  base: \"inline-block shrink-0\",\n  variants: {\n    size: {\n      xs: \"w-[12px] h-[12px]\",\n      sm: \"w-[16px] h-[16px]\",\n      md: \"w-[20px] h-[20px]\",\n      lg: \"w-[24px] h-[24px]\",\n      xl: \"w-[28px] h-[28px]\",\n    },\n    color: {\n      inherit: \"text-[color:inherit]\",\n      \"label-normal\": \"text-[color:var(--cds-label-normal)]\",\n      \"label-strong\": \"text-[color:var(--cds-label-strong)]\",\n      \"label-neutral\": \"text-[color:var(--cds-label-neutral)]\",\n      \"label-alternative\": \"text-[color:var(--cds-label-alternative)]\",\n      \"label-assistive\": \"text-[color:var(--cds-label-assistive)]\",\n      \"label-disable\": \"text-[color:var(--cds-label-disable)]\",\n      primary: \"text-[color:var(--cds-primary-normal)]\",\n      positive: \"text-[color:var(--cds-status-positive)]\",\n      cautionary: \"text-[color:var(--cds-status-cautionary)]\",\n      negative: \"text-[color:var(--cds-status-negative)]\",\n    },\n  },\n  defaultVariants: {\n    size: \"md\",\n    color: \"inherit\",\n  },\n});\n\ntype IconVariants = VariantProps<typeof icon>;\n\ntype IconProps = Omit<React.SVGAttributes<SVGSVGElement>, \"color\"> & {\n  icon: PhosphorIcon | React.ComponentType<React.SVGAttributes<SVGSVGElement>>;\n  size?: IconVariants[\"size\"];\n  color?: IconVariants[\"color\"];\n  /** Phosphor icon weight. 비-Phosphor 아이콘에는 무시된다. */\n  weight?: IconWeight;\n  label?: string;\n};\n\nconst Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(\n  { icon: Component, size = \"md\", color = \"inherit\", weight, label, className, ...props },\n  ref,\n) {\n  const a11y = label\n    ? { role: \"img\" as const, \"aria-label\": label }\n    : { \"aria-hidden\": true as const };\n  const weightProp = weight ? ({ weight } as { weight: IconWeight }) : null;\n  return (\n    <Component\n      ref={ref as never}\n      className={cn(icon({ size, color }), className)}\n      {...a11y}\n      {...weightProp}\n      {...props}\n    />\n  );\n});\n\nexport type { IconProps };\nexport { Icon, icon };\n",
+      "type": "registry:ui",
+      "target": "components/ui/icon.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

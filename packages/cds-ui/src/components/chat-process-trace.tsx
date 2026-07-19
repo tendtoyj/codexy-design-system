@@ -20,7 +20,7 @@ const chatProcessTrace = tv({
     triggerLabelRunning: "cds-animate-text-shimmer",
     triggerChevron: [
       "h-[14px] w-[14px] shrink-0",
-      "transition-transform duration-[var(--cds-motion-duration-fast,150ms)]",
+      "transition-transform duration-[var(--cds-duration-fast,150ms)]",
       "data-[expanded=true]:rotate-90",
     ],
     content: ["cds-chat-collapsible"],

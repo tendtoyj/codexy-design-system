@@ -1,8 +1,26 @@
 # @tendtoyj/cds-ui
 
+## 0.2.2
+
+### Patch Changes
+
+- bbf6bed: Stabilize the source-only UI registry for the `0.2.2` migration baseline.
+
+  - Redesign `Toast` as a bottom-center, message-only Montage-style surface. Variants are now `normal`, `positive`, `cautionary`, `negative`, and `question`; use `Snackbar` when close, action, title, or description controls are required.
+  - Add `Snackbar` with leading status/custom icons, title, description, action, and close slots.
+  - Replace nine invalid `--cds-motion-duration-fast` references with the defined `--cds-duration-fast` token and add a namespace regression check.
+  - Add immutable `/r/0.2.2/*` registry artifacts whose CDS package dependencies and nested registry dependencies are pinned to the same release.
+
+- Updated dependencies [bbf6bed]
+- Updated dependencies [bbf6bed]
+  - @tendtoyj/cds-core@0.2.2
+  - @tendtoyj/cds-icons@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
+
+- Historical correction: Button/TextButton/IconButton, Input/Select/Combobox/SegmentedControl, Checkbox/RadioGroup, DropdownMenu, SidebarList/SidebarMenu, Chip의 고정 크기·간격을 cds-core의 density-aware control token 참조로 교체했다. `data-density="touch"` ancestor 아래에서 touch 크기가 적용되고 기본 comfortable 렌더링은 유지된다.
 
 - Updated dependencies [65bf874]
   - @tendtoyj/cds-core@0.2.1

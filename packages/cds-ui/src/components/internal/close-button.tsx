@@ -11,7 +11,7 @@ const closeButton = tv({
     "hover:bg-[var(--cds-fill-normal)]",
     "focus-visible:outline-none focus-visible:ring-2",
     "focus-visible:ring-[color:var(--cds-focus-ring)]",
-    "transition-colors duration-[var(--cds-motion-duration-fast)]",
+    "transition-colors duration-[var(--cds-duration-fast)]",
     "disabled:pointer-events-none disabled:text-[color:var(--cds-label-disable)]",
   ],
   variants: {

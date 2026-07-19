@@ -39,10 +39,17 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Validate immutable registry snapshots
+        run: pnpm registry:validate
+
+      - name: Build registry delivery paths
+        run: pnpm --filter @tendtoyj/cds-docs build:registry
+
       - name: Build
         run: pnpm exec turbo run build --filter='./packages/*'
 
       - name: Create Release PR or Publish
+        id: changesets
         uses: changesets/action@v1
         with:
           title: "chore: version packages"
@@ -52,3 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify published tags share the release commit
+        if: steps.changesets.outputs.published == 'true'
+        run: node scripts/verify-release-tags.mjs
